@@ -1,0 +1,932 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Github,博客,Hexo,小白,快速" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="龚小样儿" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/faci.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的建站步骤博文给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何快速地利用Github建博客">
+<meta property="og:url" content="http://gelory.me/2016/10/09/如何快速地利用Github建博客/index.html">
+<meta property="og:site_name" content="龚小样儿">
+<meta property="og:description" content="作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的建站步骤博文给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。">
+<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/blog.jpg">
+<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/%E8%8E%AB%E6%85%8C.gif">
+<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/DNSPod.png">
+<meta property="og:updated_time" content="2016-10-14T08:21:28.573Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何快速地利用Github建博客">
+<meta name="twitter:description" content="作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的建站步骤博文给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。">
+<meta name="twitter:image" content="http://oeqc7pnps.bkt.clouddn.com/blog.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://gelory.me/2016/10/09/如何快速地利用Github建博客/"/>
+
+
+  <title> 如何快速地利用Github建博客 | 龚小样儿 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85389185-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?168373cb7a7b12fb15c16747cdf2412f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">龚小样儿</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">写一些小事，做一些大事</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-star">
+          <a href="/star" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br />
+            
+            动态
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-demo">
+          <a href="/demo" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />
+            
+            项目
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                如何快速地利用Github建博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-09T15:15:44+08:00" content="2016-10-09">
+              2016-10-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Github实用/" itemprop="url" rel="index">
+                    <span itemprop="name">Github实用</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/09/如何快速地利用Github建博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/09/如何快速地利用Github建博客/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/10/09/如何快速地利用Github建博客/" class="leancloud_visitors" data-flag-title="如何快速地利用Github建博客">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://oeqc7pnps.bkt.clouddn.com/blog.jpg" alt="如何快速地利用Github建博客"><br>作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?<br>肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的<strong>建站步骤博文</strong>给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。<br><a id="more"></a><br>笔者将按这个流程讲解：</p>
+<blockquote>
+<ul>
+<li>购买独立域名，域名解析相关工作</li>
+<li>注册Github账户，建立GitHub Pages博客</li>
+<li>域名绑定</li>
+<li>博客配置</li>
+<li>文章撰写</li>
+</ul>
+</blockquote>
+<html><br><body><br><center style="color:green">看到这里，千万别慌，一步步做，很简单的。</center><br><div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/%E8%8E%AB%E6%85%8C.gif"></div><br></body><br></html>
+
+<h2 id="Step1-域名购买，域名解析"><a href="#Step1-域名购买，域名解析" class="headerlink" title="Step1. 域名购买，域名解析"></a>Step1. 域名购买，域名解析</h2><hr>
+<p>所谓域名，其实解释给IP地址带上一个便于记忆的标志。譬如我们去某宝购物，输入的taobao.com就是一个域名，没人会去记200.210.6.20（随便编的）这一串IP。</p>
+<p>去哪里买呢？很多地方有卖，学生可以去<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">阿里云</a>看看，学生购买域名和租服务器有优惠。笔者在<a href="https://sg.godaddy.com/" target="_blank" rel="external">Godday</a>购买，网络上有很多Godday的<a href="http://www.51pin.cn/archives/1966" target="_blank" rel="external">优惠码</a>，点击网页里面的优惠码链接，然后购物，结算的时候会自动优惠，大部分支持支付宝支付。域名后缀有很多种，常见的 <code>.com</code> <code>.net``.org</code>。喜欢特别的可以像笔者一样<code>.me</code>等等，自己喜欢就好。</p>
+<p>然后选择<a href="https://www.dnspod.cn/" target="_blank" rel="external">DNSPod</a>的解析服务，口碑挺好的。在解析这块,<a href="http://beiyuu.com/github-pages" target="_blank" rel="external">Beiyuu</a>的博文头部有具体流程。<strong>值得注意的是</strong>：Github Pages的服务IP地址会变化，具体的请点击<a href="https://help.github.com/articles/setting-up-an-apex-domain/" target="_blank" rel="external">链接</a>查看。目前的是：<code>192.30.252.153</code>和<code>192.30.252.154</code>。</p>
+<h2 id="Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客"><a href="#Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客" class="headerlink" title="Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客"></a>Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客</h2><hr>
+<p>来看这篇文章的，应该都会注册用户，github也是一样，很普通的注册方法。点此<a href="https://github.com/" target="_blank" rel="external">注册</a>.</p>
+<p>注册后，安装Git，点此安装<a href="http://code.google.com/p/msysgit/downloads/list" target="_blank" rel="external">Windows版</a>，其他版本请点击<a href="https://help.github.com/articles/set-up-git/" target="_blank" rel="external">Mac，Linux</a>.如果你会一点点基本的嵌入式命令行，学起来毫不费劲，看一下<a href="http://blog.jobbole.com/78960/" target="_blank" rel="external">伯乐在线</a>的这篇博文，跟着敲一敲，很快就get了。如果没有基础的话,可以跟着伯乐在线的速学一下，想深入的话，点这里<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Git中文教程</a>学习。掌握了一些基本命令行之后，按照Beiyuu博客的<a href="http://beiyuu.com/github-pages" target="_blank" rel="external">配置和使用Github</a>部分进行相关设置。</p>
+<p>建立Github博客,可以看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">将博客部署到Github Pages上</a>部分。<strong>值得注意的是：</strong>建立的Repository名：<code>username.github.io</code>中的<code>username</code>名必须与左侧你的用户名<code>Owner</code>保持一致。</p>
+<h2 id="Step3-域名绑定"><a href="#Step3-域名绑定" class="headerlink" title="Step3. 域名绑定"></a>Step3. 域名绑定</h2><hr>
+<p>做完上面一步，你可以通过username.github.io这个域名访问到你的测试博客。此时要想通过你自己的购买的域名访问，就必须绑定。</p>
+<p>首先：在Github-&gt;username.github.io这个repository中新建一个文件（Create new file），文件名叫<code>CNAME</code>，<code>没有后缀</code>，在首行写上你买的域名，譬如笔者的域名<a href="https://gelory.me/"><code>gelory.me</code></a>。</p>
+<p>然后：登录你注册了的DNSPod，添加一条如图所示的记录：<br><img src="http://oeqc7pnps.bkt.clouddn.com/DNSPod.png" alt="添加记录"></p>
+<p><strong>值得注意的是：</strong>记录值：<code>username.github.io.</code>io后面这个点千万别忘了。添加完后，等上个几分钟，就绑定好了。当你通过username.github.io这个域名访问测试博客时，他会自动跳转到你自己的域名上。</p>
+<h2 id="Step4-博客配置"><a href="#Step4-博客配置" class="headerlink" title="Step4. 博客配置"></a>Step4. 博客配置</h2><hr>
+<p>到这一步，你已经可以访问域名了，只不过博客还没成型，你需要配置。对于小白来说，采用Hexo框架再好不过了。</p>
+<p>可以看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">Hexo</a>部分。<br><strong>值得注意的是:</strong>当你把本地文件push到github上时，可能会将你刚才新建的CNAME文件删掉，那么你就无法通过域名访问了。`解决方法是: 在 \hexo\source文件夹下，重新建立CNAME文件。</p>
+<h2 id="Step5-文章撰写"><a href="#Step5-文章撰写" class="headerlink" title="Step5. 文章撰写"></a>Step5. 文章撰写</h2><p>如何编辑文章，请继续查看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">在博客写文章</a>部分。格式化编辑文章，大家都在推荐使用MarkDown，这东西确实不错，我用的编辑器是作业部落的<a href="https://www.zybuluo.com" target="_blank" rel="external">CMD MarkDown</a>非常好使，在此推荐。另外，会一点前端知识能让你的文章样式更加丰富。</p>
+<hr>
+<p>###小样有话说：</p>
+<center style="color:green;font-weight: Bold;border:1px dotted #999">到此，你的博客建完了，文章也会写了。那请你别辜负了当初建站的热情，把心思放在创作优质内容上。加油！</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>
+
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>看我这么辛苦，能把五毛钱呼我脸上吗？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeqc7pnps.bkt.clouddn.com/wechat.png" alt="龚志强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeqc7pnps.bkt.clouddn.com/ali.png" alt="龚志强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Github/" rel="tag">#Github</a>
+          
+            <a href="/tags/博客/" rel="tag">#博客</a>
+          
+            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/09/高度不定的子元素在高度不定的父元素中垂直居中问题/" rel="prev" title="高度不定的子元素在高度不定的父元素中垂直居中">
+                高度不定的子元素在高度不定的父元素中垂直居中 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+ 
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/09/如何快速地利用Github建博客/"
+           data-title="如何快速地利用Github建博客" data-url="http://gelory.me/2016/10/09/如何快速地利用Github建博客/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="龚志强" />
+          <p class="site-author-name" itemprop="name">龚志强</p>
+          <p class="site-description motion-element" itemprop="description">技术,小白</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-域名购买，域名解析"><span class="nav-number">1.</span> <span class="nav-text">Step1. 域名购买，域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客"><span class="nav-number">2.</span> <span class="nav-text">Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step3-域名绑定"><span class="nav-number">3.</span> <span class="nav-text">Step3. 域名绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step4-博客配置"><span class="nav-number">4.</span> <span class="nav-text">Step4. 博客配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step5-文章撰写"><span class="nav-number">5.</span> <span class="nav-text">Step5. 文章撰写</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">龚志强</span>
+</div>
+
+<div class="powered-by">
+  QQ:1010688273
+</div>
+
+<div class="theme-info">
+  欢迎骚扰 -
+  <a class="theme-link" href="https://github.com/Gong-Elory">
+    龚志强
+  </a>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gelory"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+
+</body>
+</html>

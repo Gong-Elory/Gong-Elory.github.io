@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>龚小样儿</title>
+  <subtitle>写一些小事，做一些大事</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://gelory.me/"/>
+  <updated>2016-11-03T14:26:38.761Z</updated>
+  <id>http://gelory.me/</id>
+  
+  <author>
+    <name>龚志强</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>innerHTML相关知识点总结</title>
+    <link href="http://gelory.me/2016/11/03/innerHTML%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/"/>
+    <id>http://gelory.me/2016/11/03/innerHTML相关知识点总结/</id>
+    <published>2016-11-03T14:25:28.000Z</published>
+    <updated>2016-11-03T14:26:38.761Z</updated>
+    
+    <content type="html"><![CDATA[<p>这里总结了和innerHTML有联系的一些知识点。<br><a id="more"></a></p>
+<h2 id="innerHTML相关属性的区别"><a href="#innerHTML相关属性的区别" class="headerlink" title="innerHTML相关属性的区别"></a>innerHTML相关属性的区别</h2><p>innerHTML:获取或者设置位于对象起止标签内的HTML<br>innerText：获取设置位于对象起止标签内的文本<br>outerHTML：获取设置包括对象起止标签的HTML<br>outerText：设置包括标签的文本，获取不包括标签的文本。<br>譬如：</p>
+<pre><code>&lt;div&gt;content&lt;br/&gt;&lt;/div&gt;
+</code></pre><p>innerHTML：<code>content&lt;br/&gt;</code><br>innerText： <code>content</code><br>outerHTML： <code>&lt;div&gt;content&lt;br/&gt;&lt;/div&gt;</code><br>outerText： <code>content</code>//如果修改该值的话，会把<code>&lt;div&gt;content&lt;br/&gt;&lt;/div&gt;</code>覆盖掉。</p>
+<p>innerHTML虽然并不是W3C DOM标准的组成部分，但是符合HTML5规范。innerText只适用于IE浏览器，所以考虑兼容性的话，尽量使用innerHTML。如果只需要标签内文本的话，可以使用正则表达式过滤。</p>
+<h2 id="innerHTML与document-write-的区别"><a href="#innerHTML与document-write-的区别" class="headerlink" title="innerHTML与document.write()的区别"></a>innerHTML与document.write()的区别</h2><blockquote>
+<ul>
+<li>定义：innerHTML是DOM元素对象的一个属性，write是document对象的一个方法。</li>
+<li>用途：innerHTML属性可以用来获取、修改指定元素内的所有标签和内容。而document.write()对整个文档流进行重写。</li>
+<li>原理：innerHTML是对属性设置，代表的是该元素的HTML内容，可以精准的对某一元素进行修改。document.write()创建一个新的文档输出流，向HTML输出流写内容，如果在文档渲染完毕后使用，则会迫使浏览器重新渲染。</li>
+<li>优劣：document.write（）最大的缺点是违背了<code>行为应为与结构分离</code>的原则，也就是js应该与html代码分离。<br>innerHTML在很多情况下优于document.write()，原因是前者允许精准修改某一部分。缺点：相对于DOM方法和属性，innerHTML没有细节而言，他获取的是整个内容。</li>
+</ul>
+</blockquote>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-3</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这里总结了和innerHTML有联系的一些知识点。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="DOM" scheme="http://gelory.me/tags/DOM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS中全局变量和局部变量的区别</title>
+    <link href="http://gelory.me/2016/11/03/JS%E4%B8%AD%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://gelory.me/2016/11/03/JS中全局变量和局部变量的区别/</id>
+    <published>2016-11-03T06:12:17.000Z</published>
+    <updated>2016-11-03T06:14:06.022Z</updated>
+    
+    <content type="html"><![CDATA[<p>什么是局部变量，用var操作符定义的变量将成为该变量作用域中的局部变量。其实可以这样理解，全局变量也是局部变量，只不过他是在<code>&lt;script&gt;&lt;/script&gt;</code>包含的作用域下的局部变量。但是通常情况下，我们参考的标准的function域，也就是说在<code>function域中用var定义的变量称为在该作用域下的局部变量</code>，那么剩余的就是全局变量了。<br><a id="more"></a></p>
+<h2 id="哪些方式可以生成全局变量与局部变量："><a href="#哪些方式可以生成全局变量与局部变量：" class="headerlink" title="哪些方式可以生成全局变量与局部变量："></a>哪些方式可以生成全局变量与局部变量：</h2><pre><code>var a=0; //全局变量1
+b=0; //全局变量2
+window.str3 = &quot;hello3&quot;; //全局变量3
+function(){
+    var d = 0；//局部变量4
+    e=0; //全局变量5
+}
+</code></pre><p>全局变量2，5，虽说这样可以定义全局变量，但是不推荐这样做，因为如果你养成了这样定义全局变量的习惯，如果有一天一不小心，原本应该定位为局部变量的变量，由于忘记了var，变成了全局变量，那么找bug将会很困难，因为在你潜意识中，看到这个变量，你以为是在这里定义了个全局变量，其实是忘写var了。<strong>所以，不要有意识的去不写var</strong>。 此外给未经声明的变量赋值，在严格模式下会抛出<code>ReferenceError</code>错误。</p>
+<h2 id="局部变量的陷阱"><a href="#局部变量的陷阱" class="headerlink" title="局部变量的陷阱"></a>局部变量的陷阱</h2><h3 id="陷阱1"><a href="#陷阱1" class="headerlink" title="陷阱1"></a>陷阱1</h3><p>在作用域当中，在声明前使用局部变量不会报错，但因为没有赋值，所以返回的是undefined。</p>
+<pre><code>function test(){  
+    alert(a);  //1.此时显示的为undefined
+    var a=4;
+    alert(a); //2.此时显示的是4
+} 
+</code></pre><p>原因：js在执行前会对整个脚本文件分析，因此1不会报错，而只是因为在此前没对a赋值，所以显示undefined。<br>之所以2处会显示a，是因为在此之前对a进行赋值了。<br>因此需要注意两点：</p>
+<blockquote>
+<ul>
+<li><p>在引用局部变量时，与局部变量的声明地点无关，局部变量的作用域为整个function域。</p>
+</li>
+<li><p>在使用局部变量的值时，与局部变量的赋值地点有关，赋值的作用域起于赋值地点，止于function域结束，可以被覆盖。</p>
+</li>
+</ul>
+</blockquote>
+<h3 id="陷阱2"><a href="#陷阱2" class="headerlink" title="陷阱2"></a>陷阱2</h3><p>局部变量的划分是以function块为标准，而for、while、if块不是。</p>
+<pre><code>function test(){  
+        for(var i=0;i&lt;3;i++)
+        {
+            alert(i); //1.此时显示的是0,1,2
+        }
+        alert(i) //2.此时显示的是2
+    } 
+</code></pre><p>原因：在for内进行声明的变量属于局部变量，他的作用域在整个function域内，而不仅仅只for域内，因此2处显示的是2，而不是报错。<br>因此注意一点</p>
+<blockquote>
+<ul>
+<li>局部变量的划分是以function块为标准。</li>
+</ul>
+</blockquote>
+<h3 id="陷阱3"><a href="#陷阱3" class="headerlink" title="陷阱3"></a>陷阱3</h3><p>如果全局变量和局部变量的变量名相同，采取的是谁近听谁的原则。</p>
+<pre><code>var a = 0;
+function test(){  
+        var a = 1;
+        alert(a); //1.此时显示的是1
+    }
+alert(a); //2.此时显示的是0
+</code></pre><p>原因：1在function域下,其直接父域是function，所以听局部声明。2.的直接父域是script域,所以听全局声明<br>注意一点</p>
+<blockquote>
+<ul>
+<li>重名时，局部变量覆盖全局变量声明，跳出局部变量所在域后，由全局声明决定变量值。</li>
+</ul>
+</blockquote>
+<p>那怎样才能在这种情况下，在function域中使用全局变量呢？<br>1.改名。天涯何处无芳草，何必吊死于一树。<br>2.在function域中使用<code>window.变量名</code>就可以调用全局变量啦。</p>
+<pre><code>alert(window.a); //此时显示的是0
+</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-3</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;什么是局部变量，用var操作符定义的变量将成为该变量作用域中的局部变量。其实可以这样理解，全局变量也是局部变量，只不过他是在&lt;code&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;包含的作用域下的局部变量。但是通常情况下，我们参考的标准的function域，也就是说在&lt;code&gt;function域中用var定义的变量称为在该作用域下的局部变量&lt;/code&gt;，那么剩余的就是全局变量了。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Viewport的深入了解</title>
+    <link href="http://gelory.me/2016/11/02/Viewport%E7%9A%84%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3/"/>
+    <id>http://gelory.me/2016/11/02/Viewport的深入了解/</id>
+    <published>2016-11-02T05:59:06.000Z</published>
+    <updated>2016-11-02T06:00:35.197Z</updated>
+    
+    <content type="html"><![CDATA[<p>刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。<br><a id="more"></a></p>
+<h2 id="viewport定义"><a href="#viewport定义" class="headerlink" title="viewport定义"></a>viewport定义</h2><p>就像英文字面翻译一样，能看得到的区域。viewport指的是显示网页的区域。但是因为viewport按特性可以分为三类，所以viewport又不仅仅是浏览器可视区域那么大。</p>
+<p>譬如一般移动端浏览器显示屏宽度都是320px 480px等。但是移动设备的viewport默认宽度是980px或者1024px。这个值可以自己设置。</p>
+<h2 id="物理像素与CSS像素的区别与联系"><a href="#物理像素与CSS像素的区别与联系" class="headerlink" title="物理像素与CSS像素的区别与联系"></a>物理像素与CSS像素的区别与联系</h2><p>在桌面浏览器中，CSS的1px是等于屏幕上的1个物理像素的。 但是在移动设备中可就不一定，譬如Retina屏，一个CSS像素相当于两个物理像素。</p>
+<h3 id="屏幕尺寸和像素尺寸的区别与联系"><a href="#屏幕尺寸和像素尺寸的区别与联系" class="headerlink" title="屏幕尺寸和像素尺寸的区别与联系"></a>屏幕尺寸和像素尺寸的区别与联系</h3><p>屏幕的尺寸和像素尺寸不是一样的  譬如ipone3和iphone4都是320px的宽屏。但是前者像素是320px，后者采用retina屏，像素是640px。<br>安卓设备也是一样，根据像素密度分为ldpi，mdpi，hdpi，xhdpi等不同等级。</p>
+<h3 id="用户缩放导致CSS像素与物理像素的比值差异"><a href="#用户缩放导致CSS像素与物理像素的比值差异" class="headerlink" title="用户缩放导致CSS像素与物理像素的比值差异"></a>用户缩放导致CSS像素与物理像素的比值差异</h3><p>如果用户把页面放大一倍，首先，屏幕尺寸是不会变的，1个CSS像素如果以前相当于一个物理像素，此时，就相当于两个物理像素了，那么我们看到的景象就是字体什么的放大了。</p>
+<h2 id="viewport按表现类型分三类"><a href="#viewport按表现类型分三类" class="headerlink" title="viewport按表现类型分三类"></a>viewport按表现类型分三类</h2><p>layout viewport 大于浏览器可视区域宽度<br>visual biewport 浏览器可视区域宽度<br>ideal viewport 完美适配移动端屏幕的宽度</p>
+<p>只要在CSS中把某一元素的宽度设置为ideal viewport的宽度，那么这个元素的宽度就是设备屏幕的宽度。</p>
+<h2 id="利用meta元标签对viewport进行控制"><a href="#利用meta元标签对viewport进行控制" class="headerlink" title="利用meta元标签对viewport进行控制"></a>利用meta元标签对viewport进行控制</h2><p>移动设备默认的是layout viewport。但是进行移动设备网站开发时，我们需要ideal viewport。</p>
+<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt;
+</code></pre><p>这个标签的作用就是让当前页面的宽度等于设备的宽度，不允许手动缩放。</p>
+<h2 id="meta-viewport的6个属性"><a href="#meta-viewport的6个属性" class="headerlink" title="meta viewport的6个属性"></a>meta viewport的6个属性</h2><p>width：设置layout viewport的宽度。可以使整数，也可以设置为width-device。当设置为width-device时，自动适配屏幕宽度。<br>height：设置layout viewport的高度。<br>initial-scale：设置页面加载时的缩放值，可以是小数。相对于ideal-viewport值进行缩放。<br>minimum-scale：允许用户的最小缩放值。<br>maximum-scale：允许用户的最大缩放值。<br>user-scalable：是否允许用户手动缩放。 值为’yes’ or ‘no’。</p>
+<p>经证明：<br>    <meta name="viewport" content="width=device-width, initial-scale=1"></p>
+<p>可以让大部分的移动端设备的viewport设置为ideal viewport。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-2</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Webkit内核显示字体自动放大问题</title>
+    <link href="http://gelory.me/2016/10/26/Webkit%E5%86%85%E6%A0%B8%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93%E8%87%AA%E5%8A%A8%E6%94%BE%E5%A4%A7%E9%97%AE%E9%A2%98/"/>
+    <id>http://gelory.me/2016/10/26/Webkit内核显示字体自动放大问题/</id>
+    <published>2016-10-26T09:21:21.000Z</published>
+    <updated>2016-10-26T09:23:02.519Z</updated>
+    
+    <content type="html"><![CDATA[<p>在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。<br><a id="more"></a><br>这个东西不是bug也不是hack，是Chromium内核为了提高移动端文本可读性，而增加的一个特性。还有个学名叫<code>Text Autosizer</code> 这个算法呢会根据缩放比例，字体大小，屏幕分辨率等特性，将开发人员设置的字体大小值做一系列运算，然后显示。意思就是：它认为你这样用户会看不清。于是助你一臂之力。</p>
+<p>那如何禁用这个特性呢？有人说给文本增加宽高，真是脑洞大。<br>最直接的方法就是设置<br><code>max-height=100%；</code>设置元素的最大宽度。<br>当然你也可以设置viewport元标签内的initial-scale属性为1。initial-scale属性控制页面最初加载时的缩放等级。更多关于元标签的信息可以看我遇到的另一个问题<a href="http://gelory.me/2016/10/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%98%BE%E7%A4%BA%E6%97%B6%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E9%97%AE%E9%A2%98/">移动端显示时页面缩放问题</a>.</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-26</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>移动端显示时页面缩放问题</title>
+    <link href="http://gelory.me/2016/10/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%98%BE%E7%A4%BA%E6%97%B6%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E9%97%AE%E9%A2%98/"/>
+    <id>http://gelory.me/2016/10/26/移动端显示时页面缩放问题/</id>
+    <published>2016-10-26T08:47:07.000Z</published>
+    <updated>2016-10-26T09:23:02.519Z</updated>
+    
+    <content type="html"><![CDATA[<p>在做简易自适应布局时，出现了一个问题，硬是折磨了我一天。同样是16px的字体，在手机上显示，连放大镜都找不到。此外，横屏的时候，字体又变得出奇的大。试了网上的某些添加属性值方法都不管用。其实问题出在页面身上，字体是无过的。<br><a id="more"></a><br>一个典型的针对移动端优化的站点会包含类似下面的内容。</p>
+<p><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><br>width可以是固定值，也可以是device-width这一变量，代表虚拟窗口的宽度。</p>
+<p>initial-scale属性控制页面最初加载时的缩放等级。<br>maximum-scale、minimum-scale控制页面最大缩放比例和最小缩放比例。<br>user-scalable属性控制允许用户缩放页面</p>
+<p>我当初遇到的问题就是没有设置元标签的内容，导致手机为了适应屏幕宽度，而缩小页面。<br><strong>如果想要保证页面不缩放，可以设置maximum-scale、minimum-scale都为1.</strong><br>user-scalable=no这样设置有的浏览器不保证所有浏览器都会不缩放页面</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-26</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在做简易自适应布局时，出现了一个问题，硬是折磨了我一天。同样是16px的字体，在手机上显示，连放大镜都找不到。此外，横屏的时候，字体又变得出奇的大。试了网上的某些添加属性值方法都不管用。其实问题出在页面身上，字体是无过的。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="HTML" scheme="http://gelory.me/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>px，em，rem单位的区别与联系</title>
+    <link href="http://gelory.me/2016/10/26/px%EF%BC%8Cem%EF%BC%8Crem%E5%8D%95%E4%BD%8D%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/"/>
+    <id>http://gelory.me/2016/10/26/px，em，rem单位的区别与联系/</id>
+    <published>2016-10-26T08:23:57.000Z</published>
+    <updated>2016-10-26T09:08:04.537Z</updated>
+    
+    <content type="html"><![CDATA[<p>在重构页面时，经常会用到px，em等单位来设置距离，大小。但是用px还好，em时稍不留心，参考大小就弄错了，然后计算出一个错误的距离，还用得不亦乐乎。<br><a id="more"></a><br>px（Pixel）这个单位是相当于显示器的分辨率来说的。</p>
+<h2 id="em的特点"><a href="#em的特点" class="headerlink" title="em的特点"></a>em的特点</h2><blockquote>
+<ul>
+<li>表示字体大小时，是相对其父元素字体大小的倍数而言的。<br>譬如该父元素字体大小为16px，那么1.5em=1.5*16px=24px</li>
+<li>在表示距离，宽高的时候，是相对其自身元素字体大小而言的，这个极为重要。<br>譬如父元素字体大小为16px 自身元素字体大小为24px（或者（1.5em）），那么margin-top：2em，这里换算为px值是48px，而不是32px。</li>
+</ul>
+</blockquote>
+<p>任何浏览器的默认字体大小都是16px，那我们每次算像素值，然后用em表示，岂不是相当麻烦。是的，很麻烦。为了简化运算，经常会在body选择器中声明</p>
+<pre><code>font-size：62.5%
+</code></pre><p>意思是参考值变为原来的.625倍，也就是16*0.625=10px。那么之后在算em就是以这个为基准了。譬如23像素就可以表示为2.3em。</p>
+<p>但我还是觉得麻烦啊！每次还要考虑其父元素的大小，考虑自身元素字体大小，操着卖白粉的心啊！<br>是的！ 考虑到这个原因在CSS3中新增了rem这个相对单位。</p>
+<h2 id="rem和em的区别"><a href="#rem和em的区别" class="headerlink" title="rem和em的区别"></a>rem和em的区别</h2><p>rem永远相对于根元素，也就是说不需要考虑他的父元素大小了，统一以根元素的字体大小作为基准。此时设置文档根元素html标签的字体</p>
+<p>font-size：62.5%</p>
+<p>来使1rem 代表 10px。</p>
+<p>这个在自适应布局用途非常的广，譬如设计稿给的宽度是640px，此时根元素设置的是20px  那么10rem代表200px，如果想在屏幕宽度为320px的移动端也适用这一套，只需要根据屏幕宽度比去计算在320px下html的字体大小值就行了。不需要去具体改动其他元素的值。</p>
+<h2 id="rem的兼容性"><a href="#rem的兼容性" class="headerlink" title="rem的兼容性"></a>rem的兼容性</h2><blockquote>
+<ul>
+<li>支持 IE9+</li>
+</ul>
+</blockquote>
+<p>IE9/IE10在用于伪元素时或者使用字体简写声明时不支持rem；</p>
+<blockquote>
+<ul>
+<li>支持 FireFox3.5+</li>
+<li>支持Chrome 6+</li>
+<li>支持 Safari 5+</li>
+<li>支持Opera 11.6+</li>
+<li>支持IOS Safari 4.1+</li>
+</ul>
+</blockquote>
+<p>IOS Safari5.0-5.1虽然支持rem，但是在使用媒体查询时不支持rem。</p>
+<blockquote>
+<ul>
+<li>支持Android2.1+ 微信页面可能不起作用</li>
+</ul>
+</blockquote>
+<p>如果兼容性不支持，那么就采用px 和rem一起写的方式。</p>
+<p>rem和em可以一起用，但是这样不嫌麻烦吗？</p>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">能用rem尽量用，不兼容就混合用，迟早是它的天下！</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-26</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在重构页面时，经常会用到px，em等单位来设置距离，大小。但是用px还好，em时稍不留心，参考大小就弄错了，然后计算出一个错误的距离，还用得不亦乐乎。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Absolute定位的进一步认识</title>
+    <link href="http://gelory.me/2016/10/24/Absolute%E5%AE%9A%E4%BD%8D%E7%9A%84%E8%BF%9B%E4%B8%80%E6%AD%A5%E8%AE%A4%E8%AF%86/"/>
+    <id>http://gelory.me/2016/10/24/Absolute定位的进一步认识/</id>
+    <published>2016-10-24T09:10:48.000Z</published>
+    <updated>2016-10-24T09:12:24.176Z</updated>
+    
+    <content type="html"><![CDATA[<p>在我印象中，我一直认为absolute是离不开另外一个属性值：relative的。因为这种现象很常见：当我们要使用相对定位是，经常会给父元素设置一个relative属性值，然后给子元素设置一个absolute属性值。然后通过控制子元素top，left等样式来控制子元素的定位。这种使用方法没有错误？但是呢，却没有更好的利用absolute的属性，代码比较冗杂。absolute绝对定位还有很多不为人知的秘密，今天就来扒一扒。<br><a id="more"></a></p>
+<h2 id="无依赖的absolute定位"><a href="#无依赖的absolute定位" class="headerlink" title="无依赖的absolute定位"></a>无依赖的absolute定位</h2><p>我们经常会遇到这样的案例：某个标题右上角打上hot标签，或者某个商品图片右上角打上特惠图片。<br>相信很多人第一想法是，先给包容图片和这个标签的父元素设置position属性值为relative，然后设置这个标签的该属性值为absolute，然后通过top和right值去设置相对位置。<br>然而如果知道absolute的无依赖定位后，你就不需要给父元素设置position值，不用top，right值去位置。<br>那怎么做呢？<br>我们只设置</p>
+<pre><code>&lt;span class=&quot;biaoqian&quot; style=&quot;position:absolute;margin-left:-30px&quot;&gt;&lt;/span&gt;
+</code></pre><p>类似这样的形式即可实现上述功能。原因是，当给某元素设置absolute后，他在屏幕中的位置是不变的，只不过宽高没有了，不存在于文档流中了。所以，如果这个标签放在图片的后面，absolute之后，位置依然在图片之后。想要把他移到图片上，只需给一个margin-left负值即可。</p>
+<p>采用Relative遵循两个原则：</p>
+<blockquote>
+<ul>
+<li>能不用就不用</li>
+<li>要用尽量范围涉及小</li>
+</ul>
+</blockquote>
+<h2 id="absolute定位的对宽高的替代性"><a href="#absolute定位的对宽高的替代性" class="headerlink" title="absolute定位的对宽高的替代性"></a>absolute定位的对宽高的替代性</h2><p>经常我们需要某元素能够自适应宽高其父元素？我们除了用width，height的100%外加top=0来实现外，还可以利用top，right，bottom，left同时为0时来显示。</p>
+<h2 id="absolute定位对fixed定位的替代性"><a href="#absolute定位对fixed定位的替代性" class="headerlink" title="absolute定位对fixed定位的替代性"></a>absolute定位对fixed定位的替代性</h2><p>在整体布局时，尤其是为了适应移动端，经常会使用fixed来定位header和footer。除了可以用fixed定位外，absolute同样也适用。</p>
+<pre><code>html body{
+    width:100%;
+    height:100%
+}
+
+header,footer{
+display:absolute;
+right:0;
+lrft:0;
+width:50px;
+}
+
+.content{
+display:absolute;
+top:50px;
+bottom:50px;
+overflow:auto;
+}
+</code></pre><p>这样就ok了。</p>
+<h2 id="absolute与宽高百分比的合作性"><a href="#absolute与宽高百分比的合作性" class="headerlink" title="absolute与宽高百分比的合作性"></a>absolute与宽高百分比的合作性</h2><p>当我们同时设置top，right，bottom，left为0，设置width=50%时，此时改元素的宽度是50%。<br>那此时right，left岂不是打酱油了？没有。合作性在此处体现：<br>当满足上面条件的同时，在加上margin：auto，会产生绝对定位元素水平居中的效果。次特性支持IE8+。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-24</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在我印象中，我一直认为absolute是离不开另外一个属性值：relative的。因为这种现象很常见：当我们要使用相对定位是，经常会给父元素设置一个relative属性值，然后给子元素设置一个absolute属性值。然后通过控制子元素top，left等样式来控制子元素的定位。这种使用方法没有错误？但是呢，却没有更好的利用absolute的属性，代码比较冗杂。absolute绝对定位还有很多不为人知的秘密，今天就来扒一扒。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>外边距塌陷相关问题的解决方案</title>
+    <link href="http://gelory.me/2016/10/23/%E5%A4%96%E8%BE%B9%E8%B7%9D%E5%A1%8C%E9%99%B7%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://gelory.me/2016/10/23/外边距塌陷相关问题的解决方案/</id>
+    <published>2016-10-23T04:34:53.000Z</published>
+    <updated>2016-10-23T04:38:31.139Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近，在写代码时发现了这样一个问题。两个div元素的间距为0，我想为下面一个div元素的第一个子元素添加一个上外边距，结果该距离直接转化成了两个div元素的距离，于是只能用改变这个子元素的内边距去达到这个效果。后来知道这种现象又有个学名叫<code>外边距塌陷</code>.<br><a id="more"></a><br><code>外边距塌陷（margin collapse）</code>：块元素的外边距有时候会发生合并为单个外边距的现象，就称为外边距塌陷。</p>
+<p>这个现象发生的原因是因为：按照规范，一个盒子没有padding-top和border-top，那么这个盒子的上边距会和其内部文档流中的第一个子元素的上边距重叠。</p>
+<p>这种现象有多种表现形式（)：<br>1.块级父元素（该元素没有设置border，paddding，清除浮动属性时） 和第一个子元素的margin-top合并。<br>解决方法：</p>
+<blockquote>
+<ul>
+<li>设置border padding值。</li>
+<li>在第一个子元素与父元素之间添加一个空块，并设置padding值</li>
+<li>给父元素设置overflow：hidden；</li>
+<li>给内层或者外层div设置float，float:left;</li>
+<li>给内层或者外层设置position，position:absolute;</li>
+</ul>
+</blockquote>
+<p>2.块级父元素（该元素没有<code>height</code>，border，paddding，清除浮动属性时），与其最后一个子元素的margin-bottom也会产生这种现象。<br>解决方法同上。</p>
+<p>3.两相邻兄弟元素（没限制条件）<br>前一个兄弟元素的下边距会和下一个兄弟元素的上边距重合，选最大的显示。譬如前者下边距是30px后者上边距是40px，最终两元素的间距是40px。<br>解决方法：</p>
+<blockquote>
+<ul>
+<li>设置一个元素的边距值就行了。</li>
+</ul>
+</blockquote>
+<p>4.空块元素的上下边距合并 该元素没有设置border，padding，height相关属性时。<br>解决方法：</p>
+<blockquote>
+<ul>
+<li>设置border，padding，height相关属性时。</li>
+</ul>
+</blockquote>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">这个现象很常见，总算是弄明白原因了。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-23</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近，在写代码时发现了这样一个问题。两个div元素的间距为0，我想为下面一个div元素的第一个子元素添加一个上外边距，结果该距离直接转化成了两个div元素的距离，于是只能用改变这个子元素的内边距去达到这个效果。后来知道这种现象又有个学名叫&lt;code&gt;外边距塌陷&lt;/code&gt;.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>inline-block元素之间间隙的去除法</title>
+    <link href="http://gelory.me/2016/10/20/inline-block%E5%85%83%E7%B4%A0%E4%B9%8B%E9%97%B4%E9%97%B4%E9%9A%99%E7%9A%84%E5%8E%BB%E9%99%A4%E6%B3%95/"/>
+    <id>http://gelory.me/2016/10/20/inline-block元素之间间隙的去除法/</id>
+    <published>2016-10-20T06:57:01.000Z</published>
+    <updated>2016-10-20T07:05:24.546Z</updated>
+    
+    <content type="html"><![CDATA[<p>inline-block元素，或者属性被设置为inline-block的元素。会出现一个问题：当水平显示的时候，两个inline-block元素间会有间隙。这个不是bug，是这个属性应有的表现。当时作为开发者来说，显得有些多余，我们要想尽方法来去除这个间隙。<br><a id="more"></a><br>之前看过一个教Psd重构Html的视频,里面说这种方法很常用，那么首先就说这种方法：</p>
+<h2 id="font-size-0去除法"><a href="#font-size-0去除法" class="headerlink" title="font-size:0去除法"></a>font-size:0去除法</h2><p>做法是将父元素的font-size属性值设置为0，<br><strong>然后</strong>将父元素里面的子元素设置它应有的字体大小。</p>
+<h2 id="不过听说这个方法在手机上行不通啊！兼容性最好的方法是消灭空格法，见下。"><a href="#不过听说这个方法在手机上行不通啊！兼容性最好的方法是消灭空格法，见下。" class="headerlink" title="不过听说这个方法在手机上行不通啊！兼容性最好的方法是消灭空格法，见下。"></a>不过听说这个方法在手机上行不通啊！兼容性最好的方法是消灭空格法，见下。</h2><p>第二个方法是在学习HTML5+CSS3视频的时候，老师演示的方法。我猜两inline-block之间的间隙应该与在HTML文档书写时换行有关。</p>
+<h2 id="消灭空格法"><a href="#消灭空格法" class="headerlink" title="消灭空格法"></a>消灭空格法</h2><p>这个方法的好处就是不要设置样式值，把HTML书写的格式修改一下即可。<br>例如，原本排列的很整齐的两个元素</p>
+<pre><code>&lt;span style=&quot;display:inline-block;width:50px;height:90px;&quot;&gt;第一个&lt;/span&gt;
+&lt;span style=&quot;display:inline-block;width:50px;height:90px;&quot;&gt;第er个&lt;/span&gt;
+</code></pre><p>把第二行的起始标签写在第一行终止标签后：</p>
+<pre><code>&lt;span style=&quot;display:inline-block;width:50px;height:90px;&quot;&gt;第一个&lt;/span&gt;&lt;span style=&quot;display:inline-block;width:50px;height:90px;&quot;&gt;第er个&lt;/span&gt;
+</code></pre><p>但是有没有发现，如果行数多了，这样写，别人来读你的代码岂不是一种折磨？我发现只要让两个标签中间没空格就行。可以这样做。</p>
+<pre><code>&lt;span style=&quot;display:inline-block;width:50px;height:90px&quot;&gt;第一个&lt;/span&gt;&lt;!--
+--&gt;&lt;span style=&quot;display:inline-block;width:50px;height:90px;&quot;&gt;第er个&lt;/span&gt;
+</code></pre><p>我们用一个注释符号充当链接符，占据他们之间的空格。当然只要你能想法把两个元素之间的空格去掉就行。你要问我，啥是元素？<a href="http://gelory.me/2016/10/19/%E5%B1%9E%E6%80%A7%EF%BC%8C%E6%A0%B7%E5%BC%8F%EF%BC%8C%E6%A0%87%E7%AD%BE%EF%BC%8C%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/">属性，样式，标签，元素的区别与联系</a>这篇文章给你一个好的解释。</p>
+<hr>
+<p>第三个方法有点死，就是当你发现空格后，利用浏览器的审查元素，定位元素后，给后面的元素设置margin-left为负数。</p>
+<h2 id="设置margin法"><a href="#设置margin法" class="headerlink" title="设置margin法"></a>设置margin法</h2><p>这个方法没什么说的，对着浏览器，找到一个合适值就行。不过这个方法有点尴尬，要设置的多了，你是不是就麻木了，解决方法就是设置一个<code>公共样式</code>处理该类问题吧！</p>
+<hr>
+<h2 id="还有其他方法："><a href="#还有其他方法：" class="headerlink" title="还有其他方法："></a>还有其他方法：</h2><blockquote>
+<ul>
+<li>譬如设置父元素 dispaly:table，设置子元素为table-cell。</li>
+<li>设置父元素letter-spacing为一个负值，设置子元素为0。</li>
+<li>word-spacing类似。</li>
+<li>还有，用js去解决。</li>
+</ul>
+</blockquote>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-20</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;inline-block元素，或者属性被设置为inline-block的元素。会出现一个问题：当水平显示的时候，两个inline-block元素间会有间隙。这个不是bug，是这个属性应有的表现。当时作为开发者来说，显得有些多余，我们要想尽方法来去除这个间隙。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FlexBox布局使用介绍</title>
+    <link href="http://gelory.me/2016/10/19/FlexBox%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://gelory.me/2016/10/19/FlexBox布局使用介绍/</id>
+    <published>2016-10-19T09:03:42.000Z</published>
+    <updated>2016-10-20T07:07:50.874Z</updated>
+    
+    <content type="html"><![CDATA[<p>之前在做垂直居中时，无论是采用三重定位法，还是采用表格布局法。<a href="http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/">高度不定的子元素在高度不定的父元素中垂直居中</a>都感觉好复杂啊，难道就没有简单的方法吗？就在昨天看教程时，学到了FlexBox布局，垂直居中，小case啦。<br><a id="more"></a></p>
+<h2 id="FlexBox布局"><a href="#FlexBox布局" class="headerlink" title="FlexBox布局"></a>FlexBox布局</h2><p>为盒状模型提供更大的灵活度。<br>设置Flex布局后，子元素的float，clear，vertical-align属性失效</p>
+<h3 id="有六个属性设置在容器上"><a href="#有六个属性设置在容器上" class="headerlink" title="有六个属性设置在容器上"></a>有六个属性设置在容器上</h3><p>1.flex-direction 决定是横向排列还是纵向排列</p>
+<blockquote>
+<ul>
+<li>row（默认值）：从左到右 水平分布。</li>
+<li>row-reverse：从右到左，水平分布。</li>
+<li>column：从上到下，垂直分布。</li>
+<li>column-reverse：从下到上，垂直分布。</li>
+</ul>
+</blockquote>
+<p>2.flex-wrap 决定超出宽度/高度界限之后是否换行</p>
+<blockquote>
+<ul>
+<li>nowrap 不换行。</li>
+<li>wrap：换行，第一行在上。</li>
+<li>wrap-reverse：换行，第一行在下。</li>
+</ul>
+</blockquote>
+<p>3.flex-flow 将上面两项合并 默认 row nowrap</p>
+<p>4.justify-content 水平对齐方式</p>
+<blockquote>
+<ul>
+<li>flex-start 水平起点对齐（起终点取决于flex-direction）</li>
+<li>flex-end 水平终点对齐</li>
+<li>center 水平居中</li>
+<li>space-between 两端对齐</li>
+<li>space-around 项目两侧间隔相等间隔相等</li>
+</ul>
+</blockquote>
+<p>5.align-items 垂直对齐方式</p>
+<blockquote>
+<ul>
+<li>flex-start 纵向起点对齐</li>
+<li>flex-end 纵向终点对齐</li>
+<li>center 垂直居中</li>
+<li>baseline 项目第一行的文字对齐</li>
+<li>stretch 如果项目未设置高端或者设置为auto，默认占满</li>
+</ul>
+</blockquote>
+<p>6.align-content 定义多行的垂直对齐方式</p>
+<blockquote>
+<ul>
+<li>stretch（默认）：垂直填满拉伸</li>
+<li>flex-start：纵向起点对齐。</li>
+<li>flex-end：纵向终点对齐</li>
+<li>center：整体垂直居中</li>
+<li>space-between：上下对齐</li>
+<li>space-around：上下间隔相等</li>
+</ul>
+</blockquote>
+<h3 id="有六个属性设置在容器中的项目上"><a href="#有六个属性设置在容器中的项目上" class="headerlink" title="有六个属性设置在容器中的项目上"></a>有六个属性设置在容器中的项目上</h3><p>1.order 项目排列顺序<br>数值越小越靠前</p>
+<p>2.flex-grow 放大比例，默认0，意思是即使有多的空间，项目也不放大。<br>如果为每个项目设置了该值，那么放大的比例为<br><code>（该项目值/所有项目总和值）*剩余空间值</code></p>
+<p>3.flex-shrink 缩小比例，默认为1，意思是空间不足时，默认等比例缩小。设置为0则不缩。</p>
+<p>4.flex-basis 项目在不缩不放之前本来的占据空间 水平排列的话指宽度，垂直排列的话指高度。<br>不设置的话，默认根据内容显示。如果以百分数形式显示，指的是占父元素宽/高的比例。</p>
+<p>5.flex 集合上面的三种属性flex-grow flex-shrink flex-basis 后面两种属性可要可不要，也就是说只有一个值时，指的是flex-grow.<br>有三个快捷值：</p>
+<blockquote>
+<ul>
+<li>auto（1 1 auto）</li>
+<li>none（0 0 auto）</li>
+<li>initial（0 1 auto）</li>
+</ul>
+</blockquote>
+<p>6.align-self 设置单个项目的对齐方式 默认auto继承父元素的align-items属性。</p>
+<h2 id="小样有歌唱-双语Lemon-Tree-："><a href="#小样有歌唱-双语Lemon-Tree-：" class="headerlink" title="小样有歌唱(双语Lemon Tree)："></a>小样有歌唱(双语Lemon Tree)：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/%E6%96%B0%E5%BD%95%E9%9F%B3%205-1.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;之前在做垂直居中时，无论是采用三重定位法，还是采用表格布局法。&lt;a href=&quot;http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/&quot;&gt;高度不定的子元素在高度不定的父元素中垂直居中&lt;/a&gt;都感觉好复杂啊，难道就没有简单的方法吗？就在昨天看教程时，学到了FlexBox布局，垂直居中，小case啦。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>伪元素与伪类，单冒号选择器和双冒号的区别与联系</title>
+    <link href="http://gelory.me/2016/10/19/%E4%BC%AA%E5%85%83%E7%B4%A0%E4%B8%8E%E4%BC%AA%E7%B1%BB%EF%BC%8C%E5%8D%95%E5%86%92%E5%8F%B7%E9%80%89%E6%8B%A9%E5%99%A8%E5%92%8C%E5%8F%8C%E5%86%92%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/"/>
+    <id>http://gelory.me/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/</id>
+    <published>2016-10-19T06:16:10.000Z</published>
+    <updated>2016-10-20T07:05:56.123Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近学习HTML5+CSS3时，看到一个现象,在使用<code>::selection</code>伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。<br><a id="more"></a></p>
+<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><blockquote>
+<p>CSS 伪类用于向某些选择器添加特殊的效果。</p>
+</blockquote>
+<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><blockquote>
+<p>CSS 伪元素用于向某些选择器设置特殊的效果。</p>
+</blockquote>
+<p>上面是W3C教程给的定义。不仔细看，你跟本没发现就两个字的差别，<code>添加</code>和<code>设置</code>。十分惊讶，这有什么区别吗？</p>
+<p>看来我中文理解能力还不够啊！我索性跳过他给的定义，从实际运用中招区别。</p>
+<p>伪类，常见的伪类有这些</p>
+<pre><code>:active    向被激活的元素添加样式。
+:focus    向拥有键盘输入焦点的元素添加样式。
+:hover    当鼠标悬浮在元素上方时，向元素添加样式。
+:link    向未被访问的链接添加样式。
+:visited    向已被访问的链接添加样式。
+:first-child    向元素的第一个子元素添加样式。
+:lang 向带有指定 lang 属性的元素添加样式。
+</code></pre><p>怎么用的呢？</p>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;Intert Key&lt;/li&gt;
+&lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Push accelerator&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>我想让第一个li标签的内容变绿，我就这样 <code>ul:first-child</code>指定第一个元素。</p>
+<p>伪元素，常见的伪元素有这些</p>
+<pre><code>:first-letter    向文本的第一个字母添加特殊样式。
+:first-line    向文本的首行添加特殊样式。
+:before    在元素之前添加内容。
+:after    在元素之后添加内容。
+</code></pre><p>怎么用？</p>
+<pre><code>&lt;ul&gt;
+&lt;li class=&quot;la&quot;&gt;Intert Key&lt;/li&gt;
+&lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Push accelerator&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>我想让la类的首字母变绿，我就这样指定这个首字母。 <code>.la:first-letter</code><br>发现没有，<strong>伪类选择的是整个元素，而伪元素选择的是元素内容。</strong>你要问我元素和元素内容有什么区别？看我这篇文章：<a href="http://gelory.me/2016/10/19/little-tip3/">属性，样式，标签，元素的区别与联系</a>.</p>
+<h2 id="说说单冒号与双冒号"><a href="#说说单冒号与双冒号" class="headerlink" title="说说单冒号与双冒号"></a>说说单冒号与双冒号</h2><p>刚才说到<code>::selection,它属于伪元素选择器。它的作用是设置被选择的文本的样式</code>。譬如用光标选中某一段文字后，默认显示的是蓝背景白字，你就可以把它改变为黑背景，绿字。</p>
+<blockquote>
+<p>那为什么同样是伪元素，差别这么大呢？</p>
+<p>原来，::selection是css3新增加的伪元素，为了把伪类和伪元素区别开，从CSS3开始，伪类使用单冒号，伪元素使用双冒号。但是，由于考虑向下兼容的问题，在CSS3之前的那些伪元素，保留原来单冒号的写法。所以:after与::after没啥区别。</p>
+</blockquote>
+<p>那么我们在用的时候，如果要考虑所有浏览器的兼容性，还是使用单冒号来带伪元素，如果不需要考虑IE浏览器，那我们还是统一用双冒号来带伪元素。</p>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/%E6%96%B0%E5%BD%95%E9%9F%B3%202-1.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近学习HTML5+CSS3时，看到一个现象,在使用&lt;code&gt;::selection&lt;/code&gt;伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>属性，样式，标签，元素的区别与联系</title>
+    <link href="http://gelory.me/2016/10/19/%E5%B1%9E%E6%80%A7%EF%BC%8C%E6%A0%B7%E5%BC%8F%EF%BC%8C%E6%A0%87%E7%AD%BE%EF%BC%8C%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/"/>
+    <id>http://gelory.me/2016/10/19/属性，样式，标签，元素的区别与联系/</id>
+    <published>2016-10-19T01:43:59.000Z</published>
+    <updated>2016-10-20T07:05:49.972Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天在网易云课堂看某HTML5+CSS3教程，我突然想到一个问题，我们张口闭口所说的标签，元素具体代表的是什么?感觉一直都是模糊的。这篇文章具体的讲述这几个名词的区别与联系。</p>
+<a id="more"></a>
+<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><blockquote>
+<p><strong>对内容进行标记的符号</strong></p>
+</blockquote>
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p&gt;&lt;/p&gt;  &lt;!-- 这就是一个标签 --&gt;
+&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;  &lt;!-- 这有两个标签 --&gt;
+&lt;br /&gt; &lt;!-- 这也是一个标签 --&gt;
+</code></pre><h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><blockquote>
+<p><strong>元素以开始标签起，结束标签终，包含标签及其中的内容。</strong> </p>
+</blockquote>
+<h3 id="举个例子-1"><a href="#举个例子-1" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p&gt;我很帅&lt;/p&gt;  &lt;!-- 这就是一个元素 --&gt;
+&lt;div&gt;&lt;p&gt;我很帅&lt;/p&gt;&lt;div&gt;  &lt;!-- 这有两个元素 --&gt;
+&lt;br /&gt; &lt;!-- 这是一个空元素 --&gt;
+</code></pre><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><blockquote>
+<p><strong>属性为元素提供更多的信息,总是以 name=“value” 出现</strong></p>
+</blockquote>
+<h3 id="举个例子-2"><a href="#举个例子-2" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p class=&quot;handsome&quot;&gt;帅哥&lt;/p&gt; &lt;!-- class=&quot;handsome&quot;就是一个属性 --&gt;
+</code></pre><h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><blockquote>
+<p><strong> 存在于style属性内，用于改变元素内容的键值对，总是以 key：value 出现</strong></p>
+</blockquote>
+<h3 id="举个例子-3"><a href="#举个例子-3" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p style={font-size:12px;}&gt;帅哥&lt;/p&gt;  &lt;!-- font-size:12px 就是一个样式 --&gt;
+</code></pre><h3 id="属性和样式的区别与联系"><a href="#属性和样式的区别与联系" class="headerlink" title="属性和样式的区别与联系"></a>属性和样式的区别与联系</h3><p>样式大多表现在对元素内容外观的改变，譬如字体颜色是否居中，而属性大多表现在为元素定义其他的特点，譬如定义一个class，定义一个id，设置value值等。</p>
+<blockquote>
+<p>那有人要问了：align bgcolor color这些都是属性，为什么他们也可以定义颜色，居中？</p>
+<p>没错，这些都是属性，此外，能改变元素内容外观的还有部分标签，譬如<center> <u>。但是这些东西在HTML4种已经被废弃了，他们被建议用样式代替，可以看出，样式正在慢慢统一这些规则。</u></center></p>
+</blockquote>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/xyone.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天在网易云课堂看某HTML5+CSS3教程，我突然想到一个问题，我们张口闭口所说的标签，元素具体代表的是什么?感觉一直都是模糊的。这篇文章具体的讲述这几个名词的区别与联系。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Z-index与Stacking Context的那些坑</title>
+    <link href="http://gelory.me/2016/10/15/Z-index%E4%B8%8EStacking%20Context%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
+    <id>http://gelory.me/2016/10/15/Z-index与Stacking Context的那些坑/</id>
+    <published>2016-10-15T05:54:30.000Z</published>
+    <updated>2016-10-20T07:05:40.604Z</updated>
+    
+    <content type="html"><![CDATA[<center>Z-index的罪与罚，噗！手动喷血</center>
+
+ <a id="more"></a>
+<h2 id="Z-index的黄金准则两条："><a href="#Z-index的黄金准则两条：" class="headerlink" title="Z-index的黄金准则两条："></a>Z-index的黄金准则两条：</h2><blockquote>
+<ul>
+<li>Z-index值谁大谁在上</li>
+<li>层叠水平，层叠顺序相同时，谁后来谁在上</li>
+</ul>
+</blockquote>
+<h2 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h2><p>先来了解层叠顺序，所谓的层叠顺序就是：两个元素，谁在上谁在下的问题。</p>
+<h3 id="元素系列"><a href="#元素系列" class="headerlink" title="元素系列"></a>元素系列</h3><blockquote>
+<ul>
+<li>两个元素为正常流时，默认情况是后一个元素覆盖前面一个元素。并且允许后面的元素透上来。</li>
+<li>如果两个都是块级元素，文字比背景层级高（因此不管是否设置背景，文字始终会透上来）</li>
+<li>如果是行内元素或者行内-块状元素，背景比文字层级高。（因此只要设置了背景，后面元素将透不上来）</li>
+</ul>
+</blockquote>
+<h3 id="浮动系列"><a href="#浮动系列" class="headerlink" title="浮动系列"></a>浮动系列</h3><blockquote>
+<ul>
+<li>浮动和浮动 后来居上</li>
+<li>浮动和块状元素 浮动层级高</li>
+<li>浮动和行内块，行内元素 行内块 行内元素层级高</li>
+</ul>
+</blockquote>
+<h3 id="定位系列"><a href="#定位系列" class="headerlink" title="定位系列"></a>定位系列</h3><blockquote>
+<ul>
+<li>绝对定位和绝对定位 后来居上</li>
+<li>绝对定位和相对定位 后来居上</li>
+<li>绝对定位和规定定位 后来居上</li>
+<li>固定定位和相对定位 后来居上</li>
+<li>绝对定位和块元素，行内元素，行内块元素，绝对定位层级高</li>
+<li>绝对定位等其他定位效果和浮动元素， 前者高</li>
+</ul>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<ul>
+<li>类型相同，后来居上</li>
+<li>块元素和定位元素以外的其他元素，文字层级比背景层级高。</li>
+<li>浮动和块元素 浮动元素层级高</li>
+<li>浮动和行内快，行内元素  后者高</li>
+<li>定位比所有元素层级高 </li>
+</ul>
+</blockquote>
+<h2 id="Z-index的家事"><a href="#Z-index的家事" class="headerlink" title="Z-index的家事"></a>Z-index的家事</h2><blockquote>
+<ul>
+<li>Z-index只能工作在明确定义了定位属性为absolute fixed relative的元素中</li>
+<li>Z-index相同的话，后来居上</li>
+<li>父元素Z-index有效，子元素无论是否设置都与父元素保持一致。在父元素上方，即使子元素Z-index比父元素小，也在上方。</li>
+<li>如果父元素Z-index失效，子元素设置就生效，这样就可以让子元素在父元素下面了。</li>
+<li>兄弟父元素之间，父元素Z-index决定其子元素的地位，父元素Z-index低，即使子元素很高，也会跟着他的父元素一起，被压在其他<code>父元素Z-index高，子元素Z-index低的</code>元素底下。</li>
+</ul>
+</blockquote>
+<h2 id="层叠上下文stacking-context"><a href="#层叠上下文stacking-context" class="headerlink" title="层叠上下文stacking context"></a>层叠上下文stacking context</h2><h3 id="产生层叠上下文的条件"><a href="#产生层叠上下文的条件" class="headerlink" title="产生层叠上下文的条件"></a>产生层叠上下文的条件</h3><blockquote>
+<ul>
+<li>根元素 HTML标签</li>
+<li>绝对或者相对定位并且Z-index值不为auto</li>
+<li>一个伸缩项目 Flex Item，且Z-index值不为auto，即父元素：display: flex|inline-flex</li>
+<li>元素的opacity值小于1</li>
+<li>元素的transform值不为none</li>
+<li>元素的mix-blend-mode值不为normal</li>
+<li>元素的filter值不为normal</li>
+<li>元素的isolation值不为isolate</li>
+<li>position：fixed</li>
+<li>will-change中指定了上述任意属性，几遍没有直接定义这些属性</li>
+<li>元素的-webkit-overflow-scrolling 属性值为 touch</li>
+</ul>
+</blockquote>
+<h3 id="opacity可以产生层叠上下文"><a href="#opacity可以产生层叠上下文" class="headerlink" title="opacity可以产生层叠上下文"></a>opacity可以产生层叠上下文</h3><blockquote>
+<p>兄弟层叠上下文的子元素无论Z-index有多大，都不会对排序产生影响，按照后来居上的原则进行排列。<br>举一个板栗：<br>a的父元素A<br>b的父元素B<br>c的父元素C</p>
+<ul>
+<li><p>如果A,B,C都产生了层叠上下文，假设都是用opacity产生的。那么无论a的index是10000也好还是1也好，他都被盖在b，c底下，遵循的后来居上原则</p>
+</li>
+<li><p>如果A,B生成了层叠上下文，假设都是用opacity产生的。小c（C的子元素）也产生了层叠上下文。那么现在A,B,小c是同级的了。只要c的index不是0或者负数， auto。那么c一定在上面。如果A,B的层叠上下文不是由opacity生成的  只要他们的index比小c大，谁就在上层。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<ul>
+<li><p>父元素都是层叠上下文元素，那么与子元素的Z-index无关，与本身Z-index有关。如果父元素没有设置Z-index属性，或者相同。按照DOM流顺序，后来居上。如果设置了且不同，就按照Z-index大小排序。</p>
+</li>
+<li><p>如果某子元素是层叠上下文，其父元素不是，但是父元素的兄弟元素是。那么该子元素自动升级，和其父元素的兄弟元素同级，进行Z-index比较，此时参考第一条。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="多说一句"><a href="#多说一句" class="headerlink" title="多说一句"></a>多说一句</h2><p>同时设置opacity与Z-index，Z-index是失效的。原因是Z-index只能工作在明确定义了定位属性为absolute fixed relative的元素中。</p>
+<p>不要想着我用opacity把元素弄成层叠上下文元素，然后用Z-index给他设置顺序。别多想了，不可能。Z-index只认定位属性为absolute fixed relative的元素。不认得层叠上下文。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">Z-index的坑太多，先总结到这里，以后遇到了问题再来继续完善。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-15</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt;Z-index的罪与罚，噗！手动喷血&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Relative与Absolute的爱恨纠葛</title>
+    <link href="http://gelory.me/2016/10/14/Relative%E4%B8%8EAbsolute%E7%9A%84%E7%88%B1%E6%81%A8%E7%BA%A0%E8%91%9B/"/>
+    <id>http://gelory.me/2016/10/14/Relative与Absolute的爱恨纠葛/</id>
+    <published>2016-10-14T12:06:25.000Z</published>
+    <updated>2016-10-20T07:05:34.210Z</updated>
+    
+    <content type="html"><![CDATA[ <center> 关于relative与absolute区别的反思回顾。</center>
+
+<a id="more"></a>
+<p>position属性有如下几种状态：</p>
+<blockquote>
+<ul>
+<li>static 默认状态。</li>
+<li>inherit 继承其父元素的position属性。</li>
+<li>fixed 相对于浏览器窗口进行绝对定位。</li>
+<li>absolute 相对于非static状态的祖先元素进行定位。脱离文档流后，其他元素会把空隙给填掉。</li>
+<li>relative 通过left，top等属性偏移其原来位置，没有的话位置不变。脱离文档流后，其他元素不会填掉其空隙。</li>
+</ul>
+</blockquote>
+<p>常用的relative和absolute经常配合在一起使用。</p>
+<p>譬如要像使子元素相对于父元素进行定位。通常的手段就是设置父元素为relative，子元素为absolute。假设不设置父元素为relative的话，子元素就会一直向上寻找一个非static状态的元素。直到遇到body元素。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">哈哈，多么悲惨的故事，子元素也真是够执着。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-14</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;center&gt; 关于relative与absolute区别的反思回顾。&lt;/center&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用CSS制作三角形、箭头图标</title>
+    <link href="http://gelory.me/2016/10/14/%E5%88%A9%E7%94%A8CSS%E5%88%B6%E4%BD%9C%E4%B8%89%E8%A7%92%E5%BD%A2%E3%80%81%E7%AE%AD%E5%A4%B4%E5%9B%BE%E6%A0%87/"/>
+    <id>http://gelory.me/2016/10/14/利用CSS制作三角形、箭头图标/</id>
+    <published>2016-10-14T07:13:17.000Z</published>
+    <updated>2016-10-14T08:20:13.079Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/wz5-logo.jpg" alt="利用CSS制作三角形图标"><br>在重构页面的时候经常会用到一些小图标，通常这些小图标设计师都会给出。最简单的就是把这个小图标的图片存到<code>/images</code>下。当然，这种做法是最不可取的，因为每一个图标的载入，网页都会请求一次服务器，想想一个页面这么多图标，图片，虽然一次请求时间很短，但是这么多请求累积起来也有可能达到一两秒。<strong>这对用户来说，无疑是漫长的等待</strong>。</p>
+<p>那么，如何减少这种不必要的麻烦呢? 那就是：<strong><code>能用CSS做出来的，尽量少用其他方法</code></strong>。<br><a id="more"></a></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有了一种新图片处理方式：<a href="http://baike.baidu.com/link?url=zgBt8XhU0Y-6UPVk2eVTndRbhaNYCZ-RtoVhHPxcIOSaNnwM0t211MwAcRTtkfMl5d2sdoqIW3Pn0hxYsgKubTYslIZy_v-5YufxMrt1erS" target="_blank" rel="external">雪碧图 CSS Sprites</a>。简单的说就是把网页中一些长期不变的图，合成到一张图中，然后根据需要选取某个位置的图片显示。最大的<code>优点：</code>减少了http请求，网页性能提高，还省去了给每张图片想个名字的困扰。雪碧图的<code>缺点：</code>合并麻烦，后期修改也蛮烦。</p>
+<p>当然啦，还有SVG图片。font-icon字体图标等等，这里不做介绍。<br>其实，有很多图标用css就可以构造出来，譬如最常见的指示标：箭头，三角形，圆形等。此外，还可以由三角形拼凑出平行四边形等。</p>
+<h2 id="三角形的制作"><a href="#三角形的制作" class="headerlink" title="三角形的制作"></a>三角形的制作</h2><p>先弄清楚：一个正方形是由内部和边框组成(假设有边框)，设正方形的颜色默认为白色，边框为红色。(代码有省略，只给出关键部分)</p>
+<center><br><div style="width:119px;height:118px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -165px -5px;"></div><br></center>
+
+<pre><code>background ： #FFF；
+border：2px solid red;
+width: 100px;
+height: 100px;
+</code></pre><p>边框太窄了，看不出效果，我们把边框的宽度设置为<code>10px</code></p>
+<center><br><div style="width:144px;height:146px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -5px 0px;"></div><br></center>
+
+<p>我们去掉三条边框，看看效果：</p>
+<pre><code>border-left:none;
+border-right:none;
+border-top:none; &lt;!--去掉三条边框 --&gt;
+</code></pre><center><br><div style="width:106px;height:91px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -317px -29px;"></div><br></center>
+
+<p>此时，发现就一条横杠了，还在我们意料之中。但是如果我们把参数从<code>none</code>变为<code>transparent(透明)</code>呢？</p>
+<pre><code>border-left:transparent;
+border-right:transparent;
+border-top:transparent;
+</code></pre><center><br><div style="width:143px;height:87px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -473px -29px;"></div><br></center>
+
+<p>我们发现，原来的横杠变成了梯形。好神奇啊！</p>
+<p>为什么为none时为矩形斜杠，transparent为梯形呢？官方没给出解释.</p>
+<blockquote>
+<p>我认为设置为none时，边框相当于没了，宽度为0。那么相对于矩形，梯形多出来的那两块儿三角形就不存在了。但是设置为transparent，边框实际是存在的，他占了像素，那么在四个角的地方，和不透明的<code>分家产</code>就要公平对待，采用平分法。如图：</p>
+</blockquote>
+<center><br><div style="width:124px;height:123px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -371px -299px;"></div><br></center><br>眼看梯形和我们想要得到的三角形，就差上底为0了，怎么做呢。我们由图可以看出,上底长度其实是由矩形的宽度决定的：<br><br><center><br><div style="width:46px;height:195px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -653px -17px;"></div><br></center>
+
+<p>那么，想要上底边为0，宽度设置为0即可。</p>
+<pre><code>width：0;
+</code></pre><p>这样，我们的三角形就形成了。那三角形的高怎么改变呢？</p>
+<p>认为是改变矩形高度的蹲墙角去。当我们显示矩形上下边时，透明左右边时，可以很清楚的看到，矩形的高度决定上下两个三角形的距离（如果设置上边也为透明，也就是只有下边看得到时，看到的这个三角形不会发生明显改变），所以并不会改变三角形的高度。</p>
+<center><br><div style="width:107px;height:120px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -786px -0px;"></div><br></center>
+
+<p><strong>三角形的实质其实是某一条边框啊！所以改变三角形的高度，应该改变边框的宽度.</strong></p>
+<pre><code>border-bottom: 2px solid red;
+</code></pre><p>那如何改变三角形底边呢，依然是<code>改变边框的宽度</code>，不过，此时改变的是<code>两侧边框</code>的宽度。为什么呢？刚才我们提到border边框属性设置为none与transparent的区别。此时就可以用到了。</p>
+<p>我们可以这样想，梯形是由一个矩形和两个三角形构成，现在设置正方形宽度width：0px；就相当于中间的矩形没有了.也就是说我们看到的这个大三角是由两个小三角构成，想要改变底边的长，就改变这两个小三角的底边长，也就是红左右两侧的边框的宽。</p>
+<center><br><div style="width:171px;height:139px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -250px -158px;"></div><br></center><br><center><br><div style="width:365px;height:275px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat -534px -251px;"></div><br></center>
+
+<p>那如何让三角形变成直角三角形呢，弄懂了none与transparent导致的显示区别的人应该能想得到。只要设置左侧或者右侧边框的属性为none即可。</p>
+<pre><code>border-right：none;
+</code></pre><center><br><div style="width:365px;height:275px;dispaly:inline-block;background:url(http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png) no-repeat 0px -299px;"></div><br></center>
+
+
+<h2 id="箭头的制作"><a href="#箭头的制作" class="headerlink" title="箭头的制作"></a>箭头的制作</h2><p>箭头制作更简单了，设置相邻两边为none或者transparent都行。要改变方向的话？加一句旋转代码：</p>
+<pre><code>transform:rotate(45deg)  &lt;!--旋转45°--&gt;
+</code></pre><h2 id="圆形的制作"><a href="#圆形的制作" class="headerlink" title="圆形的制作"></a>圆形的制作</h2><p>注意关键代码，就一句：</p>
+<pre><code>border-radius: 50%  &lt;!-- 改变边框圆角 百分比最大是50%
+数值的话，最大是宽高的一半--&gt;
+</code></pre><hr>
+<p>再多说一句，刚才谈到雪碧图的优点，这篇文章所有的配图就是利用雪碧图实现的。原图其实是这样，别被吓到。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz5spirite.png" alt=""><br>没看错，就是一张图，节省了很多流量与时间。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">直接用css会加大编码量，但是把你累一下。别让用户等，别让用户烦才是最上等的用户体验！</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-14</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/wz5-logo.jpg&quot; alt=&quot;利用CSS制作三角形图标&quot; /&gt;&lt;br&gt;在重构页面的时候经常会用到一些小图标，通常这些小图标设计师都会给出。最简单的就是把这个小图标的图片存到&lt;code&gt;/images&lt;/code&gt;下。当然，这种做法是最不可取的，因为每一个图标的载入，网页都会请求一次服务器，想想一个页面这么多图标，图片，虽然一次请求时间很短，但是这么多请求累积起来也有可能达到一两秒。&lt;strong&gt;这对用户来说，无疑是漫长的等待&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;那么，如何减少这种不必要的麻烦呢? 那就是：&lt;strong&gt;&lt;code&gt;能用CSS做出来的，尽量少用其他方法&lt;/code&gt;&lt;/strong&gt;。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于Scrapy框架的简易新闻爬虫入门</title>
+    <link href="http://gelory.me/2016/10/10/%E5%9F%BA%E4%BA%8EScrapy%E6%A1%86%E6%9E%B6%E7%9A%84%E7%AE%80%E6%98%93%E6%96%B0%E9%97%BB%E7%88%AC%E8%99%AB/"/>
+    <id>http://gelory.me/2016/10/10/基于Scrapy框架的简易新闻爬虫/</id>
+    <published>2016-10-10T09:05:04.000Z</published>
+    <updated>2016-10-14T08:21:45.465Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.0.jpg" alt="基于Scrapy框架的简易新闻爬虫入门"></p>
+<blockquote>
+<p>所谓爬虫就是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。</p>
+</blockquote>
+<p>爬虫可以做很多有趣的事，譬如可以用它来监听用户反馈，可以收集电影种子，等等。具体好玩的案例可以去知乎找找。这篇文章模拟的是一个最最最简易的爬虫，供小白学习。这也是我写的第一个爬虫，爬的我学校网站的新闻。如果你发现错误，那就很棒了。错误会在文章后头指出。</p>
+<a id="more"></a>
+<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><blockquote>
+<ul>
+<li>windows10</li>
+<li>Python2.7</li>
+<li>Scrapy</li>
+</ul>
+</blockquote>
+<h2 id="在cmd中断中输入如下命令行"><a href="#在cmd中断中输入如下命令行" class="headerlink" title="在cmd中断中输入如下命令行"></a>在cmd中断中输入如下命令行</h2><pre><code>crapy startproject ctgu  #(ctgu为工程名，自定义)
+</code></pre><h2 id="修改Items文件"><a href="#修改Items文件" class="headerlink" title="修改Items文件"></a>修改Items文件</h2><pre><code>import scrapy
+class CtguItem(scrapy.Item):
+该类是自动生成的，我们要添加的是里面的属性title，date我们只抓取新闻标题以及发表日期
+title = scrapy.Field()
+date = scrapy.Field()
+</code></pre><h2 id="编写spider"><a href="#编写spider" class="headerlink" title="编写spider"></a>编写spider</h2><p>该部分是爬虫的主体，它规定怎样爬。<br>进入spider文件夹 -&gt; 新建一个py文件，我将它命名为<code>ctguspider.py</code><br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.1.jpg" alt="1"></p>
+<h2 id="编写pipelines"><a href="#编写pipelines" class="headerlink" title="编写pipelines"></a>编写pipelines</h2><p>在文件主要是对爬到的数据进行处理的。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.2.jpg" alt="1"></p>
+<h2 id="启动爬虫"><a href="#启动爬虫" class="headerlink" title="启动爬虫"></a>启动爬虫</h2><pre><code>scrapy crawl ctgu(爬虫名，在ctguspider.py文件中中设置,如图。)
+</code></pre><p><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.3.jpg" alt="1"><br>爬取成功后会生成一个txt文件<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.8.jpg" alt="1"><br>打开文件，数据貌似很不错，排列整齐，除了第一行.<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.4.jpg" alt="1"><br>但是细心会发现数据的顺序是很混乱的，可以从前面的时间看出，因此我想处理一下数据。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.5.jpg" alt="1"></p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><p>新建一个py文件，我将它命名为<code>test1.py</code>。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.6.jpg" alt="1"><br>他的功能主要是对新闻按照时间发表顺序排列，并输出到另外一个新的文件<code>news_ctgu.txt</code>文件中。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.7.jpg" alt="1"><br>这时候发现其顺序以及是按时间先后排列了，而且我将时间的括号更换了。数据的排列更加工整。</p>
+<blockquote>
+<p>有没有发现爬下来的新闻有重复的，如果发现了，给你一个大大的赞。重复的原因一可能是因为你的抓取规则编写有问题，而可能是因为循环重复了。谷歌一下吧！<br>学完这种简单的爬虫，下面就学习爬那些需要登录的网站，譬如知乎，你可以爬一爬刘看山的粉丝，你可以爬爬豆瓣某个类别所有的书，你可以爬爬网易云音乐所有的音乐。以上都试过，最后一个没有成功。主要是因为无法获取网易云音乐关于具体音乐信息的静态网页，它是动态的。不过可以用他给的接口去获取数据，不过那就和爬虫没啥关系了。</p>
+</blockquote>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">爬虫功能非常的强大，我也只学到了冰山一角，一起学习，爬呀爬！爬呀爬呀，我的骄傲放纵，爬不出，我纯净花园。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/wz4.0.jpg&quot; alt=&quot;基于Scrapy框架的简易新闻爬虫入门&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所谓爬虫就是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;爬虫可以做很多有趣的事，譬如可以用它来监听用户反馈，可以收集电影种子，等等。具体好玩的案例可以去知乎找找。这篇文章模拟的是一个最最最简易的爬虫，供小白学习。这也是我写的第一个爬虫，爬的我学校网站的新闻。如果你发现错误，那就很棒了。错误会在文章后头指出。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Python爬虫" scheme="http://gelory.me/categories/Python%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
+    
+      <category term="Scrapy" scheme="http://gelory.me/tags/Scrapy/"/>
+    
+      <category term="Python" scheme="http://gelory.me/tags/Python/"/>
+    
+      <category term="爬虫" scheme="http://gelory.me/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>世界永远不会温柔待我中华</title>
+    <link href="http://gelory.me/2016/10/10/%E4%B8%96%E7%95%8C%E6%B0%B8%E8%BF%9C%E4%B8%8D%E4%BC%9A%E6%B8%A9%E6%9F%94%E5%BE%85%E6%88%91%E4%B8%AD%E5%8D%8E/"/>
+    <id>http://gelory.me/2016/10/10/世界永远不会温柔待我中华/</id>
+    <published>2016-10-10T08:36:31.000Z</published>
+    <updated>2016-10-10T09:01:41.122Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.jpg" alt="tu"></p>
+<blockquote>
+<p>这篇文章最初发表在新浪微博，这次重构到自己的博客上。</p>
+</blockquote>
+<p>最近奥运很多人跟我一样看得窝火，各处受压制，各处有黑幕，各处有人喷.你以为奥运会真的公平公正公开，还有奥林匹克精神？too young too simple.还想让中国被世界温柔以待？too naive.<br><a id="more"></a></p>
+<p>在此打个比方，曾经过的狼狈不堪谁都瞧不起的人突然一跃，比你屌，你会很开心，你的自尊心会让你去屈服？这种巨大的落差碰上西方与生俱来的傲气，他们当然不服气，西方国家谁不想使些绊子，这种我就是看不惯你比我前强的心态表现在我们面前就是各种西方媒体以及部分幕后势力反中的媒体，美分，公知拿起段子就开涮，以及队各种赛事的幕后操作。</p>
+<p>譬如之前网络上传得很火的中国旅客泰国铲虾事件，纽约机场大妈掌掴售货员事件（<code>真相却是售货员私藏大妈信用卡，大妈马上要赶飞机，碰了他一下，然后售货员倒打一耙，又先人一步报警，在媒体上贼喊捉贼，曝光大妈个人信息，等等龌龊行为</code>）。还有大妈在美国当众脱裤拉屎（<code>仅仅一个亚洲背影，就打上华人标签，好像当时自己在场一样</code>）,等等。凡是亚洲面孔，都要贴华人标签。首先承认部分游客素质的确要提升，然而这些媒体，公知们一定要揪出个个例，当着众多网民的面数落<code>你国人</code>怎么怎么不文明，他们想通过这一系列举动悄悄在民间掀起颜色革命，来达到他们不可告人的秘密。</p>
+<p>可惜啊！这群人小看的当代网民，忽视了中国这一段来之不易的和平之后的艰辛，还以为当代90，00后真的是垮掉的一代，可以任人操控.</p>
+<p>之前在quora上有外国网友们问：<a href="http://www.guancha.cn/america/2016_07_16_367725.shtml" target="_blank" rel="external">为什么中国无颜色革命</a>，有位姑娘的回答说明了一切.我国近代所经历的一切当代青年人都铭记着，<code>南斯拉夫大使馆被炸</code>，<code>钓鱼岛事件</code>，<code>南海仲裁</code>，<code>萨德事件</code>，<code>台独事件</code>等数不胜数的关系国家尊严的事，可以看到绝大数的网民都有着正确的价值观，譬如<code>要岛不要人，留下周杰伦</code>,<code>国家面前无偶像</code>,<code>做人不能太霍顿，做事不能太里约</code>等段子，看似轻松幽默，却表达了当代中国青年人心中不变的立场，国家的不好自己人说说可以，外人想要给她泼脏水，想要分裂他，休想！</p>
+<p>当国家利益受到侵犯，看似不羁的80，90，00后，都会站出来，我想如果有一天，国家需要我们，投笔从戎又何尝不可？外国媒体小看了中国普通民众，却曾想每一次的侮辱，每一次的抹黑只会让我们更加团结，谁都不想枪击事件在中国上演，谁都不想那些挤在一条船逃亡异国他乡的是中国人，当我们嫌弃这不好那不好时，可曾想过如果国家像叙利亚一样，连自己国民安全都无法保证时，我们还会有功夫去抱怨物价太高吗？</p>
+<p>很多人都有种国外的月亮比国内圆，建议去知乎看一看类似的问题：<a href="https://www.zhihu.com/question/48094751" target="_blank" rel="external">你在美国经历过那些事情不如中国？</a>。我没出过国，我建议大家跟我一样，有机会一定要出国生活一段日子，去验证这些都是不是真的？</p>
+<p>中国在慢慢崛起，以前只是口头警告，部分网友嫌弃太软弱，连菲律宾这种小国都不敢给点苦头尝尝.首先，作为一个大国，大国风范必须有，动不动就给人使刀使枪，被人摸清了底线，这种小国贱民就会三番五次打擦边球，骚扰你，最近东海南海同时出招，可把日本急坏了，接连抗议召唤大使，这不正是我们想看到的吗？让他如坐针毡，知道收敛.这只是开头，以后给的颜色会更多.擒贼先擒王才是真义，利剑要割的是背后的主角.</p>
+<p>回到奥运会这茬，中国在慢慢崛起，狠狠打了西方国家的脸，他们当着面还要和中国合作，从中国这里捞好处，但心里肯定不服啊，找些地方撒气.你能说俄罗斯集体禁赛当真就是因为禁药，大国崛起，可对这些明日黄花构成了战略威胁.里约奥运会的现实无法改变，我们也可以想象四年之后的东京奥运会肯定也是这样或者更加变本加厉.难道就因为这样，我们就不去了吗？这是懦夫行为，中国绝对不会这样做.此外，也别希望中国能被世界温柔以待，起码短期内没有这个可能，国家在培养奥运会运动员的同时也要加大力度培养这种级别的裁判员.这只是就奥运会一事来看.而要想真正改变西方国家狗眼看人低的态度唯有一条，变得更加强大，更加强硬.我们不可能和他们做朋友，只有谁服谁，亮出硬实力，让这些国家彻底服气.</p>
+<p>还好网民对金牌没有以前那么敏感，不需要用金牌来证明实力，里面的黑我们永远想不到有多黑.希望我国运动员们加油，注意安全，凯旋而归。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">那些说爱国贼的人滚远点！我们都是种花兔，此生不悔入华夏，来生还在种花家！</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/wz4.jpg&quot; alt=&quot;tu&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这篇文章最初发表在新浪微博，这次重构到自己的博客上。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最近奥运很多人跟我一样看得窝火，各处受压制，各处有黑幕，各处有人喷.你以为奥运会真的公平公正公开，还有奥林匹克精神？too young too simple.还想让中国被世界温柔以待？too naive.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="随笔" scheme="http://gelory.me/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="热点热评" scheme="http://gelory.me/tags/%E7%83%AD%E7%82%B9%E7%83%AD%E8%AF%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IIS服务器的搭建与初级应用</title>
+    <link href="http://gelory.me/2016/10/10/IIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%88%9D%E7%BA%A7%E5%BA%94%E7%94%A8/"/>
+    <id>http://gelory.me/2016/10/10/IIS服务器的搭建与初级应用/</id>
+    <published>2016-10-10T07:14:51.000Z</published>
+    <updated>2016-10-10T08:33:41.636Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/3.0.jpg" alt="IIS"><br>什么是IIS服务器？引用<a href="http://www.baike.com/wiki/iis%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="external">互动百科的话</a>:</p>
+<blockquote>
+<p>是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面</p>
+</blockquote>
+<p>那如何快速的搭建和使用呢？<br><a id="more"></a><br>笔者将分三部分来讲。</p>
+<blockquote>
+<ul>
+<li>IIS的搭建</li>
+<li>IIS的打开方法</li>
+<li>IIS下创建虚拟目录</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="IIS的搭建"><a href="#IIS的搭建" class="headerlink" title="IIS的搭建"></a>IIS的搭建</h2><p><strong>Step1：</strong>进入<code>控制面板</code>-&gt;<code>程序</code>-&gt;<code>打开和关闭windows功能</code><br><strong>Step2：</strong>勾选<code>Internet信息服务（internet Information Service）</code>以及其子目录下的大部分选项。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.1.jpg" alt="IIS1"><br><strong>Step3：</strong>进入<code>控制面</code>板-&gt;<code>系统和安全</code>-&gt;<code>Windows 防火墙</code>-&gt;<code>自定义设置</code>,选中<code>关闭Windows防火墙</code>.<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.2.jpg" alt="IIS1"><br><strong>Step4：</strong>在IE或其他浏览器中，打开<code>http://localhost</code>，出现如下界面，则说明搭建成功。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.3.jpg" alt="IIS1"></p>
+<hr>
+<h2 id="IIS的打开方法（Windows）"><a href="#IIS的打开方法（Windows）" class="headerlink" title="IIS的打开方法（Windows）"></a>IIS的打开方法（Windows）</h2><p><strong>Step1：</strong>在<code>开始</code>菜单上单击<code>运行</code>。<br><strong>Step2：</strong>在<code>打开</code>对话框中，键入<code>inetmgr</code>，然后单击<code>确定</code>。</p>
+<hr>
+<h2 id="IIS下创建虚拟目录"><a href="#IIS下创建虚拟目录" class="headerlink" title="IIS下创建虚拟目录"></a>IIS下创建虚拟目录</h2><p><strong>Step1：</strong>打开 IIS 管理器。<br><strong>Step2：</strong>在<code>连接</code>窗格中，展开树中的<code>站点</code>节点，然后单击要在其中创建虚拟目录的站点以将其选中。<br><strong>Step3：</strong>右键，选择<code>添加虚拟目录</code>。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.4.jpg" alt="IIS1"><br><strong>Step4：</strong>在<code>添加虚拟目录</code>对话框的<code>别名</code>框中键入一个名称。此别名用于通过 URL 访问内容。<br><strong>Step5：</strong> 在<code>物理路径</code>框中，键入内容文件夹的物理路径，或者单击<code>浏览</code>并通过在文件系统中导航来找到该文件夹。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.5.jpg" alt="IIS1"><br><strong>Step6：</strong>单击<code>确定</code>,虚拟目录就建好啦。</p>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">O(∩_∩)O哈哈~，这期没话说，多生孩子少种树</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/3.0.jpg&quot; alt=&quot;IIS&quot;&gt;&lt;br&gt;什么是IIS服务器？引用&lt;a href=&quot;http://www.baike.com/wiki/iis%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;互动百科的话&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;那如何快速的搭建和使用呢？&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Android" scheme="http://gelory.me/categories/Android/"/>
+    
+    
+      <category term="IIS" scheme="http://gelory.me/tags/IIS/"/>
+    
+      <category term="Android" scheme="http://gelory.me/tags/Android/"/>
+    
+      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高度不定的子元素在高度不定的父元素中垂直居中</title>
+    <link href="http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/"/>
+    <id>http://gelory.me/2016/10/09/高度不定的子元素在高度不定的父元素中垂直居中问题/</id>
+    <published>2016-10-09T13:29:49.000Z</published>
+    <updated>2016-10-19T03:12:36.313Z</updated>
+    
+    <content type="html"><![CDATA[<div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao1.png" alt="高度不定的子元素在高度不定的父元素中垂直居中"></div><br>想必大家有遇到过这样的情况：<br>父元素为inline-block由A元素的高度决定,现在我们想让B元素垂直居中有什么方法呢？<br><br><a id="more"></a><br><br>———-<br><br>&gt; * 第一步：（啊啊啊Ｏ(≧口≦)Ｏ，这个地方样式突然就无法用了）<br>把B元素里面的文本单独放在一个标签内譬如span内形成C元素。<br><br>因为父元素为内联块状元素(inline-block),由A决定,所以无法用准确的数值去设置。<br><div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao2.png"></div>
+
+
+<hr>
+<blockquote>
+<ul>
+<li>第二步：<br>先设置父元素为相对定位<code>position：relative</code>。</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<ul>
+<li>第三步：<br>设置B为绝对定位<code>position：absolute</code>。</li>
+</ul>
+</blockquote>
+<p>这样除了正规作用外，还有其他好处.譬如,设置为absolute后，脱离了文档.  他的位置，宽高改变不会影响到父元素（父元素为内联块级元素，如果不设置B为ababsolute，B的高度如果变化的话,就会影响到父元素）的改变，这个实用性非常广。</p>
+<hr>
+<blockquote>
+<ul>
+<li>第四步<br>设置B的top的50%:<code>top:50%</code>.</li>
+</ul>
+</blockquote>
+<p>top只有在定位时用得到，相当于下移了父元素高度的百分之五十.此时B元素的上边与父元素的垂直中线相平。如图所示：</p>
+<div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao3.png"></div>
+
+
+<hr>
+<blockquote>
+<ul>
+<li>第五步：设置C元素  采用transform：translateY（）属性。<code>transform：translateY(-50%)</code>，注意:此时值为负数。</li>
+</ul>
+</blockquote>
+<p>此时C元素上移了自身高度的一半，其中位线刚好和中线重合,这样他其实就垂直居中了。如图所示：</p>
+<div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao4.png"></div>
+
+<hr>
+<p>有人会想到利用position的三重定位来实现水平居中。原理相同</p>
+<blockquote>
+<p>对爷元素设置position为relative<br>对孙元素设置position为relative<br>对父元素进行left=50%的平移<br>然后孙元素进行left=-50的平移</p>
+</blockquote>
+<p>这样就简单的达成了水平居中的效果，那垂直居中可不可以采用相同的效果呢？ 当然可以,但是要保证一点:</p>
+<blockquote>
+<div style="text-align:center;color:red">孙元素由内容自然撑开的高度与父元素相等</div>
+
+</blockquote>
+<p>这个条件必须满足，水平居中之所以能成立，其原因就是<code>孙元素的宽度与父元素自然一致，所以然能用上面的方法</code>。<br>回到正题，在垂直居中问题上，如果满足不了这个条件，那就不能这么做，原因是：</p>
+<blockquote>
+<p>对孙元素采用top：-50%，它是以父元素为基准，这样就不能让孙元素的垂直中线与父元素的垂直中线重合。</p>
+</blockquote>
+<hr>
+<p>还有，采用单元表格法</p>
+<blockquote>
+<p>给爷元素设置 display：table-cell<br>则父元素垂直居中<br>同理可以设置父元素<br>孙元素垂直居中</p>
+</blockquote>
+<hr>
+<p>还有一个简单但是要考虑兼容性的方法：</p>
+<blockquote>
+<p>利用table-cell 和text-align：center 以及 vertical-align：middle</p>
+</blockquote>
+<p>就可以让他水平垂直居中.</p>
+<hr>
+<p>###小样有话说：</p>
+<center style="color:green;font-weight: Bold;border:1px dotted #999">累了两天了，终于把博客弄妥当了。接下来继续学习。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao1.png&quot; alt=&quot;高度不定的子元素在高度不定的父元素中垂直居中&quot; /&gt;&lt;/div&gt;&lt;br&gt;想必大家有遇到过这样的情况：&lt;br&gt;父元素为inline-block由A元素的高度决定,现在我们想让B元素垂直居中有什么方法呢？&lt;br&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
+    
+      <category term="HTML" scheme="http://gelory.me/tags/HTML/"/>
+    
+      <category term="前端技巧" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何快速地利用Github建博客</title>
+    <link href="http://gelory.me/2016/10/09/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%B0%E5%88%A9%E7%94%A8Github%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://gelory.me/2016/10/09/如何快速地利用Github建博客/</id>
+    <published>2016-10-09T07:15:44.000Z</published>
+    <updated>2016-10-14T08:21:28.573Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/blog.jpg" alt="如何快速地利用Github建博客"><br>作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?<br>肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的<strong>建站步骤博文</strong>给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。<br><a id="more"></a><br>笔者将按这个流程讲解：</p>
+<blockquote>
+<ul>
+<li>购买独立域名，域名解析相关工作</li>
+<li>注册Github账户，建立GitHub Pages博客</li>
+<li>域名绑定</li>
+<li>博客配置</li>
+<li>文章撰写</li>
+</ul>
+</blockquote>
+<html><br><body><br><center style="color:green">看到这里，千万别慌，一步步做，很简单的。</center><br><div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/%E8%8E%AB%E6%85%8C.gif"></div><br></body><br></html>
+
+<h2 id="Step1-域名购买，域名解析"><a href="#Step1-域名购买，域名解析" class="headerlink" title="Step1. 域名购买，域名解析"></a>Step1. 域名购买，域名解析</h2><hr>
+<p>所谓域名，其实解释给IP地址带上一个便于记忆的标志。譬如我们去某宝购物，输入的taobao.com就是一个域名，没人会去记200.210.6.20（随便编的）这一串IP。</p>
+<p>去哪里买呢？很多地方有卖，学生可以去<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">阿里云</a>看看，学生购买域名和租服务器有优惠。笔者在<a href="https://sg.godaddy.com/" target="_blank" rel="external">Godday</a>购买，网络上有很多Godday的<a href="http://www.51pin.cn/archives/1966" target="_blank" rel="external">优惠码</a>，点击网页里面的优惠码链接，然后购物，结算的时候会自动优惠，大部分支持支付宝支付。域名后缀有很多种，常见的 <code>.com</code> <code>.net``.org</code>。喜欢特别的可以像笔者一样<code>.me</code>等等，自己喜欢就好。</p>
+<p>然后选择<a href="https://www.dnspod.cn/" target="_blank" rel="external">DNSPod</a>的解析服务，口碑挺好的。在解析这块,<a href="http://beiyuu.com/github-pages" target="_blank" rel="external">Beiyuu</a>的博文头部有具体流程。<strong>值得注意的是</strong>：Github Pages的服务IP地址会变化，具体的请点击<a href="https://help.github.com/articles/setting-up-an-apex-domain/" target="_blank" rel="external">链接</a>查看。目前的是：<code>192.30.252.153</code>和<code>192.30.252.154</code>。</p>
+<h2 id="Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客"><a href="#Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客" class="headerlink" title="Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客"></a>Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客</h2><hr>
+<p>来看这篇文章的，应该都会注册用户，github也是一样，很普通的注册方法。点此<a href="https://github.com/" target="_blank" rel="external">注册</a>.</p>
+<p>注册后，安装Git，点此安装<a href="http://code.google.com/p/msysgit/downloads/list" target="_blank" rel="external">Windows版</a>，其他版本请点击<a href="https://help.github.com/articles/set-up-git/" target="_blank" rel="external">Mac，Linux</a>.如果你会一点点基本的嵌入式命令行，学起来毫不费劲，看一下<a href="http://blog.jobbole.com/78960/" target="_blank" rel="external">伯乐在线</a>的这篇博文，跟着敲一敲，很快就get了。如果没有基础的话,可以跟着伯乐在线的速学一下，想深入的话，点这里<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Git中文教程</a>学习。掌握了一些基本命令行之后，按照Beiyuu博客的<a href="http://beiyuu.com/github-pages" target="_blank" rel="external">配置和使用Github</a>部分进行相关设置。</p>
+<p>建立Github博客,可以看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">将博客部署到Github Pages上</a>部分。<strong>值得注意的是：</strong>建立的Repository名：<code>username.github.io</code>中的<code>username</code>名必须与左侧你的用户名<code>Owner</code>保持一致。</p>
+<h2 id="Step3-域名绑定"><a href="#Step3-域名绑定" class="headerlink" title="Step3. 域名绑定"></a>Step3. 域名绑定</h2><hr>
+<p>做完上面一步，你可以通过username.github.io这个域名访问到你的测试博客。此时要想通过你自己的购买的域名访问，就必须绑定。</p>
+<p>首先：在Github-&gt;username.github.io这个repository中新建一个文件（Create new file），文件名叫<code>CNAME</code>，<code>没有后缀</code>，在首行写上你买的域名，譬如笔者的域名<a href="https://gelory.me/"><code>gelory.me</code></a>。</p>
+<p>然后：登录你注册了的DNSPod，添加一条如图所示的记录：<br><img src="http://oeqc7pnps.bkt.clouddn.com/DNSPod.png" alt="添加记录"></p>
+<p><strong>值得注意的是：</strong>记录值：<code>username.github.io.</code>io后面这个点千万别忘了。添加完后，等上个几分钟，就绑定好了。当你通过username.github.io这个域名访问测试博客时，他会自动跳转到你自己的域名上。</p>
+<h2 id="Step4-博客配置"><a href="#Step4-博客配置" class="headerlink" title="Step4. 博客配置"></a>Step4. 博客配置</h2><hr>
+<p>到这一步，你已经可以访问域名了，只不过博客还没成型，你需要配置。对于小白来说，采用Hexo框架再好不过了。</p>
+<p>可以看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">Hexo</a>部分。<br><strong>值得注意的是:</strong>当你把本地文件push到github上时，可能会将你刚才新建的CNAME文件删掉，那么你就无法通过域名访问了。`解决方法是: 在 \hexo\source文件夹下，重新建立CNAME文件。</p>
+<h2 id="Step5-文章撰写"><a href="#Step5-文章撰写" class="headerlink" title="Step5. 文章撰写"></a>Step5. 文章撰写</h2><p>如何编辑文章，请继续查看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">在博客写文章</a>部分。格式化编辑文章，大家都在推荐使用MarkDown，这东西确实不错，我用的编辑器是作业部落的<a href="https://www.zybuluo.com" target="_blank" rel="external">CMD MarkDown</a>非常好使，在此推荐。另外，会一点前端知识能让你的文章样式更加丰富。</p>
+<hr>
+<p>###小样有话说：</p>
+<center style="color:green;font-weight: Bold;border:1px dotted #999">到此，你的博客建完了，文章也会写了。那请你别辜负了当初建站的热情，把心思放在创作优质内容上。加油！</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>
+
+
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/blog.jpg&quot; alt=&quot;如何快速地利用Github建博客&quot;&gt;&lt;br&gt;作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?&lt;br&gt;肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的&lt;strong&gt;建站步骤博文&lt;/strong&gt;给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Github实用" scheme="http://gelory.me/categories/Github%E5%AE%9E%E7%94%A8/"/>
+    
+    
+      <category term="Github" scheme="http://gelory.me/tags/Github/"/>
+    
+      <category term="博客" scheme="http://gelory.me/tags/%E5%8D%9A%E5%AE%A2/"/>
+    
+      <category term="Hexo" scheme="http://gelory.me/tags/Hexo/"/>
+    
+  </entry>
+  
+</feed>
