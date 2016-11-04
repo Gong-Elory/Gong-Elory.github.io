@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-04T12:15:57.347Z</updated>
+  <updated>2016-11-04T13:40:06.975Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>call与apply，caller与callee</title>
+    <link href="http://gelory.me/2016/11/04/call%E4%B8%8Eapply%EF%BC%8Ccaller%E4%B8%8Ecallee/"/>
+    <id>http://gelory.me/2016/11/04/call与apply，caller与callee/</id>
+    <published>2016-11-04T13:38:42.000Z</published>
+    <updated>2016-11-04T13:40:06.975Z</updated>
+    
+    <content type="html"><![CDATA[<p>讲一下这两对的区别。<br><a id="more"></a><br>call与apply</p>
+<p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来。<br>b方法.call(a对象,a带的参数（可选）);<br>这样a就可以用b方法啦。</p>
+<p>具体到实例：</p>
+<p>function b(x，y){<br>    alert(“我是”+x+y)；<br>}<br>function a(){<br>    b.call(this,”a”,”吧”);//我是a吧<br>}</p>
+<p>function  c(m,n){<br>    b.apply(this,arguments);//我是mn<br>    b.apply(this,[m,n])；// 我是mn<br>}</p>
+<p>a();<br>c(“m”,”n”);<br>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。</p>
+<p>那什么时候用哪一种呢？<br>明确参数的个数时，就用call，不知道有多少个参数时，就用apply。</p>
+<p>caller</p>
+<p>caller，简洁的说就是找出是谁调用了正在运行我的这个函数体<br>举个栗子：<br>function a()<br>{<br>alert(a.caller)<br>}</p>
+<p>function b(){<br>a();<br>}<br>a();// null<br>b();//b<br>执行a();时，是js顶层调用的，所以返回null<br>执行b();时，是b调用了a，所以返回的是b的方法名。</p>
+<p>callee</p>
+<p>这个在匿名递归时用的最多。简洁的说就是找出callee运行的那个函数体<br>举个栗子：</p>
+<p>setTimeout(function(){<br>/<em>
+</em>do something<br>*/<br>setTimeout(arguments.callee,100);//指向当前执行的函数，此时指向的是匿名函数。<br>},100)<br>当然，不嫌麻烦可以这样写。</p>
+<p>function bb(){<br>/<em>
+</em>do something<br>*/<br>setTimeout(bb(),100);<br>}</p>
+<p>setTimeout(bb(),100);</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;讲一下这两对的区别。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Js" scheme="http://gelory.me/tags/Js/"/>
+    
+  </entry>
   
   <entry>
     <title>setTimeout与setInterval的区别与互补</title>
@@ -971,13 +1012,13 @@ date = scrapy.Field()
       <category term="Python爬虫" scheme="http://gelory.me/categories/Python%E7%88%AC%E8%99%AB/"/>
     
     
+      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
+    
       <category term="Scrapy" scheme="http://gelory.me/tags/Scrapy/"/>
     
       <category term="Python" scheme="http://gelory.me/tags/Python/"/>
     
       <category term="爬虫" scheme="http://gelory.me/tags/%E7%88%AC%E8%99%AB/"/>
-    
-      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
     
   </entry>
   
@@ -1065,102 +1106,11 @@ date = scrapy.Field()
       <category term="Android" scheme="http://gelory.me/categories/Android/"/>
     
     
-      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
-    
       <category term="IIS" scheme="http://gelory.me/tags/IIS/"/>
     
       <category term="Android" scheme="http://gelory.me/tags/Android/"/>
     
-  </entry>
-  
-  <entry>
-    <title>高度不定的子元素在高度不定的父元素中垂直居中</title>
-    <link href="http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/"/>
-    <id>http://gelory.me/2016/10/09/高度不定的子元素在高度不定的父元素中垂直居中问题/</id>
-    <published>2016-10-09T13:29:49.000Z</published>
-    <updated>2016-10-19T03:12:36.313Z</updated>
-    
-    <content type="html"><![CDATA[<div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao1.png" alt="高度不定的子元素在高度不定的父元素中垂直居中"></div><br>想必大家有遇到过这样的情况：<br>父元素为inline-block由A元素的高度决定,现在我们想让B元素垂直居中有什么方法呢？<br><br><a id="more"></a><br><br>———-<br><br>&gt; * 第一步：（啊啊啊Ｏ(≧口≦)Ｏ，这个地方样式突然就无法用了）<br>把B元素里面的文本单独放在一个标签内譬如span内形成C元素。<br><br>因为父元素为内联块状元素(inline-block),由A决定,所以无法用准确的数值去设置。<br><div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao2.png"></div>
-
-
-<hr>
-<blockquote>
-<ul>
-<li>第二步：<br>先设置父元素为相对定位<code>position：relative</code>。</li>
-</ul>
-</blockquote>
-<hr>
-<blockquote>
-<ul>
-<li>第三步：<br>设置B为绝对定位<code>position：absolute</code>。</li>
-</ul>
-</blockquote>
-<p>这样除了正规作用外，还有其他好处.譬如,设置为absolute后，脱离了文档.  他的位置，宽高改变不会影响到父元素（父元素为内联块级元素，如果不设置B为ababsolute，B的高度如果变化的话,就会影响到父元素）的改变，这个实用性非常广。</p>
-<hr>
-<blockquote>
-<ul>
-<li>第四步<br>设置B的top的50%:<code>top:50%</code>.</li>
-</ul>
-</blockquote>
-<p>top只有在定位时用得到，相当于下移了父元素高度的百分之五十.此时B元素的上边与父元素的垂直中线相平。如图所示：</p>
-<div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao3.png"></div>
-
-
-<hr>
-<blockquote>
-<ul>
-<li>第五步：设置C元素  采用transform：translateY（）属性。<code>transform：translateY(-50%)</code>，注意:此时值为负数。</li>
-</ul>
-</blockquote>
-<p>此时C元素上移了自身高度的一半，其中位线刚好和中线重合,这样他其实就垂直居中了。如图所示：</p>
-<div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao4.png"></div>
-
-<hr>
-<p>有人会想到利用position的三重定位来实现水平居中。原理相同</p>
-<blockquote>
-<p>对爷元素设置position为relative<br>对孙元素设置position为relative<br>对父元素进行left=50%的平移<br>然后孙元素进行left=-50的平移</p>
-</blockquote>
-<p>这样就简单的达成了水平居中的效果，那垂直居中可不可以采用相同的效果呢？ 当然可以,但是要保证一点:</p>
-<blockquote>
-<div style="text-align:center;color:red">孙元素由内容自然撑开的高度与父元素相等</div>
-
-</blockquote>
-<p>这个条件必须满足，水平居中之所以能成立，其原因就是<code>孙元素的宽度与父元素自然一致，所以然能用上面的方法</code>。<br>回到正题，在垂直居中问题上，如果满足不了这个条件，那就不能这么做，原因是：</p>
-<blockquote>
-<p>对孙元素采用top：-50%，它是以父元素为基准，这样就不能让孙元素的垂直中线与父元素的垂直中线重合。</p>
-</blockquote>
-<hr>
-<p>还有，采用单元表格法</p>
-<blockquote>
-<p>给爷元素设置 display：table-cell<br>则父元素垂直居中<br>同理可以设置父元素<br>孙元素垂直居中</p>
-</blockquote>
-<hr>
-<p>还有一个简单但是要考虑兼容性的方法：</p>
-<blockquote>
-<p>利用table-cell 和text-align：center 以及 vertical-align：middle</p>
-</blockquote>
-<p>就可以让他水平垂直居中.</p>
-<hr>
-<p>###小样有话说：</p>
-<center style="color:green;font-weight: Bold;border:1px dotted #999">累了两天了，终于把博客弄妥当了。接下来继续学习。</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;div style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/wz2/pnggao1.png&quot; alt=&quot;高度不定的子元素在高度不定的父元素中垂直居中&quot; /&gt;&lt;/div&gt;&lt;br&gt;想必大家有遇到过这样的情况：&lt;br&gt;父元素为inline-block由A元素的高度决定,现在我们想让B元素垂直居中有什么方法呢？&lt;br&gt;&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
-    
-      <category term="HTML" scheme="http://gelory.me/tags/HTML/"/>
-    
-      <category term="前端技巧" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF%E6%8A%80%E5%B7%A7/"/>
+      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
     
   </entry>
   
