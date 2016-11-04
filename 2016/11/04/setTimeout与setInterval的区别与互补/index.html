@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,CSS," />
+  <meta name="keywords" content="前端,Js," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="最近学习HTML5+CSS3时，看到一个现象,在使用::selection伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。">
+<meta name="description" content="我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="伪元素与伪类，单冒号选择器和双冒号的区别与联系">
-<meta property="og:url" content="http://gelory.me/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/index.html">
+<meta property="og:title" content="setTimeout与setInterval的区别与互补">
+<meta property="og:url" content="http://gelory.me/2016/11/04/setTimeout与setInterval的区别与互补/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="最近学习HTML5+CSS3时，看到一个现象,在使用::selection伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。">
-<meta property="og:updated_time" content="2016-10-20T07:05:56.123Z">
+<meta property="og:description" content="我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。">
+<meta property="og:updated_time" content="2016-11-04T12:15:57.347Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="伪元素与伪类，单冒号选择器和双冒号的区别与联系">
-<meta name="twitter:description" content="最近学习HTML5+CSS3时，看到一个现象,在使用::selection伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。">
+<meta name="twitter:title" content="setTimeout与setInterval的区别与互补">
+<meta name="twitter:description" content="我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/04/setTimeout与setInterval的区别与互补/"/>
 
 
-  <title> 伪元素与伪类，单冒号选择器和双冒号的区别与联系 | 龚小样儿 </title>
+  <title> setTimeout与setInterval的区别与互补 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +278,7 @@
             
             
               
-                伪元素与伪类，单冒号选择器和双冒号的区别与联系
+                setTimeout与setInterval的区别与互补
               
             
           </h1>
@@ -290,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-19T14:16:10+08:00" content="2016-10-19">
-              2016-10-19
+            <time itemprop="dateCreated" datetime="2016-11-04T20:10:55+08:00" content="2016-11-04">
+              2016-11-04
             </time>
           </span>
 
@@ -320,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/" itemprop="commentsCount"></span>
+                <a href="/2016/11/04/setTimeout与setInterval的区别与互补/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/setTimeout与setInterval的区别与互补/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,7 +331,7 @@
 
           
           
-             <span id="/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/" class="leancloud_visitors" data-flag-title="伪元素与伪类，单冒号选择器和双冒号的区别与联系">
+             <span id="/2016/11/04/setTimeout与setInterval的区别与互补/" class="leancloud_visitors" data-flag-title="setTimeout与setInterval的区别与互补">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -353,51 +353,16 @@
       
 
       
-        <p>最近学习HTML5+CSS3时，看到一个现象,在使用<code>::selection</code>伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。<br><a id="more"></a></p>
-<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><blockquote>
-<p>CSS 伪类用于向某些选择器添加特殊的效果。</p>
-</blockquote>
-<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><blockquote>
-<p>CSS 伪元素用于向某些选择器设置特殊的效果。</p>
-</blockquote>
-<p>上面是W3C教程给的定义。不仔细看，你跟本没发现就两个字的差别，<code>添加</code>和<code>设置</code>。十分惊讶，这有什么区别吗？</p>
-<p>看来我中文理解能力还不够啊！我索性跳过他给的定义，从实际运用中招区别。</p>
-<p>伪类，常见的伪类有这些</p>
-<pre><code>:active    向被激活的元素添加样式。
-:focus    向拥有键盘输入焦点的元素添加样式。
-:hover    当鼠标悬浮在元素上方时，向元素添加样式。
-:link    向未被访问的链接添加样式。
-:visited    向已被访问的链接添加样式。
-:first-child    向元素的第一个子元素添加样式。
-:lang 向带有指定 lang 属性的元素添加样式。
-</code></pre><p>怎么用的呢？</p>
-<pre><code>&lt;ul&gt;
-&lt;li&gt;Intert Key&lt;/li&gt;
-&lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Push accelerator&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre><p>我想让第一个li标签的内容变绿，我就这样 <code>ul:first-child</code>指定第一个元素。</p>
-<p>伪元素，常见的伪元素有这些</p>
-<pre><code>:first-letter    向文本的第一个字母添加特殊样式。
-:first-line    向文本的首行添加特殊样式。
-:before    在元素之前添加内容。
-:after    在元素之后添加内容。
-</code></pre><p>怎么用？</p>
-<pre><code>&lt;ul&gt;
-&lt;li class=&quot;la&quot;&gt;Intert Key&lt;/li&gt;
-&lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Push accelerator&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre><p>我想让la类的首字母变绿，我就这样指定这个首字母。 <code>.la:first-letter</code><br>发现没有，<strong>伪类选择的是整个元素，而伪元素选择的是元素内容。</strong>你要问我元素和元素内容有什么区别？看我这篇文章：<a href="http://gelory.me/2016/10/19/little-tip3/">属性，样式，标签，元素的区别与联系</a>.</p>
-<h2 id="说说单冒号与双冒号"><a href="#说说单冒号与双冒号" class="headerlink" title="说说单冒号与双冒号"></a>说说单冒号与双冒号</h2><p>刚才说到<code>::selection,它属于伪元素选择器。它的作用是设置被选择的文本的样式</code>。譬如用光标选中某一段文字后，默认显示的是蓝背景白字，你就可以把它改变为黑背景，绿字。</p>
-<blockquote>
-<p>那为什么同样是伪元素，差别这么大呢？</p>
-<p>原来，::selection是css3新增加的伪元素，为了把伪类和伪元素区别开，从CSS3开始，伪类使用单冒号，伪元素使用双冒号。但是，由于考虑向下兼容的问题，在CSS3之前的那些伪元素，保留原来单冒号的写法。所以:after与::after没啥区别。</p>
-</blockquote>
-<p>那么我们在用的时候，如果要考虑所有浏览器的兼容性，还是使用单冒号来带伪元素，如果不需要考虑IE浏览器，那我们还是统一用双冒号来带伪元素。</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/%E6%96%B0%E5%BD%95%E9%9F%B3%202-1.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>
+        <p>我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。<br><a id="more"></a><br>setTimeout用于在<code>指定毫秒数后</code>进行相关操作。<code>只会执行一次。</code><br>setInterval用于<code>每隔指定毫秒数后循环</code>进行相关操作。<code>执行N次。</code></p>
+<h2 id="定时并非那么精准"><a href="#定时并非那么精准" class="headerlink" title="定时并非那么精准"></a>定时并非那么精准</h2><p>原因：js运行在单线程中，当定时时间到后，并不是立即执行相关操作，而是把代码放到队列里等候执行。做好了执行的准备。至于为什么等，因为浏览器要先执行一些优先级较高的代码。</p>
+<h2 id="既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"><a href="#既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。" class="headerlink" title="既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"></a>既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。</h2><p>setInterval在执行代码时，可能因为前一次代码执行时间超出了指定时间间隔，而导致下一次的的代码在队列中等待，直到前一次代码执行完。<br>js不允许一个队列中出现同一定时器的多次代码。因此只要队列中有一个，间隔时间到了，后面的代码将会被丢弃。<br><a href="http://qingbob.com/difference-between-settimeout-setinterval/" target="_blank" rel="external">这里没有图片，不直观，可以点击这里！</a><br>于是就会出现问题：<br>1.有些间隔就被忽略了。<br>2.假设间隔为100ms，如果前一次在190ms的时候结束，后一次的代码会在200ms时开始执行，因此实际运行间隔就不是100ms了<br>于是，鉴于这些缺点，setTimeout很好地弥补了这个缺点。因为如果这样写</p>
+<pre><code>  setTimeout(function repeatMe() {     
+/* Some long block of code... */   
+setTimeout(repeatMe, 10);          
+}, 10);
+</code></pre><p>这样写的话，每次都是先执行外代码，然后创建了一个新的定时器，开始计时，于是就保证了间隔永远是指定时间</p>
+<p>此外setTimeout还可以用在发生时间冒泡时，设置事件发生顺序。有时间在深入讨论冒泡捕获相关内容。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>
       
     </div>
 
@@ -442,7 +407,7 @@
           
             <a href="/tags/前端/" rel="tag">#前端</a>
           
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
+            <a href="/tags/Js/" rel="tag">#Js</a>
           
         </div>
       
@@ -451,17 +416,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/19/属性，样式，标签，元素的区别与联系/" rel="next" title="属性，样式，标签，元素的区别与联系">
-                <i class="fa fa-chevron-left"></i> 属性，样式，标签，元素的区别与联系
+              <a href="/2016/11/03/innerHTML相关知识点总结/" rel="next" title="innerHTML相关知识点总结">
+                <i class="fa fa-chevron-left"></i> innerHTML相关知识点总结
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/19/FlexBox布局使用介绍/" rel="prev" title="FlexBox布局使用介绍">
-                FlexBox布局使用介绍 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -490,8 +451,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/"
-           data-title="伪元素与伪类，单冒号选择器和双冒号的区别与联系" data-url="http://gelory.me/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/">
+      <div class="ds-thread" data-thread-key="2016/11/04/setTimeout与setInterval的区别与互补/"
+           data-title="setTimeout与setInterval的区别与互补" data-url="http://gelory.me/2016/11/04/setTimeout与setInterval的区别与互补/">
       </div>
     
   </div>
@@ -589,7 +550,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#伪类"><span class="nav-number">1.</span> <span class="nav-text">伪类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪元素"><span class="nav-number">2.</span> <span class="nav-text">伪元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说单冒号与双冒号"><span class="nav-number">3.</span> <span class="nav-text">说说单冒号与双冒号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">4.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#定时并非那么精准"><span class="nav-number">1.</span> <span class="nav-text">定时并非那么精准</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"><span class="nav-number">2.</span> <span class="nav-text">既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。</span></a></li></ol></div>
             
           </div>
         </section>

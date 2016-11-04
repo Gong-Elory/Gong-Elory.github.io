@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-03T14:26:38.761Z</updated>
+  <updated>2016-11-04T12:15:57.347Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>setTimeout与setInterval的区别与互补</title>
+    <link href="http://gelory.me/2016/11/04/setTimeout%E4%B8%8EsetInterval%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BA%92%E8%A1%A5/"/>
+    <id>http://gelory.me/2016/11/04/setTimeout与setInterval的区别与互补/</id>
+    <published>2016-11-04T12:10:55.000Z</published>
+    <updated>2016-11-04T12:15:57.347Z</updated>
+    
+    <content type="html"><![CDATA[<p>我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。<br><a id="more"></a><br>setTimeout用于在<code>指定毫秒数后</code>进行相关操作。<code>只会执行一次。</code><br>setInterval用于<code>每隔指定毫秒数后循环</code>进行相关操作。<code>执行N次。</code></p>
+<h2 id="定时并非那么精准"><a href="#定时并非那么精准" class="headerlink" title="定时并非那么精准"></a>定时并非那么精准</h2><p>原因：js运行在单线程中，当定时时间到后，并不是立即执行相关操作，而是把代码放到队列里等候执行。做好了执行的准备。至于为什么等，因为浏览器要先执行一些优先级较高的代码。</p>
+<h2 id="既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"><a href="#既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。" class="headerlink" title="既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"></a>既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。</h2><p>setInterval在执行代码时，可能因为前一次代码执行时间超出了指定时间间隔，而导致下一次的的代码在队列中等待，直到前一次代码执行完。<br>js不允许一个队列中出现同一定时器的多次代码。因此只要队列中有一个，间隔时间到了，后面的代码将会被丢弃。<br><a href="http://qingbob.com/difference-between-settimeout-setinterval/" target="_blank" rel="external">这里没有图片，不直观，可以点击这里！</a><br>于是就会出现问题：<br>1.有些间隔就被忽略了。<br>2.假设间隔为100ms，如果前一次在190ms的时候结束，后一次的代码会在200ms时开始执行，因此实际运行间隔就不是100ms了<br>于是，鉴于这些缺点，setTimeout很好地弥补了这个缺点。因为如果这样写</p>
+<pre><code>  setTimeout(function repeatMe() {     
+/* Some long block of code... */   
+setTimeout(repeatMe, 10);          
+}, 10);
+</code></pre><p>这样写的话，每次都是先执行外代码，然后创建了一个新的定时器，开始计时，于是就保证了间隔永远是指定时间</p>
+<p>此外setTimeout还可以用在发生时间冒泡时，设置事件发生顺序。有时间在深入讨论冒泡捕获相关内容。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Js" scheme="http://gelory.me/tags/Js/"/>
+    
+  </entry>
   
   <entry>
     <title>innerHTML相关知识点总结</title>
@@ -938,13 +971,13 @@ date = scrapy.Field()
       <category term="Python爬虫" scheme="http://gelory.me/categories/Python%E7%88%AC%E8%99%AB/"/>
     
     
-      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
-    
       <category term="Scrapy" scheme="http://gelory.me/tags/Scrapy/"/>
     
       <category term="Python" scheme="http://gelory.me/tags/Python/"/>
     
       <category term="爬虫" scheme="http://gelory.me/tags/%E7%88%AC%E8%99%AB/"/>
+    
+      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
     
   </entry>
   
@@ -1032,11 +1065,11 @@ date = scrapy.Field()
       <category term="Android" scheme="http://gelory.me/categories/Android/"/>
     
     
+      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
+    
       <category term="IIS" scheme="http://gelory.me/tags/IIS/"/>
     
       <category term="Android" scheme="http://gelory.me/tags/Android/"/>
-    
-      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
     
   </entry>
   
@@ -1128,68 +1161,6 @@ date = scrapy.Field()
       <category term="HTML" scheme="http://gelory.me/tags/HTML/"/>
     
       <category term="前端技巧" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF%E6%8A%80%E5%B7%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>如何快速地利用Github建博客</title>
-    <link href="http://gelory.me/2016/10/09/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%B0%E5%88%A9%E7%94%A8Github%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://gelory.me/2016/10/09/如何快速地利用Github建博客/</id>
-    <published>2016-10-09T07:15:44.000Z</published>
-    <updated>2016-10-14T08:21:28.573Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/blog.jpg" alt="如何快速地利用Github建博客"><br>作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?<br>肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的<strong>建站步骤博文</strong>给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。<br><a id="more"></a><br>笔者将按这个流程讲解：</p>
-<blockquote>
-<ul>
-<li>购买独立域名，域名解析相关工作</li>
-<li>注册Github账户，建立GitHub Pages博客</li>
-<li>域名绑定</li>
-<li>博客配置</li>
-<li>文章撰写</li>
-</ul>
-</blockquote>
-<html><br><body><br><center style="color:green">看到这里，千万别慌，一步步做，很简单的。</center><br><div style="text-align:center"><img src="http://oeqc7pnps.bkt.clouddn.com/%E8%8E%AB%E6%85%8C.gif"></div><br></body><br></html>
-
-<h2 id="Step1-域名购买，域名解析"><a href="#Step1-域名购买，域名解析" class="headerlink" title="Step1. 域名购买，域名解析"></a>Step1. 域名购买，域名解析</h2><hr>
-<p>所谓域名，其实解释给IP地址带上一个便于记忆的标志。譬如我们去某宝购物，输入的taobao.com就是一个域名，没人会去记200.210.6.20（随便编的）这一串IP。</p>
-<p>去哪里买呢？很多地方有卖，学生可以去<a href="https://wanwang.aliyun.com/" target="_blank" rel="external">阿里云</a>看看，学生购买域名和租服务器有优惠。笔者在<a href="https://sg.godaddy.com/" target="_blank" rel="external">Godday</a>购买，网络上有很多Godday的<a href="http://www.51pin.cn/archives/1966" target="_blank" rel="external">优惠码</a>，点击网页里面的优惠码链接，然后购物，结算的时候会自动优惠，大部分支持支付宝支付。域名后缀有很多种，常见的 <code>.com</code> <code>.net``.org</code>。喜欢特别的可以像笔者一样<code>.me</code>等等，自己喜欢就好。</p>
-<p>然后选择<a href="https://www.dnspod.cn/" target="_blank" rel="external">DNSPod</a>的解析服务，口碑挺好的。在解析这块,<a href="http://beiyuu.com/github-pages" target="_blank" rel="external">Beiyuu</a>的博文头部有具体流程。<strong>值得注意的是</strong>：Github Pages的服务IP地址会变化，具体的请点击<a href="https://help.github.com/articles/setting-up-an-apex-domain/" target="_blank" rel="external">链接</a>查看。目前的是：<code>192.30.252.153</code>和<code>192.30.252.154</code>。</p>
-<h2 id="Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客"><a href="#Step2-注册Github账户，配置使用Git，建立GitHub-Pages博客" class="headerlink" title="Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客"></a>Step2. 注册Github账户，配置使用Git，建立GitHub Pages博客</h2><hr>
-<p>来看这篇文章的，应该都会注册用户，github也是一样，很普通的注册方法。点此<a href="https://github.com/" target="_blank" rel="external">注册</a>.</p>
-<p>注册后，安装Git，点此安装<a href="http://code.google.com/p/msysgit/downloads/list" target="_blank" rel="external">Windows版</a>，其他版本请点击<a href="https://help.github.com/articles/set-up-git/" target="_blank" rel="external">Mac，Linux</a>.如果你会一点点基本的嵌入式命令行，学起来毫不费劲，看一下<a href="http://blog.jobbole.com/78960/" target="_blank" rel="external">伯乐在线</a>的这篇博文，跟着敲一敲，很快就get了。如果没有基础的话,可以跟着伯乐在线的速学一下，想深入的话，点这里<a href="https://git-scm.com/book/zh/v2" target="_blank" rel="external">Git中文教程</a>学习。掌握了一些基本命令行之后，按照Beiyuu博客的<a href="http://beiyuu.com/github-pages" target="_blank" rel="external">配置和使用Github</a>部分进行相关设置。</p>
-<p>建立Github博客,可以看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">将博客部署到Github Pages上</a>部分。<strong>值得注意的是：</strong>建立的Repository名：<code>username.github.io</code>中的<code>username</code>名必须与左侧你的用户名<code>Owner</code>保持一致。</p>
-<h2 id="Step3-域名绑定"><a href="#Step3-域名绑定" class="headerlink" title="Step3. 域名绑定"></a>Step3. 域名绑定</h2><hr>
-<p>做完上面一步，你可以通过username.github.io这个域名访问到你的测试博客。此时要想通过你自己的购买的域名访问，就必须绑定。</p>
-<p>首先：在Github-&gt;username.github.io这个repository中新建一个文件（Create new file），文件名叫<code>CNAME</code>，<code>没有后缀</code>，在首行写上你买的域名，譬如笔者的域名<a href="https://gelory.me/"><code>gelory.me</code></a>。</p>
-<p>然后：登录你注册了的DNSPod，添加一条如图所示的记录：<br><img src="http://oeqc7pnps.bkt.clouddn.com/DNSPod.png" alt="添加记录"></p>
-<p><strong>值得注意的是：</strong>记录值：<code>username.github.io.</code>io后面这个点千万别忘了。添加完后，等上个几分钟，就绑定好了。当你通过username.github.io这个域名访问测试博客时，他会自动跳转到你自己的域名上。</p>
-<h2 id="Step4-博客配置"><a href="#Step4-博客配置" class="headerlink" title="Step4. 博客配置"></a>Step4. 博客配置</h2><hr>
-<p>到这一步，你已经可以访问域名了，只不过博客还没成型，你需要配置。对于小白来说，采用Hexo框架再好不过了。</p>
-<p>可以看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">Hexo</a>部分。<br><strong>值得注意的是:</strong>当你把本地文件push到github上时，可能会将你刚才新建的CNAME文件删掉，那么你就无法通过域名访问了。`解决方法是: 在 \hexo\source文件夹下，重新建立CNAME文件。</p>
-<h2 id="Step5-文章撰写"><a href="#Step5-文章撰写" class="headerlink" title="Step5. 文章撰写"></a>Step5. 文章撰写</h2><p>如何编辑文章，请继续查看Ryane博客的<a href="https://my.oschina.net/ryaneLee/blog/638440" target="_blank" rel="external">在博客写文章</a>部分。格式化编辑文章，大家都在推荐使用MarkDown，这东西确实不错，我用的编辑器是作业部落的<a href="https://www.zybuluo.com" target="_blank" rel="external">CMD MarkDown</a>非常好使，在此推荐。另外，会一点前端知识能让你的文章样式更加丰富。</p>
-<hr>
-<p>###小样有话说：</p>
-<center style="color:green;font-weight: Bold;border:1px dotted #999">到此，你的博客建完了，文章也会写了。那请你别辜负了当初建站的热情，把心思放在创作优质内容上。加油！</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>
-
-
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/blog.jpg&quot; alt=&quot;如何快速地利用Github建博客&quot;&gt;&lt;br&gt;作为一个小白，想拥有自己的独立域名博客，想想都是一件刺激的事情，但是想想那些令人头疼且繁杂的步骤是不是让很多人都望而却步了呢?&lt;br&gt;肯定有很多人会百度谷歌：如何快速用Github建立博客？ 用什么模板系统？简不简单？网上的答案基本上将这些问题根据不同层次的人描述得的很清楚了。笔者今天就将自己建站过程中，看到的一些好的&lt;strong&gt;建站步骤博文&lt;/strong&gt;给大家罗列出来，让大家少走弯路，节省时间，把更多的精力用在创作优秀的文章上。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Github实用" scheme="http://gelory.me/categories/Github%E5%AE%9E%E7%94%A8/"/>
-    
-    
-      <category term="Github" scheme="http://gelory.me/tags/Github/"/>
-    
-      <category term="博客" scheme="http://gelory.me/tags/%E5%8D%9A%E5%AE%A2/"/>
-    
-      <category term="Hexo" scheme="http://gelory.me/tags/Hexo/"/>
     
   </entry>
   

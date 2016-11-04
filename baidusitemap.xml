@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://gelory.me/2016/11/04/setTimeout%E4%B8%8EsetInterval%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BA%92%E8%A1%A5/</loc>
+    <lastmod>2016-11-04T12:15:57.347Z</lastmod>
+    <data>
+        <display>
+        <title>setTimeout与setInterval的区别与互补</title>
+        <pubTime>2016-11-04T12:10:55.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>Js</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gelory.me/2016/11/03/innerHTML%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2016-11-03T14:26:38.761Z</lastmod>
     <data>
@@ -346,13 +368,13 @@
         <title>基于Scrapy框架的简易新闻爬虫入门</title>
         <pubTime>2016-10-10T09:05:04.000Z</pubTime>
         
-        <tag>实用</tag>
-         
         <tag>Scrapy</tag>
          
         <tag>Python</tag>
          
         <tag>爬虫</tag>
+         
+        <tag>实用</tag>
          
          
            
@@ -436,11 +458,11 @@
         <title>IIS服务器的搭建与初级应用</title>
         <pubTime>2016-10-10T07:14:51.000Z</pubTime>
         
+        <tag>实用</tag>
+         
         <tag>IIS</tag>
          
         <tag>Android</tag>
-         
-        <tag>实用</tag>
          
          
            
