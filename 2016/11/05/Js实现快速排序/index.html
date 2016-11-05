@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="实用,Scrapy,Python,爬虫," />
+  <meta name="keywords" content="JS,算法," />
 
 
 
@@ -86,32 +86,16 @@
 
 
 
-<meta name="description" content="所谓爬虫就是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。
-
-爬虫可以做很多有趣的事，譬如可以用它来监听用户反馈，可以收集电影种子，等等。具体好玩的案例可以去知乎找找。这篇文章模拟的是一个最最最简易的爬虫，供小白学习。这也是我写的第一个爬虫，爬的我学校网站的新闻。如果你发现错误，那就很棒了。错误会在文章后头指出。">
+<meta name="description" content="关于快速排序的理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="基于Scrapy框架的简易新闻爬虫入门">
-<meta property="og:url" content="http://gelory.me/2016/10/10/基于Scrapy框架的简易新闻爬虫/index.html">
+<meta property="og:title" content="JS实现快速排序">
+<meta property="og:url" content="http://gelory.me/2016/11/05/Js实现快速排序/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="所谓爬虫就是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。
-
-爬虫可以做很多有趣的事，譬如可以用它来监听用户反馈，可以收集电影种子，等等。具体好玩的案例可以去知乎找找。这篇文章模拟的是一个最最最简易的爬虫，供小白学习。这也是我写的第一个爬虫，爬的我学校网站的新闻。如果你发现错误，那就很棒了。错误会在文章后头指出。">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.0.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.1.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.2.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.3.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.8.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.4.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.5.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.6.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.7.jpg">
-<meta property="og:updated_time" content="2016-10-14T08:21:45.465Z">
+<meta property="og:description" content="关于快速排序的理解。">
+<meta property="og:updated_time" content="2016-11-05T07:14:02.789Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于Scrapy框架的简易新闻爬虫入门">
-<meta name="twitter:description" content="所谓爬虫就是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。
-
-爬虫可以做很多有趣的事，譬如可以用它来监听用户反馈，可以收集电影种子，等等。具体好玩的案例可以去知乎找找。这篇文章模拟的是一个最最最简易的爬虫，供小白学习。这也是我写的第一个爬虫，爬的我学校网站的新闻。如果你发现错误，那就很棒了。错误会在文章后头指出。">
-<meta name="twitter:image" content="http://oeqc7pnps.bkt.clouddn.com/wz4.0.jpg">
+<meta name="twitter:title" content="JS实现快速排序">
+<meta name="twitter:description" content="关于快速排序的理解。">
 
 
 
@@ -132,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/10/10/基于Scrapy框架的简易新闻爬虫/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/05/Js实现快速排序/"/>
 
 
-  <title> 基于Scrapy框架的简易新闻爬虫入门 | 龚小样儿 </title>
+  <title> JS实现快速排序 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +278,7 @@
             
             
               
-                基于Scrapy框架的简易新闻爬虫入门
+                JS实现快速排序
               
             
           </h1>
@@ -306,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T17:05:04+08:00" content="2016-10-10">
-              2016-10-10
+            <time itemprop="dateCreated" datetime="2016-11-05T14:57:08+08:00" content="2016-11-05">
+              2016-11-05
             </time>
           </span>
 
@@ -320,8 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python爬虫/" itemprop="url" rel="index">
-                    <span itemprop="name">Python爬虫</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -336,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/10/基于Scrapy框架的简易新闻爬虫/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/基于Scrapy框架的简易新闻爬虫/" itemprop="commentsCount"></span>
+                <a href="/2016/11/05/Js实现快速排序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/Js实现快速排序/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -347,7 +331,7 @@
 
           
           
-             <span id="/2016/10/10/基于Scrapy框架的简易新闻爬虫/" class="leancloud_visitors" data-flag-title="基于Scrapy框架的简易新闻爬虫入门">
+             <span id="/2016/11/05/Js实现快速排序/" class="leancloud_visitors" data-flag-title="JS实现快速排序">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -369,36 +353,127 @@
       
 
       
-        <p><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.0.jpg" alt="基于Scrapy框架的简易新闻爬虫入门"></p>
+        <p>关于快速排序的理解。<br><a id="more"></a><br>快速排序的思想是：<br>1.从数列中找一个基准数。<br>2.把小于他的数放在基准数左边，剩余的放右边。<br>3.分别对左边和右边进行步骤1,2，知道区间内只有一个数。</p>
+<p>其实可以把快排分为两个部分，<code>分</code>与<code>治</code>。因此用两个函数体概括两部分更加明了。</p>
+<h2 id="治部分"><a href="#治部分" class="headerlink" title="治部分"></a>治部分</h2><p>该部分规定每一次排序采用的方法</p>
+<pre><code>function cover(arr,left,right)
+{
+    var i = left;
+    var j = right;
+    var based = arr[i]; //去数列的第一个为基准数
+    while(i&lt;j)
+    {
+        while(i&lt;j &amp;&amp; arr[j]&gt;=x) j--;
+        if(i&lt;j) arr[i++] = arr[j];
+        while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;
+        if(i&lt;j) arr[j--] = arr[i];
+    }
+    arr[i] = based;
+    return i//运行到这，其实i与j相等了，这一轮就弄完了
+}
+</code></pre><p>治部分可以这样理解。</p>
+<p><div><span style="border:1px solid;padding:0.5rem">0</span><span style="border:1px solid;padding:0.5rem">1</span><span style="border:1px solid;padding:0.5rem">2</span><span style="border:1px solid;padding:0.5rem">3</span><span style="border:1px solid;padding:0.5rem">4</span></div><br></p>
+<p><div><span style="color:#666;border:1px solid;padding:0.5rem">88</span><span style="border:1px solid;padding:0.5rem">21</span><span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">6</span><span style="color:#fff;background:#666;border:1px solid;padding:0.5rem">88</span></div><br></p>
+<h3 id="步骤1：找基准数"><a href="#步骤1：找基准数" class="headerlink" title="步骤1：找基准数"></a>步骤1：找基准数</h3><p>这里有5个萝卜坑，每个坑里有一个萝卜。我现在去<code>arr[0]</code>为基准数，并赋值给<code>based</code>，就相当于把第一个坑里的萝卜放篮子里。</p>
+<pre><code>var based = arr[i]; 
+</code></pre><h3 id="步骤2：从后向前找小于基准数的数"><a href="#步骤2：从后向前找小于基准数的数" class="headerlink" title="步骤2：从后向前找小于基准数的数"></a>步骤2：从后向前找小于基准数的数</h3><p>然后从4开始往前找一个比篮子里的萝卜88更小的。<br>譬如，在图中我们就把<code>4号坑</code>里的萝卜放到了<code>0号坑</code>。<br>如果当前坑没有就继续往下找（<code>j--</code>）。这里用<code>i&lt;j</code>来限制什么时候停止寻找。<br>找到后，填到第一个坑里，即<code>arr[i]=arr[j]</code><br>之后是从前往后找大萝卜，是从刚填了小萝卜的后一个坑开始。所以是<code>i++</code>.合并了就是<code>arr[i++] = arr[j];</code><br>这就是代码中的这一段：</p>
+<pre><code>while(i&lt;j &amp;&amp; arr[j]&gt;=x) j--; //挨个从后向前找小萝卜
+if(i&lt;j) arr[i++] = arr[j]; //用小萝卜填坑
+</code></pre><h3 id="步骤3：从前向后找大于基准数的数"><a href="#步骤3：从前向后找大于基准数的数" class="headerlink" title="步骤3：从前向后找大于基准数的数"></a>步骤3：从前向后找大于基准数的数</h3><p>此时<code>0号坑</code>里有了萝卜，但是<code>4号坑</code>没了。<br>那<code>4号坑</code>谁来填，我们从<code>1（步骤2中的i++导致的）号坑</code>开始向后寻找一个比<code>篮子里的萝卜</code>大的放在<code>4号坑</code>。坑里没有就<code>i++</code>，到下一个坑里找.这就是代码中的这一段：</p>
+<pre><code>while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;// 挨个从前向后找大萝卜
+if(i&lt;j) arr[j--] = arr[i]; //用大萝卜填坑
+</code></pre><p><strong>这就是代码段中的循环过程：</strong></p>
 <blockquote>
-<p>所谓爬虫就是一种按照一定的规则，自动地抓取万维网信息的程序或者脚本。</p>
+<p>从后向前（<code>j--</code>）找小萝卜填上一个坑<br>从前向后（<code>i++</code>）找大萝卜填上一个坑<br>从后向前（<code>j--</code>）找小萝卜填上一个坑<br>从前向后（<code>i++</code>）找大萝卜填上一个坑<br>…<br>直到 从前向后以及从后向前遇到了同一个坑<code>i=j</code>。</p>
 </blockquote>
-<p>爬虫可以做很多有趣的事，譬如可以用它来监听用户反馈，可以收集电影种子，等等。具体好玩的案例可以去知乎找找。这篇文章模拟的是一个最最最简易的爬虫，供小白学习。这也是我写的第一个爬虫，爬的我学校网站的新闻。如果你发现错误，那就很棒了。错误会在文章后头指出。</p>
-<a id="more"></a>
-<h2 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h2><blockquote>
-<ul>
-<li>windows10</li>
-<li>Python2.7</li>
-<li>Scrapy</li>
-</ul>
-</blockquote>
-<h2 id="在cmd中断中输入如下命令行"><a href="#在cmd中断中输入如下命令行" class="headerlink" title="在cmd中断中输入如下命令行"></a>在cmd中断中输入如下命令行</h2><pre><code>crapy startproject ctgu  #(ctgu为工程名，自定义)
-</code></pre><h2 id="修改Items文件"><a href="#修改Items文件" class="headerlink" title="修改Items文件"></a>修改Items文件</h2><pre><code>import scrapy
-class CtguItem(scrapy.Item):
-该类是自动生成的，我们要添加的是里面的属性title，date我们只抓取新闻标题以及发表日期
-title = scrapy.Field()
-date = scrapy.Field()
-</code></pre><h2 id="编写spider"><a href="#编写spider" class="headerlink" title="编写spider"></a>编写spider</h2><p>该部分是爬虫的主体，它规定怎样爬。<br>进入spider文件夹 -&gt; 新建一个py文件，我将它命名为<code>ctguspider.py</code><br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.1.jpg" alt="1"></p>
-<h2 id="编写pipelines"><a href="#编写pipelines" class="headerlink" title="编写pipelines"></a>编写pipelines</h2><p>在文件主要是对爬到的数据进行处理的。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.2.jpg" alt="1"></p>
-<h2 id="启动爬虫"><a href="#启动爬虫" class="headerlink" title="启动爬虫"></a>启动爬虫</h2><pre><code>scrapy crawl ctgu(爬虫名，在ctguspider.py文件中中设置,如图。)
-</code></pre><p><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.3.jpg" alt="1"><br>爬取成功后会生成一个txt文件<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.8.jpg" alt="1"><br>打开文件，数据貌似很不错，排列整齐，除了第一行.<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.4.jpg" alt="1"><br>但是细心会发现数据的顺序是很混乱的，可以从前面的时间看出，因此我想处理一下数据。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.5.jpg" alt="1"></p>
-<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><p>新建一个py文件，我将它命名为<code>test1.py</code>。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.6.jpg" alt="1"><br>他的功能主要是对新闻按照时间发表顺序排列，并输出到另外一个新的文件<code>news_ctgu.txt</code>文件中。<br><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.7.jpg" alt="1"><br>这时候发现其顺序以及是按时间先后排列了，而且我将时间的括号更换了。数据的排列更加工整。</p>
-<blockquote>
-<p>有没有发现爬下来的新闻有重复的，如果发现了，给你一个大大的赞。重复的原因一可能是因为你的抓取规则编写有问题，而可能是因为循环重复了。谷歌一下吧！<br>学完这种简单的爬虫，下面就学习爬那些需要登录的网站，譬如知乎，你可以爬一爬刘看山的粉丝，你可以爬爬豆瓣某个类别所有的书，你可以爬爬网易云音乐所有的音乐。以上都试过，最后一个没有成功。主要是因为无法获取网易云音乐关于具体音乐信息的静态网页，它是动态的。不过可以用他给的接口去获取数据，不过那就和爬虫没啥关系了。</p>
-</blockquote>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">爬虫功能非常的强大，我也只学到了冰山一角，一起学习，爬呀爬！爬呀爬呀，我的骄傲放纵，爬不出，我纯净花园。</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>
+<pre><code>while(i&lt;j){
+    //找萝卜。当i=j时就不会执行了
+}
+</code></pre><h3 id="步骤4-回填基准数"><a href="#步骤4-回填基准数" class="headerlink" title="步骤4 回填基准数"></a>步骤4 回填基准数</h3><p>最后，我们把篮子里的萝卜填到<code>i=j</code>的那个坑<code>arr[i] = based;</code></p>
+<h2 id="分部分"><a href="#分部分" class="headerlink" title="分部分"></a>分部分</h2><p>该部分规定如何去调用治。</p>
+<pre><code>function quick_sort(arr,l,r){
+    if(l&lt;r)
+    {
+        var m = cover(arr,l,r); 
+        quick_sort(arr,l,m-1);
+        quick_sort(arr,m+1,r);
+    }
+}
+</code></pre><p>经过第一次的治：<code>首次执行cover(arr,l,r)</code>，我们已经通过基准数把大于他的数放到了右边，小于他的数放在了左边。</p>
+<p><div><span style="border:1px solid;padding:0.5rem">0</span><span style="border:1px solid;padding:0.5rem">1</span><span style="border:1px solid;padding:0.5rem">2</span><span style="border:1px solid;padding:0.5rem">3</span><span style="border:1px solid;padding:0.5rem">4</span></div><br></p>
+<p><div><br><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span> <span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">88</span><span style="color:#fff;background:#666;border:1px solid;padding:0.5rem">88</span></div><br><br>这个例子中，88最大所以他成了最后一个，小于他的全部在左边。但是发现没有，左边的数并不是从大到小的。于是我们把除开88之后，其他的坑在来进行一次换坑操作。如果88不是最大的。譬如</p>
+<p><div><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span> <span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">88</span><span style="border:1px solid;padding:0.5rem">106</span><span style="border:1px solid;padding:0.5rem">90</span> </div><br><br>那我们也要对88右边也进行换坑操作。</p>
+<p>对左边的坑进行操作：</p>
+<p><div><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span><span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span></div><br><br>调用的是：</p>
+<pre><code>quick_sort(arr,l,m-1);//m-1是为了排除88这个萝卜坑
+//在这里面就会执行如下代码
+if(i&lt;j)
+    {
+        var m = cover(arr,l,m-1); 
+        quick_sort(arr,l,m-1);
+        quick_sort(arr,m+1,m-1);
+    }
+</code></pre><p>对右边的坑进行操作：</p>
+<p><div><span style="border:1px solid;padding:0.5rem">106</span><span style="border:1px solid;padding:0.5rem">90</span></div><br><br>调用的是：</p>
+<pre><code>quick_sort(arr,m+1,r);//m+1是为了排除88这个萝卜坑
+//在这里面就会执行如下代码
+if(i&lt;j)
+    {
+        var m = cover(arr,m+1,r); 
+        quick_sort(arr,m+1,m-1);
+        quick_sort(arr,m+1,r);
+    }
+</code></pre><p>就这样不停地迭代调用 quick_sort 直到不能满足<code>if(l&lt;r)</code>就停止啦。</p>
+<p>然后我们随便定义一个数组，试试看？</p>
+<pre><code>var array = [9,8,5,8,7,6,5];
+quick_sort(array,0,array.length-1);
+alert(array);
+</code></pre><h2 id="最后贴上合并版本的代码。"><a href="#最后贴上合并版本的代码。" class="headerlink" title="最后贴上合并版本的代码。"></a>最后贴上合并版本的代码。</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre><code>//原地排序，不产生新的数组
+function quicksorter(arr,start,end)
+{
+    var i =start;
+    var j =end;
+    var m;
+    if(i&lt;j)
+    {
+        var x = arr[i];
+        while(i &lt; j)
+        {
+            while(i &lt; j &amp;&amp; arr[j]&gt;=x) j--;
+            if(i&lt;j )arr[i++]=arr[j];
+            while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;
+             if(i&lt;j) arr[j--]=arr[i];    
+        }
+        arr[i]=x;
+        m=i;
+        console.log(m);
+        quicksorter(arr,start,m-1);
+        quicksorter(arr,m+1,end);
+    }
+}
+var array = [9,8,5,8,7,6,5];
+var lili =quicksorter(array,0,array.length-1);
+alert(array);
+</code></pre><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre><code>//利用新数组来排序
+var quicksort = function(arr)
+{
+    if(arr.length &lt;= 1) return arr;
+    var based_var = arr[0];
+    var left = [];
+    var right = [];
+    for(var i=1;i&lt;arr.length;i++)
+    {
+        if(arr[i]&lt;=based_var)
+            left.push(arr[i]);
+        else
+            right.push(arr[i]);
+    }
+    return quicksort(left).concat(based_var,quicksort(right));
+}
+var array = [2,3,4,13,89,72,4,20,3,3,3,3,3,3,1,2];
+var lili =quicksort(array)
+alert(lili);
+</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-5</span></center>
       
     </div>
 
@@ -441,13 +516,9 @@ date = scrapy.Field()
       
         <div class="post-tags">
           
-            <a href="/tags/实用/" rel="tag">#实用</a>
+            <a href="/tags/JS/" rel="tag">#JS</a>
           
-            <a href="/tags/Scrapy/" rel="tag">#Scrapy</a>
-          
-            <a href="/tags/Python/" rel="tag">#Python</a>
-          
-            <a href="/tags/爬虫/" rel="tag">#爬虫</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -456,17 +527,13 @@ date = scrapy.Field()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/10/世界永远不会温柔待我中华/" rel="next" title="世界永远不会温柔待我中华">
-                <i class="fa fa-chevron-left"></i> 世界永远不会温柔待我中华
+              <a href="/2016/11/04/call与apply，caller与callee/" rel="next" title="call与apply，caller与callee">
+                <i class="fa fa-chevron-left"></i> call与apply，caller与callee
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/14/利用CSS制作三角形、箭头图标/" rel="prev" title="利用CSS制作三角形、箭头图标">
-                利用CSS制作三角形、箭头图标 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -495,8 +562,8 @@ date = scrapy.Field()
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/10/基于Scrapy框架的简易新闻爬虫/"
-           data-title="基于Scrapy框架的简易新闻爬虫入门" data-url="http://gelory.me/2016/10/10/基于Scrapy框架的简易新闻爬虫/">
+      <div class="ds-thread" data-thread-key="2016/11/05/Js实现快速排序/"
+           data-title="JS实现快速排序" data-url="http://gelory.me/2016/11/05/Js实现快速排序/">
       </div>
     
   </div>
@@ -594,7 +661,7 @@ date = scrapy.Field()
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境说明"><span class="nav-number">1.</span> <span class="nav-text">环境说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在cmd中断中输入如下命令行"><span class="nav-number">2.</span> <span class="nav-text">在cmd中断中输入如下命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改Items文件"><span class="nav-number">3.</span> <span class="nav-text">修改Items文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写spider"><span class="nav-number">4.</span> <span class="nav-text">编写spider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写pipelines"><span class="nav-number">5.</span> <span class="nav-text">编写pipelines</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动爬虫"><span class="nav-number">6.</span> <span class="nav-text">启动爬虫</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据处理"><span class="nav-number">7.</span> <span class="nav-text">数据处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">8.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#治部分"><span class="nav-number">1.</span> <span class="nav-text">治部分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤1：找基准数"><span class="nav-number">1.1.</span> <span class="nav-text">步骤1：找基准数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤2：从后向前找小于基准数的数"><span class="nav-number">1.2.</span> <span class="nav-text">步骤2：从后向前找小于基准数的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤3：从前向后找大于基准数的数"><span class="nav-number">1.3.</span> <span class="nav-text">步骤3：从前向后找大于基准数的数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#步骤4-回填基准数"><span class="nav-number">1.4.</span> <span class="nav-text">步骤4 回填基准数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分部分"><span class="nav-number">2.</span> <span class="nav-text">分部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后贴上合并版本的代码。"><span class="nav-number">3.</span> <span class="nav-text">最后贴上合并版本的代码。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#方法一"><span class="nav-number">3.1.</span> <span class="nav-text">方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方法二"><span class="nav-number">3.2.</span> <span class="nav-text">方法二</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

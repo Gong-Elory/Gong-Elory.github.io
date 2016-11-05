@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-04T13:40:33.913Z</updated>
+  <updated>2016-11-05T07:14:02.789Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -16,34 +16,163 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JS实现快速排序</title>
+    <link href="http://gelory.me/2016/11/05/Js%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+    <id>http://gelory.me/2016/11/05/Js实现快速排序/</id>
+    <published>2016-11-05T06:57:08.000Z</published>
+    <updated>2016-11-05T07:14:02.789Z</updated>
+    
+    <content type="html"><![CDATA[<p>关于快速排序的理解。<br><a id="more"></a><br>快速排序的思想是：<br>1.从数列中找一个基准数。<br>2.把小于他的数放在基准数左边，剩余的放右边。<br>3.分别对左边和右边进行步骤1,2，知道区间内只有一个数。</p>
+<p>其实可以把快排分为两个部分，<code>分</code>与<code>治</code>。因此用两个函数体概括两部分更加明了。</p>
+<h2 id="治部分"><a href="#治部分" class="headerlink" title="治部分"></a>治部分</h2><p>该部分规定每一次排序采用的方法</p>
+<pre><code>function cover(arr,left,right)
+{
+    var i = left;
+    var j = right;
+    var based = arr[i]; //去数列的第一个为基准数
+    while(i&lt;j)
+    {
+        while(i&lt;j &amp;&amp; arr[j]&gt;=x) j--;
+        if(i&lt;j) arr[i++] = arr[j];
+        while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;
+        if(i&lt;j) arr[j--] = arr[i];
+    }
+    arr[i] = based;
+    return i//运行到这，其实i与j相等了，这一轮就弄完了
+}
+</code></pre><p>治部分可以这样理解。</p>
+<p><div><span style="border:1px solid;padding:0.5rem">0</span><span style="border:1px solid;padding:0.5rem">1</span><span style="border:1px solid;padding:0.5rem">2</span><span style="border:1px solid;padding:0.5rem">3</span><span style="border:1px solid;padding:0.5rem">4</span></div><br></p>
+<p><div><span style="color:#666;border:1px solid;padding:0.5rem">88</span><span style="border:1px solid;padding:0.5rem">21</span><span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">6</span><span style="color:#fff;background:#666;border:1px solid;padding:0.5rem">88</span></div><br></p>
+<h3 id="步骤1：找基准数"><a href="#步骤1：找基准数" class="headerlink" title="步骤1：找基准数"></a>步骤1：找基准数</h3><p>这里有5个萝卜坑，每个坑里有一个萝卜。我现在去<code>arr[0]</code>为基准数，并赋值给<code>based</code>，就相当于把第一个坑里的萝卜放篮子里。</p>
+<pre><code>var based = arr[i]; 
+</code></pre><h3 id="步骤2：从后向前找小于基准数的数"><a href="#步骤2：从后向前找小于基准数的数" class="headerlink" title="步骤2：从后向前找小于基准数的数"></a>步骤2：从后向前找小于基准数的数</h3><p>然后从4开始往前找一个比篮子里的萝卜88更小的。<br>譬如，在图中我们就把<code>4号坑</code>里的萝卜放到了<code>0号坑</code>。<br>如果当前坑没有就继续往下找（<code>j--</code>）。这里用<code>i&lt;j</code>来限制什么时候停止寻找。<br>找到后，填到第一个坑里，即<code>arr[i]=arr[j]</code><br>之后是从前往后找大萝卜，是从刚填了小萝卜的后一个坑开始。所以是<code>i++</code>.合并了就是<code>arr[i++] = arr[j];</code><br>这就是代码中的这一段：</p>
+<pre><code>while(i&lt;j &amp;&amp; arr[j]&gt;=x) j--; //挨个从后向前找小萝卜
+if(i&lt;j) arr[i++] = arr[j]; //用小萝卜填坑
+</code></pre><h3 id="步骤3：从前向后找大于基准数的数"><a href="#步骤3：从前向后找大于基准数的数" class="headerlink" title="步骤3：从前向后找大于基准数的数"></a>步骤3：从前向后找大于基准数的数</h3><p>此时<code>0号坑</code>里有了萝卜，但是<code>4号坑</code>没了。<br>那<code>4号坑</code>谁来填，我们从<code>1（步骤2中的i++导致的）号坑</code>开始向后寻找一个比<code>篮子里的萝卜</code>大的放在<code>4号坑</code>。坑里没有就<code>i++</code>，到下一个坑里找.这就是代码中的这一段：</p>
+<pre><code>while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;// 挨个从前向后找大萝卜
+if(i&lt;j) arr[j--] = arr[i]; //用大萝卜填坑
+</code></pre><p><strong>这就是代码段中的循环过程：</strong></p>
+<blockquote>
+<p>从后向前（<code>j--</code>）找小萝卜填上一个坑<br>从前向后（<code>i++</code>）找大萝卜填上一个坑<br>从后向前（<code>j--</code>）找小萝卜填上一个坑<br>从前向后（<code>i++</code>）找大萝卜填上一个坑<br>…<br>直到 从前向后以及从后向前遇到了同一个坑<code>i=j</code>。</p>
+</blockquote>
+<pre><code>while(i&lt;j){
+    //找萝卜。当i=j时就不会执行了
+}
+</code></pre><h3 id="步骤4-回填基准数"><a href="#步骤4-回填基准数" class="headerlink" title="步骤4 回填基准数"></a>步骤4 回填基准数</h3><p>最后，我们把篮子里的萝卜填到<code>i=j</code>的那个坑<code>arr[i] = based;</code></p>
+<h2 id="分部分"><a href="#分部分" class="headerlink" title="分部分"></a>分部分</h2><p>该部分规定如何去调用治。</p>
+<pre><code>function quick_sort(arr,l,r){
+    if(l&lt;r)
+    {
+        var m = cover(arr,l,r); 
+        quick_sort(arr,l,m-1);
+        quick_sort(arr,m+1,r);
+    }
+}
+</code></pre><p>经过第一次的治：<code>首次执行cover(arr,l,r)</code>，我们已经通过基准数把大于他的数放到了右边，小于他的数放在了左边。</p>
+<p><div><span style="border:1px solid;padding:0.5rem">0</span><span style="border:1px solid;padding:0.5rem">1</span><span style="border:1px solid;padding:0.5rem">2</span><span style="border:1px solid;padding:0.5rem">3</span><span style="border:1px solid;padding:0.5rem">4</span></div><br></p>
+<p><div><br><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span> <span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">88</span><span style="color:#fff;background:#666;border:1px solid;padding:0.5rem">88</span></div><br><br>这个例子中，88最大所以他成了最后一个，小于他的全部在左边。但是发现没有，左边的数并不是从大到小的。于是我们把除开88之后，其他的坑在来进行一次换坑操作。如果88不是最大的。譬如</p>
+<p><div><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span> <span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">88</span><span style="border:1px solid;padding:0.5rem">106</span><span style="border:1px solid;padding:0.5rem">90</span> </div><br><br>那我们也要对88右边也进行换坑操作。</p>
+<p>对左边的坑进行操作：</p>
+<p><div><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span><span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span></div><br><br>调用的是：</p>
+<pre><code>quick_sort(arr,l,m-1);//m-1是为了排除88这个萝卜坑
+//在这里面就会执行如下代码
+if(i&lt;j)
+    {
+        var m = cover(arr,l,m-1); 
+        quick_sort(arr,l,m-1);
+        quick_sort(arr,m+1,m-1);
+    }
+</code></pre><p>对右边的坑进行操作：</p>
+<p><div><span style="border:1px solid;padding:0.5rem">106</span><span style="border:1px solid;padding:0.5rem">90</span></div><br><br>调用的是：</p>
+<pre><code>quick_sort(arr,m+1,r);//m+1是为了排除88这个萝卜坑
+//在这里面就会执行如下代码
+if(i&lt;j)
+    {
+        var m = cover(arr,m+1,r); 
+        quick_sort(arr,m+1,m-1);
+        quick_sort(arr,m+1,r);
+    }
+</code></pre><p>就这样不停地迭代调用 quick_sort 直到不能满足<code>if(l&lt;r)</code>就停止啦。</p>
+<p>然后我们随便定义一个数组，试试看？</p>
+<pre><code>var array = [9,8,5,8,7,6,5];
+quick_sort(array,0,array.length-1);
+alert(array);
+</code></pre><h2 id="最后贴上合并版本的代码。"><a href="#最后贴上合并版本的代码。" class="headerlink" title="最后贴上合并版本的代码。"></a>最后贴上合并版本的代码。</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre><code>//原地排序，不产生新的数组
+function quicksorter(arr,start,end)
+{
+    var i =start;
+    var j =end;
+    var m;
+    if(i&lt;j)
+    {
+        var x = arr[i];
+        while(i &lt; j)
+        {
+            while(i &lt; j &amp;&amp; arr[j]&gt;=x) j--;
+            if(i&lt;j )arr[i++]=arr[j];
+            while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;
+             if(i&lt;j) arr[j--]=arr[i];    
+        }
+        arr[i]=x;
+        m=i;
+        console.log(m);
+        quicksorter(arr,start,m-1);
+        quicksorter(arr,m+1,end);
+    }
+}
+var array = [9,8,5,8,7,6,5];
+var lili =quicksorter(array,0,array.length-1);
+alert(array);
+</code></pre><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre><code>//利用新数组来排序
+var quicksort = function(arr)
+{
+    if(arr.length &lt;= 1) return arr;
+    var based_var = arr[0];
+    var left = [];
+    var right = [];
+    for(var i=1;i&lt;arr.length;i++)
+    {
+        if(arr[i]&lt;=based_var)
+            left.push(arr[i]);
+        else
+            right.push(arr[i]);
+    }
+    return quicksort(left).concat(based_var,quicksort(right));
+}
+var array = [2,3,4,13,89,72,4,20,3,3,3,3,3,3,1,2];
+var lili =quicksort(array)
+alert(lili);
+</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-5</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;关于快速排序的理解。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="算法" scheme="http://gelory.me/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+      <category term="算法" scheme="http://gelory.me/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>call与apply，caller与callee</title>
     <link href="http://gelory.me/2016/11/04/call%E4%B8%8Eapply%EF%BC%8Ccaller%E4%B8%8Ecallee/"/>
     <id>http://gelory.me/2016/11/04/call与apply，caller与callee/</id>
     <published>2016-11-04T13:38:42.000Z</published>
-    <updated>2016-11-04T13:40:33.913Z</updated>
+    <updated>2016-11-05T07:03:07.815Z</updated>
     
-    <content type="html"><![CDATA[<p>讲一下这两对的区别。<br><a id="more"></a><br>call与apply</p>
-<p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来。<br>b方法.call(a对象,a带的参数（可选）);<br>这样a就可以用b方法啦。</p>
-<p>具体到实例：</p>
-<p>function b(x，y){<br>    alert(“我是”+x+y)；<br>}<br>function a(){<br>    b.call(this,”a”,”吧”);//我是a吧<br>}</p>
-<p>function  c(m,n){<br>    b.apply(this,arguments);//我是mn<br>    b.apply(this,[m,n])；// 我是mn<br>}</p>
-<p>a();<br>c(“m”,”n”);<br>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。</p>
-<p>那什么时候用哪一种呢？<br>明确参数的个数时，就用call，不知道有多少个参数时，就用apply。</p>
-<p>caller</p>
-<p>caller，简洁的说就是找出是谁调用了正在运行我的这个函数体<br>举个栗子：<br>function a()<br>{<br>alert(a.caller)<br>}</p>
-<p>function b(){<br>a();<br>}<br>a();// null<br>b();//b<br>执行a();时，是js顶层调用的，所以返回null<br>执行b();时，是b调用了a，所以返回的是b的方法名。</p>
-<p>callee</p>
-<p>这个在匿名递归时用的最多。简洁的说就是找出callee运行的那个函数体<br>举个栗子：</p>
-<p>setTimeout(function(){<br>/<em>
-</em>do something<br>*/<br>setTimeout(arguments.callee,100);//指向当前执行的函数，此时指向的是匿名函数。<br>},100)<br>当然，不嫌麻烦可以这样写。</p>
-<p>function bb(){<br>/<em>
-</em>do something<br>*/<br>setTimeout(bb(),100);<br>}</p>
-<p>setTimeout(bb(),100);</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
+    <content type="html"><![CDATA[<center>讲一下这两对的区别。</center><br><a id="more"></a><br>call与apply<br><br>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来。<br>b方法.call(a对象,a带的参数（可选）);<br>这样a就可以用b方法啦。<br><br>具体到实例：<br><br>function b(x，y){<br>    alert(“我是”+x+y)；<br>}<br>function a(){<br>    b.call(this,”a”,”吧”);//我是a吧<br>}<br><br>function  c(m,n){<br>    b.apply(this,arguments);//我是mn<br>    b.apply(this,[m,n])；// 我是mn<br>}<br><br>a();<br>c(“m”,”n”);<br>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。<br><br>那什么时候用哪一种呢？<br>明确参数的个数时，就用call，不知道有多少个参数时，就用apply。<br><br>caller<br><br>caller，简洁的说就是找出是谁调用了正在运行我的这个函数体<br>举个栗子：<br>function a()<br>{<br>alert(a.caller)<br>}<br><br>function b(){<br>a();<br>}<br>a();// null<br>b();//b<br>执行a();时，是js顶层调用的，所以返回null<br>执行b();时，是b调用了a，所以返回的是b的方法名。<br><br>callee<br><br>这个在匿名递归时用的最多。简洁的说就是找出callee运行的那个函数体<br>举个栗子：<br><br>setTimeout(function(){<br>/<em>
+</em>do something<br><em>/<br>setTimeout(arguments.callee,100);//指向当前执行的函数，此时指向的是匿名函数。<br>},100)<br>当然，不嫌麻烦可以这样写。<br><br>function bb(){<br>/</em><br><em>do something
+</em>/<br>setTimeout(bb(),100);<br>}<br><br>setTimeout(bb(),100);<br><br><br><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;讲一下这两对的区别。&lt;br&gt;
+      &lt;center&gt;讲一下这两对的区别。&lt;/center&gt;&lt;br&gt;
     
     </summary>
     
@@ -197,9 +326,9 @@ alert(a); //2.此时显示的是0
       <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -1061,56 +1190,6 @@ date = scrapy.Field()
     
     
       <category term="热点热评" scheme="http://gelory.me/tags/%E7%83%AD%E7%82%B9%E7%83%AD%E8%AF%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>IIS服务器的搭建与初级应用</title>
-    <link href="http://gelory.me/2016/10/10/IIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%88%9D%E7%BA%A7%E5%BA%94%E7%94%A8/"/>
-    <id>http://gelory.me/2016/10/10/IIS服务器的搭建与初级应用/</id>
-    <published>2016-10-10T07:14:51.000Z</published>
-    <updated>2016-10-10T08:33:41.636Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/3.0.jpg" alt="IIS"><br>什么是IIS服务器？引用<a href="http://www.baike.com/wiki/iis%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="external">互动百科的话</a>:</p>
-<blockquote>
-<p>是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面</p>
-</blockquote>
-<p>那如何快速的搭建和使用呢？<br><a id="more"></a><br>笔者将分三部分来讲。</p>
-<blockquote>
-<ul>
-<li>IIS的搭建</li>
-<li>IIS的打开方法</li>
-<li>IIS下创建虚拟目录</li>
-</ul>
-</blockquote>
-<hr>
-<h2 id="IIS的搭建"><a href="#IIS的搭建" class="headerlink" title="IIS的搭建"></a>IIS的搭建</h2><p><strong>Step1：</strong>进入<code>控制面板</code>-&gt;<code>程序</code>-&gt;<code>打开和关闭windows功能</code><br><strong>Step2：</strong>勾选<code>Internet信息服务（internet Information Service）</code>以及其子目录下的大部分选项。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.1.jpg" alt="IIS1"><br><strong>Step3：</strong>进入<code>控制面</code>板-&gt;<code>系统和安全</code>-&gt;<code>Windows 防火墙</code>-&gt;<code>自定义设置</code>,选中<code>关闭Windows防火墙</code>.<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.2.jpg" alt="IIS1"><br><strong>Step4：</strong>在IE或其他浏览器中，打开<code>http://localhost</code>，出现如下界面，则说明搭建成功。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.3.jpg" alt="IIS1"></p>
-<hr>
-<h2 id="IIS的打开方法（Windows）"><a href="#IIS的打开方法（Windows）" class="headerlink" title="IIS的打开方法（Windows）"></a>IIS的打开方法（Windows）</h2><p><strong>Step1：</strong>在<code>开始</code>菜单上单击<code>运行</code>。<br><strong>Step2：</strong>在<code>打开</code>对话框中，键入<code>inetmgr</code>，然后单击<code>确定</code>。</p>
-<hr>
-<h2 id="IIS下创建虚拟目录"><a href="#IIS下创建虚拟目录" class="headerlink" title="IIS下创建虚拟目录"></a>IIS下创建虚拟目录</h2><p><strong>Step1：</strong>打开 IIS 管理器。<br><strong>Step2：</strong>在<code>连接</code>窗格中，展开树中的<code>站点</code>节点，然后单击要在其中创建虚拟目录的站点以将其选中。<br><strong>Step3：</strong>右键，选择<code>添加虚拟目录</code>。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.4.jpg" alt="IIS1"><br><strong>Step4：</strong>在<code>添加虚拟目录</code>对话框的<code>别名</code>框中键入一个名称。此别名用于通过 URL 访问内容。<br><strong>Step5：</strong> 在<code>物理路径</code>框中，键入内容文件夹的物理路径，或者单击<code>浏览</code>并通过在文件系统中导航来找到该文件夹。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.5.jpg" alt="IIS1"><br><strong>Step6：</strong>单击<code>确定</code>,虚拟目录就建好啦。</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">O(∩_∩)O哈哈~，这期没话说，多生孩子少种树</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/3.0.jpg&quot; alt=&quot;IIS&quot;&gt;&lt;br&gt;什么是IIS服务器？引用&lt;a href=&quot;http://www.baike.com/wiki/iis%E6%9C%8D%E5%8A%A1%E5%99%A8&quot;&gt;互动百科的话&lt;/a&gt;:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;那如何快速的搭建和使用呢？&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Android" scheme="http://gelory.me/categories/Android/"/>
-    
-    
-      <category term="IIS" scheme="http://gelory.me/tags/IIS/"/>
-    
-      <category term="Android" scheme="http://gelory.me/tags/Android/"/>
-    
-      <category term="实用" scheme="http://gelory.me/tags/%E5%AE%9E%E7%94%A8/"/>
     
   </entry>
   
