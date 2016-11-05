@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://gelory.me/2016/11/04/call与apply，caller与callee/index.html">
 <meta property="og:site_name" content="龚小样儿">
 <meta property="og:description" content="讲一下这两对的区别。">
-<meta property="og:updated_time" content="2016-11-05T07:20:39.964Z">
+<meta property="og:updated_time" content="2016-11-05T07:24:30.870Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="call与apply，caller与callee">
 <meta name="twitter:description" content="讲一下这两对的区别。">
@@ -354,8 +354,7 @@
 
       
         <p>讲一下这两对的区别。<br><a id="more"></a></p>
-<h2 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h2><p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来。<br><code>b方法</code>.<code>call</code>(<code>a对象</code>,<code>a带的参数（可选）</code>);<br>这样a就可以用b方法啦。</p>
-<p>具体到实例：</p>
+<h2 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h2><p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来：<code>b方法</code>.<code>call</code>(<code>a对象</code>,<code>a带的参数（可选）</code>);<br>这样a就可以用b方法啦。<br>具体到实例：</p>
 <pre><code>function b(x，y){
     alert(&quot;我是&quot;+x+y)；
 }
@@ -367,7 +366,6 @@ function  c(m,n){
     b.apply(this,arguments);//我是mn
     b.apply(this,[m,n])；// 我是mn
 }
-
 a();
 c(&quot;m&quot;,&quot;n&quot;);
 </code></pre><p>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。</p>
