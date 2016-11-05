@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://gelory.me/2016/11/04/call%E4%B8%8Eapply%EF%BC%8Ccaller%E4%B8%8Ecallee/</loc>
+    <lastmod>2016-11-05T07:17:16.407Z</lastmod>
+    <data>
+        <display>
+        <title>call与apply，caller与callee</title>
+        <pubTime>2016-11-04T13:38:42.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>Js</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gelory.me/2016/11/05/Js%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</loc>
     <lastmod>2016-11-05T07:14:02.789Z</lastmod>
     <data>
@@ -19,28 +41,6 @@
            
              
               <breadCrumb title="算法" url="http://gelory.me/categories/%E7%AE%97%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://gelory.me/2016/11/04/call%E4%B8%8Eapply%EF%BC%8Ccaller%E4%B8%8Ecallee/</loc>
-    <lastmod>2016-11-05T07:03:07.815Z</lastmod>
-    <data>
-        <display>
-        <title>call与apply，caller与callee</title>
-        <pubTime>2016-11-04T13:38:42.000Z</pubTime>
-        
-        <tag>前端</tag>
-         
-        <tag>Js</tag>
-         
-         
-           
-             
-              <breadCrumb title="前端" url="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
           
         </display>
     </data>
