@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="龚志强的博客" />
+  <meta name="keywords" content="JS," />
 
 
 
@@ -86,15 +86,16 @@
 
 
 
-<meta name="description" content="技术,小白">
-<meta property="og:type" content="website">
-<meta property="og:title" content="龚小样儿">
-<meta property="og:url" content="http://gelory.me/tags/爬虫/index.html">
+<meta name="description" content="JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS垃圾回收机制">
+<meta property="og:url" content="http://gelory.me/2016/11/05/JS垃圾回收机制/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="技术,小白">
+<meta property="og:description" content="JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。">
+<meta property="og:updated_time" content="2016-11-05T12:42:48.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="龚小样儿">
-<meta name="twitter:description" content="技术,小白">
+<meta name="twitter:title" content="JS垃圾回收机制">
+<meta name="twitter:description" content="JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。">
 
 
 
@@ -115,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/tags/爬虫/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/05/JS垃圾回收机制/"/>
 
 
-  <title> 标签: 爬虫 | 龚小样儿 </title>
+  <title> JS垃圾回收机制 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -158,7 +159,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -256,52 +257,226 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        爬虫
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS垃圾回收机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-05T20:39:47+08:00" content="2016-11-05">
+              2016-11-05
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/05/JS垃圾回收机制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/05/JS垃圾回收机制/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/05/JS垃圾回收机制/" class="leancloud_visitors" data-flag-title="JS垃圾回收机制">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p>JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。<br><a id="more"></a><br>在浏览器中实现垃圾回收，通常有两个策略。</p>
+<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>垃圾收集器会在运行的时候，给所有存储在内存中的变量加上标记。然后去掉执行环境中的变量以及被环境中变量引用的变量的标记。而在此之后再被加上标记的变量被视为要删除的变量。因为这些变量再被加上标记的时候就是这些不需要这些变量的时候。譬如在执行完某个函数体后，跳出该函数体，里面的局部变量在就会重新被添加标记。此时垃圾收集器就会清除他们的内存。</p>
+<p>现在，所有的现代浏览器基本上都是用标记清除算法，改进也是基于此改进的。</p>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p>跟踪记录每个值被引用的次数。如果为0，就收回内存。<br>举个例子</p>
+<pre><code>var a = new Object()；
+// 变量a对该对象进行首次引用
+var b =a; 
+// b也引用了这个对象 1+1=2
+a=1; 
+//此时a不在引用这个对象 1+1-1=1
+//如果此时 b=2;那么b不在引用这个对象。此时就会释放这个对象实例的内存了。
+c = b.name 
+/*
+     *此时c引用了这个对象的name属性，于是乎，即使b不再引用这个对象，在是这个对象的属性name还在被引用，因此也无法清除这个对象。
+*/
+b=2;
+c=3;//此时，垃圾收集器就会释放这个对象内存啦
+</code></pre><h2 id="例外-循环引用（导致退出函数体后无法自动清除内存）"><a href="#例外-循环引用（导致退出函数体后无法自动清除内存）" class="headerlink" title="例外-循环引用（导致退出函数体后无法自动清除内存）"></a>例外-循环引用（导致退出函数体后无法自动清除内存）</h2><pre><code>function pro()
+{
+var a = new Object();
+var b = new Object();
+a.name = b; //a的name属性引用了b
+b.age = a;//b的age属性引用了a
+}
+</code></pre><p>如果采用标记清除法，会因为退出函数体而自动清除内存.但是如果用引用计数法，此时两个对象都被引用了两次，于是无法自动清除内存了。<br>如果这个函数被大量调用，就会导致大量内存被占用不能回收。因此要手动取消循环引用.</p>
+<pre><code>a.name = null;
+b.age = null;
+此时a，b的内存就被回收啦。
+a=null;
+b=null;//两个对象的内存就被清除啦。
+</code></pre><p>如有错误，评论。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-5</span></center>
+      
+    </div>
 
-      <h1 class="post-title">
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/10/10/基于Scrapy框架的简易新闻爬虫/" itemprop="url">
-              
-                <span itemprop="name">基于Scrapy框架的简易新闻爬虫入门</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>看我这么辛苦，能把五毛钱呼我脸上吗？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeqc7pnps.bkt.clouddn.com/wechat.png" alt="龚志强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeqc7pnps.bkt.clouddn.com/ali.png" alt="龚志强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-10-10T17:05:04+08:00"
-              content="2016-10-10" >
-          10-10
-        </time>
-      </div>
 
-    </header>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag">#JS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/05/Js实现快速排序/" rel="next" title="JS实现快速排序">
+                <i class="fa fa-chevron-left"></i> JS实现快速排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
  
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/05/JS垃圾回收机制/"
+           data-title="JS垃圾回收机制" data-url="http://gelory.me/2016/11/05/JS垃圾回收机制/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -321,8 +496,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -379,6 +563,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#标记清除"><span class="nav-number">1.</span> <span class="nav-text">标记清除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数"><span class="nav-number">2.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例外-循环引用（导致退出函数体后无法自动清除内存）"><span class="nav-number">3.</span> <span class="nav-text">例外-循环引用（导致退出函数体后无法自动清除内存）</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -487,6 +682,12 @@
 <script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+
 
   
 

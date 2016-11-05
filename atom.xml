@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-05T07:14:02.789Z</updated>
+  <updated>2016-11-05T12:42:48.148Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,59 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS垃圾回收机制</title>
+    <link href="http://gelory.me/2016/11/05/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"/>
+    <id>http://gelory.me/2016/11/05/JS垃圾回收机制/</id>
+    <published>2016-11-05T12:39:47.000Z</published>
+    <updated>2016-11-05T12:42:48.148Z</updated>
+    
+    <content type="html"><![CDATA[<p>JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。<br><a id="more"></a><br>在浏览器中实现垃圾回收，通常有两个策略。</p>
+<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>垃圾收集器会在运行的时候，给所有存储在内存中的变量加上标记。然后去掉执行环境中的变量以及被环境中变量引用的变量的标记。而在此之后再被加上标记的变量被视为要删除的变量。因为这些变量再被加上标记的时候就是这些不需要这些变量的时候。譬如在执行完某个函数体后，跳出该函数体，里面的局部变量在就会重新被添加标记。此时垃圾收集器就会清除他们的内存。</p>
+<p>现在，所有的现代浏览器基本上都是用标记清除算法，改进也是基于此改进的。</p>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p>跟踪记录每个值被引用的次数。如果为0，就收回内存。<br>举个例子</p>
+<pre><code>var a = new Object()；
+// 变量a对该对象进行首次引用
+var b =a; 
+// b也引用了这个对象 1+1=2
+a=1; 
+//此时a不在引用这个对象 1+1-1=1
+//如果此时 b=2;那么b不在引用这个对象。此时就会释放这个对象实例的内存了。
+c = b.name 
+/*
+     *此时c引用了这个对象的name属性，于是乎，即使b不再引用这个对象，在是这个对象的属性name还在被引用，因此也无法清除这个对象。
+*/
+b=2;
+c=3;//此时，垃圾收集器就会释放这个对象内存啦
+</code></pre><h2 id="例外-循环引用（导致退出函数体后无法自动清除内存）"><a href="#例外-循环引用（导致退出函数体后无法自动清除内存）" class="headerlink" title="例外-循环引用（导致退出函数体后无法自动清除内存）"></a>例外-循环引用（导致退出函数体后无法自动清除内存）</h2><pre><code>function pro()
+{
+var a = new Object();
+var b = new Object();
+a.name = b; //a的name属性引用了b
+b.age = a;//b的age属性引用了a
+}
+</code></pre><p>如果采用标记清除法，会因为退出函数体而自动清除内存.但是如果用引用计数法，此时两个对象都被引用了两次，于是无法自动清除内存了。<br>如果这个函数被大量调用，就会导致大量内存被占用不能回收。因此要手动取消循环引用.</p>
+<pre><code>a.name = null;
+b.age = null;
+此时a，b的内存就被回收啦。
+a=null;
+b=null;//两个对象的内存就被清除啦。
+</code></pre><p>如有错误，评论。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-5</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>JS实现快速排序</title>
@@ -369,9 +422,9 @@ alert(a); //2.此时显示的是0
       <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
-    
       <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
     
   </entry>
   
@@ -1191,48 +1244,6 @@ date = scrapy.Field()
       <category term="Python" scheme="http://gelory.me/tags/Python/"/>
     
       <category term="爬虫" scheme="http://gelory.me/tags/%E7%88%AC%E8%99%AB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>世界永远不会温柔待我中华</title>
-    <link href="http://gelory.me/2016/10/10/%E4%B8%96%E7%95%8C%E6%B0%B8%E8%BF%9C%E4%B8%8D%E4%BC%9A%E6%B8%A9%E6%9F%94%E5%BE%85%E6%88%91%E4%B8%AD%E5%8D%8E/"/>
-    <id>http://gelory.me/2016/10/10/世界永远不会温柔待我中华/</id>
-    <published>2016-10-10T08:36:31.000Z</published>
-    <updated>2016-10-10T09:01:41.122Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://oeqc7pnps.bkt.clouddn.com/wz4.jpg" alt="tu"></p>
-<blockquote>
-<p>这篇文章最初发表在新浪微博，这次重构到自己的博客上。</p>
-</blockquote>
-<p>最近奥运很多人跟我一样看得窝火，各处受压制，各处有黑幕，各处有人喷.你以为奥运会真的公平公正公开，还有奥林匹克精神？too young too simple.还想让中国被世界温柔以待？too naive.<br><a id="more"></a></p>
-<p>在此打个比方，曾经过的狼狈不堪谁都瞧不起的人突然一跃，比你屌，你会很开心，你的自尊心会让你去屈服？这种巨大的落差碰上西方与生俱来的傲气，他们当然不服气，西方国家谁不想使些绊子，这种我就是看不惯你比我前强的心态表现在我们面前就是各种西方媒体以及部分幕后势力反中的媒体，美分，公知拿起段子就开涮，以及队各种赛事的幕后操作。</p>
-<p>譬如之前网络上传得很火的中国旅客泰国铲虾事件，纽约机场大妈掌掴售货员事件（<code>真相却是售货员私藏大妈信用卡，大妈马上要赶飞机，碰了他一下，然后售货员倒打一耙，又先人一步报警，在媒体上贼喊捉贼，曝光大妈个人信息，等等龌龊行为</code>）。还有大妈在美国当众脱裤拉屎（<code>仅仅一个亚洲背影，就打上华人标签，好像当时自己在场一样</code>）,等等。凡是亚洲面孔，都要贴华人标签。首先承认部分游客素质的确要提升，然而这些媒体，公知们一定要揪出个个例，当着众多网民的面数落<code>你国人</code>怎么怎么不文明，他们想通过这一系列举动悄悄在民间掀起颜色革命，来达到他们不可告人的秘密。</p>
-<p>可惜啊！这群人小看的当代网民，忽视了中国这一段来之不易的和平之后的艰辛，还以为当代90，00后真的是垮掉的一代，可以任人操控.</p>
-<p>之前在quora上有外国网友们问：<a href="http://www.guancha.cn/america/2016_07_16_367725.shtml" target="_blank" rel="external">为什么中国无颜色革命</a>，有位姑娘的回答说明了一切.我国近代所经历的一切当代青年人都铭记着，<code>南斯拉夫大使馆被炸</code>，<code>钓鱼岛事件</code>，<code>南海仲裁</code>，<code>萨德事件</code>，<code>台独事件</code>等数不胜数的关系国家尊严的事，可以看到绝大数的网民都有着正确的价值观，譬如<code>要岛不要人，留下周杰伦</code>,<code>国家面前无偶像</code>,<code>做人不能太霍顿，做事不能太里约</code>等段子，看似轻松幽默，却表达了当代中国青年人心中不变的立场，国家的不好自己人说说可以，外人想要给她泼脏水，想要分裂他，休想！</p>
-<p>当国家利益受到侵犯，看似不羁的80，90，00后，都会站出来，我想如果有一天，国家需要我们，投笔从戎又何尝不可？外国媒体小看了中国普通民众，却曾想每一次的侮辱，每一次的抹黑只会让我们更加团结，谁都不想枪击事件在中国上演，谁都不想那些挤在一条船逃亡异国他乡的是中国人，当我们嫌弃这不好那不好时，可曾想过如果国家像叙利亚一样，连自己国民安全都无法保证时，我们还会有功夫去抱怨物价太高吗？</p>
-<p>很多人都有种国外的月亮比国内圆，建议去知乎看一看类似的问题：<a href="https://www.zhihu.com/question/48094751" target="_blank" rel="external">你在美国经历过那些事情不如中国？</a>。我没出过国，我建议大家跟我一样，有机会一定要出国生活一段日子，去验证这些都是不是真的？</p>
-<p>中国在慢慢崛起，以前只是口头警告，部分网友嫌弃太软弱，连菲律宾这种小国都不敢给点苦头尝尝.首先，作为一个大国，大国风范必须有，动不动就给人使刀使枪，被人摸清了底线，这种小国贱民就会三番五次打擦边球，骚扰你，最近东海南海同时出招，可把日本急坏了，接连抗议召唤大使，这不正是我们想看到的吗？让他如坐针毡，知道收敛.这只是开头，以后给的颜色会更多.擒贼先擒王才是真义，利剑要割的是背后的主角.</p>
-<p>回到奥运会这茬，中国在慢慢崛起，狠狠打了西方国家的脸，他们当着面还要和中国合作，从中国这里捞好处，但心里肯定不服啊，找些地方撒气.你能说俄罗斯集体禁赛当真就是因为禁药，大国崛起，可对这些明日黄花构成了战略威胁.里约奥运会的现实无法改变，我们也可以想象四年之后的东京奥运会肯定也是这样或者更加变本加厉.难道就因为这样，我们就不去了吗？这是懦夫行为，中国绝对不会这样做.此外，也别希望中国能被世界温柔以待，起码短期内没有这个可能，国家在培养奥运会运动员的同时也要加大力度培养这种级别的裁判员.这只是就奥运会一事来看.而要想真正改变西方国家狗眼看人低的态度唯有一条，变得更加强大，更加强硬.我们不可能和他们做朋友，只有谁服谁，亮出硬实力，让这些国家彻底服气.</p>
-<p>还好网民对金牌没有以前那么敏感，不需要用金牌来证明实力，里面的黑我们永远想不到有多黑.希望我国运动员们加油，注意安全，凯旋而归。</p>
-<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">那些说爱国贼的人滚远点！我们都是种花兔，此生不悔入华夏，来生还在种花家！</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://oeqc7pnps.bkt.clouddn.com/wz4.jpg&quot; alt=&quot;tu&quot;&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这篇文章最初发表在新浪微博，这次重构到自己的博客上。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;最近奥运很多人跟我一样看得窝火，各处受压制，各处有黑幕，各处有人喷.你以为奥运会真的公平公正公开，还有奥林匹克精神？too young too simple.还想让中国被世界温柔以待？too naive.&lt;br&gt;
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://gelory.me/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="热点热评" scheme="http://gelory.me/tags/%E7%83%AD%E7%82%B9%E7%83%AD%E8%AF%84/"/>
     
   </entry>
   
