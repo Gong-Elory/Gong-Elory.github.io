@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,Js," />
+  <meta name="keywords" content="JS," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="讲一下这两对的区别。">
+<meta name="description" content="对执行环境，作用域以及作用域链的理解。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="call与apply，caller与callee">
-<meta property="og:url" content="http://gelory.me/2016/11/04/call与apply，caller与callee/index.html">
+<meta property="og:title" content="JS执行环境及作用域的理解">
+<meta property="og:url" content="http://gelory.me/2016/11/06/JS执行环境及作用域的理解/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="讲一下这两对的区别。">
-<meta property="og:updated_time" content="2016-11-05T07:24:30.870Z">
+<meta property="og:description" content="对执行环境，作用域以及作用域链的理解。">
+<meta property="og:updated_time" content="2016-11-06T04:04:15.152Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="call与apply，caller与callee">
-<meta name="twitter:description" content="讲一下这两对的区别。">
+<meta name="twitter:title" content="JS执行环境及作用域的理解">
+<meta name="twitter:description" content="对执行环境，作用域以及作用域链的理解。">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/11/04/call与apply，caller与callee/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/06/JS执行环境及作用域的理解/"/>
 
 
-  <title> call与apply，caller与callee | 龚小样儿 </title>
+  <title> JS执行环境及作用域的理解 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +278,7 @@
             
             
               
-                call与apply，caller与callee
+                JS执行环境及作用域的理解
               
             
           </h1>
@@ -290,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-04T21:38:42+08:00" content="2016-11-04">
-              2016-11-04
+            <time itemprop="dateCreated" datetime="2016-11-06T12:02:07+08:00" content="2016-11-06">
+              2016-11-06
             </time>
           </span>
 
@@ -304,8 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -320,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/04/call与apply，caller与callee/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/04/call与apply，caller与callee/" itemprop="commentsCount"></span>
+                <a href="/2016/11/06/JS执行环境及作用域的理解/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/06/JS执行环境及作用域的理解/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,7 +331,7 @@
 
           
           
-             <span id="/2016/11/04/call与apply，caller与callee/" class="leancloud_visitors" data-flag-title="call与apply，caller与callee">
+             <span id="/2016/11/06/JS执行环境及作用域的理解/" class="leancloud_visitors" data-flag-title="JS执行环境及作用域的理解">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -353,52 +353,22 @@
       
 
       
-        <p>讲一下这两对的区别。<br><a id="more"></a></p>
-<h2 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h2><p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来：<code>b方法</code>.<code>call</code>(<code>a对象</code>,<code>a带的参数（可选）</code>);<br>这样a就可以用b方法啦。<br>具体到实例：</p>
-<pre><code>function b(x，y){
-    alert(&quot;我是&quot;+x+y)；
-}
-function a(){
-    b.call(this,&quot;a&quot;,&quot;吧&quot;);//我是a吧
-}
-
-function  c(m,n){
-    b.apply(this,arguments);//我是mn
-    b.apply(this,[m,n])；// 我是mn
-}
-a();
-c(&quot;m&quot;,&quot;n&quot;);
-</code></pre><p>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。</p>
-<p>那什么时候用哪一种呢？<br>明确参数的个数时，就用call，不知道有多少个参数时，就用apply。</p>
-<h2 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h2><p>caller，简洁的说就是找出是<code>谁调用了</code>正在运行我的<code>这个函数体</code><br>举个栗子：</p>
-<pre><code>function a()
+        <p>对执行环境，作用域以及作用域链的理解。<br><a id="more"></a></p>
+<h2 id="什么是执行环境"><a href="#什么是执行环境" class="headerlink" title="什么是执行环境"></a>什么是执行环境</h2><p>执行环境定义了变量和函数有权访问其他的数据，决定各自的行为。每个执行环境都有一个变量对象来存储所有的变量和函数。web浏览器的全局执行环境是window对象。对象会因ECMAScript实现的宿主环境不同而有差异。</p>
+<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>指变量的适用范围。</p>
+<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>当代码在一个环境中执行，会创建变量对象的作用域链。用途是<strong>保证对执行环境有权访问的变量和函数进行有序的访问</strong></p>
+<h3 id="作用域链顺序"><a href="#作用域链顺序" class="headerlink" title="作用域链顺序"></a>作用域链顺序</h3><p>作用域链的前端始终为 — 当前执行代码所在的环境的变量对象。譬如在函数中，就是arguments对象。<br>下个变量对象来自于包含当前环境的环境。<br>…<br>这样一直延续到全局执行环境。</p>
+<h3 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h3><p>当执行流进入 try-catch语句中的catch块时，或者进入with语句时，作用域链得以加长。<br>这两个语句都会在作用域链的前端添加一个变量对象。对with来说，将语句指定的对象添加到作用域链.</p>
+<pre><code>function(){
+var color = &quot;red&quot;;
+with(location)
 {
- alert(a.caller)
+    var ii =  href+color;//href为location对象的属性。此时location这个变量对象被加入到当前作用域链的前端
 }
-
-function b(){
- a();
+return ii;
 }
-a();// null
-b();//b
-</code></pre><p>执行a();时，是js顶层调用的，所以返回null<br>执行b();时，是b调用了a，所以返回的是b的方法名。</p>
-<h2 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h2><p>这个在匿名递归时用的最多。简洁的说就是找出callee运行的那个函数体<br>举个栗子：</p>
-<pre><code>setTimeout(function(){
-/*
-*do something
-*/
-setTimeout(arguments.callee,100);//指向当前执行的函数，此时指向的是匿名函数。
-},100)
-</code></pre><p>当然，不嫌麻烦可以这样写。</p>
-<pre><code>function bb(){
-/*
-*do something
-*/
-setTimeout(bb(),100);
-}
-
-setTimeout(bb(),100);
-</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>
+</code></pre><h3 id="js中没有块级作用域"><a href="#js中没有块级作用域" class="headerlink" title="js中没有块级作用域"></a>js中没有块级作用域</h3><p>通俗的将就是for，if/else,while等用花括号括起来的代码块中定义的变量在当前执行环境中的任意地方都可以使用。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-6</span></center>
       
     </div>
 
@@ -441,9 +411,7 @@ setTimeout(bb(),100);
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag">#前端</a>
-          
-            <a href="/tags/Js/" rel="tag">#Js</a>
+            <a href="/tags/JS/" rel="tag">#JS</a>
           
         </div>
       
@@ -452,17 +420,13 @@ setTimeout(bb(),100);
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/04/setTimeout与setInterval的区别与互补/" rel="next" title="setTimeout与setInterval的区别与互补">
-                <i class="fa fa-chevron-left"></i> setTimeout与setInterval的区别与互补
+              <a href="/2016/11/05/JS垃圾回收机制/" rel="next" title="JS垃圾回收机制">
+                <i class="fa fa-chevron-left"></i> JS垃圾回收机制
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/05/Js实现快速排序/" rel="prev" title="JS实现快速排序">
-                JS实现快速排序 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -491,8 +455,8 @@ setTimeout(bb(),100);
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/04/call与apply，caller与callee/"
-           data-title="call与apply，caller与callee" data-url="http://gelory.me/2016/11/04/call与apply，caller与callee/">
+      <div class="ds-thread" data-thread-key="2016/11/06/JS执行环境及作用域的理解/"
+           data-title="JS执行环境及作用域的理解" data-url="http://gelory.me/2016/11/06/JS执行环境及作用域的理解/">
       </div>
     
   </div>
@@ -590,7 +554,7 @@ setTimeout(bb(),100);
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#call与apply"><span class="nav-number">1.</span> <span class="nav-text">call与apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#caller"><span class="nav-number">2.</span> <span class="nav-text">caller</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#callee"><span class="nav-number">3.</span> <span class="nav-text">callee</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是执行环境"><span class="nav-number">1.</span> <span class="nav-text">什么是执行环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域"><span class="nav-number">2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域链"><span class="nav-number">3.</span> <span class="nav-text">作用域链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域链顺序"><span class="nav-number">3.1.</span> <span class="nav-text">作用域链顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#延长作用域链"><span class="nav-number">3.2.</span> <span class="nav-text">延长作用域链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js中没有块级作用域"><span class="nav-number">3.3.</span> <span class="nav-text">js中没有块级作用域</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
