@@ -254,7 +254,7 @@ alert(lili);
     <link href="http://gelory.me/2016/11/04/call%E4%B8%8Eapply%EF%BC%8Ccaller%E4%B8%8Ecallee/"/>
     <id>http://gelory.me/2016/11/04/call与apply，caller与callee/</id>
     <published>2016-11-04T13:38:42.000Z</published>
-    <updated>2016-11-05T07:24:30.870Z</updated>
+    <updated>2016-11-06T07:05:05.573Z</updated>
     
     <content type="html"><![CDATA[<p>讲一下这两对的区别。<br><a id="more"></a></p>
 <h2 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h2><p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来：<code>b方法</code>.<code>call</code>(<code>a对象</code>,<code>a带的参数（可选）</code>);<br>这样a就可以用b方法啦。<br>具体到实例：</p>
@@ -273,7 +273,7 @@ a();
 c(&quot;m&quot;,&quot;n&quot;);
 </code></pre><p>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。</p>
 <p>那什么时候用哪一种呢？<br>明确参数的个数时，就用call，不知道有多少个参数时，就用apply。</p>
-<h2 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h2><p>caller，简洁的说就是找出是<code>谁调用了</code>正在运行我的<code>这个函数体</code><br>举个栗子：</p>
+<h2 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h2><p>caller，该属性中保存着调用当前函数的函数的引用，简洁的说就是找出是<code>谁调用了</code>正在运行我的<code>这个函数体</code><br>举个栗子：</p>
 <pre><code>function a()
 {
  alert(a.caller)
@@ -285,7 +285,7 @@ function b(){
 a();// null
 b();//b
 </code></pre><p>执行a();时，是js顶层调用的，所以返回null<br>执行b();时，是b调用了a，所以返回的是b的方法名。</p>
-<h2 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h2><p>这个在匿名递归时用的最多。简洁的说就是找出callee运行的那个函数体<br>举个栗子：</p>
+<h2 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h2><p>这个在匿名递归时用的最多。指向拥有arguments对象的函数，简洁的说就是找出callee运行的那个函数体<br>举个栗子：</p>
 <pre><code>setTimeout(function(){
 /*
 *do something
@@ -301,7 +301,8 @@ setTimeout(bb(),100);
 }
 
 setTimeout(bb(),100);
-</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
+</code></pre><h2 id="使用caller，callee要注意的地方"><a href="#使用caller，callee要注意的地方" class="headerlink" title="使用caller，callee要注意的地方"></a>使用caller，callee要注意的地方</h2><p>在严格模式下，访问arguments.callee会报错。ES5也定义了arguments.caller。同样也会报错。在非严格模式下arguments.caller始终返回undefined。在严格模式下,为函数的caller赋值也会报错。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
     
     <summary type="html">
     
