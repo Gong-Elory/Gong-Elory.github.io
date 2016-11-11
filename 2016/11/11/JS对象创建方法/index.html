@@ -1,0 +1,1071 @@
+﻿<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JS," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="龚小样儿" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/faci.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="对JS创建对象的方法进行总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS对象创建方法">
+<meta property="og:url" content="http://gelory.me/2016/11/11/JS对象创建方法/index.html">
+<meta property="og:site_name" content="龚小样儿">
+<meta property="og:description" content="对JS创建对象的方法进行总结">
+<meta property="og:image" content="http://oeqcvcrxo.bkt.clouddn.com/js%E5%AF%B9%E8%B1%A1.png">
+<meta property="og:updated_time" content="2016-11-11T07:47:25.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS对象创建方法">
+<meta name="twitter:description" content="对JS创建对象的方法进行总结">
+<meta name="twitter:image" content="http://oeqcvcrxo.bkt.clouddn.com/js%E5%AF%B9%E8%B1%A1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://gelory.me/2016/11/11/JS对象创建方法/"/>
+
+
+  <title> JS对象创建方法 | 龚小样儿 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85389185-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?168373cb7a7b12fb15c16747cdf2412f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">龚小样儿</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">写一些小事，做一些大事</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-star">
+          <a href="/star" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br />
+            
+            动态
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-demo">
+          <a href="/demo" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />
+            
+            项目
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JS对象创建方法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-11T15:31:28+08:00" content="2016-11-11">
+              2016-11-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/11/JS对象创建方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/11/JS对象创建方法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/11/JS对象创建方法/" class="leancloud_visitors" data-flag-title="JS对象创建方法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>对JS创建对象的方法进行总结<br><a id="more"></a></p>
+<h2 id="对象的定义"><a href="#对象的定义" class="headerlink" title="对象的定义"></a>对象的定义</h2><blockquote>
+<p>在JS中，对象是拥有属性和方法的数据。</p>
+</blockquote>
+<h2 id="如何创建对象"><a href="#如何创建对象" class="headerlink" title="如何创建对象"></a>如何创建对象</h2><h3 id="Object实例法"><a href="#Object实例法" class="headerlink" title="Object实例法"></a>Object实例法</h3><p>创建自定义对象最简单的方式是创建一个Object实例，然后添加属性，方法。</p>
+<pre><code>var a = new Object();
+a.name = &quot;elory&quot;;
+a.age = &quot;100&quot;;
+a.gender = function()
+{
+    alert(&quot;no sex&quot;);
+}
+</code></pre><h3 id="对象字面量法"><a href="#对象字面量法" class="headerlink" title="对象字面量法"></a>对象字面量法</h3><p>其次是使用对象字面量的方法来创建。字面量是一种表示值的记法。</p>
+<pre><code>var a = {
+    name: &quot;elory&quot;,//注意，这里是逗号
+    age: 100,
+    gender: function(){
+    alert(nothing);
+    }
+}
+</code></pre><p>我们发现，这样建对象有一个好处，就是不用重复的写实例对象名</p>
+<h3 id="以上两种方式的缺点"><a href="#以上两种方式的缺点" class="headerlink" title="以上两种方式的缺点"></a>以上两种方式的缺点</h3><p>假如我们要创建两个对象，那么以上两种方法就会产生很多重复的代码。譬如又要写一遍age，name，and so on。</p>
+<h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>所谓工厂模式，就是给一套流程，可以重复创建多个对象的方法。正规的说：该模式抽象创建对象的具体过程，用函数来封装以特定接口来创建对象。</p>
+<pre><code>function createObj(name,age,gender)
+{
+    var aaa = new Object();
+    aaa.name = name;
+    aaa.age = age;
+    aaa.gender = gender；
+    return a;
+}
+</code></pre><p>比如我想在要创建两个对象，并分别给其属性赋值，就可以酱。</p>
+<pre><code>var b = createObj(&quot;imb&quot;,10,function(){alert(&quot;no sex&quot;);});
+var c = createObj(&quot;imc&quot;,60,function(){alert(&quot;man&quot;);});
+</code></pre><h4 id="工厂模式的优缺点"><a href="#工厂模式的优缺点" class="headerlink" title="工厂模式的优缺点"></a>工厂模式的优缺点</h4><p>优点：可以创建相似的多个对象。<br>缺点：无法知道创建对象的类型。</p>
+<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>先甩代码：</p>
+<pre><code>function Elory(name,age,gender)
+{
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+}
+var b = new Elory(&quot;imb&quot;,10,function(){alert(&quot;no sex&quot;);});
+var c = new Elory(&quot;imc&quot;,60,function(){alert(&quot;man&quot;);});
+</code></pre><p>一看代码，这不就是普通函数吗？<br>首先，注意函数的名称，<code>首字母是大写的</code>，这是按照惯例来区别于非构造函数的。<br>此时要创建对象实例，需要使用new操作符。<br>我们可以用instanceof来检测对象类型。</p>
+<p><code>此方法就解决了工厂模式不能识别对象类型的问题。</code></p>
+<h4 id="构造函数与普通函数的区别"><a href="#构造函数与普通函数的区别" class="headerlink" title="构造函数与普通函数的区别"></a>构造函数与普通函数的区别</h4><p>之前说到的构造函数首字母大写只是人为的规定，便于识别构造函数和普通函数的。他们最大的不同在于他们的调用方式。<br>只要通过new操作符来调用，就可以当做是构造函数。</p>
+<h4 id="构造函数的缺点"><a href="#构造函数的缺点" class="headerlink" title="构造函数的缺点"></a>构造函数的缺点</h4><p>明显的问题就是构造函数内的方法都会在实例中重新创建，比如之前我们创建的两个Elory实例，他们中的function实例也是不同的。也就是说通过构造函数创建对象会产生不同的作用域链。</p>
+<pre><code>alert(b.gender == c.gender); //返回false；
+</code></pre><p>那这样创建这么多function实例有必要吗？显然没必要，正如其名，方法，一套做事的方法，有方法就行，都是完成相同的任务要这么多没必要。况且我们有this这个可以替代调用当前函数的对象在。</p>
+<h4 id="该模式的改进版"><a href="#该模式的改进版" class="headerlink" title="该模式的改进版"></a>该模式的改进版</h4><p>把方法放到构造函数外，此时gender方法为全局的,这样，每次在设置gender属性的时候，其实就是设置了一个指向该函数的指针。<br>该方法的缺点：gender方法只在调用该构造函数的时候才有用，设置成全局的，转为他服务，岂不是大材小用。如此一来，构造函数一多，全局方法岂不是满天飞？于是有一种明星级的模式闪亮登场！</p>
+<h3 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h3><p>用自己的话来解释这个模式就是：<br>我们每创建一个函数，都会自动生成一个prototype属性，该属性以指针的形式存在，指向一个公共的名叫<code>原型对象</code>的东西，这个原型对象里面呢，存在着所有实例<code>共享</code>的属性和方法。看起来就像是构造函数把需要共享的东西放到另外一个对象里，然后用prototype属性指针指向他。实际上就是这样的哈！（有错误请评论指出，欢迎指正，么么）。这样，实例对象们就可以用同一个方法和属性了。</p>
+<pre><code>function Elory(){}
+Elory.prototype.name = &quot;eeelory&quot;;
+Elory.prototype.age = 100;
+Elory.prototype.gender = function(){
+    alert(&quot;就不说&quot;);
+};
+var b = new Elory();
+b.gender();//就不说
+var c = new Elory();
+c.gender();//就不说
+alert(b.gender == c.gender); //返回true；
+</code></pre><p>如果我们在实例对象中设置与原型对象中同名的属性值，那么前者中的值会屏蔽后者的值，也就是添加这个属性，会阻止我们访问原型对象中的属性的值。</p>
+<pre><code>function Elory(){}
+Elory.prototype.name = &quot;eeelory&quot;;
+Elory.prototype.age = 100;
+Elory.prototype.gender = function(){
+    alert(&quot;就不说&quot;);
+};
+var b = new Elory();
+var c = new Elory();
+b.name = &quot;imb&quot;;
+alert(b.name);//imb
+alert(c.name);//eeelory
+</code></pre><p>那如何重新访问原型对象中的属性呢？</p>
+<pre><code>//接上例
+delete b.name 
+alert(b.name);//eeelory
+</code></pre><p>答案就是使用<code>delete</code>操作符。</p>
+<p>那怎样检测实例中存在某属性呢？</p>
+<pre><code>//接上例
+alert(b.name);//eeelory 因为上一步删除了实例中的name属性，所以此时访问的是原型对象中的name属性
+alert(b.hasOwnProperty(&quot;name&quot;));//false 表示不存在于实例中
+b.name = &quot;imb&quot;; //在实例对象中设置name属性
+alert(b.hasOwnProperty(&quot;name&quot;));//true 表示存在于实例中
+</code></pre><p>答案就是使用<code>hasOwnProperty（）</code>方法。</p>
+<h4 id="该模式的改进版-1"><a href="#该模式的改进版-1" class="headerlink" title="该模式的改进版"></a>该模式的改进版</h4><p>字面量法定义原型对象。<br>我们在添加属性和方法时，都加上了Object.prototype前缀，但是如果属性数量很多，这样也太复杂了，于是用字面量来重写原型对象。</p>
+<pre><code>function Elory(){}
+Elory.prototype ={
+name : &quot;eeelory&quot;,
+age : 100,
+gender : function(){alert(&quot;就不说&quot;);}
+};
+</code></pre><p>此时我们通过字面量的形式创建了一个新对象，但是这个新对象又拥有了自己的原型对象。画个图大概是这样：<br><img src="http://oeqcvcrxo.bkt.clouddn.com/js%E5%AF%B9%E8%B1%A1.png" alt="js-modle"><br>可以看到该原型对象的constructor并不指向Elory函数了。所以我们需要手动设置constructor的值为Elory.<br>其实这个属性值是否设置对我们要调用属性和方法好像没有太大用处，所以不用在意。</p>
+<h4 id="原型模式的缺点"><a href="#原型模式的缺点" class="headerlink" title="原型模式的缺点"></a>原型模式的缺点</h4><p>1.省略了为构造函数传递初始化参数，这样导致新建的实例对象属性值都是相同的。<br>2.针对包含引用类型值的属性来说，实例就无法拥有自己的单独属性。（引用类型是一种数据结构，用于将数据和功能组织在一起）<br>举个例子：</p>
+<pre><code>function Elory(){}
+Elory.prototype ={
+name : &quot;eeelory&quot;,
+age : 100,
+friends :[&quot;abc&quot;,&quot;def&quot;],
+gender : function(){alert(&quot;就不说&quot;);}
+};
+var b = new Elory();
+var c = new Elory();
+b.friends.push(&quot;kkk&quot;);
+alert(b.friends);//&quot;abc&quot;,&quot;def&quot;,&quot;kkk&quot;
+alert(c.friends);//&quot;abc&quot;,&quot;def&quot;,&quot;kkk&quot;
+alert(c.friends === b.friends);//true
+</code></pre><p>从这里看出，实例不一定能拥有属于自己的全部属性。<br>如何改进上述两个缺点？</p>
+<h3 id="组合使用构造函数模式和原型模式"><a href="#组合使用构造函数模式和原型模式" class="headerlink" title="组合使用构造函数模式和原型模式"></a>组合使用构造函数模式和原型模式</h3><p>构造函数模式用于定义实例属性，原型模式负责定义共享属性和方法。此外还支持向构造函数传递参数。</p>
+<pre><code>function Elory(name,age)
+{
+    this.name = name;
+    this.age = age;
+    this.friends = [&quot;aaa&quot;,&quot;bbb&quot;];
+}
+Elory.prototype = {
+constructor: Elory;
+gender:function(){
+alert(this.name);
+}
+var b = new Elory(&quot;imb&quot;,100);
+var c = new Elory(&quot;imc&quot;,40);
+b.friends.push(&quot;ccc&quot;);
+alert(b.friends);//&quot;aaa&quot;,&quot;bbb&quot;,&quot;ccc&quot;
+alert(c.friends);//&quot;aaa&quot;,&quot;bbb&quot;
+alert(c.friends === b.friends);//false 专有属性
+alert(c.gender === b.gender);//true  共享属性
+</code></pre><h3 id="动态原型模式"><a href="#动态原型模式" class="headerlink" title="动态原型模式"></a>动态原型模式</h3><p>动态原型模式把所有信息封装在构造函数中，在必要的情况下通过构造函数初始化原型。</p>
+<pre><code>function Elory(name,age)
+{
+    this.name = name;
+    this.age = age;
+    if(typeof this.gender != &quot;function&quot;){
+            Elory.prototype.gender = function(){
+            alert(this.name+&quot;have no sex&quot;);
+            };
+        }
+}
+</code></pre><p>if块内的代码只在初次调用构造函数时执行，此时原型对象已经完成初始化，具备gender属性，被所有实例共享。</p>
+<h3 id="寄生构造函数模式"><a href="#寄生构造函数模式" class="headerlink" title="寄生构造函数模式"></a>寄生构造函数模式</h3><p>该模式的思想是创建一个函数，该函数的作用只是去封装创建对象所用的代码，然后返回新创建的对象。</p>
+<pre><code>function SpecialArray(){
+var values = new Array();
+values.push.apply(values,arguments);
+values.toPipedString = function(){
+    return this.join(&quot;|&quot;);
+    };
+return values;
+}
+var colors = new SpecialArray(&quot;r&quot;,&quot;g&quot;,&quot;b&quot;);
+alert(colors.toPipedString());//&quot;r&quot;|&quot;g&quot;|&quot;b&quot;
+</code></pre><p>该模式需要注意的地方是：返回的对象和构造函数没有任何关系，从代码中可以看到。因此他也有工厂模式的缺点，不能识别对象类型。因此不建议使用该方法。</p>
+<h3 id="稳妥构造函数模式"><a href="#稳妥构造函数模式" class="headerlink" title="稳妥构造函数模式"></a>稳妥构造函数模式</h3><h4 id="稳妥对象"><a href="#稳妥对象" class="headerlink" title="稳妥对象"></a>稳妥对象</h4><p>没有公共属性，其方法不引用this的对象。适用于安全环境中（这些环境禁止使用this和new），或者是防止数据被其他程序改动的时候使用。</p>
+<h4 id="与寄生构造函数的差异"><a href="#与寄生构造函数的差异" class="headerlink" title="与寄生构造函数的差异"></a>与寄生构造函数的差异</h4><ol>
+<li>新创建对象的实例方法不引用this；</li>
+<li>不使用new操作符调用构造函数。</li>
+</ol>
+<p>重写Elory构造函数为：</p>
+<pre><code>function Elory(name,age,gender)
+{
+    var o = new Object();
+
+    o.readName = function(){
+    alert(name);
+    }
+    return o;
+}
+</code></pre><p>这种模式创建的对象除了readName方法可以读取大name外，没有其他的方法能够访问数据。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>创建类的方法笼统的可以分三类。<br>工厂模式 构造模式 原型模式</p>
+<blockquote>
+<ul>
+<li>工厂模式缺点<br>1.无法知道创建对象的类型。</li>
+<li>构造模式的缺点<br>1.构造函数内的方法都会在实例中重新创建.</li>
+<li>原型模式的缺点<br>1.省略了为构造函数传递初始化参数，这样导致新建的实例对象属性值都是相同的。<br>2.针对包含引用类型值的属性来说，实例就无法拥有自己的单独属性。</li>
+</ul>
+</blockquote>
+<h2 id="小样有话说"><a href="#小样有话说" class="headerlink" title="小样有话说"></a>小样有话说</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">这篇文章写了很多天了，并不是因为太难以理解导致的而是因为小样最近回学校忙着叙旧了。哇咔咔</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-11</span></center>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>看我这么辛苦，能把五毛钱呼我脸上吗？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeqc7pnps.bkt.clouddn.com/wechat.png" alt="龚志强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeqc7pnps.bkt.clouddn.com/ali.png" alt="龚志强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag">#JS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/06/JS执行环境及作用域的理解/" rel="next" title="JS执行环境及作用域的理解">
+                <i class="fa fa-chevron-left"></i> JS执行环境及作用域的理解
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+ 
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/11/11/JS对象创建方法/"
+           data-title="JS对象创建方法" data-url="http://gelory.me/2016/11/11/JS对象创建方法/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="龚志强" />
+          <p class="site-author-name" itemprop="name">龚志强</p>
+          <p class="site-description motion-element" itemprop="description">技术,小白,产品汪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">26</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的定义"><span class="nav-number">1.</span> <span class="nav-text">对象的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何创建对象"><span class="nav-number">2.</span> <span class="nav-text">如何创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object实例法"><span class="nav-number">2.1.</span> <span class="nav-text">Object实例法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象字面量法"><span class="nav-number">2.2.</span> <span class="nav-text">对象字面量法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以上两种方式的缺点"><span class="nav-number">2.3.</span> <span class="nav-text">以上两种方式的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂模式"><span class="nav-number">2.4.</span> <span class="nav-text">工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂模式的优缺点"><span class="nav-number">2.4.1.</span> <span class="nav-text">工厂模式的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造函数模式"><span class="nav-number">2.5.</span> <span class="nav-text">构造函数模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数与普通函数的区别"><span class="nav-number">2.5.1.</span> <span class="nav-text">构造函数与普通函数的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数的缺点"><span class="nav-number">2.5.2.</span> <span class="nav-text">构造函数的缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#该模式的改进版"><span class="nav-number">2.5.3.</span> <span class="nav-text">该模式的改进版</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原型模式"><span class="nav-number">2.6.</span> <span class="nav-text">原型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#该模式的改进版-1"><span class="nav-number">2.6.1.</span> <span class="nav-text">该模式的改进版</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原型模式的缺点"><span class="nav-number">2.6.2.</span> <span class="nav-text">原型模式的缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合使用构造函数模式和原型模式"><span class="nav-number">2.7.</span> <span class="nav-text">组合使用构造函数模式和原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态原型模式"><span class="nav-number">2.8.</span> <span class="nav-text">动态原型模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寄生构造函数模式"><span class="nav-number">2.9.</span> <span class="nav-text">寄生构造函数模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稳妥构造函数模式"><span class="nav-number">2.10.</span> <span class="nav-text">稳妥构造函数模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#稳妥对象"><span class="nav-number">2.10.1.</span> <span class="nav-text">稳妥对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与寄生构造函数的差异"><span class="nav-number">2.10.2.</span> <span class="nav-text">与寄生构造函数的差异</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说"><span class="nav-number">4.</span> <span class="nav-text">小样有话说</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">龚志强</span>
+</div>
+
+<div class="powered-by">
+  QQ:1010688273
+</div>
+
+<div class="theme-info">
+  欢迎骚扰 -
+  <a class="theme-link" href="https://github.com/Gong-Elory">
+    龚志强
+  </a>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gelory"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>
