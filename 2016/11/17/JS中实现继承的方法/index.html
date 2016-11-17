@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,CSS," />
+  <meta name="keywords" content="龚志强的博客" />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。">
+<meta name="description" content="总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Webkit内核显示字体自动放大问题">
-<meta property="og:url" content="http://gelory.me/2016/10/26/Webkit内核显示字体自动放大问题/index.html">
+<meta property="og:title" content="JS中实现继承的方法">
+<meta property="og:url" content="http://gelory.me/2016/11/17/JS中实现继承的方法/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。">
-<meta property="og:updated_time" content="2016-10-26T09:23:02.519Z">
+<meta property="og:description" content="总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。">
+<meta property="og:updated_time" content="2016-11-17T08:19:46.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Webkit内核显示字体自动放大问题">
-<meta name="twitter:description" content="在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。">
+<meta name="twitter:title" content="JS中实现继承的方法">
+<meta name="twitter:description" content="总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/10/26/Webkit内核显示字体自动放大问题/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/17/JS中实现继承的方法/"/>
 
 
-  <title> Webkit内核显示字体自动放大问题 | 龚小样儿 </title>
+  <title> JS中实现继承的方法 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +278,7 @@
             
             
               
-                Webkit内核显示字体自动放大问题
+                JS中实现继承的方法
               
             
           </h1>
@@ -290,38 +290,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-26T17:21:21+08:00" content="2016-10-26">
-              2016-10-26
+            <time itemprop="dateCreated" datetime="2016-11-17T16:16:49+08:00" content="2016-11-17">
+              2016-11-17
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/26/Webkit内核显示字体自动放大问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/26/Webkit内核显示字体自动放大问题/" itemprop="commentsCount"></span>
+                <a href="/2016/11/17/JS中实现继承的方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/JS中实现继承的方法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,7 +312,7 @@
 
           
           
-             <span id="/2016/10/26/Webkit内核显示字体自动放大问题/" class="leancloud_visitors" data-flag-title="Webkit内核显示字体自动放大问题">
+             <span id="/2016/11/17/JS中实现继承的方法/" class="leancloud_visitors" data-flag-title="JS中实现继承的方法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -353,9 +334,172 @@
       
 
       
-        <p>在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。<br><a id="more"></a><br>这个东西不是bug也不是hack，是Chromium内核为了提高移动端文本可读性，而增加的一个特性。还有个学名叫<code>Text Autosizer</code> 这个算法呢会根据缩放比例，字体大小，屏幕分辨率等特性，将开发人员设置的字体大小值做一系列运算，然后显示。意思就是：它认为你这样用户会看不清。于是助你一臂之力。</p>
-<p>那如何禁用这个特性呢？有人说给文本增加宽高，真是脑洞大。<br>最直接的方法就是设置<br><code>max-height=100%；</code>设置元素的最大宽度。<br>当然你也可以设置viewport元标签内的initial-scale属性为1。initial-scale属性控制页面最初加载时的缩放等级。更多关于元标签的信息可以看我遇到的另一个问题<a href="http://gelory.me/2016/10/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%98%BE%E7%A4%BA%E6%97%B6%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E9%97%AE%E9%A2%98/">移动端显示时页面缩放问题</a>.</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-26</span></center>
+        <p>总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。<br><a id="more"></a></p>
+<h2 id="方法一：原型链法"><a href="#方法一：原型链法" class="headerlink" title="方法一：原型链法"></a>方法一：原型链法</h2><p>利用原型让一个引用类型继承另外一个引用类型的属性和方法。<br>基本模式：</p>
+<pre><code>function Imtree()
+{
+    this.tree = true;
+}
+
+Imtree.prototype.getTreeValue = function()
+{
+    return this.tree;
+}
+
+function Imleaf()
+{
+    this.leaf = false;
+}
+
+Imleaf.prototype = new Imtree();//这一步实现继承
+
+Imleaf.prototype.getLeaf = function()
+{
+    return this.leaf;
+}
+
+var test = new Imleaf();
+test.leaf = false;
+test.getLeaf() = false;
+test.tree = true;//访问父类属性
+test.getTreeValue = true;//访问父类方法
+</code></pre><blockquote>
+<p>本质就是把父类的实例赋值给子类的原型，其实就是相当于子类原型指向了父类原型。参考实例指向原型。</p>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>包含引用类型值的属性会被共享，如果子类的多个实例访问父类原型中某引用类型值属性的话，只要该属性值被改变，所有子类实例访问到的该属性都会同步变化。<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3></li>
+</ul>
+</blockquote>
+<pre><code>function Imtree()
+{
+    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
+}
+
+function Imleaf(){}
+Imleaf.prototype = new Imtree();
+var a = new Imleaf();
+a.colors.push(&quot;black&quot;);
+alert(a.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
+var b = new Imleaf();
+//注意，此时b访问父类的colors属性，返回的也是四个元素，说明已经同步了。
+alert(b.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
+</code></pre><p>如果这正是你想要的形态，那无话可说。</p>
+<blockquote>
+<ul>
+<li>在创建子类型的实例时，不能向父类的构造函数中传递参数</li>
+</ul>
+</blockquote>
+<h2 id="方法二-借用构造函数法（伪造对象-经典继承）"><a href="#方法二-借用构造函数法（伪造对象-经典继承）" class="headerlink" title="方法二 借用构造函数法（伪造对象/经典继承）"></a>方法二 借用构造函数法（伪造对象/经典继承）</h2><p>在子类构造函数的内部调用父类（超类）构造函数。</p>
+<pre><code>function Imtree（）
+{
+    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
+}
+
+function Imleaf()
+{
+    Imtree.call(this);//此时继承了Imtree类
+}
+
+var a =new Imleaf();
+a.colors.push(&quot;black&quot;);
+alert(a.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
+var b = new Imleaf();
+alert(b.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;
+</code></pre><h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>构造函数模式的通病，方法无法复用。</p>
+<h2 id="方法三-组合继承法（伪经典继承）"><a href="#方法三-组合继承法（伪经典继承）" class="headerlink" title="方法三 组合继承法（伪经典继承）"></a>方法三 组合继承法（伪经典继承）</h2><p>使用原型链实现对原型属性和方法的继承，通过借用构造函数法来实现对实例属性的继承</p>
+<pre><code>function Imtree(name)
+{
+    this.tree = name;
+    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
+}
+
+Imtree.prototype.sayTreeName()
+{
+    alert(this.tree);
+}
+
+function Imleaf(name,age) 
+{
+    Imtree.call(this,name); //第二次调用  
+    this.age = age;
+}
+
+Imleaf.prototype = new Imtree();//第一次调用
+Imleaf.prototype.constructor = Imleaf;
+Imleaf.prototype.sayAge = function(){
+    alert(this.age);
+}
+
+var a = new Imleaf(&quot;aTree&quot;,10);
+a.colors.push(&quot;black&quot;);
+alert(a.colors);//&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
+alert(a.sayAge());//10
+alert(a.sayName));//&quot;aTree&quot;
+
+var b = new Imleaf(&quot;bTree&quot;,50);
+alert(b.colors);//&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;
+alert(a.sayAge());//50
+alert(a.sayName));//&quot;bTree&quot;
+</code></pre><p>该方法结合了方法一和二的优点，避开了他们的缺点，使用的很广泛。</p>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><p>调用两次父类构造函数。一次是在创建子类原型时，调用构造函数，将实例赋给子类原型。另外一次是在子类构造函数内。</p>
+<h2 id="方法四-原型式继承"><a href="#方法四-原型式继承" class="headerlink" title="方法四 原型式继承"></a>方法四 原型式继承</h2><pre><code>function object(o){
+    function F（）{}
+    F.prototype = o ;
+    return new F();
+    }
+
+var person = {
+    name: &quot;aa&quot;,
+    frineds:&quot;ab&quot;,&quot;ac&quot;
+}
+
+var a = object(person);
+a.friends.push(&quot;lll&quot;);
+alert(a.friends);//&quot;ab&quot;,&quot;ac&quot;,&quot;lll&quot;
+var b = object(person);
+b.friends.push(&quot;nnn&quot;);
+alert(b.friends);//&quot;ab&quot;,&quot;ac&quot;,&quot;lll&quot;,&quot;nnn&quot;
+</code></pre><p>该方法的规范方法：Object.create()<br>Object.create()拥有两个参数，第一个参数为（第二声）为（第四声）新对象定义额外属性的对象，第二个参数为自定义属性。</p>
+<pre><code>var person = {
+        name: &quot;aa&quot;,
+        frineds:&quot;ab&quot;,&quot;ac&quot;
+    }
+
+var a = object(person,{name:{value:&quot;zz&quot;}});
+alert(a.name);//&quot;zz&quot;
+</code></pre><p>支持该方法的有IE9+,FF4+,Safari5+，Opera12+和Chrome。</p>
+<h2 id="方法五-寄生式继承"><a href="#方法五-寄生式继承" class="headerlink" title="方法五 寄生式继承"></a>方法五 寄生式继承</h2><p>创建一个封闭继承过程的函数，与方法四类似。<br>function createAnother(a)<br>{<br>    var clone = object(a);//不一定是object方法，任何能返回新对象的方法都可以<br>    clone.sayHi = function（）<br>    {<br>        alert(“Hi”);<br>    }<br>    return clone;<br>}</p>
+<h2 id="方法六-寄生组合式继承"><a href="#方法六-寄生组合式继承" class="headerlink" title="方法六 寄生组合式继承"></a>方法六 寄生组合式继承</h2><p>通过借用构造函数来继承属性，通过原型链的混合形式来继承方法。基本思路为：不必为了指定子类的原型而调用父类的构造函数。而是创建一个父类的副本。</p>
+<pre><code>function inheritPrototype(mtree,mleaf)
+{
+    var prototype = object(mtree.prototype);//创建父类原型的副本
+    prototype.constructor = mleaf;//为副本添加constructor属性
+    mleaf.prototype = prototype; //实现继承
+}
+
+ function Imtree(name)
+{
+    this.tree = name;
+    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
+}
+
+Imtree.prototype.sayTreeName()
+{
+    alert(this.tree);
+}
+
+function Imleaf(name,age) 
+{
+    Imtree.call(this,name); 
+    this.age = age;
+}
+function inheritPrototype(Imtree,Imleaf);
+Imleaf.prototype.sayAge = function(){
+    alert(this.age);
+}
+</code></pre><p>此方法是实现类型继承的最有效方法。只调用了一次构造函数。</p>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">JS的学习继续。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-17</span></center>
       
     </div>
 
@@ -396,30 +540,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/前端/" rel="tag">#前端</a>
-          
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/26/移动端显示时页面缩放问题/" rel="next" title="移动端显示时页面缩放问题">
-                <i class="fa fa-chevron-left"></i> 移动端显示时页面缩放问题
+              <a href="/2016/11/11/JS对象创建方法/" rel="next" title="JS对象创建方法">
+                <i class="fa fa-chevron-left"></i> JS对象创建方法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/02/Viewport的深入了解/" rel="prev" title="Viewport的深入了解">
-                Viewport的深入了解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -448,8 +580,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/26/Webkit内核显示字体自动放大问题/"
-           data-title="Webkit内核显示字体自动放大问题" data-url="http://gelory.me/2016/10/26/Webkit内核显示字体自动放大问题/">
+      <div class="ds-thread" data-thread-key="2016/11/17/JS中实现继承的方法/"
+           data-title="JS中实现继承的方法" data-url="http://gelory.me/2016/11/17/JS中实现继承的方法/">
       </div>
     
   </div>
@@ -547,7 +679,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#方法一：原型链法"><span class="nav-number">1.</span> <span class="nav-text">方法一：原型链法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.1.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举个例子"><span class="nav-number">1.2.</span> <span class="nav-text">举个例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法二-借用构造函数法（伪造对象-经典继承）"><span class="nav-number">2.</span> <span class="nav-text">方法二 借用构造函数法（伪造对象/经典继承）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点-1"><span class="nav-number">2.1.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法三-组合继承法（伪经典继承）"><span class="nav-number">3.</span> <span class="nav-text">方法三 组合继承法（伪经典继承）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点-2"><span class="nav-number">3.1.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法四-原型式继承"><span class="nav-number">4.</span> <span class="nav-text">方法四 原型式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法五-寄生式继承"><span class="nav-number">5.</span> <span class="nav-text">方法五 寄生式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法六-寄生组合式继承"><span class="nav-number">6.</span> <span class="nav-text">方法六 寄生组合式继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">7.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
             
           </div>
         </section>
