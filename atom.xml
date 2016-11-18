@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-17T08:19:46.254Z</updated>
+  <updated>2016-11-18T10:19:59.879Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -16,11 +16,119 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JS闭包</title>
+    <link href="http://gelory.me/2016/11/18/JS%E9%97%AD%E5%8C%85/"/>
+    <id>http://gelory.me/2016/11/18/JS闭包/</id>
+    <published>2016-11-18T10:15:29.000Z</published>
+    <updated>2016-11-18T10:19:59.879Z</updated>
+    
+    <content type="html"><![CDATA[<p>介绍闭包相关知识。<br><a id="more"></a></p>
+<h2 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h2><p><strong>闭包是</strong>指有权访问另一个函数作用域中的变量的<strong>函数</strong>。我们常常通过在一个函数内部创建另外一个函数来形成闭包。</p>
+<h2 id="作用域以及作用域链的回顾"><a href="#作用域以及作用域链的回顾" class="headerlink" title="作用域以及作用域链的回顾"></a>作用域以及作用域链的回顾</h2><p><a href="http://gelory.me/2016/11/06/JS%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E7%90%86%E8%A7%A3/">JS执行环境及作用域的理解</a>这篇文章对这些名词做了很好的解释，但是如果不代入使用环境的话，总觉得云里雾里，似懂非懂的样子。</p>
+<p>当一个函数被调用的时候，就会创建一个<code>执行环境</code>（执行环境定义了变量和函数有权访问其他数据）以及相对应的<code>作用域链</code>（规定访问变量和函数的顺序）。然后使用arguments和其他命名参数来初始化函数的活动对象。</p>
+<h2 id="变量对象与活动对象的区别与联系"><a href="#变量对象与活动对象的区别与联系" class="headerlink" title="变量对象与活动对象的区别与联系"></a>变量对象与活动对象的区别与联系</h2><p>其实变量对象与活动对象的关系是包含与被包含的关系。也就是说活动对象是变量对象的一部分。<br>活动对象正如其名，活动，表示一种状态，也可以称为活动的变量对象，其实活动这个名词也是翻译过来的。英文名叫<code>Activation Object</code>，意思是激活，我们也可以理解为正在用的意思。<br>用例子来解释：</p>
+<pre><code>var a = 1;
+function func(){
+    var b =2;
+    return a+b;
+}
+alert(func());
+</code></pre><p>我们在全局环境下定义了变量a和函数func。当我们打开浏览器时，全局环境的执行环境就存在了。此时的变量对象包括a,func.<br><strong>在func函数创建之初</strong>，会预先创建一个包含全局变量对象的作用域链（scope chain），这个作用域链被保存在函数对象的scope属性中。<br><strong>当我们调用函数func时</strong>，会创建func的执行环境。然后复制scope属性中的对象（此时只有全局变量对象），构建执行环境的作用域链，之后把pub函数中的变量对象（包含this，arguments，b）放入执行环境中，该对象被推入到作用域链的前端。此时，执行环境的作用域链（本质是一个指针列表）包含两个变量对象（全局变量对象，pub函数的变量对象），而func函数的变量对象也就是活动对象。<br>我们可以说活动对象就是当前正在被执行或者被引用的变量对象。</p>
+<h2 id="闭包案例解析"><a href="#闭包案例解析" class="headerlink" title="闭包案例解析"></a>闭包案例解析</h2><pre><code>var a = 1;
+function func(){
+    var b =2;
+    return function(){
+    alert(a+b);
+}
+var sonfunc = func();//创建函数
+sonfunc();//调用函数
+</code></pre><p>在一个函数（本例中的func）内部定义另外一个函数（本例中返回的函数），这就是闭包的常见形式.<br>当执行</p>
+<pre><code>var sonfunc = func();//创建函数
+</code></pre><p>这条语句时,引用了func函数，此时func函数的变量对象被称为活动对象。包括（this，arguments，b，内部function）。<br>当执行</p>
+<pre><code>sonfunc();//调用函数
+</code></pre><p>这条语句时，sonfunc（闭包）的变量对象被添加到其作用域链的最前端，其作用域链将包含本地活动对象（this，arguments），func活动对象（this，arguments，b，内部function）以及全局变量对象。</p>
+<p>细心的人可能会发现：<br>此时执行的时函数sonfunc，而不是func，按照你刚才对活动对象的定义，<strong>活动对象就是当前正在被执行或者被引用的变量对象。</strong>那么为什么……<br>看到这里是不是恍然大悟，<strong>被引用</strong>，<strong>被引用</strong>，<strong>被引用</strong>，重要的事说三遍。没错，之所以把此时func函数的变量对象也称之为活动对象，就是因为他符合活动对象定义的第二个条件：被引用。</p>
+<p>func函数执行完后，作用域链会被立即销毁，但是活动对象任然留在内存中，原因是sonfunc函数依旧在引用变量b。直到sonfunc被销毁后，func的活动对象才会被销毁。</p>
+<h2 id="闭包优点"><a href="#闭包优点" class="headerlink" title="闭包优点"></a>闭包优点</h2><p>普通的函数执行完毕后，其活动对象就会被销毁，仅有全局变量被保存在内存中，但是如果包含闭包则不一样，他需要等闭包被销毁后，其活动对象才会被销毁。</p>
+<h2 id="闭包缺点"><a href="#闭包缺点" class="headerlink" title="闭包缺点"></a>闭包缺点</h2><p>由于闭包会携带包含它的函数的作用域，因此会比其他函数更占用内存。</p>
+<h2 id="闭包副作用案例分析"><a href="#闭包副作用案例分析" class="headerlink" title="闭包副作用案例分析"></a>闭包副作用案例分析</h2><pre><code>function cFunc(){
+    var arr = new Array();
+    for (var i =0 ; i&lt;10 ;i++)
+    {
+        arr[i] = function()
+        {
+            return i;
+        }
+    }
+    return arr;
+}
+</code></pre><p>该函数本意是让每个数组元素返回自己的索引值。但是实际上背个数组元素的值都是10.<br>原因就是因为每个闭包引用的变量i是同一个变量对象。for执行完后,i的值为10，所以同步到每一个引用，i都是10，因此每个元素的值都是10.</p>
+<p>让函数符合预期的改进方法</p>
+<pre><code>function cFunc(){
+    var arr = new Array();
+    for (var i =0 ; i&lt;10 ;i++)
+    {
+        arr[i] = function(num)
+        {
+           //return num; 直接返回参数的方式
+           return function(){
+            return num;
+            }//用闭包的方式
+        }(i);//立即执行匿名函数的写法
+    }
+    return arr;
+}
+</code></pre><blockquote>
+<p>闭包可以访问外部函数中的变量，但是只能取得外部函数变量的最终值。</p>
+<h2 id="匿名函数与闭包"><a href="#匿名函数与闭包" class="headerlink" title="匿名函数与闭包"></a>匿名函数与闭包</h2><p>上一节提到了匿名函数，书上说有很多开发人员总是搞不清匿名函数与闭包的区别。这就尴尬了，在我看来，他们俩最大的共同点：<code>他们都是函数</code>。然后没了。</p>
+</blockquote>
+<h3 id="匿名函数定义"><a href="#匿名函数定义" class="headerlink" title="匿名函数定义"></a>匿名函数定义</h3><p>function关键字后没有标识符的函数，就是匿名函数（拉姆达函数）。简而言之就是没有函数名。</p>
+<h3 id="匿名函数与闭包的联系"><a href="#匿名函数与闭包的联系" class="headerlink" title="匿名函数与闭包的联系"></a>匿名函数与闭包的联系</h3><p>我们经常用匿名函数去创建闭包。</p>
+<h3 id="匿名函数的this对象"><a href="#匿名函数的this对象" class="headerlink" title="匿名函数的this对象"></a>匿名函数的this对象</h3><p>匿名函数的执行对象具有全局性，因此this指向window。</p>
+<h2 id="内存泄露问题"><a href="#内存泄露问题" class="headerlink" title="内存泄露问题"></a>内存泄露问题</h2><p>IE9之前版本对JS与DOM对象使用不同的垃圾收集方法，因此闭包会产生一些问题。</p>
+<pre><code>function test(){
+    var a = document.getElementById(&apos;lala&apos;);
+    a.onclick = function(){
+        alert(a.id);
+        //此处形成了循环引用。a对象的click属性引用了function这个函数，而这个函数又引用了a对象的id属性
+    }
+}
+test（）；
+</code></pre><p>a的引用次数不止一次，因此a会永远占据内存，不会被回收。<br>解决方案</p>
+<pre><code>function test(){
+    var a = document.getElementById(&apos;lala&apos;);
+    var id = a.id;
+    a.onclick = function(){
+        alert(id);
+    }
+}
+test（）；
+</code></pre><p>此时，消除了循环引用，但是a依旧无法被回收。因为闭包的存在，变量a依旧是闭包可引用的活动对象。即使不引用a，a也不能释放内存，此外DOM对象也保存一个引用，因此设置a为null，可以清除DOM对象所占的内存。闭包执行完后，活动对象被销毁，此时a也就释放了内存。（这段话如果有问题的话，请评论）</p>
+<h2 id="为什么JS中会有闭包的存在呢？"><a href="#为什么JS中会有闭包的存在呢？" class="headerlink" title="为什么JS中会有闭包的存在呢？"></a>为什么JS中会有闭包的存在呢？</h2><p>我认为是为了解决全局变量滥用的问题。全局变量正如其名，存在的意义应该是很多函数都会用到的，但是为了满足一个函数某种特殊的需求（譬如想要在某个函数中多次利用已经计算的变量）去声明全局变量实在是大材小用。此外，全局变量所占的内存只有在退出浏览器后才得以释放，这样就会发生内存泄漏。<br>闭包应运而生，既满足了需求，将这个变量保存在外部函数内，可以利用已经计算的变量，此外，等闭包执行完后，该变量内存就会释放。一举两得。</p>
+<blockquote>
+<p>当一个函数中的变量或者函数能够访问另外一个函数作用域中的变量或者函数时，就产生了闭包。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">到此，你的博客建完了，文章也会写了。那请你别辜负了当初建站的热情，把心思放在创作优质内容上。加油！</center>
+
+</blockquote>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;介绍闭包相关知识。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>JS中实现继承的方法</title>
     <link href="http://gelory.me/2016/11/17/JS%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://gelory.me/2016/11/17/JS中实现继承的方法/</id>
     <published>2016-11-17T08:16:49.000Z</published>
-    <updated>2016-11-17T08:19:46.254Z</updated>
+    <updated>2016-11-18T10:10:03.267Z</updated>
     
     <content type="html"><![CDATA[<p>总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。<br><a id="more"></a></p>
 <h2 id="方法一：原型链法"><a href="#方法一：原型链法" class="headerlink" title="方法一：原型链法"></a>方法一：原型链法</h2><p>利用原型让一个引用类型继承另外一个引用类型的属性和方法。<br>基本模式：</p>
@@ -195,6 +303,10 @@ Imleaf.prototype.sayAge = function(){
     
     </summary>
     
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
     
   </entry>
   
@@ -203,7 +315,7 @@ Imleaf.prototype.sayAge = function(){
     <link href="http://gelory.me/2016/11/11/JS%E5%AF%B9%E8%B1%A1%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95/"/>
     <id>http://gelory.me/2016/11/11/JS对象创建方法/</id>
     <published>2016-11-11T07:31:28.000Z</published>
-    <updated>2016-11-11T07:47:25.626Z</updated>
+    <updated>2016-11-18T10:14:33.092Z</updated>
     
     <content type="html"><![CDATA[<p>对JS创建对象的方法进行总结<br><a id="more"></a></p>
 <h2 id="对象的定义"><a href="#对象的定义" class="headerlink" title="对象的定义"></a>对象的定义</h2><blockquote>
@@ -1361,118 +1473,6 @@ overflow:auto;
     <summary type="html">
     
       &lt;p&gt;今天在网易云课堂看某HTML5+CSS3教程，我突然想到一个问题，我们张口闭口所说的标签，元素具体代表的是什么?感觉一直都是模糊的。这篇文章具体的讲述这几个名词的区别与联系。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Z-index与Stacking Context的那些坑</title>
-    <link href="http://gelory.me/2016/10/15/Z-index%E4%B8%8EStacking%20Context%E7%9A%84%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
-    <id>http://gelory.me/2016/10/15/Z-index与Stacking Context的那些坑/</id>
-    <published>2016-10-15T05:54:30.000Z</published>
-    <updated>2016-10-20T07:05:40.604Z</updated>
-    
-    <content type="html"><![CDATA[<center>Z-index的罪与罚，噗！手动喷血</center>
-
- <a id="more"></a>
-<h2 id="Z-index的黄金准则两条："><a href="#Z-index的黄金准则两条：" class="headerlink" title="Z-index的黄金准则两条："></a>Z-index的黄金准则两条：</h2><blockquote>
-<ul>
-<li>Z-index值谁大谁在上</li>
-<li>层叠水平，层叠顺序相同时，谁后来谁在上</li>
-</ul>
-</blockquote>
-<h2 id="层叠顺序"><a href="#层叠顺序" class="headerlink" title="层叠顺序"></a>层叠顺序</h2><p>先来了解层叠顺序，所谓的层叠顺序就是：两个元素，谁在上谁在下的问题。</p>
-<h3 id="元素系列"><a href="#元素系列" class="headerlink" title="元素系列"></a>元素系列</h3><blockquote>
-<ul>
-<li>两个元素为正常流时，默认情况是后一个元素覆盖前面一个元素。并且允许后面的元素透上来。</li>
-<li>如果两个都是块级元素，文字比背景层级高（因此不管是否设置背景，文字始终会透上来）</li>
-<li>如果是行内元素或者行内-块状元素，背景比文字层级高。（因此只要设置了背景，后面元素将透不上来）</li>
-</ul>
-</blockquote>
-<h3 id="浮动系列"><a href="#浮动系列" class="headerlink" title="浮动系列"></a>浮动系列</h3><blockquote>
-<ul>
-<li>浮动和浮动 后来居上</li>
-<li>浮动和块状元素 浮动层级高</li>
-<li>浮动和行内块，行内元素 行内块 行内元素层级高</li>
-</ul>
-</blockquote>
-<h3 id="定位系列"><a href="#定位系列" class="headerlink" title="定位系列"></a>定位系列</h3><blockquote>
-<ul>
-<li>绝对定位和绝对定位 后来居上</li>
-<li>绝对定位和相对定位 后来居上</li>
-<li>绝对定位和规定定位 后来居上</li>
-<li>固定定位和相对定位 后来居上</li>
-<li>绝对定位和块元素，行内元素，行内块元素，绝对定位层级高</li>
-<li>绝对定位等其他定位效果和浮动元素， 前者高</li>
-</ul>
-</blockquote>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
-<ul>
-<li>类型相同，后来居上</li>
-<li>块元素和定位元素以外的其他元素，文字层级比背景层级高。</li>
-<li>浮动和块元素 浮动元素层级高</li>
-<li>浮动和行内快，行内元素  后者高</li>
-<li>定位比所有元素层级高 </li>
-</ul>
-</blockquote>
-<h2 id="Z-index的家事"><a href="#Z-index的家事" class="headerlink" title="Z-index的家事"></a>Z-index的家事</h2><blockquote>
-<ul>
-<li>Z-index只能工作在明确定义了定位属性为absolute fixed relative的元素中</li>
-<li>Z-index相同的话，后来居上</li>
-<li>父元素Z-index有效，子元素无论是否设置都与父元素保持一致。在父元素上方，即使子元素Z-index比父元素小，也在上方。</li>
-<li>如果父元素Z-index失效，子元素设置就生效，这样就可以让子元素在父元素下面了。</li>
-<li>兄弟父元素之间，父元素Z-index决定其子元素的地位，父元素Z-index低，即使子元素很高，也会跟着他的父元素一起，被压在其他<code>父元素Z-index高，子元素Z-index低的</code>元素底下。</li>
-</ul>
-</blockquote>
-<h2 id="层叠上下文stacking-context"><a href="#层叠上下文stacking-context" class="headerlink" title="层叠上下文stacking context"></a>层叠上下文stacking context</h2><h3 id="产生层叠上下文的条件"><a href="#产生层叠上下文的条件" class="headerlink" title="产生层叠上下文的条件"></a>产生层叠上下文的条件</h3><blockquote>
-<ul>
-<li>根元素 HTML标签</li>
-<li>绝对或者相对定位并且Z-index值不为auto</li>
-<li>一个伸缩项目 Flex Item，且Z-index值不为auto，即父元素：display: flex|inline-flex</li>
-<li>元素的opacity值小于1</li>
-<li>元素的transform值不为none</li>
-<li>元素的mix-blend-mode值不为normal</li>
-<li>元素的filter值不为normal</li>
-<li>元素的isolation值不为isolate</li>
-<li>position：fixed</li>
-<li>will-change中指定了上述任意属性，几遍没有直接定义这些属性</li>
-<li>元素的-webkit-overflow-scrolling 属性值为 touch</li>
-</ul>
-</blockquote>
-<h3 id="opacity可以产生层叠上下文"><a href="#opacity可以产生层叠上下文" class="headerlink" title="opacity可以产生层叠上下文"></a>opacity可以产生层叠上下文</h3><blockquote>
-<p>兄弟层叠上下文的子元素无论Z-index有多大，都不会对排序产生影响，按照后来居上的原则进行排列。<br>举一个板栗：<br>a的父元素A<br>b的父元素B<br>c的父元素C</p>
-<ul>
-<li><p>如果A,B,C都产生了层叠上下文，假设都是用opacity产生的。那么无论a的index是10000也好还是1也好，他都被盖在b，c底下，遵循的后来居上原则</p>
-</li>
-<li><p>如果A,B生成了层叠上下文，假设都是用opacity产生的。小c（C的子元素）也产生了层叠上下文。那么现在A,B,小c是同级的了。只要c的index不是0或者负数， auto。那么c一定在上面。如果A,B的层叠上下文不是由opacity生成的  只要他们的index比小c大，谁就在上层。</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<ul>
-<li><p>父元素都是层叠上下文元素，那么与子元素的Z-index无关，与本身Z-index有关。如果父元素没有设置Z-index属性，或者相同。按照DOM流顺序，后来居上。如果设置了且不同，就按照Z-index大小排序。</p>
-</li>
-<li><p>如果某子元素是层叠上下文，其父元素不是，但是父元素的兄弟元素是。那么该子元素自动升级，和其父元素的兄弟元素同级，进行Z-index比较，此时参考第一条。</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="多说一句"><a href="#多说一句" class="headerlink" title="多说一句"></a>多说一句</h2><p>同时设置opacity与Z-index，Z-index是失效的。原因是Z-index只能工作在明确定义了定位属性为absolute fixed relative的元素中。</p>
-<p>不要想着我用opacity把元素弄成层叠上下文元素，然后用Z-index给他设置顺序。别多想了，不可能。Z-index只认定位属性为absolute fixed relative的元素。不认得层叠上下文。</p>
-<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">Z-index的坑太多，先总结到这里，以后遇到了问题再来继续完善。</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-15</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;center&gt;Z-index的罪与罚，噗！手动喷血&lt;/center&gt;
     
     </summary>
     

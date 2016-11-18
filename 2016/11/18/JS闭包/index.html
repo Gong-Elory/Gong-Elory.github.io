@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,CSS," />
+  <meta name="keywords" content="龚志强的博客" />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="关于relative与absolute区别的反思回顾。">
+<meta name="description" content="介绍闭包相关知识。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Relative与Absolute的爱恨纠葛">
-<meta property="og:url" content="http://gelory.me/2016/10/14/Relative与Absolute的爱恨纠葛/index.html">
+<meta property="og:title" content="JS闭包">
+<meta property="og:url" content="http://gelory.me/2016/11/18/JS闭包/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="关于relative与absolute区别的反思回顾。">
-<meta property="og:updated_time" content="2016-10-20T07:05:34.210Z">
+<meta property="og:description" content="介绍闭包相关知识。">
+<meta property="og:updated_time" content="2016-11-18T10:19:59.879Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Relative与Absolute的爱恨纠葛">
-<meta name="twitter:description" content="关于relative与absolute区别的反思回顾。">
+<meta name="twitter:title" content="JS闭包">
+<meta name="twitter:description" content="介绍闭包相关知识。">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/10/14/Relative与Absolute的爱恨纠葛/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/18/JS闭包/"/>
 
 
-  <title> Relative与Absolute的爱恨纠葛 | 龚小样儿 </title>
+  <title> JS闭包 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +278,7 @@
             
             
               
-                Relative与Absolute的爱恨纠葛
+                JS闭包
               
             
           </h1>
@@ -290,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-14T20:06:25+08:00" content="2016-10-14">
-              2016-10-14
+            <time itemprop="dateCreated" datetime="2016-11-18T18:15:29+08:00" content="2016-11-18">
+              2016-11-18
             </time>
           </span>
 
@@ -304,8 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -320,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/14/Relative与Absolute的爱恨纠葛/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/14/Relative与Absolute的爱恨纠葛/" itemprop="commentsCount"></span>
+                <a href="/2016/11/18/JS闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/18/JS闭包/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,7 +331,7 @@
 
           
           
-             <span id="/2016/10/14/Relative与Absolute的爱恨纠葛/" class="leancloud_visitors" data-flag-title="Relative与Absolute的爱恨纠葛">
+             <span id="/2016/11/18/JS闭包/" class="leancloud_visitors" data-flag-title="JS闭包">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -353,24 +353,95 @@
       
 
       
-         <center> 关于relative与absolute区别的反思回顾。</center>
-
-<a id="more"></a>
-<p>position属性有如下几种状态：</p>
-<blockquote>
-<ul>
-<li>static 默认状态。</li>
-<li>inherit 继承其父元素的position属性。</li>
-<li>fixed 相对于浏览器窗口进行绝对定位。</li>
-<li>absolute 相对于非static状态的祖先元素进行定位。脱离文档流后，其他元素会把空隙给填掉。</li>
-<li>relative 通过left，top等属性偏移其原来位置，没有的话位置不变。脱离文档流后，其他元素不会填掉其空隙。</li>
-</ul>
+        <p>介绍闭包相关知识。<br><a id="more"></a></p>
+<h2 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h2><p><strong>闭包是</strong>指有权访问另一个函数作用域中的变量的<strong>函数</strong>。我们常常通过在一个函数内部创建另外一个函数来形成闭包。</p>
+<h2 id="作用域以及作用域链的回顾"><a href="#作用域以及作用域链的回顾" class="headerlink" title="作用域以及作用域链的回顾"></a>作用域以及作用域链的回顾</h2><p><a href="http://gelory.me/2016/11/06/JS%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E7%90%86%E8%A7%A3/">JS执行环境及作用域的理解</a>这篇文章对这些名词做了很好的解释，但是如果不代入使用环境的话，总觉得云里雾里，似懂非懂的样子。</p>
+<p>当一个函数被调用的时候，就会创建一个<code>执行环境</code>（执行环境定义了变量和函数有权访问其他数据）以及相对应的<code>作用域链</code>（规定访问变量和函数的顺序）。然后使用arguments和其他命名参数来初始化函数的活动对象。</p>
+<h2 id="变量对象与活动对象的区别与联系"><a href="#变量对象与活动对象的区别与联系" class="headerlink" title="变量对象与活动对象的区别与联系"></a>变量对象与活动对象的区别与联系</h2><p>其实变量对象与活动对象的关系是包含与被包含的关系。也就是说活动对象是变量对象的一部分。<br>活动对象正如其名，活动，表示一种状态，也可以称为活动的变量对象，其实活动这个名词也是翻译过来的。英文名叫<code>Activation Object</code>，意思是激活，我们也可以理解为正在用的意思。<br>用例子来解释：</p>
+<pre><code>var a = 1;
+function func(){
+    var b =2;
+    return a+b;
+}
+alert(func());
+</code></pre><p>我们在全局环境下定义了变量a和函数func。当我们打开浏览器时，全局环境的执行环境就存在了。此时的变量对象包括a,func.<br><strong>在func函数创建之初</strong>，会预先创建一个包含全局变量对象的作用域链（scope chain），这个作用域链被保存在函数对象的scope属性中。<br><strong>当我们调用函数func时</strong>，会创建func的执行环境。然后复制scope属性中的对象（此时只有全局变量对象），构建执行环境的作用域链，之后把pub函数中的变量对象（包含this，arguments，b）放入执行环境中，该对象被推入到作用域链的前端。此时，执行环境的作用域链（本质是一个指针列表）包含两个变量对象（全局变量对象，pub函数的变量对象），而func函数的变量对象也就是活动对象。<br>我们可以说活动对象就是当前正在被执行或者被引用的变量对象。</p>
+<h2 id="闭包案例解析"><a href="#闭包案例解析" class="headerlink" title="闭包案例解析"></a>闭包案例解析</h2><pre><code>var a = 1;
+function func(){
+    var b =2;
+    return function(){
+    alert(a+b);
+}
+var sonfunc = func();//创建函数
+sonfunc();//调用函数
+</code></pre><p>在一个函数（本例中的func）内部定义另外一个函数（本例中返回的函数），这就是闭包的常见形式.<br>当执行</p>
+<pre><code>var sonfunc = func();//创建函数
+</code></pre><p>这条语句时,引用了func函数，此时func函数的变量对象被称为活动对象。包括（this，arguments，b，内部function）。<br>当执行</p>
+<pre><code>sonfunc();//调用函数
+</code></pre><p>这条语句时，sonfunc（闭包）的变量对象被添加到其作用域链的最前端，其作用域链将包含本地活动对象（this，arguments），func活动对象（this，arguments，b，内部function）以及全局变量对象。</p>
+<p>细心的人可能会发现：<br>此时执行的时函数sonfunc，而不是func，按照你刚才对活动对象的定义，<strong>活动对象就是当前正在被执行或者被引用的变量对象。</strong>那么为什么……<br>看到这里是不是恍然大悟，<strong>被引用</strong>，<strong>被引用</strong>，<strong>被引用</strong>，重要的事说三遍。没错，之所以把此时func函数的变量对象也称之为活动对象，就是因为他符合活动对象定义的第二个条件：被引用。</p>
+<p>func函数执行完后，作用域链会被立即销毁，但是活动对象任然留在内存中，原因是sonfunc函数依旧在引用变量b。直到sonfunc被销毁后，func的活动对象才会被销毁。</p>
+<h2 id="闭包优点"><a href="#闭包优点" class="headerlink" title="闭包优点"></a>闭包优点</h2><p>普通的函数执行完毕后，其活动对象就会被销毁，仅有全局变量被保存在内存中，但是如果包含闭包则不一样，他需要等闭包被销毁后，其活动对象才会被销毁。</p>
+<h2 id="闭包缺点"><a href="#闭包缺点" class="headerlink" title="闭包缺点"></a>闭包缺点</h2><p>由于闭包会携带包含它的函数的作用域，因此会比其他函数更占用内存。</p>
+<h2 id="闭包副作用案例分析"><a href="#闭包副作用案例分析" class="headerlink" title="闭包副作用案例分析"></a>闭包副作用案例分析</h2><pre><code>function cFunc(){
+    var arr = new Array();
+    for (var i =0 ; i&lt;10 ;i++)
+    {
+        arr[i] = function()
+        {
+            return i;
+        }
+    }
+    return arr;
+}
+</code></pre><p>该函数本意是让每个数组元素返回自己的索引值。但是实际上背个数组元素的值都是10.<br>原因就是因为每个闭包引用的变量i是同一个变量对象。for执行完后,i的值为10，所以同步到每一个引用，i都是10，因此每个元素的值都是10.</p>
+<p>让函数符合预期的改进方法</p>
+<pre><code>function cFunc(){
+    var arr = new Array();
+    for (var i =0 ; i&lt;10 ;i++)
+    {
+        arr[i] = function(num)
+        {
+           //return num; 直接返回参数的方式
+           return function(){
+            return num;
+            }//用闭包的方式
+        }(i);//立即执行匿名函数的写法
+    }
+    return arr;
+}
+</code></pre><blockquote>
+<p>闭包可以访问外部函数中的变量，但是只能取得外部函数变量的最终值。</p>
+<h2 id="匿名函数与闭包"><a href="#匿名函数与闭包" class="headerlink" title="匿名函数与闭包"></a>匿名函数与闭包</h2><p>上一节提到了匿名函数，书上说有很多开发人员总是搞不清匿名函数与闭包的区别。这就尴尬了，在我看来，他们俩最大的共同点：<code>他们都是函数</code>。然后没了。</p>
 </blockquote>
-<p>常用的relative和absolute经常配合在一起使用。</p>
-<p>譬如要像使子元素相对于父元素进行定位。通常的手段就是设置父元素为relative，子元素为absolute。假设不设置父元素为relative的话，子元素就会一直向上寻找一个非static状态的元素。直到遇到body元素。</p>
-<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">哈哈，多么悲惨的故事，子元素也真是够执着。</center>
+<h3 id="匿名函数定义"><a href="#匿名函数定义" class="headerlink" title="匿名函数定义"></a>匿名函数定义</h3><p>function关键字后没有标识符的函数，就是匿名函数（拉姆达函数）。简而言之就是没有函数名。</p>
+<h3 id="匿名函数与闭包的联系"><a href="#匿名函数与闭包的联系" class="headerlink" title="匿名函数与闭包的联系"></a>匿名函数与闭包的联系</h3><p>我们经常用匿名函数去创建闭包。</p>
+<h3 id="匿名函数的this对象"><a href="#匿名函数的this对象" class="headerlink" title="匿名函数的this对象"></a>匿名函数的this对象</h3><p>匿名函数的执行对象具有全局性，因此this指向window。</p>
+<h2 id="内存泄露问题"><a href="#内存泄露问题" class="headerlink" title="内存泄露问题"></a>内存泄露问题</h2><p>IE9之前版本对JS与DOM对象使用不同的垃圾收集方法，因此闭包会产生一些问题。</p>
+<pre><code>function test(){
+    var a = document.getElementById(&apos;lala&apos;);
+    a.onclick = function(){
+        alert(a.id);
+        //此处形成了循环引用。a对象的click属性引用了function这个函数，而这个函数又引用了a对象的id属性
+    }
+}
+test（）；
+</code></pre><p>a的引用次数不止一次，因此a会永远占据内存，不会被回收。<br>解决方案</p>
+<pre><code>function test(){
+    var a = document.getElementById(&apos;lala&apos;);
+    var id = a.id;
+    a.onclick = function(){
+        alert(id);
+    }
+}
+test（）；
+</code></pre><p>此时，消除了循环引用，但是a依旧无法被回收。因为闭包的存在，变量a依旧是闭包可引用的活动对象。即使不引用a，a也不能释放内存，此外DOM对象也保存一个引用，因此设置a为null，可以清除DOM对象所占的内存。闭包执行完后，活动对象被销毁，此时a也就释放了内存。（这段话如果有问题的话，请评论）</p>
+<h2 id="为什么JS中会有闭包的存在呢？"><a href="#为什么JS中会有闭包的存在呢？" class="headerlink" title="为什么JS中会有闭包的存在呢？"></a>为什么JS中会有闭包的存在呢？</h2><p>我认为是为了解决全局变量滥用的问题。全局变量正如其名，存在的意义应该是很多函数都会用到的，但是为了满足一个函数某种特殊的需求（譬如想要在某个函数中多次利用已经计算的变量）去声明全局变量实在是大材小用。此外，全局变量所占的内存只有在退出浏览器后才得以释放，这样就会发生内存泄漏。<br>闭包应运而生，既满足了需求，将这个变量保存在外部函数内，可以利用已经计算的变量，此外，等闭包执行完后，该变量内存就会释放。一举两得。</p>
+<blockquote>
+<p>当一个函数中的变量或者函数能够访问另外一个函数作用域中的变量或者函数时，就产生了闭包。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">到此，你的博客建完了，文章也会写了。那请你别辜负了当初建站的热情，把心思放在创作优质内容上。加油！</center>
 
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-14</span></center>
+</blockquote>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>
       
     </div>
 
@@ -411,30 +482,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/前端/" rel="tag">#前端</a>
-          
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/14/利用CSS制作三角形、箭头图标/" rel="next" title="利用CSS制作三角形、箭头图标">
-                <i class="fa fa-chevron-left"></i> 利用CSS制作三角形、箭头图标
+              <a href="/2016/11/17/JS中实现继承的方法/" rel="next" title="JS中实现继承的方法">
+                <i class="fa fa-chevron-left"></i> JS中实现继承的方法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/15/Z-index与Stacking Context的那些坑/" rel="prev" title="Z-index与Stacking Context的那些坑">
-                Z-index与Stacking Context的那些坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -463,8 +522,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/14/Relative与Absolute的爱恨纠葛/"
-           data-title="Relative与Absolute的爱恨纠葛" data-url="http://gelory.me/2016/10/14/Relative与Absolute的爱恨纠葛/">
+      <div class="ds-thread" data-thread-key="2016/11/18/JS闭包/"
+           data-title="JS闭包" data-url="http://gelory.me/2016/11/18/JS闭包/">
       </div>
     
   </div>
@@ -562,7 +621,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#小样有话说："><span class="nav-number">1.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包的定义"><span class="nav-number">1.</span> <span class="nav-text">闭包的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域以及作用域链的回顾"><span class="nav-number">2.</span> <span class="nav-text">作用域以及作用域链的回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量对象与活动对象的区别与联系"><span class="nav-number">3.</span> <span class="nav-text">变量对象与活动对象的区别与联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包案例解析"><span class="nav-number">4.</span> <span class="nav-text">闭包案例解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包优点"><span class="nav-number">5.</span> <span class="nav-text">闭包优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包缺点"><span class="nav-number">6.</span> <span class="nav-text">闭包缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包副作用案例分析"><span class="nav-number">7.</span> <span class="nav-text">闭包副作用案例分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名函数与闭包"><span class="nav-number">8.</span> <span class="nav-text">匿名函数与闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数定义"><span class="nav-number">8.1.</span> <span class="nav-text">匿名函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数与闭包的联系"><span class="nav-number">8.2.</span> <span class="nav-text">匿名函数与闭包的联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名函数的this对象"><span class="nav-number">8.3.</span> <span class="nav-text">匿名函数的this对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存泄露问题"><span class="nav-number">9.</span> <span class="nav-text">内存泄露问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么JS中会有闭包的存在呢？"><span class="nav-number">10.</span> <span class="nav-text">为什么JS中会有闭包的存在呢？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小样有话说："><span class="nav-number">10.1.</span> <span class="nav-text">小样有话说：</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
