@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-18T10:21:42.813Z</updated>
+  <updated>2016-11-18T12:26:53.725Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://gelory.me/2016/11/18/JS%E9%97%AD%E5%8C%85/"/>
     <id>http://gelory.me/2016/11/18/JS闭包/</id>
     <published>2016-11-18T10:15:29.000Z</published>
-    <updated>2016-11-18T10:21:42.813Z</updated>
+    <updated>2016-11-18T12:26:53.725Z</updated>
     
     <content type="html"><![CDATA[<p>介绍闭包相关知识。<br><a id="more"></a></p>
 <h2 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h2><p><strong>闭包是</strong>指有权访问另一个函数作用域中的变量的<strong>函数</strong>。我们常常通过在一个函数内部创建另外一个函数来形成闭包。</p>
@@ -80,8 +80,8 @@ sonfunc();//调用函数
 }
 </code></pre><blockquote>
 <p>闭包可以访问外部函数中的变量，但是只能取得外部函数变量的最终值。</p>
-<h2 id="匿名函数与闭包"><a href="#匿名函数与闭包" class="headerlink" title="匿名函数与闭包"></a>匿名函数与闭包</h2><p>上一节提到了匿名函数，书上说有很多开发人员总是搞不清匿名函数与闭包的区别。这就尴尬了，在我看来，他们俩最大的共同点：<code>他们都是函数</code>。然后没了。</p>
 </blockquote>
+<h2 id="匿名函数与闭包"><a href="#匿名函数与闭包" class="headerlink" title="匿名函数与闭包"></a>匿名函数与闭包</h2><p>上一节提到了匿名函数，书上说有很多开发人员总是搞不清匿名函数与闭包的区别。这就尴尬了，在我看来，他们俩最大的共同点：<code>他们都是函数</code>。然后没了。</p>
 <h3 id="匿名函数定义"><a href="#匿名函数定义" class="headerlink" title="匿名函数定义"></a>匿名函数定义</h3><p>function关键字后没有标识符的函数，就是匿名函数（拉姆达函数）。简而言之就是没有函数名。</p>
 <h3 id="匿名函数与闭包的联系"><a href="#匿名函数与闭包的联系" class="headerlink" title="匿名函数与闭包的联系"></a>匿名函数与闭包的联系</h3><p>我们经常用匿名函数去创建闭包。</p>
 <h3 id="匿名函数的this对象"><a href="#匿名函数的this对象" class="headerlink" title="匿名函数的this对象"></a>匿名函数的this对象</h3><p>匿名函数的执行对象具有全局性，因此this指向window。</p>
@@ -107,7 +107,7 @@ test（）；
 <h2 id="为什么JS中会有闭包的存在呢？"><a href="#为什么JS中会有闭包的存在呢？" class="headerlink" title="为什么JS中会有闭包的存在呢？"></a>为什么JS中会有闭包的存在呢？</h2><p>我认为是为了解决全局变量滥用的问题。全局变量正如其名，存在的意义应该是很多函数都会用到的，但是为了满足一个函数某种特殊的需求（譬如想要在某个函数中多次利用已经计算的变量）去声明全局变量实在是大材小用。此外，全局变量所占的内存只有在退出浏览器后才得以释放，这样就会发生内存泄漏。<br>闭包应运而生，既满足了需求，将这个变量保存在外部函数内，可以利用已经计算的变量，此外，等闭包执行完后，该变量内存就会释放。一举两得。</p>
 <blockquote>
 <p>当一个函数中的变量或者函数能够访问另外一个函数作用域中的变量或者函数时，就产生了闭包。</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2></blockquote>
+</blockquote>
 <center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-18</span></center>]]></content>
     
     <summary type="html">
