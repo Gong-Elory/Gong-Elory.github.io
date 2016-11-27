@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-18T12:26:53.725Z</updated>
+  <updated>2016-11-27T11:38:52.163Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,107 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>事件对象中易混淆的定义与运用</title>
+    <link href="http://gelory.me/2016/11/27/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%BF%90%E7%94%A8/"/>
+    <id>http://gelory.me/2016/11/27/事件对象中易混淆的定义与运用/</id>
+    <published>2016-11-27T11:32:26.000Z</published>
+    <updated>2016-11-27T11:38:52.163Z</updated>
+    
+    <content type="html"><![CDATA[<p>在学习js，jQuery的过程中遇到了几种标书对象的写法，他们看似作用相同，但其实还是有那么一些差异的。<br><a id="more"></a><br>在学习js，jQuery的过程中遇到了几种标书对象的写法，他们看似作用相同，但其实还是有那么一些差异的。</p>
+<p>在指定时间处理程序的时候，我们常常会遇见这种形式</p>
+<pre><code>&lt;div id=&quot;father&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;Click me&quot; id=&quot;myBtn&quot;/&gt;
+&lt;/div&gt;
+
+var btn = document.getElementById(&quot;myBtn&quot;);
+btn.onclick = function(event){
+//注意下面这条语句中的event.target
+    alert(event.target.id);
+}
+</code></pre><p>或者是这种：</p>
+<pre><code>var btn = document.getElementById(&quot;myBtn&quot;);
+btn.onclick = function(event){
+//注意下面这条语句中的this
+    alert(this.id);
+}
+</code></pre><p>又或者是在jquery中看见这种:</p>
+<pre><code>$(&quot;#myBtn&quot;).click(function(){
+//注意下面这条语句中的$(this)
+    alert($(this).id);
+});
+</code></pre><p>无论用上面的哪种方式去点击，最后弹出的对话框中出现的都是—–“myBtn”<br>是不是因此可以下定论，他们就是指的同一样东西呢？<br>不一定</p>
+<p>使用event.target首先得明白什么是事件对象</p>
+<h2 id="事件对象定义"><a href="#事件对象定义" class="headerlink" title="事件对象定义"></a>事件对象定义</h2><p>在触发DOM上的某个事件后，会产生一个事件对象event（名字可以随便取），无论是采用什么事件处理方式都会向处理程序传入该对象。这个对象包含着所有与事件有关的信息。譬如导致事件的元素，事件类型等。</p>
+<h3 id="事件处理程序种类"><a href="#事件处理程序种类" class="headerlink" title="事件处理程序种类"></a>事件处理程序种类</h3><p>HTML事件处理程序：</p>
+<pre><code>&lt;input type=&quot;button&quot; value=&quot;Click me&quot; id=&quot;myBtn&quot; onclick=&quot;alert(event.type)&quot;/&gt;
+</code></pre><p>DOM0级事件处理程序：</p>
+<pre><code>btn.onclick = function(){
+//do something
+}
+</code></pre><p>DOM2级事件处理程序:</p>
+<pre><code>btn.addEventListener（&quot;click&quot;,function(){
+//do something
+});
+</code></pre><p>IE事件处理程序:</p>
+<pre><code>btn.attachEvent(&quot;onclick&quot;,function(){
+    //do something
+});
+</code></pre><h2 id="event-target-this-this-的区别与联系"><a href="#event-target-this-this-的区别与联系" class="headerlink" title="event.target,this,$(this)的区别与联系"></a>event.target,this,$(this)的区别与联系</h2><h3 id="event-target"><a href="#event-target" class="headerlink" title="event.target"></a>event.target</h3><p>前面说到事件对象会包含所有关于事件有关的信息。而target正是其中的一项。target属性表示事件的目标元素。所以，上例中event.target指的就是input元素。常见的还有type，代表事件类型。上例中的event.type为click。还有一个与target类似的属性currentTarget。指的是其事件处理程序当前正在处理事件的那个元素。</p>
+<h3 id="target与currentTarget"><a href="#target与currentTarget" class="headerlink" title="target与currentTarget"></a>target与currentTarget</h3><p>有人会感到疑惑，这两个不就是一样东西吗？为什么要用两个属性表示。常言道：存在即合理。其实这两个并不是指同一样东西。</p>
+<blockquote>
+<p>target：事件的实际目标。<br>currentTarget：正在处理事件的元素，我们可以说谁绑定了事件，这个属性就指向谁。</p>
+</blockquote>
+<p>重新搬回这个例子：</p>
+<pre><code>&lt;div id=&quot;father&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;Click me&quot; id=&quot;myBtn&quot;/&gt;
+&lt;/div&gt;   
+</code></pre><p>我们设置这样的处理程序</p>
+<pre><code>var fath = document.getElementById(&quot;father&quot;);
+fath.onclick = function(event){
+//alert(event.currentTarget.id); 显示为 father。div元素的id
+alert(event.Target.id); //显示为 myBtn。input元素的id
+}
+</code></pre><p>这回我们把单击事件处理程序绑定在input的父元素div元素上。此时单击按钮，由于事件冒泡的原因（关于事件冒泡，这篇文章有介绍：），会触发父元素的事件处理程序。可以明显的看到target和currentTarget指向的元素不是同一个。</p>
+<p>前者指向事件实际目标，这里是input实际出发的click事件，所以target指向他。而后者是处理事件的元素。因为事件处理程序绑定在div元素上，所以currentTarget指向div元素。实际上，还有一种表示法也是始终和currentTarget的值相等的，也就是—this。this很熟悉，我们对他的认识是他指的是调用当前函数的对象。用在这里也合乎情理。</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>上节说道，currentTarget的值和this始终相等，指的是正在处理事件的元素，也就是我们绑定事件处理程序的那个元素。<br>因此 event.target与this的值不总是相等的。除非把事件处理程序绑定在实际触发事件的元素上。如上例：</p>
+<pre><code>var btn = document.getElementById(&quot;myBtn&quot;);
+btn.onclick = function(event){
+//注意下面这条语句中的event.target
+    alert(event.target.id);
+}
+</code></pre><p>input元素是实际出发click事件的元素，儿我们也将处理程序绑定在input元素上。因此，此时event.target与this相等。</p>
+<h3 id="this-与this的区别"><a href="#this-与this的区别" class="headerlink" title="$(this)与this的区别"></a>$(this)与this的区别</h3><p>$(this)指的是jquery对象，而this指代的是DOM对象。就这么简单。需要注意的是，因为对象不同，他们拥有的属性不同，尽管他们都是指向某一元素。</p>
+<blockquote>
+<p>世界上总有一些特立独行的人，也有这样特例独行的浏览器，他就是IE。</p>
+</blockquote>
+<h2 id="IE中的事件对象"><a href="#IE中的事件对象" class="headerlink" title="IE中的事件对象"></a>IE中的事件对象</h2><p>要访问IE中的事件对象，取决于指定事件处理程序的方法。<br>使用DOM0级方法，此时event对象是作为window对象的属性存在的，因此访问event就这样做。</p>
+<pre><code>btn.onclick = function(){
+    var event = window.event;
+    alert(event.target.id);
+}
+</code></pre><p>当然啦，IE也有它自己的事件处理程序：</p>
+<pre><code>var btn = document.getElementById(&quot;myBtn&quot;);
+btn.attachEvent(&quot;onclick&quot;,function(event){
+    //do something
+});
+</code></pre><p>该方法与DOM0级的方法的区别在于事件处理程序的作用域。前者会在全局作用域下运行，后者在所属元素的作用域下运行。因此，前者的this指向的是window对象。</p>
+<h3 id="IE中替代target的属性"><a href="#IE中替代target的属性" class="headerlink" title="IE中替代target的属性"></a>IE中替代target的属性</h3><p>前面说到，在IE中event是作为window的属性存在的，那么要像访问事件的目标。可以通过srcElement这个属性访问。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-27</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在学习js，jQuery的过程中遇到了几种标书对象的写法，他们看似作用相同，但其实还是有那么一些差异的。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>JS闭包</title>
@@ -126,7 +227,7 @@ test（）；
     <link href="http://gelory.me/2016/11/17/JS%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95/"/>
     <id>http://gelory.me/2016/11/17/JS中实现继承的方法/</id>
     <published>2016-11-17T08:16:49.000Z</published>
-    <updated>2016-11-18T10:10:03.267Z</updated>
+    <updated>2016-11-19T01:21:16.657Z</updated>
     
     <content type="html"><![CDATA[<p>总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。<br><a id="more"></a></p>
 <h2 id="方法一：原型链法"><a href="#方法一：原型链法" class="headerlink" title="方法一：原型链法"></a>方法一：原型链法</h2><p>利用原型让一个引用类型继承另外一个引用类型的属性和方法。<br>基本模式：</p>
@@ -159,11 +260,13 @@ test.tree = true;//访问父类属性
 test.getTreeValue = true;//访问父类方法
 </code></pre><blockquote>
 <p>本质就是把父类的实例赋值给子类的原型，其实就是相当于子类原型指向了父类原型。参考实例指向原型。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>包含引用类型值的属性会被共享，如果子类的多个实例访问父类原型中某引用类型值属性的话，只要该属性值被改变，所有子类实例访问到的该属性都会同步变化。<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3></li>
+</blockquote>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
+<ul>
+<li>包含引用类型值的属性会被共享，如果子类的多个实例访问父类原型中某引用类型值属性的话，只要该属性值被改变，所有子类实例访问到的该属性都会同步变化。</li>
 </ul>
 </blockquote>
-<pre><code>function Imtree()
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>function Imtree()
 {
     this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
 }
@@ -1418,59 +1521,6 @@ overflow:auto;
     <summary type="html">
     
       &lt;p&gt;最近学习HTML5+CSS3时，看到一个现象,在使用&lt;code&gt;::selection&lt;/code&gt;伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>属性，样式，标签，元素的区别与联系</title>
-    <link href="http://gelory.me/2016/10/19/%E5%B1%9E%E6%80%A7%EF%BC%8C%E6%A0%B7%E5%BC%8F%EF%BC%8C%E6%A0%87%E7%AD%BE%EF%BC%8C%E5%85%83%E7%B4%A0%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/"/>
-    <id>http://gelory.me/2016/10/19/属性，样式，标签，元素的区别与联系/</id>
-    <published>2016-10-19T01:43:59.000Z</published>
-    <updated>2016-10-20T07:05:49.972Z</updated>
-    
-    <content type="html"><![CDATA[<p>今天在网易云课堂看某HTML5+CSS3教程，我突然想到一个问题，我们张口闭口所说的标签，元素具体代表的是什么?感觉一直都是模糊的。这篇文章具体的讲述这几个名词的区别与联系。</p>
-<a id="more"></a>
-<h2 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h2><blockquote>
-<p><strong>对内容进行标记的符号</strong></p>
-</blockquote>
-<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p&gt;&lt;/p&gt;  &lt;!-- 这就是一个标签 --&gt;
-&lt;div&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;  &lt;!-- 这有两个标签 --&gt;
-&lt;br /&gt; &lt;!-- 这也是一个标签 --&gt;
-</code></pre><h2 id="元素"><a href="#元素" class="headerlink" title="元素"></a>元素</h2><blockquote>
-<p><strong>元素以开始标签起，结束标签终，包含标签及其中的内容。</strong> </p>
-</blockquote>
-<h3 id="举个例子-1"><a href="#举个例子-1" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p&gt;我很帅&lt;/p&gt;  &lt;!-- 这就是一个元素 --&gt;
-&lt;div&gt;&lt;p&gt;我很帅&lt;/p&gt;&lt;div&gt;  &lt;!-- 这有两个元素 --&gt;
-&lt;br /&gt; &lt;!-- 这是一个空元素 --&gt;
-</code></pre><h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><blockquote>
-<p><strong>属性为元素提供更多的信息,总是以 name=“value” 出现</strong></p>
-</blockquote>
-<h3 id="举个例子-2"><a href="#举个例子-2" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p class=&quot;handsome&quot;&gt;帅哥&lt;/p&gt; &lt;!-- class=&quot;handsome&quot;就是一个属性 --&gt;
-</code></pre><h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><blockquote>
-<p><strong> 存在于style属性内，用于改变元素内容的键值对，总是以 key：value 出现</strong></p>
-</blockquote>
-<h3 id="举个例子-3"><a href="#举个例子-3" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>&lt;p style={font-size:12px;}&gt;帅哥&lt;/p&gt;  &lt;!-- font-size:12px 就是一个样式 --&gt;
-</code></pre><h3 id="属性和样式的区别与联系"><a href="#属性和样式的区别与联系" class="headerlink" title="属性和样式的区别与联系"></a>属性和样式的区别与联系</h3><p>样式大多表现在对元素内容外观的改变，譬如字体颜色是否居中，而属性大多表现在为元素定义其他的特点，譬如定义一个class，定义一个id，设置value值等。</p>
-<blockquote>
-<p>那有人要问了：align bgcolor color这些都是属性，为什么他们也可以定义颜色，居中？</p>
-<p>没错，这些都是属性，此外，能改变元素内容外观的还有部分标签，譬如<center> <u>。但是这些东西在HTML4种已经被废弃了，他们被建议用样式代替，可以看出，样式正在慢慢统一这些规则。</u></center></p>
-</blockquote>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/xyone.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今天在网易云课堂看某HTML5+CSS3教程，我突然想到一个问题，我们张口闭口所说的标签，元素具体代表的是什么?感觉一直都是模糊的。这篇文章具体的讲述这几个名词的区别与联系。&lt;/p&gt;
     
     </summary>
     

@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>http://gelory.me/2016/11/27/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%BF%90%E7%94%A8/</loc>
+    <lastmod>2016-11-27T11:38:52.163Z</lastmod>
+    <data>
+        <display>
+        <title>事件对象中易混淆的定义与运用</title>
+        <pubTime>2016-11-27T11:32:26.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gelory.me/2016/11/17/JS%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2016-11-19T01:21:16.657Z</lastmod>
+    <data>
+        <display>
+        <title>JS中实现继承的方法</title>
+        <pubTime>2016-11-17T08:16:49.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gelory.me/2016/11/18/JS%E9%97%AD%E5%8C%85/</loc>
     <lastmod>2016-11-18T12:26:53.725Z</lastmod>
     <data>
@@ -28,26 +68,6 @@
         <display>
         <title>JS对象创建方法</title>
         <pubTime>2016-11-11T07:31:28.000Z</pubTime>
-        
-        <tag>JS</tag>
-         
-         
-           
-             
-              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://gelory.me/2016/11/17/JS%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2016-11-18T10:10:03.267Z</lastmod>
-    <data>
-        <display>
-        <title>JS中实现继承的方法</title>
-        <pubTime>2016-11-17T08:16:49.000Z</pubTime>
         
         <tag>JS</tag>
          

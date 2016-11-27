@@ -361,7 +361,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -746,7 +746,29 @@ $(function() {
 <script type="text/javascript" src="/js/src/particle.js"></script>
 </body>
 </html>
-           var item = results[i];
+cript>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
             var url = item.get('url');
             var time = item.get('time');
             var element = document.getElementById(url);

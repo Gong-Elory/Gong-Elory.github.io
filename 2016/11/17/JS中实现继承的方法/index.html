@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://gelory.me/2016/11/17/JS中实现继承的方法/index.html">
 <meta property="og:site_name" content="龚小样儿">
 <meta property="og:description" content="总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。">
-<meta property="og:updated_time" content="2016-11-18T10:10:03.267Z">
+<meta property="og:updated_time" content="2016-11-19T01:21:16.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS中实现继承的方法">
 <meta name="twitter:description" content="总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。">
@@ -384,11 +384,13 @@ test.tree = true;//访问父类属性
 test.getTreeValue = true;//访问父类方法
 </code></pre><blockquote>
 <p>本质就是把父类的实例赋值给子类的原型，其实就是相当于子类原型指向了父类原型。参考实例指向原型。</p>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>包含引用类型值的属性会被共享，如果子类的多个实例访问父类原型中某引用类型值属性的话，只要该属性值被改变，所有子类实例访问到的该属性都会同步变化。<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3></li>
+</blockquote>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
+<ul>
+<li>包含引用类型值的属性会被共享，如果子类的多个实例访问父类原型中某引用类型值属性的话，只要该属性值被改变，所有子类实例访问到的该属性都会同步变化。</li>
 </ul>
 </blockquote>
-<pre><code>function Imtree()
+<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>function Imtree()
 {
     this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
 }
@@ -655,7 +657,7 @@ Imleaf.prototype.sayAge = function(){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">28</span>
+              <span class="site-state-item-count">29</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
