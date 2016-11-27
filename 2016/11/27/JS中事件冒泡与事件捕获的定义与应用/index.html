@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IIS,Android,实用," />
+  <meta name="keywords" content="JS," />
 
 
 
@@ -86,35 +86,16 @@
 
 
 
-<meta name="description" content="什么是IIS服务器？引用互动百科的话:
-
-是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面
-
-那如何快速的搭建和使用呢？">
+<meta name="description" content="事件流描述了从页面中接收事件的顺序。事件冒泡与事件捕获是两种完全不同的事件流顺序概念。分别出自IE与Netscape。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IIS服务器的搭建与初级应用">
-<meta property="og:url" content="http://gelory.me/2016/10/10/IIS服务器的搭建与初级应用/index.html">
+<meta property="og:title" content="JS中事件冒泡与事件捕获的定义与应用">
+<meta property="og:url" content="http://gelory.me/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="什么是IIS服务器？引用互动百科的话:
-
-是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面
-
-那如何快速的搭建和使用呢？">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/3.0.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/3.1.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/3.2.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/3.3.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/3.4.jpg">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/3.5.jpg">
-<meta property="og:updated_time" content="2016-10-10T08:33:41.636Z">
+<meta property="og:description" content="事件流描述了从页面中接收事件的顺序。事件冒泡与事件捕获是两种完全不同的事件流顺序概念。分别出自IE与Netscape。">
+<meta property="og:updated_time" content="2016-11-27T14:04:33.621Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IIS服务器的搭建与初级应用">
-<meta name="twitter:description" content="什么是IIS服务器？引用互动百科的话:
-
-是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面
-
-那如何快速的搭建和使用呢？">
-<meta name="twitter:image" content="http://oeqc7pnps.bkt.clouddn.com/3.0.jpg">
+<meta name="twitter:title" content="JS中事件冒泡与事件捕获的定义与应用">
+<meta name="twitter:description" content="事件流描述了从页面中接收事件的顺序。事件冒泡与事件捕获是两种完全不同的事件流顺序概念。分别出自IE与Netscape。">
 
 
 
@@ -135,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/10/10/IIS服务器的搭建与初级应用/"/>
+  <link rel="canonical" href="http://gelory.me/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/"/>
 
 
-  <title> IIS服务器的搭建与初级应用 | 龚小样儿 </title>
+  <title> JS中事件冒泡与事件捕获的定义与应用 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +278,7 @@
             
             
               
-                IIS服务器的搭建与初级应用
+                JS中事件冒泡与事件捕获的定义与应用
               
             
           </h1>
@@ -309,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-10T15:14:51+08:00" content="2016-10-10">
-              2016-10-10
+            <time itemprop="dateCreated" datetime="2016-11-27T22:02:19+08:00" content="2016-11-27">
+              2016-11-27
             </time>
           </span>
 
@@ -323,8 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -339,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/10/IIS服务器的搭建与初级应用/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/10/IIS服务器的搭建与初级应用/" itemprop="commentsCount"></span>
+                <a href="/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/27/JS中事件冒泡与事件捕获的定义与应用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -350,7 +331,7 @@
 
           
           
-             <span id="/2016/10/10/IIS服务器的搭建与初级应用/" class="leancloud_visitors" data-flag-title="IIS服务器的搭建与初级应用">
+             <span id="/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/" class="leancloud_visitors" data-flag-title="JS中事件冒泡与事件捕获的定义与应用">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,27 +353,92 @@
       
 
       
-        <p><img src="http://oeqc7pnps.bkt.clouddn.com/3.0.jpg" alt="IIS"><br>什么是IIS服务器？引用<a href="http://www.baike.com/wiki/iis%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="external">互动百科的话</a>:</p>
+        <p>事件流描述了从页面中接收事件的顺序。事件冒泡与事件捕获是两种完全不同的事件流顺序概念。分别出自IE与Netscape。<br><a id="more"></a></p>
+<p>##事件冒泡<br>该事件流描述了事件开始时是有目标元素接收，然后逐级向上传播到不具体的节点（Document元素）。这是书中给的定义，晦涩难懂，我们用更形象的比喻来表述（虽然图片更直观，请容笔者偷个懒。）</p>
+<p>比喻（讲个故事）：<br>天气冷了，在老家都会烤火炉。我们把事件比作烧柴火生的烟。点燃柴<code>[事件触发]</code>之后呢，烟先经过炉子<code>[当前元素]</code>冒到房子<code>[父元素]</code>里，把你熏成腊肉。然后又从房子里冒到大气中<code>[祖先元素...一直冒到Document对象结束]</code>，污染了空气。（有点可怕，哈哈！）</p>
+<p>总结的说就是</p>
 <blockquote>
-<p>是一种Web（网页）服务组件，其中包括Web服务器、FTP服务器、NNTP服务器和SMTP服务器，分别用于网页浏览、文件传输、新闻服务和邮件发送等方面</p>
+<p>从触发事件的元素[目标元素]开始逐级向父元素-&gt;爷爷元素-&gt;太爷爷元素-&gt;猿人元素[Document对象]传播，然后终止。这就是冒泡过程.</p>
 </blockquote>
-<p>那如何快速的搭建和使用呢？<br><a id="more"></a><br>笔者将分三部分来讲。</p>
+<h2 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h2><p>该事件流描述了，当事件触发时，不具体的节点应该先收到事件，而最具体的事件最后接受事件。其用意在于事件到达预定目标时捕获它。</p>
+<p>比喻（讲个故事）：<br>外面正在下着暴雨，我没有水喝。房子是破的。雨水先穿过云层，然后穿透我的破房子滴到了我的杯子里。哈哈，有水喝了。这里把水比作事件。云层相当于[Document对象……祖先元素],破房子[父元素],杯子[目标元素]。这是雨最后的归宿。</p>
+<p>总结的说就是</p>
+<blockquote>
+<p>从猿人元素[Document对象]……-&gt;太爷爷元素-&gt;爷爷元素-&gt;父元素-&gt;目标元素传播，然后终止。这就是捕获过程.</p>
+</blockquote>
+<h2 id="DOM2级事件流规定"><a href="#DOM2级事件流规定" class="headerlink" title="DOM2级事件流规定"></a>DOM2级事件流规定</h2><p>为了考虑IE和Netscape的感受，DOM2级事件规定事件流包含三个阶段。事件捕获阶段-&gt;处于目标阶段-&gt;事件冒泡阶段。形成一个完美的<code>U</code>型。</p>
+<h2 id="如何将事件处理程序添加到不同的阶段呢？"><a href="#如何将事件处理程序添加到不同的阶段呢？" class="headerlink" title="如何将事件处理程序添加到不同的阶段呢？"></a>如何将事件处理程序添加到不同的阶段呢？</h2><p>DOM2级事件添加事件处理程序的方法为addEventListener（）。这个方法有三个参数，分别为：事件类型，事件处理函数，以及最最最最最关键的<code>布尔值阶段选择参数</code>（这是我取得名）。<br>举个栗子：</p>
+<pre><code>&lt;div id=&quot;father&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;Click me&quot; id=&quot;myBtn&quot;/&gt;
+&lt;/div&gt;
+var btn = document.getElementById(&quot;myBtn&quot;);
+btn.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;nothing&quot;);
+    },false);
+</code></pre><p>第三个参数，也就是我们的布尔值阶段选择参数。当其为true时，规定在<code>捕获阶段</code>调用事件处理程序。为false时，则在<code>冒泡阶段</code>调用事件处理程序.</p>
+<p>上面的例子，在按钮被按下之后，触发了click事件，事件从input元素开始向上传播，看当前的元素是否有相应的事件处理程序。由于input绑定了事件处理程序，于是执行。然后向上访问div元素，看是否有事件处理程序。发现没有，于是继续向上访问document元素，发现还是没有，于是冒泡结束。</p>
+<p>恩，没了。<br>没了？有人肯定要问：</p>
 <blockquote>
 <ul>
-<li>IIS的搭建</li>
-<li>IIS的打开方法</li>
-<li>IIS下创建虚拟目录</li>
+<li><p>问：你只说了DOM2级事件啊，DOM0呢，IE呢？不可能要求都用addEventListener方法吧?</p>
+</li>
+<li><p>答：我们都知道DOM0级绑定事件处理程序的方法是：<code>element.onclick = function（）{}；</code><br>没有设置阶段的参数，IE的是:<code>attachEvent(&quot;onclick&quot;,function(){});</code>也没有。首先说IE，冒泡事件流就是IE提出的概念啊，他怎么可以允许在他的浏览器中实现捕获阶段呢？这不是啪啪啪打脸吗？多以在IE中，绑定的事件都是在冒泡阶段执行的。而针对DOM0级等等，添加的事件在大部分情况下也是添加到事件流的冒泡阶段，因为这样可以最大限度的兼容各色浏览器。书上说：没什么特别需要，不建议在事件捕获阶段注册事件处理程序。</p>
+</li>
 </ul>
 </blockquote>
-<hr>
-<h2 id="IIS的搭建"><a href="#IIS的搭建" class="headerlink" title="IIS的搭建"></a>IIS的搭建</h2><p><strong>Step1：</strong>进入<code>控制面板</code>-&gt;<code>程序</code>-&gt;<code>打开和关闭windows功能</code><br><strong>Step2：</strong>勾选<code>Internet信息服务（internet Information Service）</code>以及其子目录下的大部分选项。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.1.jpg" alt="IIS1"><br><strong>Step3：</strong>进入<code>控制面</code>板-&gt;<code>系统和安全</code>-&gt;<code>Windows 防火墙</code>-&gt;<code>自定义设置</code>,选中<code>关闭Windows防火墙</code>.<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.2.jpg" alt="IIS1"><br><strong>Step4：</strong>在IE或其他浏览器中，打开<code>http://localhost</code>，出现如下界面，则说明搭建成功。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.3.jpg" alt="IIS1"></p>
-<hr>
-<h2 id="IIS的打开方法（Windows）"><a href="#IIS的打开方法（Windows）" class="headerlink" title="IIS的打开方法（Windows）"></a>IIS的打开方法（Windows）</h2><p><strong>Step1：</strong>在<code>开始</code>菜单上单击<code>运行</code>。<br><strong>Step2：</strong>在<code>打开</code>对话框中，键入<code>inetmgr</code>，然后单击<code>确定</code>。</p>
-<hr>
-<h2 id="IIS下创建虚拟目录"><a href="#IIS下创建虚拟目录" class="headerlink" title="IIS下创建虚拟目录"></a>IIS下创建虚拟目录</h2><p><strong>Step1：</strong>打开 IIS 管理器。<br><strong>Step2：</strong>在<code>连接</code>窗格中，展开树中的<code>站点</code>节点，然后单击要在其中创建虚拟目录的站点以将其选中。<br><strong>Step3：</strong>右键，选择<code>添加虚拟目录</code>。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.4.jpg" alt="IIS1"><br><strong>Step4：</strong>在<code>添加虚拟目录</code>对话框的<code>别名</code>框中键入一个名称。此别名用于通过 URL 访问内容。<br><strong>Step5：</strong> 在<code>物理路径</code>框中，键入内容文件夹的物理路径，或者单击<code>浏览</code>并通过在文件系统中导航来找到该文件夹。<br><img src="http://oeqc7pnps.bkt.clouddn.com/3.5.jpg" alt="IIS1"><br><strong>Step6：</strong>单击<code>确定</code>,虚拟目录就建好啦。</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">O(∩_∩)O哈哈~，这期没话说，多生孩子少种树</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-10</span></center>
+<h2 id="冒泡的运用"><a href="#冒泡的运用" class="headerlink" title="冒泡的运用"></a>冒泡的运用</h2><h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>事件委托利用了事件冒泡的原理，只指定了一个时间处理程序，就可以管理某一类型的所有事件。<br>举个栗子：</p>
+<pre><code>&lt;ul id=&quot;admin&quot;&gt;
+    &lt;li id=&quot;eat&quot;&gt;eat&lt;/li&gt;
+    &lt;li id=&quot;drink&quot;&gt;drink&lt;/li&gt;
+    &lt;li id=&quot;sleep&quot;&gt;sleep&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>我现在想给每一个li标签注册一个click事件。这样我点击他的时候，显示在干嘛？<br>按照常规的方法：</p>
+<pre><code>var eat = document.getElementById(&quot;eat&quot;);
+var drink = document.getElementById(&quot;drink&quot;);
+var sleep = document.getElementById(&quot;sleep&quot;);
+btn.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;eat&quot;);
+    },false);
+drink.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;drink&quot;);
+    },false); 
+sleep.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;sleep&quot;);
+    },false);
+</code></pre><p>我要抱怨了，虽然是复制粘贴，但是真的好麻烦啊。三个都这么麻烦，要是有100个呢？我得摔电脑了。<br>用事件委托法：</p>
+<pre><code>var admin = document.getElementById(&quot;admin&quot;);
+btn.addEventListener(&quot;click&quot;,function(event){
+    switch(event.target.id){
+        case &quot;eat&quot;:
+            alert(&quot;eat&quot;);
+            break;
+        case &quot;drink&quot;:
+            alert(&quot;drink&quot;);
+            break;
+        case &quot;sleep&quot;:
+            alert(&quot;sleep&quot;);
+            break;
+    }
+},false);
+</code></pre><p>我们可以看到，此时事件处理函数不是绑到li元素上面的，而是其父元素ul上。由于是冒泡阶段处理。当我们点击li时，先访问li有没有绑定事件处理函数，发现没有，于是向上访问ul，发现有，这时处理完上面的事件程序内的事情后，继续冒泡知道document终止。</p>
+<h3 id="事件委托优点"><a href="#事件委托优点" class="headerlink" title="事件委托优点"></a>事件委托优点</h3><blockquote>
+<ul>
+<li>代码消耗低，尤其是需要大批量绑定click事件时体现出来的优越性。</li>
+<li>事件处理程序数量会直接影响整个页面的整体运行性能。函数也是对象，对象需要占用内存，绑定的事件处理函数越多，占据的内存越大，这样可能会延迟整个页面的交互。</li>
+<li>动态添加元素时，不需要单独为他绑定事件处理程序。用上面的例子来说：添加一个li后，不需要单独为他绑定，只需在现有的程序中添加相应判断机制即可。同样，删除某元素时，不用担心空事件处理程序占用内存的问题。</li>
+</ul>
+</blockquote>
+<h2 id="如何阻止冒泡"><a href="#如何阻止冒泡" class="headerlink" title="如何阻止冒泡"></a>如何阻止冒泡</h2><p>任何事物都有两面性，有些时候我们并不希望冒泡。那该如何办？<br>上一篇博文<a href="http://gelory.me/2016/11/27/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%BF%90%E7%94%A8/">事件对象中易混淆的定义与运用</a>中讲到事件对象event。该对象中有一个方法可以阻止冒泡。它是stopPropagation（）。当然，哪里都少不了IE这个特殊分子。他的event对象中有这样一个属性代替上面的方法起到相同的作用。它是cancelBubble。默认false，表示允许事件冒泡。</p>
+<p>当然为了兼容所有大部分的浏览器，建议这样重写阻止冒泡方法：</p>
+<pre><code>function（event）{
+    if(event.stopPropagation())
+    {
+        event.stopPropagation();
+    }else{
+        event.cancelBubble = true;
+    }
+}
+</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-27</span></center>
       
     </div>
 
@@ -435,11 +481,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/IIS/" rel="tag">#IIS</a>
-          
-            <a href="/tags/Android/" rel="tag">#Android</a>
-          
-            <a href="/tags/实用/" rel="tag">#实用</a>
+            <a href="/tags/JS/" rel="tag">#JS</a>
           
         </div>
       
@@ -448,17 +490,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/09/高度不定的子元素在高度不定的父元素中垂直居中问题/" rel="next" title="高度不定的子元素在高度不定的父元素中垂直居中">
-                <i class="fa fa-chevron-left"></i> 高度不定的子元素在高度不定的父元素中垂直居中
+              <a href="/2016/11/27/事件对象中易混淆的定义与运用/" rel="next" title="事件对象中易混淆的定义与运用">
+                <i class="fa fa-chevron-left"></i> 事件对象中易混淆的定义与运用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/10/世界永远不会温柔待我中华/" rel="prev" title="世界永远不会温柔待我中华">
-                世界永远不会温柔待我中华 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -487,8 +525,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/10/IIS服务器的搭建与初级应用/"
-           data-title="IIS服务器的搭建与初级应用" data-url="http://gelory.me/2016/10/10/IIS服务器的搭建与初级应用/">
+      <div class="ds-thread" data-thread-key="2016/11/27/JS中事件冒泡与事件捕获的定义与应用/"
+           data-title="JS中事件冒泡与事件捕获的定义与应用" data-url="http://gelory.me/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/">
       </div>
     
   </div>
@@ -586,7 +624,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS的搭建"><span class="nav-number">1.</span> <span class="nav-text">IIS的搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS的打开方法（Windows）"><span class="nav-number">2.</span> <span class="nav-text">IIS的打开方法（Windows）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS下创建虚拟目录"><span class="nav-number">3.</span> <span class="nav-text">IIS下创建虚拟目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">4.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件捕获"><span class="nav-number">1.</span> <span class="nav-text">事件捕获</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM2级事件流规定"><span class="nav-number">2.</span> <span class="nav-text">DOM2级事件流规定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何将事件处理程序添加到不同的阶段呢？"><span class="nav-number">3.</span> <span class="nav-text">如何将事件处理程序添加到不同的阶段呢？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#冒泡的运用"><span class="nav-number">4.</span> <span class="nav-text">冒泡的运用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件委托"><span class="nav-number">4.1.</span> <span class="nav-text">事件委托</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件委托优点"><span class="nav-number">4.2.</span> <span class="nav-text">事件委托优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何阻止冒泡"><span class="nav-number">5.</span> <span class="nav-text">如何阻止冒泡</span></a></li></ol></div>
             
           </div>
         </section>

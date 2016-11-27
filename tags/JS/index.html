@@ -361,7 +361,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">29</span>
+              <span class="site-state-item-count">30</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -746,7 +746,39 @@ $(function() {
 <script type="text/javascript" src="/js/src/particle.js"></script>
 </body>
 </html>
-cript>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
   <script>
     function showTime(Counter) {
       var query = new AV.Query(Counter);

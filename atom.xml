@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-27T11:38:52.163Z</updated>
+  <updated>2016-11-27T14:04:33.621Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,113 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JS中事件冒泡与事件捕获的定义与应用</title>
+    <link href="http://gelory.me/2016/11/27/JS%E4%B8%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%BA%94%E7%94%A8/"/>
+    <id>http://gelory.me/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/</id>
+    <published>2016-11-27T14:02:19.000Z</published>
+    <updated>2016-11-27T14:04:33.621Z</updated>
+    
+    <content type="html"><![CDATA[<p>事件流描述了从页面中接收事件的顺序。事件冒泡与事件捕获是两种完全不同的事件流顺序概念。分别出自IE与Netscape。<br><a id="more"></a></p>
+<p>##事件冒泡<br>该事件流描述了事件开始时是有目标元素接收，然后逐级向上传播到不具体的节点（Document元素）。这是书中给的定义，晦涩难懂，我们用更形象的比喻来表述（虽然图片更直观，请容笔者偷个懒。）</p>
+<p>比喻（讲个故事）：<br>天气冷了，在老家都会烤火炉。我们把事件比作烧柴火生的烟。点燃柴<code>[事件触发]</code>之后呢，烟先经过炉子<code>[当前元素]</code>冒到房子<code>[父元素]</code>里，把你熏成腊肉。然后又从房子里冒到大气中<code>[祖先元素...一直冒到Document对象结束]</code>，污染了空气。（有点可怕，哈哈！）</p>
+<p>总结的说就是</p>
+<blockquote>
+<p>从触发事件的元素[目标元素]开始逐级向父元素-&gt;爷爷元素-&gt;太爷爷元素-&gt;猿人元素[Document对象]传播，然后终止。这就是冒泡过程.</p>
+</blockquote>
+<h2 id="事件捕获"><a href="#事件捕获" class="headerlink" title="事件捕获"></a>事件捕获</h2><p>该事件流描述了，当事件触发时，不具体的节点应该先收到事件，而最具体的事件最后接受事件。其用意在于事件到达预定目标时捕获它。</p>
+<p>比喻（讲个故事）：<br>外面正在下着暴雨，我没有水喝。房子是破的。雨水先穿过云层，然后穿透我的破房子滴到了我的杯子里。哈哈，有水喝了。这里把水比作事件。云层相当于[Document对象……祖先元素],破房子[父元素],杯子[目标元素]。这是雨最后的归宿。</p>
+<p>总结的说就是</p>
+<blockquote>
+<p>从猿人元素[Document对象]……-&gt;太爷爷元素-&gt;爷爷元素-&gt;父元素-&gt;目标元素传播，然后终止。这就是捕获过程.</p>
+</blockquote>
+<h2 id="DOM2级事件流规定"><a href="#DOM2级事件流规定" class="headerlink" title="DOM2级事件流规定"></a>DOM2级事件流规定</h2><p>为了考虑IE和Netscape的感受，DOM2级事件规定事件流包含三个阶段。事件捕获阶段-&gt;处于目标阶段-&gt;事件冒泡阶段。形成一个完美的<code>U</code>型。</p>
+<h2 id="如何将事件处理程序添加到不同的阶段呢？"><a href="#如何将事件处理程序添加到不同的阶段呢？" class="headerlink" title="如何将事件处理程序添加到不同的阶段呢？"></a>如何将事件处理程序添加到不同的阶段呢？</h2><p>DOM2级事件添加事件处理程序的方法为addEventListener（）。这个方法有三个参数，分别为：事件类型，事件处理函数，以及最最最最最关键的<code>布尔值阶段选择参数</code>（这是我取得名）。<br>举个栗子：</p>
+<pre><code>&lt;div id=&quot;father&quot;&gt;
+    &lt;input type=&quot;button&quot; value=&quot;Click me&quot; id=&quot;myBtn&quot;/&gt;
+&lt;/div&gt;
+var btn = document.getElementById(&quot;myBtn&quot;);
+btn.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;nothing&quot;);
+    },false);
+</code></pre><p>第三个参数，也就是我们的布尔值阶段选择参数。当其为true时，规定在<code>捕获阶段</code>调用事件处理程序。为false时，则在<code>冒泡阶段</code>调用事件处理程序.</p>
+<p>上面的例子，在按钮被按下之后，触发了click事件，事件从input元素开始向上传播，看当前的元素是否有相应的事件处理程序。由于input绑定了事件处理程序，于是执行。然后向上访问div元素，看是否有事件处理程序。发现没有，于是继续向上访问document元素，发现还是没有，于是冒泡结束。</p>
+<p>恩，没了。<br>没了？有人肯定要问：</p>
+<blockquote>
+<ul>
+<li><p>问：你只说了DOM2级事件啊，DOM0呢，IE呢？不可能要求都用addEventListener方法吧?</p>
+</li>
+<li><p>答：我们都知道DOM0级绑定事件处理程序的方法是：<code>element.onclick = function（）{}；</code><br>没有设置阶段的参数，IE的是:<code>attachEvent(&quot;onclick&quot;,function(){});</code>也没有。首先说IE，冒泡事件流就是IE提出的概念啊，他怎么可以允许在他的浏览器中实现捕获阶段呢？这不是啪啪啪打脸吗？多以在IE中，绑定的事件都是在冒泡阶段执行的。而针对DOM0级等等，添加的事件在大部分情况下也是添加到事件流的冒泡阶段，因为这样可以最大限度的兼容各色浏览器。书上说：没什么特别需要，不建议在事件捕获阶段注册事件处理程序。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="冒泡的运用"><a href="#冒泡的运用" class="headerlink" title="冒泡的运用"></a>冒泡的运用</h2><h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><p>事件委托利用了事件冒泡的原理，只指定了一个时间处理程序，就可以管理某一类型的所有事件。<br>举个栗子：</p>
+<pre><code>&lt;ul id=&quot;admin&quot;&gt;
+    &lt;li id=&quot;eat&quot;&gt;eat&lt;/li&gt;
+    &lt;li id=&quot;drink&quot;&gt;drink&lt;/li&gt;
+    &lt;li id=&quot;sleep&quot;&gt;sleep&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>我现在想给每一个li标签注册一个click事件。这样我点击他的时候，显示在干嘛？<br>按照常规的方法：</p>
+<pre><code>var eat = document.getElementById(&quot;eat&quot;);
+var drink = document.getElementById(&quot;drink&quot;);
+var sleep = document.getElementById(&quot;sleep&quot;);
+btn.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;eat&quot;);
+    },false);
+drink.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;drink&quot;);
+    },false); 
+sleep.addEventListener(&quot;click&quot;,function(){
+    alert(&quot;sleep&quot;);
+    },false);
+</code></pre><p>我要抱怨了，虽然是复制粘贴，但是真的好麻烦啊。三个都这么麻烦，要是有100个呢？我得摔电脑了。<br>用事件委托法：</p>
+<pre><code>var admin = document.getElementById(&quot;admin&quot;);
+btn.addEventListener(&quot;click&quot;,function(event){
+    switch(event.target.id){
+        case &quot;eat&quot;:
+            alert(&quot;eat&quot;);
+            break;
+        case &quot;drink&quot;:
+            alert(&quot;drink&quot;);
+            break;
+        case &quot;sleep&quot;:
+            alert(&quot;sleep&quot;);
+            break;
+    }
+},false);
+</code></pre><p>我们可以看到，此时事件处理函数不是绑到li元素上面的，而是其父元素ul上。由于是冒泡阶段处理。当我们点击li时，先访问li有没有绑定事件处理函数，发现没有，于是向上访问ul，发现有，这时处理完上面的事件程序内的事情后，继续冒泡知道document终止。</p>
+<h3 id="事件委托优点"><a href="#事件委托优点" class="headerlink" title="事件委托优点"></a>事件委托优点</h3><blockquote>
+<ul>
+<li>代码消耗低，尤其是需要大批量绑定click事件时体现出来的优越性。</li>
+<li>事件处理程序数量会直接影响整个页面的整体运行性能。函数也是对象，对象需要占用内存，绑定的事件处理函数越多，占据的内存越大，这样可能会延迟整个页面的交互。</li>
+<li>动态添加元素时，不需要单独为他绑定事件处理程序。用上面的例子来说：添加一个li后，不需要单独为他绑定，只需在现有的程序中添加相应判断机制即可。同样，删除某元素时，不用担心空事件处理程序占用内存的问题。</li>
+</ul>
+</blockquote>
+<h2 id="如何阻止冒泡"><a href="#如何阻止冒泡" class="headerlink" title="如何阻止冒泡"></a>如何阻止冒泡</h2><p>任何事物都有两面性，有些时候我们并不希望冒泡。那该如何办？<br>上一篇博文<a href="http://gelory.me/2016/11/27/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%BF%90%E7%94%A8/">事件对象中易混淆的定义与运用</a>中讲到事件对象event。该对象中有一个方法可以阻止冒泡。它是stopPropagation（）。当然，哪里都少不了IE这个特殊分子。他的event对象中有这样一个属性代替上面的方法起到相同的作用。它是cancelBubble。默认false，表示允许事件冒泡。</p>
+<p>当然为了兼容所有大部分的浏览器，建议这样重写阻止冒泡方法：</p>
+<pre><code>function（event）{
+    if(event.stopPropagation())
+    {
+        event.stopPropagation();
+    }else{
+        event.cancelBubble = true;
+    }
+}
+</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-27</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;事件流描述了从页面中接收事件的顺序。事件冒泡与事件捕获是两种完全不同的事件流顺序概念。分别出自IE与Netscape。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>事件对象中易混淆的定义与运用</title>
@@ -1453,74 +1560,6 @@ overflow:auto;
     <summary type="html">
     
       &lt;p&gt;之前在做垂直居中时，无论是采用三重定位法，还是采用表格布局法。&lt;a href=&quot;http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/&quot;&gt;高度不定的子元素在高度不定的父元素中垂直居中&lt;/a&gt;都感觉好复杂啊，难道就没有简单的方法吗？就在昨天看教程时，学到了FlexBox布局，垂直居中，小case啦。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>伪元素与伪类，单冒号选择器和双冒号的区别与联系</title>
-    <link href="http://gelory.me/2016/10/19/%E4%BC%AA%E5%85%83%E7%B4%A0%E4%B8%8E%E4%BC%AA%E7%B1%BB%EF%BC%8C%E5%8D%95%E5%86%92%E5%8F%B7%E9%80%89%E6%8B%A9%E5%99%A8%E5%92%8C%E5%8F%8C%E5%86%92%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/"/>
-    <id>http://gelory.me/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/</id>
-    <published>2016-10-19T06:16:10.000Z</published>
-    <updated>2016-10-20T07:05:56.123Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近学习HTML5+CSS3时，看到一个现象,在使用<code>::selection</code>伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。<br><a id="more"></a></p>
-<h2 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h2><blockquote>
-<p>CSS 伪类用于向某些选择器添加特殊的效果。</p>
-</blockquote>
-<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><blockquote>
-<p>CSS 伪元素用于向某些选择器设置特殊的效果。</p>
-</blockquote>
-<p>上面是W3C教程给的定义。不仔细看，你跟本没发现就两个字的差别，<code>添加</code>和<code>设置</code>。十分惊讶，这有什么区别吗？</p>
-<p>看来我中文理解能力还不够啊！我索性跳过他给的定义，从实际运用中招区别。</p>
-<p>伪类，常见的伪类有这些</p>
-<pre><code>:active    向被激活的元素添加样式。
-:focus    向拥有键盘输入焦点的元素添加样式。
-:hover    当鼠标悬浮在元素上方时，向元素添加样式。
-:link    向未被访问的链接添加样式。
-:visited    向已被访问的链接添加样式。
-:first-child    向元素的第一个子元素添加样式。
-:lang 向带有指定 lang 属性的元素添加样式。
-</code></pre><p>怎么用的呢？</p>
-<pre><code>&lt;ul&gt;
-&lt;li&gt;Intert Key&lt;/li&gt;
-&lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Push accelerator&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre><p>我想让第一个li标签的内容变绿，我就这样 <code>ul:first-child</code>指定第一个元素。</p>
-<p>伪元素，常见的伪元素有这些</p>
-<pre><code>:first-letter    向文本的第一个字母添加特殊样式。
-:first-line    向文本的首行添加特殊样式。
-:before    在元素之前添加内容。
-:after    在元素之后添加内容。
-</code></pre><p>怎么用？</p>
-<pre><code>&lt;ul&gt;
-&lt;li class=&quot;la&quot;&gt;Intert Key&lt;/li&gt;
-&lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Push accelerator&lt;/li&gt;
-&lt;/ul&gt;
-</code></pre><p>我想让la类的首字母变绿，我就这样指定这个首字母。 <code>.la:first-letter</code><br>发现没有，<strong>伪类选择的是整个元素，而伪元素选择的是元素内容。</strong>你要问我元素和元素内容有什么区别？看我这篇文章：<a href="http://gelory.me/2016/10/19/little-tip3/">属性，样式，标签，元素的区别与联系</a>.</p>
-<h2 id="说说单冒号与双冒号"><a href="#说说单冒号与双冒号" class="headerlink" title="说说单冒号与双冒号"></a>说说单冒号与双冒号</h2><p>刚才说到<code>::selection,它属于伪元素选择器。它的作用是设置被选择的文本的样式</code>。譬如用光标选中某一段文字后，默认显示的是蓝背景白字，你就可以把它改变为黑背景，绿字。</p>
-<blockquote>
-<p>那为什么同样是伪元素，差别这么大呢？</p>
-<p>原来，::selection是css3新增加的伪元素，为了把伪类和伪元素区别开，从CSS3开始，伪类使用单冒号，伪元素使用双冒号。但是，由于考虑向下兼容的问题，在CSS3之前的那些伪元素，保留原来单冒号的写法。所以:after与::after没啥区别。</p>
-</blockquote>
-<p>那么我们在用的时候，如果要考虑所有浏览器的兼容性，还是使用单冒号来带伪元素，如果不需要考虑IE浏览器，那我们还是统一用双冒号来带伪元素。</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/%E6%96%B0%E5%BD%95%E9%9F%B3%202-1.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近学习HTML5+CSS3时，看到一个现象,在使用&lt;code&gt;::selection&lt;/code&gt;伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。&lt;br&gt;
     
     </summary>
     
