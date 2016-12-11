@@ -1,0 +1,918 @@
+﻿<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="信息安全,用户体验," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="龚小样儿" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/faci.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="或许是又要到年关了，程序员们都无心思查bug了。淘宝网的登录系统居然出现了随机bug（加入购物车就不断地登录，循环往复）。百度统计也在4.0版本更新后也成功的让一些常用功能失效（以我的暴脾气，肯定要到百度统计贴吧去讨个说法，或许是骂声一片，压力倍增，终于在上线不久后恢复正常）。腾讯产品我现在关注最多的就是王者荣耀了，然而光顾着挣钱了，游戏却抄的一点都不走心。拿来历史人物就用，感谢王者荣耀让我知道了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="百度贴吧你隐藏的动态访客真的看不见吗？">
+<meta property="og:url" content="http://gelory.me/2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/index.html">
+<meta property="og:site_name" content="龚小样儿">
+<meta property="og:description" content="或许是又要到年关了，程序员们都无心思查bug了。淘宝网的登录系统居然出现了随机bug（加入购物车就不断地登录，循环往复）。百度统计也在4.0版本更新后也成功的让一些常用功能失效（以我的暴脾气，肯定要到百度统计贴吧去讨个说法，或许是骂声一片，压力倍增，终于在上线不久后恢复正常）。腾讯产品我现在关注最多的就是王者荣耀了，然而光顾着挣钱了，游戏却抄的一点都不走心。拿来历史人物就用，感谢王者荣耀让我知道了">
+<meta property="og:image" content="http://oeqcvcrxo.bkt.clouddn.com/1.png">
+<meta property="og:image" content="http://oeqcvcrxo.bkt.clouddn.com/2.png">
+<meta property="og:updated_time" content="2016-12-11T03:51:28.969Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="百度贴吧你隐藏的动态访客真的看不见吗？">
+<meta name="twitter:description" content="或许是又要到年关了，程序员们都无心思查bug了。淘宝网的登录系统居然出现了随机bug（加入购物车就不断地登录，循环往复）。百度统计也在4.0版本更新后也成功的让一些常用功能失效（以我的暴脾气，肯定要到百度统计贴吧去讨个说法，或许是骂声一片，压力倍增，终于在上线不久后恢复正常）。腾讯产品我现在关注最多的就是王者荣耀了，然而光顾着挣钱了，游戏却抄的一点都不走心。拿来历史人物就用，感谢王者荣耀让我知道了">
+<meta name="twitter:image" content="http://oeqcvcrxo.bkt.clouddn.com/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://gelory.me/2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/"/>
+
+
+  <title> 百度贴吧你隐藏的动态访客真的看不见吗？ | 龚小样儿 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85389185-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?168373cb7a7b12fb15c16747cdf2412f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">龚小样儿</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">写一些小事，做一些大事</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-star">
+          <a href="/star" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-star"></i> <br />
+            
+            动态
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-demo">
+          <a href="/demo" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-leaf"></i> <br />
+            
+            项目
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                百度贴吧你隐藏的动态访客真的看不见吗？
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-11T11:44:49+08:00" content="2016-12-11">
+              2016-12-11
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/用户体验/" itemprop="url" rel="index">
+                    <span itemprop="name">用户体验</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/" class="leancloud_visitors" data-flag-title="百度贴吧你隐藏的动态访客真的看不见吗？">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>或许是又要到年关了，程序员们都无心思查bug了。淘宝网的登录系统居然出现了随机bug（加入购物车就不断地登录，循环往复）。百度统计也在4.0版本更新后也成功的让一些常用功能失效（以我的暴脾气，肯定要到百度统计贴吧去讨个说法，或许是骂声一片，压力倍增，终于在上线不久后恢复正常）。腾讯产品我现在关注最多的就是王者荣耀了，然而光顾着挣钱了，游戏却抄的一点都不走心。拿来历史人物就用，感谢王者荣耀让我知道了花木兰是唐朝的守卫军，让我知道了荆轲是女的。咨询了一下律师，才发现高明的是用这些历史人物都不用担心版权，难道用三国演义的人物还要给罗贯中交版费吗？想来也是挺有道理。另外一个问题则是关于退赛惩罚的问题，为此专门和英雄联盟对比了一下。后者随意一个退赛轻则就是匹配队列优先级下降，让你每次匹配都要等个5分钟。重则就不用说了。然而企鹅家的亲生儿子可是赚钱的利器，如此爱用户以及用户手里的RMB的企鹅怎么可能让她亲爱的用户玩不了游戏，花不了钱呢？王者荣耀的惩罚机制我经历的最多也就只是禁赛几个小时而已。挂机成本如此之低，你能奈小学生何？不过这次的重点最终还是落到了百度的头上。<br><a id="more"></a></p>
+<p>百度贴吧算是百度拿得出手的社交应用。然而由于产品有了一些年头，只顾去添加一些功能，却忘记梳理了原有功能的条理性和重复性。百度贴吧有隐藏自己动态的功能，当你设置了这个功能后，别人访问你的关注的贴吧，发的帖子是看不到任何东西的。相信一大批用户在早些年间已经设置了隐藏动态。</p>
+<p>这样访客通过id直接访问就跳到了这个链接。</p>
+<pre><code>http://tieba.baidu.com/home/achievement?un=用户ID&amp;fr=home
+</code></pre><p><img src="http://oeqcvcrxo.bkt.clouddn.com/1.png" alt="百度贴吧你隐藏的动态访客真的看不见吗？图1"></p>
+<p>显示如图所示，然而你的动态别人真的看不见吗？当然不是。早些年间或许真的看不到，但是粗心的百度在多次改版之后，留下的访问个人主页的入口越来越多，自己都忘记要将这些入口也设置访问权限了，于是乎就出现了这样的乌龙。我们通过下面这个入口进入你的贴吧个人主页，呈现的则是另一番景象。</p>
+<pre><code>https://www.baidu.com/p/用户ID?from=tieba
+</code></pre><p><img src="http://oeqcvcrxo.bkt.clouddn.com/2.png" alt="百度贴吧你隐藏的动态访客真的看不见吗？图2"><br>那么真的对于所有人都是这样的吗？于是继续做了深入调查，我写了一个爬虫（随便进入一个贴吧，获取用户ID，然后按照上述链接依次访问所有ID的个人主页抓取关注的贴吧名。），抓取成功率90%以上。结果表明，大部分的用户都被蒙骗了。</p>
+<p>有人会问，谁能知道我的贴吧ID，我可是连身边人都不告诉的，然而事实证明，你的贴吧ID被知道的概率达5层。用过贴吧或者其他社交网站的都应该有过这样的经历：</p>
+<pre><code>10106***@qq.com  楼主好人，楼主长命百岁
+
+1557272**** 麻烦给我一份资料 蟹蟹
+</code></pre><p>更有甚者，将自己的身份证号码，醒目都暴露在这种场合。实在是令人惊诧。（此人不点名）</p>
+<p>针对贴吧权限问题一事，解决方案就是</p>
+<pre><code>进入https://www.baidu.com/p/setting/privacy/tieba 重新设置权限，并点击保存。
+进入https://www.baidu.com/p/setting/privacy/tieba 重新设置权限，并点击保存。
+进入https://www.baidu.com/p/setting/privacy/tieba 重新设置权限，并点击保存。
+</code></pre><p>那么针对信息泄露问题，想想自己暴露的隐私能不能尽量删除，避免被人利用。</p>
+<p>另外我发现一个问题，我的QQ好友中，有人的爱奇艺账号也被攻破啦，并且被分享，赶紧查查看自己的这些账号是不是存在登录异常或者可疑记录。</p>
+<p>因为有些情况，不得不公布联系方式，那么请妥善保管自己的隐私，谨慎发言，不要给予犯罪分子可乘之机。</p>
+<hr>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">今天就说到这里。也欢迎在文章底下评论，爆出更多的料。<br>也欢迎大家转发，让身边喜欢用贴吧的人都注意一下。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-12-11</span></center>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>看我这么辛苦，能把五毛钱呼我脸上吗？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeqc7pnps.bkt.clouddn.com/wechat.png" alt="龚志强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeqc7pnps.bkt.clouddn.com/ali.png" alt="龚志强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/信息安全/" rel="tag">#信息安全</a>
+          
+            <a href="/tags/用户体验/" rel="tag">#用户体验</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/27/JS中事件冒泡与事件捕获的定义与应用/" rel="next" title="JS中事件冒泡与事件捕获的定义与应用">
+                <i class="fa fa-chevron-left"></i> JS中事件冒泡与事件捕获的定义与应用
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+ 
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/"
+           data-title="百度贴吧你隐藏的动态访客真的看不见吗？" data-url="http://gelory.me/2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="龚志强" />
+          <p class="site-author-name" itemprop="name">龚志强</p>
+          <p class="site-description motion-element" itemprop="description">技术,小白,产品汪</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">1.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">龚志强</span>
+</div>
+
+<div class="powered-by">
+  QQ:1010688273
+</div>
+
+<div class="theme-info">
+  欢迎骚扰 -
+  <a class="theme-link" href="https://github.com/Gong-Elory">
+    龚志强
+  </a>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"gelory"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  <!-- custom analytics part create by xiamo -->
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+<script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = '0 ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	});
+}
+
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+}); 
+</script>
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("jIgA9Gvgr2fS2cFGtAP5vLur-gzGzoHsz", "9DdxMgKwsDBEdf5m2WI55wUz");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+  
+
+<script type="text/javascript" src="/js/src/love.js"></script>
+<script type="text/javascript" src="/js/src/particle.js"></script>
+</body>
+</html>

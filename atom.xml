@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2016-11-27T14:04:33.621Z</updated>
+  <updated>2016-12-11T03:51:28.969Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>百度贴吧你隐藏的动态访客真的看不见吗？</title>
+    <link href="http://gelory.me/2016/12/11/%E7%99%BE%E5%BA%A6%E8%B4%B4%E5%90%A7%E4%BD%A0%E9%9A%90%E8%97%8F%E7%9A%84%E5%8A%A8%E6%80%81%E8%AE%BF%E5%AE%A2%E7%9C%9F%E7%9A%84%E7%9C%8B%E4%B8%8D%E8%A7%81%E5%90%97%EF%BC%9F/"/>
+    <id>http://gelory.me/2016/12/11/百度贴吧你隐藏的动态访客真的看不见吗？/</id>
+    <published>2016-12-11T03:44:49.000Z</published>
+    <updated>2016-12-11T03:51:28.969Z</updated>
+    
+    <content type="html"><![CDATA[<p>或许是又要到年关了，程序员们都无心思查bug了。淘宝网的登录系统居然出现了随机bug（加入购物车就不断地登录，循环往复）。百度统计也在4.0版本更新后也成功的让一些常用功能失效（以我的暴脾气，肯定要到百度统计贴吧去讨个说法，或许是骂声一片，压力倍增，终于在上线不久后恢复正常）。腾讯产品我现在关注最多的就是王者荣耀了，然而光顾着挣钱了，游戏却抄的一点都不走心。拿来历史人物就用，感谢王者荣耀让我知道了花木兰是唐朝的守卫军，让我知道了荆轲是女的。咨询了一下律师，才发现高明的是用这些历史人物都不用担心版权，难道用三国演义的人物还要给罗贯中交版费吗？想来也是挺有道理。另外一个问题则是关于退赛惩罚的问题，为此专门和英雄联盟对比了一下。后者随意一个退赛轻则就是匹配队列优先级下降，让你每次匹配都要等个5分钟。重则就不用说了。然而企鹅家的亲生儿子可是赚钱的利器，如此爱用户以及用户手里的RMB的企鹅怎么可能让她亲爱的用户玩不了游戏，花不了钱呢？王者荣耀的惩罚机制我经历的最多也就只是禁赛几个小时而已。挂机成本如此之低，你能奈小学生何？不过这次的重点最终还是落到了百度的头上。<br><a id="more"></a></p>
+<p>百度贴吧算是百度拿得出手的社交应用。然而由于产品有了一些年头，只顾去添加一些功能，却忘记梳理了原有功能的条理性和重复性。百度贴吧有隐藏自己动态的功能，当你设置了这个功能后，别人访问你的关注的贴吧，发的帖子是看不到任何东西的。相信一大批用户在早些年间已经设置了隐藏动态。</p>
+<p>这样访客通过id直接访问就跳到了这个链接。</p>
+<pre><code>http://tieba.baidu.com/home/achievement?un=用户ID&amp;fr=home
+</code></pre><p><img src="http://oeqcvcrxo.bkt.clouddn.com/1.png" alt="百度贴吧你隐藏的动态访客真的看不见吗？图1"></p>
+<p>显示如图所示，然而你的动态别人真的看不见吗？当然不是。早些年间或许真的看不到，但是粗心的百度在多次改版之后，留下的访问个人主页的入口越来越多，自己都忘记要将这些入口也设置访问权限了，于是乎就出现了这样的乌龙。我们通过下面这个入口进入你的贴吧个人主页，呈现的则是另一番景象。</p>
+<pre><code>https://www.baidu.com/p/用户ID?from=tieba
+</code></pre><p><img src="http://oeqcvcrxo.bkt.clouddn.com/2.png" alt="百度贴吧你隐藏的动态访客真的看不见吗？图2"><br>那么真的对于所有人都是这样的吗？于是继续做了深入调查，我写了一个爬虫（随便进入一个贴吧，获取用户ID，然后按照上述链接依次访问所有ID的个人主页抓取关注的贴吧名。），抓取成功率90%以上。结果表明，大部分的用户都被蒙骗了。</p>
+<p>有人会问，谁能知道我的贴吧ID，我可是连身边人都不告诉的，然而事实证明，你的贴吧ID被知道的概率达5层。用过贴吧或者其他社交网站的都应该有过这样的经历：</p>
+<pre><code>10106***@qq.com  楼主好人，楼主长命百岁
+
+1557272**** 麻烦给我一份资料 蟹蟹
+</code></pre><p>更有甚者，将自己的身份证号码，醒目都暴露在这种场合。实在是令人惊诧。（此人不点名）</p>
+<p>针对贴吧权限问题一事，解决方案就是</p>
+<pre><code>进入https://www.baidu.com/p/setting/privacy/tieba 重新设置权限，并点击保存。
+进入https://www.baidu.com/p/setting/privacy/tieba 重新设置权限，并点击保存。
+进入https://www.baidu.com/p/setting/privacy/tieba 重新设置权限，并点击保存。
+</code></pre><p>那么针对信息泄露问题，想想自己暴露的隐私能不能尽量删除，避免被人利用。</p>
+<p>另外我发现一个问题，我的QQ好友中，有人的爱奇艺账号也被攻破啦，并且被分享，赶紧查查看自己的这些账号是不是存在登录异常或者可疑记录。</p>
+<p>因为有些情况，不得不公布联系方式，那么请妥善保管自己的隐私，谨慎发言，不要给予犯罪分子可乘之机。</p>
+<hr>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">今天就说到这里。也欢迎在文章底下评论，爆出更多的料。<br>也欢迎大家转发，让身边喜欢用贴吧的人都注意一下。</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-12-11</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;或许是又要到年关了，程序员们都无心思查bug了。淘宝网的登录系统居然出现了随机bug（加入购物车就不断地登录，循环往复）。百度统计也在4.0版本更新后也成功的让一些常用功能失效（以我的暴脾气，肯定要到百度统计贴吧去讨个说法，或许是骂声一片，压力倍增，终于在上线不久后恢复正常）。腾讯产品我现在关注最多的就是王者荣耀了，然而光顾着挣钱了，游戏却抄的一点都不走心。拿来历史人物就用，感谢王者荣耀让我知道了花木兰是唐朝的守卫军，让我知道了荆轲是女的。咨询了一下律师，才发现高明的是用这些历史人物都不用担心版权，难道用三国演义的人物还要给罗贯中交版费吗？想来也是挺有道理。另外一个问题则是关于退赛惩罚的问题，为此专门和英雄联盟对比了一下。后者随意一个退赛轻则就是匹配队列优先级下降，让你每次匹配都要等个5分钟。重则就不用说了。然而企鹅家的亲生儿子可是赚钱的利器，如此爱用户以及用户手里的RMB的企鹅怎么可能让她亲爱的用户玩不了游戏，花不了钱呢？王者荣耀的惩罚机制我经历的最多也就只是禁赛几个小时而已。挂机成本如此之低，你能奈小学生何？不过这次的重点最终还是落到了百度的头上。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="用户体验" scheme="http://gelory.me/categories/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+    
+      <category term="信息安全" scheme="http://gelory.me/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="用户体验" scheme="http://gelory.me/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+  </entry>
   
   <entry>
     <title>JS中事件冒泡与事件捕获的定义与应用</title>
@@ -1470,96 +1517,6 @@ overflow:auto;
     <summary type="html">
     
       &lt;p&gt;inline-block元素，或者属性被设置为inline-block的元素。会出现一个问题：当水平显示的时候，两个inline-block元素间会有间隙。这个不是bug，是这个属性应有的表现。当时作为开发者来说，显得有些多余，我们要想尽方法来去除这个间隙。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FlexBox布局使用介绍</title>
-    <link href="http://gelory.me/2016/10/19/FlexBox%E5%B8%83%E5%B1%80%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D/"/>
-    <id>http://gelory.me/2016/10/19/FlexBox布局使用介绍/</id>
-    <published>2016-10-19T09:03:42.000Z</published>
-    <updated>2016-10-20T07:07:50.874Z</updated>
-    
-    <content type="html"><![CDATA[<p>之前在做垂直居中时，无论是采用三重定位法，还是采用表格布局法。<a href="http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/">高度不定的子元素在高度不定的父元素中垂直居中</a>都感觉好复杂啊，难道就没有简单的方法吗？就在昨天看教程时，学到了FlexBox布局，垂直居中，小case啦。<br><a id="more"></a></p>
-<h2 id="FlexBox布局"><a href="#FlexBox布局" class="headerlink" title="FlexBox布局"></a>FlexBox布局</h2><p>为盒状模型提供更大的灵活度。<br>设置Flex布局后，子元素的float，clear，vertical-align属性失效</p>
-<h3 id="有六个属性设置在容器上"><a href="#有六个属性设置在容器上" class="headerlink" title="有六个属性设置在容器上"></a>有六个属性设置在容器上</h3><p>1.flex-direction 决定是横向排列还是纵向排列</p>
-<blockquote>
-<ul>
-<li>row（默认值）：从左到右 水平分布。</li>
-<li>row-reverse：从右到左，水平分布。</li>
-<li>column：从上到下，垂直分布。</li>
-<li>column-reverse：从下到上，垂直分布。</li>
-</ul>
-</blockquote>
-<p>2.flex-wrap 决定超出宽度/高度界限之后是否换行</p>
-<blockquote>
-<ul>
-<li>nowrap 不换行。</li>
-<li>wrap：换行，第一行在上。</li>
-<li>wrap-reverse：换行，第一行在下。</li>
-</ul>
-</blockquote>
-<p>3.flex-flow 将上面两项合并 默认 row nowrap</p>
-<p>4.justify-content 水平对齐方式</p>
-<blockquote>
-<ul>
-<li>flex-start 水平起点对齐（起终点取决于flex-direction）</li>
-<li>flex-end 水平终点对齐</li>
-<li>center 水平居中</li>
-<li>space-between 两端对齐</li>
-<li>space-around 项目两侧间隔相等间隔相等</li>
-</ul>
-</blockquote>
-<p>5.align-items 垂直对齐方式</p>
-<blockquote>
-<ul>
-<li>flex-start 纵向起点对齐</li>
-<li>flex-end 纵向终点对齐</li>
-<li>center 垂直居中</li>
-<li>baseline 项目第一行的文字对齐</li>
-<li>stretch 如果项目未设置高端或者设置为auto，默认占满</li>
-</ul>
-</blockquote>
-<p>6.align-content 定义多行的垂直对齐方式</p>
-<blockquote>
-<ul>
-<li>stretch（默认）：垂直填满拉伸</li>
-<li>flex-start：纵向起点对齐。</li>
-<li>flex-end：纵向终点对齐</li>
-<li>center：整体垂直居中</li>
-<li>space-between：上下对齐</li>
-<li>space-around：上下间隔相等</li>
-</ul>
-</blockquote>
-<h3 id="有六个属性设置在容器中的项目上"><a href="#有六个属性设置在容器中的项目上" class="headerlink" title="有六个属性设置在容器中的项目上"></a>有六个属性设置在容器中的项目上</h3><p>1.order 项目排列顺序<br>数值越小越靠前</p>
-<p>2.flex-grow 放大比例，默认0，意思是即使有多的空间，项目也不放大。<br>如果为每个项目设置了该值，那么放大的比例为<br><code>（该项目值/所有项目总和值）*剩余空间值</code></p>
-<p>3.flex-shrink 缩小比例，默认为1，意思是空间不足时，默认等比例缩小。设置为0则不缩。</p>
-<p>4.flex-basis 项目在不缩不放之前本来的占据空间 水平排列的话指宽度，垂直排列的话指高度。<br>不设置的话，默认根据内容显示。如果以百分数形式显示，指的是占父元素宽/高的比例。</p>
-<p>5.flex 集合上面的三种属性flex-grow flex-shrink flex-basis 后面两种属性可要可不要，也就是说只有一个值时，指的是flex-grow.<br>有三个快捷值：</p>
-<blockquote>
-<ul>
-<li>auto（1 1 auto）</li>
-<li>none（0 0 auto）</li>
-<li>initial（0 1 auto）</li>
-</ul>
-</blockquote>
-<p>6.align-self 设置单个项目的对齐方式 默认auto继承父元素的align-items属性。</p>
-<h2 id="小样有歌唱-双语Lemon-Tree-："><a href="#小样有歌唱-双语Lemon-Tree-：" class="headerlink" title="小样有歌唱(双语Lemon Tree)："></a>小样有歌唱(双语Lemon Tree)：</h2><center><audio src="http://oeqcvcrxo.bkt.clouddn.com/%E6%96%B0%E5%BD%95%E9%9F%B3%205-1.m4a" controls="controls">您的浏览器不支持 audio 标签。</audio></center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-19</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前在做垂直居中时，无论是采用三重定位法，还是采用表格布局法。&lt;a href=&quot;http://gelory.me/2016/10/09/%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E5%9C%A8%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%AE%9A%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E4%B8%AD%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E9%97%AE%E9%A2%98/&quot;&gt;高度不定的子元素在高度不定的父元素中垂直居中&lt;/a&gt;都感觉好复杂啊，难道就没有简单的方法吗？就在昨天看教程时，学到了FlexBox布局，垂直居中，小case啦。&lt;br&gt;
     
     </summary>
     
