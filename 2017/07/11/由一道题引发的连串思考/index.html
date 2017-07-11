@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,CSS," />
+  <meta name="keywords" content="Javascript," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。">
+<meta name="description" content="这篇文章因为一个题目，让我回顾了很多知识点，知道了new操作到底干了些啥？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Viewport的深入了解">
-<meta property="og:url" content="http://gelory.me/2016/11/02/Viewport的深入了解/index.html">
+<meta property="og:title" content="由一道题引发的连串思考">
+<meta property="og:url" content="http://gelory.me/2017/07/11/由一道题引发的连串思考/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。">
-<meta property="og:updated_time" content="2016-11-02T06:00:35.197Z">
+<meta property="og:description" content="这篇文章因为一个题目，让我回顾了很多知识点，知道了new操作到底干了些啥？">
+<meta property="og:updated_time" content="2017-07-11T15:53:35.328Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Viewport的深入了解">
-<meta name="twitter:description" content="刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。">
+<meta name="twitter:title" content="由一道题引发的连串思考">
+<meta name="twitter:description" content="这篇文章因为一个题目，让我回顾了很多知识点，知道了new操作到底干了些啥？">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/11/02/Viewport的深入了解/"/>
+  <link rel="canonical" href="http://gelory.me/2017/07/11/由一道题引发的连串思考/"/>
 
 
-  <title> Viewport的深入了解 | 龚小样儿 </title>
+  <title> 由一道题引发的连串思考 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +288,7 @@
             
             
               
-                Viewport的深入了解
+                由一道题引发的连串思考
               
             
           </h1>
@@ -300,8 +300,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-02T13:59:06+08:00" content="2016-11-02">
-              2016-11-02
+            <time itemprop="dateCreated" datetime="2017-07-11T23:39:01+08:00" content="2017-07-11">
+              2017-07-11
             </time>
           </span>
 
@@ -314,8 +314,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -330,8 +330,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/02/Viewport的深入了解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/02/Viewport的深入了解/" itemprop="commentsCount"></span>
+                <a href="/2017/07/11/由一道题引发的连串思考/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/11/由一道题引发的连串思考/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +341,7 @@
 
           
           
-             <span id="/2016/11/02/Viewport的深入了解/" class="leancloud_visitors" data-flag-title="Viewport的深入了解">
+             <span id="/2017/07/11/由一道题引发的连串思考/" class="leancloud_visitors" data-flag-title="由一道题引发的连串思考">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,21 +363,74 @@
       
 
       
-        <p>刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。<br><a id="more"></a></p>
-<h2 id="viewport定义"><a href="#viewport定义" class="headerlink" title="viewport定义"></a>viewport定义</h2><p>就像英文字面翻译一样，能看得到的区域。viewport指的是显示网页的区域。但是因为viewport按特性可以分为三类，所以viewport又不仅仅是浏览器可视区域那么大。</p>
-<p>譬如一般移动端浏览器显示屏宽度都是320px 480px等。但是移动设备的viewport默认宽度是980px或者1024px。这个值可以自己设置。</p>
-<h2 id="物理像素与CSS像素的区别与联系"><a href="#物理像素与CSS像素的区别与联系" class="headerlink" title="物理像素与CSS像素的区别与联系"></a>物理像素与CSS像素的区别与联系</h2><p>在桌面浏览器中，CSS的1px是等于屏幕上的1个物理像素的。 但是在移动设备中可就不一定，譬如Retina屏，一个CSS像素相当于两个物理像素。</p>
-<h3 id="屏幕尺寸和像素尺寸的区别与联系"><a href="#屏幕尺寸和像素尺寸的区别与联系" class="headerlink" title="屏幕尺寸和像素尺寸的区别与联系"></a>屏幕尺寸和像素尺寸的区别与联系</h3><p>屏幕的尺寸和像素尺寸不是一样的  譬如ipone3和iphone4都是320px的宽屏。但是前者像素是320px，后者采用retina屏，像素是640px。<br>安卓设备也是一样，根据像素密度分为ldpi，mdpi，hdpi，xhdpi等不同等级。</p>
-<h3 id="用户缩放导致CSS像素与物理像素的比值差异"><a href="#用户缩放导致CSS像素与物理像素的比值差异" class="headerlink" title="用户缩放导致CSS像素与物理像素的比值差异"></a>用户缩放导致CSS像素与物理像素的比值差异</h3><p>如果用户把页面放大一倍，首先，屏幕尺寸是不会变的，1个CSS像素如果以前相当于一个物理像素，此时，就相当于两个物理像素了，那么我们看到的景象就是字体什么的放大了。</p>
-<h2 id="viewport按表现类型分三类"><a href="#viewport按表现类型分三类" class="headerlink" title="viewport按表现类型分三类"></a>viewport按表现类型分三类</h2><p>layout viewport 大于浏览器可视区域宽度<br>visual biewport 浏览器可视区域宽度<br>ideal viewport 完美适配移动端屏幕的宽度</p>
-<p>只要在CSS中把某一元素的宽度设置为ideal viewport的宽度，那么这个元素的宽度就是设备屏幕的宽度。</p>
-<h2 id="利用meta元标签对viewport进行控制"><a href="#利用meta元标签对viewport进行控制" class="headerlink" title="利用meta元标签对viewport进行控制"></a>利用meta元标签对viewport进行控制</h2><p>移动设备默认的是layout viewport。但是进行移动设备网站开发时，我们需要ideal viewport。</p>
-<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt;
-</code></pre><p>这个标签的作用就是让当前页面的宽度等于设备的宽度，不允许手动缩放。</p>
-<h2 id="meta-viewport的6个属性"><a href="#meta-viewport的6个属性" class="headerlink" title="meta viewport的6个属性"></a>meta viewport的6个属性</h2><p>width：设置layout viewport的宽度。可以使整数，也可以设置为width-device。当设置为width-device时，自动适配屏幕宽度。<br>height：设置layout viewport的高度。<br>initial-scale：设置页面加载时的缩放值，可以是小数。相对于ideal-viewport值进行缩放。<br>minimum-scale：允许用户的最小缩放值。<br>maximum-scale：允许用户的最大缩放值。<br>user-scalable：是否允许用户手动缩放。 值为’yes’ or ‘no’。</p>
-<p>经证明：<br>    <meta name="viewport" content="width=device-width, initial-scale=1"></p>
-<p>可以让大部分的移动端设备的viewport设置为ideal viewport。</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-2</span></center>
+        <p>这篇文章因为一个题目，让我回顾了很多知识点，知道了new操作到底干了些啥？<br><a id="more"></a><br>最近看见一道js考题。题目是<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">1</span>); &#125;;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line">Foo.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">2</span>);&#125;;</div><div class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">3</span>);&#125;;</div><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">4</span>);&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123; alert (<span class="number">5</span>);&#125;</div><div class="line"> </div><div class="line"><span class="comment">//请写出以下输出结果：</span></div><div class="line">Foo.getName();</div><div class="line">getName();</div><div class="line">Foo().getName();</div><div class="line">getName();</div><div class="line"><span class="keyword">new</span> Foo.getName();</div><div class="line"><span class="keyword">new</span> Foo().getName();</div><div class="line"><span class="keyword">new</span> <span class="keyword">new</span> Foo().getName();</div></pre></td></tr></table></figure></p>
+<p>磨蹭了半天硬是没有做全对，我不禁陷入了沉思。<br>看完答案后，我再次陷入沉思，这道题麻雀虽小，五脏俱全啊。</p>
+<p>JS运算符的优先级。</p>
+<p>在解答题目之前先要弄懂哪个括号，哪个点先执行。<br>题目涉及到也是最需要记住的优先级排序为<br><code>a.b成员访问</code> = <code>new(带参数列表)</code> = <code>（）函数调用</code> &gt; <code>new(无参数列表)</code></p>
+<center><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Operator_Precedence" target="_blank" rel="external">点击这里查看更多关于优先级的介绍</a></center>
+
+<h2 id="题目概述："><a href="#题目概述：" class="headerlink" title="题目概述："></a>题目概述：</h2><p>第一条是声明了Foo一个函数，第二条给Foo定义了个属性，第三条给Foo的的原型对象定义了个属性，第四条利用函数变量表达式法创建了一个getName函数，第五条，声明了一个getName函数。</p>
+<h2 id="开始解答"><a href="#开始解答" class="headerlink" title="开始解答"></a>开始解答</h2><p>解题之前需要弄清楚js的运行模式。<br>JS运行包括两部分 编译阶段和执行阶段<br>在代码开始执行之前，JS解析器通过<strong>函数声明提升 function declaration hoisting</strong>读取变量以及函数，并将它们放到源代码树的顶部（应该是当前作用域源代码的顶部）<br>因此经过函数声明提升后，题目应该变成了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">1</span>); &#125;;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> getName;<span class="comment">//变量提升</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123; alert (<span class="number">5</span>);&#125;<span class="comment">//函数提升</span></div><div class="line">Foo.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">2</span>);&#125;;</div><div class="line">Foo.prototype.getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">3</span>);&#125;;</div><div class="line">getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">4</span>);&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<ul>
+<li>问题1：Foo.getName();</li>
+</ul>
+</blockquote>
+<p>根据优先级判断，先访问的是Foo的getName属性，并调用。所以最终会弹出<code>2</code></p>
+<blockquote>
+<ul>
+<li>问题2：getName();</li>
+</ul>
+</blockquote>
+<p>调用getName方法，然而题目中确定义了两次getName函数，<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">4</span>);&#125;;<span class="comment">//通过函数表达式的方式</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123; alert (<span class="number">5</span>);&#125;<span class="comment">//通过函数声明的方式</span></div></pre></td></tr></table></figure></p>
+<p>在变量声明提升的过程中，所有函数声明和变量都提升到顶部，但是函数表达式的赋值<code>getName = function () { alert (4);};</code>是在执行到该行代码是，才进行的。经过函数声明提升后，表达式法的getName覆盖函数声明的getName，所以，最终弹出<code>4</code> 而不是<code>5</code></p>
+<blockquote>
+<ul>
+<li>问题3：Foo().getName();</li>
+</ul>
+</blockquote>
+<p>从左到右先执行Foo（），此时返回this，this指向条用当前函数的对象，因为Foo（）是在全局环境下执行的，所以this指向window，此外Foo（）函数执行过程中给getName属性赋值了，由于不是采用var声明的，因此为全局变量，相当于覆盖了全局变量getName，最终被修改alert（1），Foo().getName()；相当于执行 window.getName()；所以最终会弹出<code>1</code>.</p>
+<blockquote>
+<ul>
+<li>问题4：getName();</li>
+</ul>
+</blockquote>
+<p>由于题目是按顺序依次执行，getName已经在题3中被修改为alert（1），所以这题依然弹出<code>1</code>.</p>
+<blockquote>
+<ul>
+<li>问题5：new Foo.getName();</li>
+</ul>
+</blockquote>
+<p>按照优先级，首先是成员访问Foo.getName，然后new操作，所以最终会弹出<code>2</code>。<br>我刚开始也很差异，还有这种操作，new到底是啥?</p>
+<p>继续看题</p>
+<blockquote>
+<ul>
+<li>问题6：new Foo().getName();</li>
+</ul>
+</blockquote>
+<p>先执行new Foo（），在执行.getName（）<br>此时，先构建了一个实例化对象，对象又返回值，为了直观一点，可以这样表示<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Foo（）；</div><div class="line">a.getName();</div></pre></td></tr></table></figure></p>
+<p>这里涉及到<strong>原型对象</strong>和<strong>原型链</strong>的知识，<br>我们知道，当创建一个函数时，就会根据特定规则为该函数创建一个prototype属性，指向函数的原型对象，<br>当调用函数，创建一个实例时，该实例内部将包含一个指向构造函数的原型对象的指针。</p>
+<p>原型链就是根据 创建实例，实例内部会包含一个指向构造函数原型对象的指针的特性，来层层递进，构成链式。</p>
+<p>这里还需要对<strong>构造函数有无返回值导致返回的是什么</strong>做出了解。<br>如果没返回值，或者返回值为基本类型，或者为this，都将返回其实例化对象，该对象拥有属性<em>proto</em><br>若返回值为引用类型，则返回这个引用类型。</p>
+<p>题目中返回的是this，所以为实例化对象，a中并没有可以访问的属性，因此沿着原型链向上一层查找，找到原型对象中的getName属性，所以最终弹出<code>3</code>。有人会问，谁说实例中没有属性了啊。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    getName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; alert (<span class="number">1</span>); &#125;;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里面明明就有一个属性getName。额…我也是这里错了。这只是个变量，全局变量，并不是属性。那要怎么做，才能达到想要的效果呢。换成<code>this.getName</code>就好了。</p>
+<blockquote>
+<ul>
+<li>问题7：new new Foo().getName();</li>
+</ul>
+</blockquote>
+<p>一个new已经很烦了，居然两个new。先来看一下优先级。<br>先执行new Foo（） 然后执行.getName，最后执行new..（）。<br>一直到第二步，都和上例相同，返回的是函数<code>fuction（）{alert（3）} new</code>的结果就是弹出<code>3</code></p>
+<p>讲到这是不是以为要结束了，其实还没有，不然我就不可能沉思这么久了。这几道题，有一个操作符赚足了眼球，多得令人恶心，就是new，new到底是啥，以前只知道new一下，就有一个实例了，他到底怎么办到的？这是接下来总结的重点。</p>
+<h2 id="new到底做了啥"><a href="#new到底做了啥" class="headerlink" title="new到底做了啥"></a>new到底做了啥</h2><center><a href="http://blog.vjeux.com/2011/javascript/how-prototypal-inheritance-really-works.html" target="_blank" rel="external">点我进入这篇安利的文章，让我受益良多</a></center>
+
+<p>new出一个指向构造函数的原型对象的实例总共分几步？<br>看程序：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">New</span>（<span class="title">f</span>）</span>&#123;</div><div class="line">    <span class="keyword">var</span> n = &#123;<span class="string">'_proto_'</span>: f.prototype&#125;;<span class="comment">//创建一个对象n，里面包含_proto_属性，指向f.prototype对象</span></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>（）</span>&#123;</div><div class="line">        f.apply(n,<span class="built_in">arguments</span>); <span class="comment">//n对象调用f函数</span></div><div class="line">        <span class="keyword">return</span> n;<span class="comment">//返回n</span></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fc</span>（<span class="title">age</span>,<span class="title">name</span>）</span>&#123;</div><div class="line">    <span class="keyword">this</span>.age = age;</div><div class="line">    <span class="keyword">this</span>.name = name;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> nn = New（Fc）;</div><div class="line"><span class="comment">/*nn 为function（）&#123;</span></div><div class="line">        var ob = Fc.apply(n,arguments); //n对象调用f函数</div><div class="line">        if(ob instanceof Objrct)&#123;</div><div class="line">            return ob</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            return n;//返回n</div><div class="line">        &#125;</div><div class="line">        //如果F函数体有返回值，判断是否为引用类型，不是的话丢弃，是的话返回。this的话ob,n都一样</div><div class="line">    &#125;</div><div class="line">*/</div><div class="line"><span class="keyword">var</span> obj = nn(<span class="number">10</span>,<span class="string">"tom"</span>);</div><div class="line">obj就是最终的实例化对象。obj拥有age 和name属性，此外obj拥有一个指向Fc.prototype的指针。</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>总的来说 new首先创建了一个对象，并让对象的<em>proto</em>属性指向构造函数的原型对象，然后利用apply方法让对象执行一遍F函数体，让其拥有F的属性和方法以及构造函数原型链上的属性和方法。</p>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">可以被打到，但不会被打败(●—●)</center>
+
+</blockquote>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-7-11</span></center>
       
     </div>
 
@@ -420,9 +473,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag">#前端</a>
-          
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
+            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
           
         </div>
       
@@ -431,17 +482,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/26/Webkit内核显示字体自动放大问题/" rel="next" title="Webkit内核显示字体自动放大问题">
-                <i class="fa fa-chevron-left"></i> Webkit内核显示字体自动放大问题
+              <a href="/2017/04/20/墨迹天气产品分析报告：工具类APP普适性延展方向与盈利模式思索/" rel="next" title="墨迹天气产品分析报告：工具类APP普适性延展方向与盈利模式思索">
+                <i class="fa fa-chevron-left"></i> 墨迹天气产品分析报告：工具类APP普适性延展方向与盈利模式思索
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/03/JS中全局变量和局部变量的区别/" rel="prev" title="JS中全局变量和局部变量的区别">
-                JS中全局变量和局部变量的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -470,8 +517,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/02/Viewport的深入了解/"
-           data-title="Viewport的深入了解" data-url="http://gelory.me/2016/11/02/Viewport的深入了解/">
+      <div class="ds-thread" data-thread-key="2017/07/11/由一道题引发的连串思考/"
+           data-title="由一道题引发的连串思考" data-url="http://gelory.me/2017/07/11/由一道题引发的连串思考/">
       </div>
     
   </div>
@@ -569,7 +616,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport定义"><span class="nav-number">1.</span> <span class="nav-text">viewport定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#物理像素与CSS像素的区别与联系"><span class="nav-number">2.</span> <span class="nav-text">物理像素与CSS像素的区别与联系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#屏幕尺寸和像素尺寸的区别与联系"><span class="nav-number">2.1.</span> <span class="nav-text">屏幕尺寸和像素尺寸的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户缩放导致CSS像素与物理像素的比值差异"><span class="nav-number">2.2.</span> <span class="nav-text">用户缩放导致CSS像素与物理像素的比值差异</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport按表现类型分三类"><span class="nav-number">3.</span> <span class="nav-text">viewport按表现类型分三类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用meta元标签对viewport进行控制"><span class="nav-number">4.</span> <span class="nav-text">利用meta元标签对viewport进行控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta-viewport的6个属性"><span class="nav-number">5.</span> <span class="nav-text">meta viewport的6个属性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目概述："><span class="nav-number">1.</span> <span class="nav-text">题目概述：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开始解答"><span class="nav-number">2.</span> <span class="nav-text">开始解答</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#new到底做了啥"><span class="nav-number">3.</span> <span class="nav-text">new到底做了啥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">4.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
             
           </div>
         </section>
