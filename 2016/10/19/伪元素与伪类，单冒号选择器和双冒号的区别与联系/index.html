@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://gelory.me/2016/10/19/伪元素与伪类，单冒号选择器和双冒号的区别与联系/index.html">
 <meta property="og:site_name" content="龚小样儿">
 <meta property="og:description" content="最近学习HTML5+CSS3时，看到一个现象,在使用::selection伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。">
-<meta property="og:updated_time" content="2016-10-20T07:05:56.123Z">
+<meta property="og:updated_time" content="2017-06-25T13:31:31.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="伪元素与伪类，单冒号选择器和双冒号的区别与联系">
 <meta name="twitter:description" content="最近学习HTML5+CSS3时，看到一个现象,在使用::selection伪元素时，为什么使用两个冒号，如此奇特啊，平时看见的都只有一个冒号啊？它是皇亲国戚吗，竟有如此特权？在探究这个问题的时候，突然发现要我具体定义伪类和伪元素，我还真不知道怎么去解释，于是顺带把这个问题也解决一下。">
@@ -378,7 +378,7 @@
 :hover    当鼠标悬浮在元素上方时，向元素添加样式。
 :link    向未被访问的链接添加样式。
 :visited    向已被访问的链接添加样式。
-:first-child    向元素的第一个子元素添加样式。
+:first-child    选择器用于选取属于其父元素的首个子元素的指定选择器。
 :lang 向带有指定 lang 属性的元素添加样式。
 </code></pre><p>怎么用的呢？</p>
 <pre><code>&lt;ul&gt;
@@ -386,7 +386,7 @@
 &lt;li&gt;Turn key &lt;strong&gt;clockwise&lt;/strong&gt;&lt;/li&gt;
 &lt;li&gt;Push accelerator&lt;/li&gt;
 &lt;/ul&gt;
-</code></pre><p>我想让第一个li标签的内容变绿，我就这样 <code>ul:first-child</code>指定第一个元素。</p>
+</code></pre><p>我想让第一个li标签的内容变绿，我就这样 <code>ul&gt;:first-child</code>指定第一个元素。</p>
 <p>伪元素，常见的伪元素有这些</p>
 <pre><code>:first-letter    向文本的第一个字母添加特殊样式。
 :first-line    向文本的首行添加特殊样式。
