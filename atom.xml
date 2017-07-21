@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2017-07-20T13:56:07.562Z</updated>
+  <updated>2017-07-21T12:03:35.485Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>函数柯里化</title>
+    <link href="http://gelory.me/2017/07/21/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/"/>
+    <id>http://gelory.me/2017/07/21/函数柯里化/</id>
+    <published>2017-07-21T12:00:19.000Z</published>
+    <updated>2017-07-21T12:03:35.485Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a>
+<p>一道题目<br>要实现的结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">add(<span class="number">1</span>)()= <span class="number">1</span>;</div><div class="line">add(<span class="number">2</span>)(<span class="number">3</span>)() = <span class="number">5</span>;</div><div class="line">add(<span class="number">1</span>)(<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>])()=<span class="number">10</span>;</div></pre></td></tr></table></figure></p>
+<p>函数柯里化（currying）<br>把接收多个参数的函数变换成接收单一参数的函数，并且返回一个函数，该函数接收余下的参数且返回新函数的技术。</p>
+<p>柯里化具有：延迟计算、参数复用、动态生成函数的作用、固定易变因素</p>
+<h3 id="柯里化应用之–运算"><a href="#柯里化应用之–运算" class="headerlink" title="柯里化应用之–运算"></a>柯里化应用之–运算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">    add(<span class="number">1</span>)()== <span class="number">1</span>;</div><div class="line">    add(<span class="number">2</span>)(<span class="number">3</span>)() == <span class="number">5</span>;</div><div class="line">    add(<span class="number">1</span>)(<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>])()==<span class="number">10</span>;</div><div class="line">    <span class="comment">//乘法</span></div><div class="line">    mult(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">4</span>) == <span class="number">8</span>;</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> sum=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> m <span class="keyword">of</span> <span class="built_in">arguments</span>)&#123;</div><div class="line">		(m <span class="keyword">instanceof</span> <span class="built_in">Array</span>)?sum+=<span class="built_in">arguments</span>.callee(m):sum+=m;	</div><div class="line">		<span class="comment">// sum+=((m instanceof Array)?arguments.callee(m):m)	</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> sum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryAdd</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> _args = [];</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="built_in">arguments</span>.length === <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,_args);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="built_in">Array</span>.prototype.push.apply(_args,<span class="built_in">arguments</span>);</div><div class="line">			<span class="keyword">return</span> <span class="built_in">arguments</span>.callee;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">curryAdd(sum)(<span class="number">1</span>)(<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>])() == <span class="number">10</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mult</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> um=x;</div><div class="line">	</div><div class="line">	<span class="keyword">var</span> mu = <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</div><div class="line">	    sum *=y;</div><div class="line">	    <span class="keyword">return</span> mu;</div><div class="line">	&#125;;</div><div class="line">	</div><div class="line">	mu.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> um&#125;;</div><div class="line">	<span class="keyword">return</span> mu;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="柯里化应用之–DOM事件绑定"><a href="#柯里化应用之–DOM事件绑定" class="headerlink" title="柯里化应用之–DOM事件绑定"></a>柯里化应用之–DOM事件绑定</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">window</span>.addEventListener)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">el,type,fn,capture</span>)</span>&#123;</div><div class="line">			el.addEventListener(type,fn,capture);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.attachEvent)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">el,type,fn</span>)</span>&#123;</div><div class="line">			el.attachEvent(<span class="string">"on"</span>+type,fn);</div><div class="line">		&#125;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">el,type,fn</span>)</span>&#123;</div><div class="line">			el[<span class="string">"on"</span>+type] = fn;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> aE = addEvent();</div><div class="line">aE(el,<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<h3 id="柯里化应用之–bind"><a href="#柯里化应用之–bind" class="headerlink" title="柯里化应用之–bind()"></a>柯里化应用之–bind()</h3><p>bind()会创建一个新函数（绑定函数），新函数与被调函数具有相同的函数体，当被调函数被调用时，this被绑定到bind()的第一个参数上。起主要作用就是将函数绑定在某个对象上。</p>
+<p>bing()原理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">if</span>(!<span class="built_in">Function</span>.prototype.bind)&#123;</div><div class="line">	<span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">oThis</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>)&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"fucntion.prototype.bind-what is trying to be bound is not callable"</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">var</span> aArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>,<span class="number">1</span>),</div><div class="line">		that = <span class="keyword">this</span>,</div><div class="line">		fNop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</div><div class="line">		Bound = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//当返回的是构造函数是，oThis将被忽略</span></div><div class="line">			<span class="keyword">return</span> that.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fNop?<span class="keyword">this</span>:oThis || <span class="keyword">this</span>,aArgs.concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)));</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		fNop.prototype = <span class="keyword">this</span>.prototype;</div><div class="line">		fBound.prototype = <span class="keyword">new</span> fNop();</div><div class="line">		<span class="keyword">return</span> fBound;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>目前应用的还少，等用到了在加深记忆。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">Nothig</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-07-21</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;一道题目&lt;br&gt;要实现的结果：&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;di
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>本地文件的上传方法的思索及延伸</title>
@@ -1553,9 +1587,9 @@ alert(a); //2.此时显示的是0
       <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
     
     
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -1585,32 +1619,6 @@ alert(a); //2.此时显示的是0
     <summary type="html">
     
       &lt;p&gt;刚接触移动端网页开发，之前不知带要设置页面缩放属性，导致正常字体小的出奇，这次对viewport进一步深入学习。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="CSS" scheme="http://gelory.me/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Webkit内核显示字体自动放大问题</title>
-    <link href="http://gelory.me/2016/10/26/Webkit%E5%86%85%E6%A0%B8%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93%E8%87%AA%E5%8A%A8%E6%94%BE%E5%A4%A7%E9%97%AE%E9%A2%98/"/>
-    <id>http://gelory.me/2016/10/26/Webkit内核显示字体自动放大问题/</id>
-    <published>2016-10-26T09:21:21.000Z</published>
-    <updated>2016-10-26T09:23:02.519Z</updated>
-    
-    <content type="html"><![CDATA[<p>在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。<br><a id="more"></a><br>这个东西不是bug也不是hack，是Chromium内核为了提高移动端文本可读性，而增加的一个特性。还有个学名叫<code>Text Autosizer</code> 这个算法呢会根据缩放比例，字体大小，屏幕分辨率等特性，将开发人员设置的字体大小值做一系列运算，然后显示。意思就是：它认为你这样用户会看不清。于是助你一臂之力。</p>
-<p>那如何禁用这个特性呢？有人说给文本增加宽高，真是脑洞大。<br>最直接的方法就是设置<br><code>max-height=100%；</code>设置元素的最大宽度。<br>当然你也可以设置viewport元标签内的initial-scale属性为1。initial-scale属性控制页面最初加载时的缩放等级。更多关于元标签的信息可以看我遇到的另一个问题<a href="http://gelory.me/2016/10/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%98%BE%E7%A4%BA%E6%97%B6%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E9%97%AE%E9%A2%98/">移动端显示时页面缩放问题</a>.</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-26</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在做移动端页面时，出现了这么个抓狂的问题。明明设置的font-size值为20px，但是computed下的font-size值缺为56px，吓得我看是怀疑人生。&lt;br&gt;
     
     </summary>
     

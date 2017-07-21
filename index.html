@@ -290,6 +290,145 @@
             
               
                 
+                <a class="post-title-link" href="/2017/07/21/函数柯里化/" itemprop="url">
+                  函数柯里化
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-07-21T20:00:19+08:00" content="2017-07-21">
+              2017-07-21
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/07/21/函数柯里化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/21/函数柯里化/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/07/21/函数柯里化/" class="leancloud_visitors" data-flag-title="函数柯里化">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>一道题目<br>要实现的结果：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">add(<span class="number">1</span>)()= <span class="number">1</span>;</div><div class="line">add(<span class="number">2</span>)(<span class="number">3</span>)() = <span class="number">5</span>;</div><div class="line">add(<span class="number">1</span>)(<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>])()=<span class="number">10</span>;</div></pre></td></tr></table></figure></p>
+<p>函数柯里化（currying）<br>把接收多个参数的函数变换成接收单一参数的函数，并且返回一个函数，该函数接收余下的参数且返回新函数的技术。</p>
+<p>柯里化具有：延迟计算、参数复用、动态生成函数的作用、固定易变因素</p>
+<h3 id="柯里化应用之–运算"><a href="#柯里化应用之–运算" class="headerlink" title="柯里化应用之–运算"></a>柯里化应用之–运算</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">    add(<span class="number">1</span>)()== <span class="number">1</span>;</div><div class="line">    add(<span class="number">2</span>)(<span class="number">3</span>)() == <span class="number">5</span>;</div><div class="line">    add(<span class="number">1</span>)(<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>])()==<span class="number">10</span>;</div><div class="line">    <span class="comment">//乘法</span></div><div class="line">    mult(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">4</span>) == <span class="number">8</span>;</div><div class="line">    </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> sum=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> m <span class="keyword">of</span> <span class="built_in">arguments</span>)&#123;</div><div class="line">		(m <span class="keyword">instanceof</span> <span class="built_in">Array</span>)?sum+=<span class="built_in">arguments</span>.callee(m):sum+=m;	</div><div class="line">		<span class="comment">// sum+=((m instanceof Array)?arguments.callee(m):m)	</span></div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> sum;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryAdd</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> _args = [];</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="built_in">arguments</span>.length === <span class="number">0</span>)&#123;</div><div class="line">			<span class="keyword">return</span> fn.apply(<span class="keyword">this</span>,_args);</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="built_in">Array</span>.prototype.push.apply(_args,<span class="built_in">arguments</span>);</div><div class="line">			<span class="keyword">return</span> <span class="built_in">arguments</span>.callee;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">curryAdd(sum)(<span class="number">1</span>)(<span class="number">2</span>,[<span class="number">3</span>,<span class="number">4</span>])() == <span class="number">10</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mult</span>(<span class="params">x</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> um=x;</div><div class="line">	</div><div class="line">	<span class="keyword">var</span> mu = <span class="function"><span class="keyword">function</span>(<span class="params">y</span>)</span>&#123;</div><div class="line">	    sum *=y;</div><div class="line">	    <span class="keyword">return</span> mu;</div><div class="line">	&#125;;</div><div class="line">	</div><div class="line">	mu.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">return</span> um&#125;;</div><div class="line">	<span class="keyword">return</span> mu;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="柯里化应用之–DOM事件绑定"><a href="#柯里化应用之–DOM事件绑定" class="headerlink" title="柯里化应用之–DOM事件绑定"></a>柯里化应用之–DOM事件绑定</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">window</span>.addEventListener)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">el,type,fn,capture</span>)</span>&#123;</div><div class="line">			el.addEventListener(type,fn,capture);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">window</span>.attachEvent)&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">el,type,fn</span>)</span>&#123;</div><div class="line">			el.attachEvent(<span class="string">"on"</span>+type,fn);</div><div class="line">		&#125;</div><div class="line">	&#125;<span class="keyword">else</span>&#123;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">el,type,fn</span>)</span>&#123;</div><div class="line">			el[<span class="string">"on"</span>+type] = fn;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> aE = addEvent();</div><div class="line">aE(el,<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<h3 id="柯里化应用之–bind"><a href="#柯里化应用之–bind" class="headerlink" title="柯里化应用之–bind()"></a>柯里化应用之–bind()</h3><p>bind()会创建一个新函数（绑定函数），新函数与被调函数具有相同的函数体，当被调函数被调用时，this被绑定到bind()的第一个参数上。起主要作用就是将函数绑定在某个对象上。</p>
+<p>bing()原理<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">if</span>(!<span class="built_in">Function</span>.prototype.bind)&#123;</div><div class="line">	<span class="built_in">Function</span>.prototype.bind = <span class="function"><span class="keyword">function</span>(<span class="params">oThis</span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span>(<span class="keyword">typeof</span> <span class="keyword">this</span> !== <span class="string">"function"</span>)&#123;</div><div class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">TypeError</span>(<span class="string">"fucntion.prototype.bind-what is trying to be bound is not callable"</span>);</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		<span class="keyword">var</span> aArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>,<span class="number">1</span>),</div><div class="line">		that = <span class="keyword">this</span>,</div><div class="line">		fNop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</div><div class="line">		Bound = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="comment">//当返回的是构造函数是，oThis将被忽略</span></div><div class="line">			<span class="keyword">return</span> that.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> fNop?<span class="keyword">this</span>:oThis || <span class="keyword">this</span>,aArgs.concat(<span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)));</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		fNop.prototype = <span class="keyword">this</span>.prototype;</div><div class="line">		fBound.prototype = <span class="keyword">new</span> fNop();</div><div class="line">		<span class="keyword">return</span> fBound;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>目前应用的还少，等用到了在加深记忆。</p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">Nothig</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-07-21</span></center>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/07/20/本地文件的上传方法的思索及延伸/" itemprop="url">
                   本地文件的上传方法的思索及延伸
                 </a>
@@ -1448,137 +1587,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/17/JS中实现继承的方法/" itemprop="url">
-                  JS中实现继承的方法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-17T16:16:49+08:00" content="2016-11-17">
-              2016-11-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JS/" itemprop="url" rel="index">
-                    <span itemprop="name">JS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/11/17/JS中实现继承的方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/17/JS中实现继承的方法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/11/17/JS中实现继承的方法/" class="leancloud_visitors" data-flag-title="JS中实现继承的方法">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/17/JS中实现继承的方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1623,7 +1631,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">37</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
