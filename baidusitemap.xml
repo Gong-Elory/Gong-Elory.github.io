@@ -3,6 +3,28 @@
 
 
     
+  <url>
+    <loc>http://gelory.me/2017/07/27/%E8%B7%A8%E5%9F%9F%E6%96%B9%E6%B3%95%E8%A7%A3%E8%AF%BB-%E5%BE%85%E5%AE%8C%E5%96%84/</loc>
+    <lastmod>2017-07-27T09:34:48.429Z</lastmod>
+    <data>
+        <display>
+        <title>跨域方法解读(待完善)</title>
+        <pubTime>2017-07-27T09:30:16.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>通信</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://gelory.me/2017/07/21/%E5%87%BD%E6%95%B0%E6%9F%AF%E9%87%8C%E5%8C%96/</loc>
@@ -409,9 +431,9 @@
         <title>JS中全局变量和局部变量的区别</title>
         <pubTime>2016-11-03T06:12:17.000Z</pubTime>
         
-        <tag>JS</tag>
-         
         <tag>前端</tag>
+         
+        <tag>JS</tag>
          
          
            

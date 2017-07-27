@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="前端,CSS," />
+  <meta name="keywords" content="JS,通信," />
 
 
 
@@ -86,16 +86,16 @@
 
 
 
-<meta name="description" content="在重构页面时，经常会用到px，em等单位来设置距离，大小。但是用px还好，em时稍不留心，参考大小就弄错了，然后计算出一个错误的距离，还用得不亦乐乎。">
+<meta name="description" content="协议、域名、子域名、端口号 任意一个不同，就叫跨域同源策略的作用是为了保证用户信息安全，防止数据被恶意窃取。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="px，em，rem单位的区别与联系">
-<meta property="og:url" content="http://gelory.me/2016/10/26/px，em，rem单位的区别与联系/index.html">
+<meta property="og:title" content="跨域方法解读(待完善)">
+<meta property="og:url" content="http://gelory.me/2017/07/27/跨域方法解读-待完善/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="在重构页面时，经常会用到px，em等单位来设置距离，大小。但是用px还好，em时稍不留心，参考大小就弄错了，然后计算出一个错误的距离，还用得不亦乐乎。">
-<meta property="og:updated_time" content="2016-10-26T09:08:04.537Z">
+<meta property="og:description" content="协议、域名、子域名、端口号 任意一个不同，就叫跨域同源策略的作用是为了保证用户信息安全，防止数据被恶意窃取。">
+<meta property="og:updated_time" content="2017-07-27T09:34:48.429Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="px，em，rem单位的区别与联系">
-<meta name="twitter:description" content="在重构页面时，经常会用到px，em等单位来设置距离，大小。但是用px还好，em时稍不留心，参考大小就弄错了，然后计算出一个错误的距离，还用得不亦乐乎。">
+<meta name="twitter:title" content="跨域方法解读(待完善)">
+<meta name="twitter:description" content="协议、域名、子域名、端口号 任意一个不同，就叫跨域同源策略的作用是为了保证用户信息安全，防止数据被恶意窃取。">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://gelory.me/2016/10/26/px，em，rem单位的区别与联系/"/>
+  <link rel="canonical" href="http://gelory.me/2017/07/27/跨域方法解读-待完善/"/>
 
 
-  <title> px，em，rem单位的区别与联系 | 龚小样儿 </title>
+  <title> 跨域方法解读(待完善) | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +288,7 @@
             
             
               
-                px，em，rem单位的区别与联系
+                跨域方法解读(待完善)
               
             
           </h1>
@@ -300,8 +300,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-26T16:23:57+08:00" content="2016-10-26">
-              2016-10-26
+            <time itemprop="dateCreated" datetime="2017-07-27T17:30:16+08:00" content="2017-07-27">
+              2017-07-27
             </time>
           </span>
 
@@ -314,8 +314,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -330,8 +330,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/26/px，em，rem单位的区别与联系/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/26/px，em，rem单位的区别与联系/" itemprop="commentsCount"></span>
+                <a href="/2017/07/27/跨域方法解读-待完善/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/27/跨域方法解读-待完善/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -341,7 +341,7 @@
 
           
           
-             <span id="/2016/10/26/px，em，rem单位的区别与联系/" class="leancloud_visitors" data-flag-title="px，em，rem单位的区别与联系">
+             <span id="/2017/07/27/跨域方法解读-待完善/" class="leancloud_visitors" data-flag-title="跨域方法解读(待完善)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,47 +363,42 @@
       
 
       
-        <p>在重构页面时，经常会用到px，em等单位来设置距离，大小。但是用px还好，em时稍不留心，参考大小就弄错了，然后计算出一个错误的距离，还用得不亦乐乎。<br><a id="more"></a><br>px（Pixel）这个单位是相当于显示器的分辨率来说的。</p>
-<h2 id="em的特点"><a href="#em的特点" class="headerlink" title="em的特点"></a>em的特点</h2><blockquote>
-<ul>
-<li>表示字体大小时，是相对其父元素字体大小的倍数而言的。<br>譬如该父元素字体大小为16px，那么1.5em=1.5*16px=24px</li>
-<li>在表示距离，宽高的时候，是相对其自身元素字体大小而言的，这个极为重要。<br>譬如父元素字体大小为16px 自身元素字体大小为24px（或者（1.5em）），那么margin-top：2em，这里换算为px值是48px，而不是32px。</li>
-</ul>
-</blockquote>
-<p>任何浏览器的默认字体大小都是16px，那我们每次算像素值，然后用em表示，岂不是相当麻烦。是的，很麻烦。为了简化运算，经常会在body选择器中声明</p>
-<pre><code>font-size：62.5%
-</code></pre><p>意思是参考值变为原来的.625倍，也就是16*0.625=10px。那么之后在算em就是以这个为基准了。譬如23像素就可以表示为2.3em。</p>
-<p>但我还是觉得麻烦啊！每次还要考虑其父元素的大小，考虑自身元素字体大小，操着卖白粉的心啊！<br>是的！ 考虑到这个原因在CSS3中新增了rem这个相对单位。</p>
-<h2 id="rem和em的区别"><a href="#rem和em的区别" class="headerlink" title="rem和em的区别"></a>rem和em的区别</h2><p>rem永远相对于根元素，也就是说不需要考虑他的父元素大小了，统一以根元素的字体大小作为基准。此时设置文档根元素html标签的字体</p>
-<p>font-size：62.5%</p>
-<p>来使1rem 代表 10px。</p>
-<p>这个在自适应布局用途非常的广，譬如设计稿给的宽度是640px，此时根元素设置的是20px  那么10rem代表200px，如果想在屏幕宽度为320px的移动端也适用这一套，只需要根据屏幕宽度比去计算在320px下html的字体大小值就行了。不需要去具体改动其他元素的值。</p>
-<h2 id="rem的兼容性"><a href="#rem的兼容性" class="headerlink" title="rem的兼容性"></a>rem的兼容性</h2><blockquote>
-<ul>
-<li>支持 IE9+</li>
-</ul>
-</blockquote>
-<p>IE9/IE10在用于伪元素时或者使用字体简写声明时不支持rem；</p>
-<blockquote>
-<ul>
-<li>支持 FireFox3.5+</li>
-<li>支持Chrome 6+</li>
-<li>支持 Safari 5+</li>
-<li>支持Opera 11.6+</li>
-<li>支持IOS Safari 4.1+</li>
-</ul>
-</blockquote>
-<p>IOS Safari5.0-5.1虽然支持rem，但是在使用媒体查询时不支持rem。</p>
-<blockquote>
-<ul>
-<li>支持Android2.1+ 微信页面可能不起作用</li>
-</ul>
-</blockquote>
-<p>如果兼容性不支持，那么就采用px 和rem一起写的方式。</p>
-<p>rem和em可以一起用，但是这样不嫌麻烦吗？</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">能用rem尽量用，不兼容就混合用，迟早是它的天下！</center>
+        <p>协议、域名、子域名、端口号 任意一个不同，就叫跨域<br>同源策略的作用是为了保证用户信息安全，防止数据被恶意窃取。<br><a id="more"></a><br>由于同源策略的限制，会导致三种行为被限制：</p>
+<pre><code>Cookie、Localstorage以及IndexDB无法读取
+DOM无法获得
+Ajax请求不能发送
+</code></pre><p>解决Cookie无法共享的问题。在两位顶级域名相同，而次级域名不同时，<br>浏览器可以通过设置document.write来共享Cookie两个网页都设置document.domain = “samedomain.com” 即可<br>服务器可以在设置cookie时，指定cookie一级域名。Set-Cookie:domain=.samedomain.com</p>
+<h2 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h2><p>iframe窗口无法与父窗口通信：<br>如果只是子域名不同，同样可以使用设置document.domain来规避<br>对于完全不同源的，有三种方法<br>1.通过片段标识符进行数据传输。父窗口把信息写入子窗口的片段标识符中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var src = url+&quot;#&quot;+data;</div><div class="line">$(&quot;myframe&quot;).src = src;</div><div class="line">//子窗口通过监听hashchange事件来通知子窗口获得数据</div><div class="line">window.onhashchange = function()&#123;</div><div class="line">    var msg = window.location.hash</div><div class="line">&#125;</div><div class="line">//这里的hash就是指url中包含的以#跟的多个字符。</div><div class="line">//子窗口也可以改变父窗口的hash</div><div class="line">parent.location.href = target + &quot;#&quot; + hash;</div></pre></td></tr></table></figure></p>
+<p>此方法的缺点有：会产生历史记录，并且数据量有限</p>
+<p>2.浏览器窗口有window.name属性，该属性最大的特点就是</p>
+<p>无论是否同源，只要在一个窗口里，前一个网页设置了这个属性，后一个网页就可以读取他。<br>做法是指定iframe的src为不同域的网页，在这里修改window.name，然后将iframe的src改为同域网页。即可获取到window.name的数据。具体做法可以参考这篇文章:<a href="http://www.cnblogs.com/zichi/p/4620656.html" target="_blank" rel="external">window.name+iframe</a></p>
+<p>3.window.postMessage方法，允许跨窗口通信，无论是否同源。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var ppp = window.open(&quot;http://son.com&quot;,&quot;title&quot;);</div><div class="line">ppp.postMessage(&quot;hello,son&quot;,&quot;http://son.com&quot;);</div></pre></td></tr></table></figure></p>
+<p>第一个参数时发送的消息，第二个参数是接收消息的窗口的源。这个知识点在红宝书第16章讲过，但是措辞真是让人捉摸不透。格式为协议+域名+端口 也可以为“*”，表示想所有窗口发送。</p>
+<p>双方可以通过message事件监听对方的消息。数据保存在event对象的data属性中。<br>event还有origin属性，可以用来过滤不是发给本窗口的信息。origin属性为消息发向的网址<br>source属性指的是发送消息的窗口</p>
+<p>那么在子窗口中可以这样反馈：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">window.addEventListener(&apos;message&apos;,function(e)&#123;</div><div class="line">    if(e.origin != &quot;http://father.com&quot;) return;//不是发给我的，我不要</div><div class="line">    processMessage(e.data);//处理数据</div><div class="line">    e.source.postMessage(&quot;ok&quot;,e.origin);</div><div class="line">&#125;)</div><div class="line">//总结来说就是</div><div class="line">//接收信息的窗口对象.postMessage（&quot;信息内容&quot;，&quot;接受信息窗口的源&quot;）</div></pre></td></tr></table></figure></p>
+<p>Ajax智能请求同源服务器，有三种常用方案规避这个限制。</p>
+<h2 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h2><p>JSON是一种数据交换格式，JSONP是一种数据交互协议。</p>
+<h3 id="JSON的优点"><a href="#JSON的优点" class="headerlink" title="JSON的优点"></a>JSON的优点</h3><pre><code>1.基于纯文本，跨平台传递很简单
+2.js原生支持，后台语言支持
+3.轻量级
+4.可读性强
+5.容易编写和解析
+</code></pre><h3 id="JSONP-1"><a href="#JSONP-1" class="headerlink" title="JSONP"></a>JSONP</h3><p>我们知道，web页面调用js文件时，可以跨域。JSONP就是基于<code>&lt;script&gt;</code>标签<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//在客户端页面中</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    //声明函数</div><div class="line">    var callbacker = function(data)&#123;</div><div class="line">        alert(data);</div><div class="line">    &#125;;</div><div class="line">    // 提供jsonp服务的url地址</div><div class="line">    var url = &quot;http://a.com/test.php?callback=callbacker&quot;;</div><div class="line">    // 创建script标签，设置其属性</div><div class="line">    var script = document.createElement(&apos;script&apos;);</div><div class="line">    script.setAttribute(&apos;src&apos;, url);</div><div class="line">    // 把script标签加入head，此时调用开始</div><div class="line">    document.getElementsByTagName(&apos;head&apos;)[0].appendChild(script); </div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">//服务端页面</div><div class="line">根据返回的callback函数，生成一段带有数据的js代码，例如</div><div class="line">callbacker(&#123;</div><div class="line">    &quot;a&quot;:&quot;b&quot;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>在jquery中，实现jsonp调用，则是通过$.ajax()方法，参数上要修改一下。<br>回调函数不用添加在url后面，而是<br>设置datatype的值为”jsonp”<br>设置jsonp的值为”callbacker”,设置的值为参数名<br>设置jsonpCallback的值为函数名，可选属性<br>设置success：function（）{}。请求成功后回调函数的处理程序<br>设置error：function（）{}。请求失败后回调函数的处理程序</p>
+<h3 id="ajax和jsonp的区别"><a href="#ajax和jsonp的区别" class="headerlink" title="ajax和jsonp的区别"></a>ajax和jsonp的区别</h3><p>虽然调用方式和目的一样，但是本质上不同。ajax的核心是通过XHR获取内容，而jsonp的核心则是动态添加<code>&lt;script&gt;</code>标签来调用服务器的js脚本。</p>
+<h2 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h2><p>WebSocket是一种通信协议，使用ws://和我是说：wss://（加密）作为协议前缀。不受同源政策的限制<br>浏览器发出的请求头信息中如果包含字段Origin，其中包含的是请求源。服务器判断该源是否在白名单内，如果在，则做出响应。</p>
+<h2 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h2><p>cors是W3C标准，全称跨域资源共享。他允许向跨院服务器发送XHR请求<br>目前所有浏览器都支持，只不过IE要不能低于IE10</p>
+<p>浏览器将CORS请求分为两大类。简单请求和非简单请求。<br>只要满足两个请求就为简单请求。<br>1.请求方法是HEAD,POST,GET其中一种。<br>2.HTTP头信息不超出Accept，Accept-Language，Content-Language，Last-Event-ID，以及Content-Type<br>而Content-Type仅限于application/x-www-form-urlencode/multipart-data以及text/plain</p>
+<h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><p>浏览器如果发现跨源ajax请求为简单请求，就会自动在头信息中，添加Origin字段。<br>如果请求源不在服务器的白名单内，服务器会返回一个正常的http回应，此时的回应头信息中没有Access-Control-Allow-Origin字段，浏览器就知道错了，因此会抛出一个错误，被XHR的onerror回调函数捕获。</p>
+<p>Access-Control-Allow-Credentials字段可选为布尔值，表示服务器是否明确允许发送Cookie。<br>Access-Control-Expose-Headers字段可选。CORS请求时，XHR对象的getResponseHeader（）只能拿到6个基本字段，如果想拿到其他字段，就必须在Access-Control-Expose-Headers指定。如getResponseHeader（’a’），就可以拿到a字段的值。</p>
+<h4 id="设置withCredentials属性控制Cookie的传输"><a href="#设置withCredentials属性控制Cookie的传输" class="headerlink" title="设置withCredentials属性控制Cookie的传输"></a>设置withCredentials属性控制Cookie的传输</h4><p>CORS默认不发送Cookie和HTTP认证信息，如果要，一方面服务器统一，指定Access-Control-Allow-Credentials字段，此外，还需要开发者在AJAX请求中设置<code>xhrobj.withCredentials=true</code>。如果有些浏览器在忽略此值时依然发送cookie，可手动关闭。</p>
+<h3 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h3><p>非简单请求包括特殊请求，如PUT,DELETE，或者Content-Type字段为application/json。<br>费简单请求在正式通信之前，增加了一次HTTP查询请求，该请求的请求方法是OPTIONS,查询源是否在白名单中，那些字段被允许，得到响应后再正式发起XHR请求。</p>
+<p>服务请回应查询请求是否允许跨院请求的依据是···Access-Control-Allow-Origin···字段是否为请求源或者*；<br>如果不是上面两种，浏览器就知道被拒绝了，同样触发XHR的onerror监听事件。</p>
+<p>CORS与JSONP相比，优点就是支持所有HTTP请求。劣势在于兼容性没CORS好。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>【1】<a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html#fa" target="_blank" rel="external">浏览器同源政策及其规避方法</a><br>【2】<a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="external">跨域资源共享 CORS 详解</a><br>【3】<a href="http://www.cnblogs.com/dowinning/archive/2012/04/19/json-jsonp-jquery.html" target="_blank" rel="external">说说JSON和JSONP，也许你会豁然开朗，含jQuery用例</a></p>
+<h3 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h3><center style="color:green;font-weight: Bold;border:1px dotted #999">加油</center>
 
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-26</span></center>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-7-27</span></center>
       
     </div>
 
@@ -446,9 +441,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/前端/" rel="tag">#前端</a>
+            <a href="/tags/JS/" rel="tag">#JS</a>
           
-            <a href="/tags/CSS/" rel="tag">#CSS</a>
+            <a href="/tags/通信/" rel="tag">#通信</a>
           
         </div>
       
@@ -457,17 +452,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/24/Absolute定位的进一步认识/" rel="next" title="Absolute定位的进一步认识">
-                <i class="fa fa-chevron-left"></i> Absolute定位的进一步认识
+              <a href="/2017/07/21/函数柯里化/" rel="next" title="函数柯里化">
+                <i class="fa fa-chevron-left"></i> 函数柯里化
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/26/移动端显示时页面缩放问题/" rel="prev" title="移动端显示时页面缩放问题">
-                移动端显示时页面缩放问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -496,8 +487,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/10/26/px，em，rem单位的区别与联系/"
-           data-title="px，em，rem单位的区别与联系" data-url="http://gelory.me/2016/10/26/px，em，rem单位的区别与联系/">
+      <div class="ds-thread" data-thread-key="2017/07/27/跨域方法解读-待完善/"
+           data-title="跨域方法解读(待完善)" data-url="http://gelory.me/2017/07/27/跨域方法解读-待完善/">
       </div>
     
   </div>
@@ -595,7 +586,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#em的特点"><span class="nav-number">1.</span> <span class="nav-text">em的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rem和em的区别"><span class="nav-number">2.</span> <span class="nav-text">rem和em的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rem的兼容性"><span class="nav-number">3.</span> <span class="nav-text">rem的兼容性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小样有话说："><span class="nav-number">4.</span> <span class="nav-text">小样有话说：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#iframe"><span class="nav-number">1.</span> <span class="nav-text">iframe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSONP"><span class="nav-number">2.</span> <span class="nav-text">JSONP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSON的优点"><span class="nav-number">2.1.</span> <span class="nav-text">JSON的优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSONP-1"><span class="nav-number">2.2.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ajax和jsonp的区别"><span class="nav-number">2.3.</span> <span class="nav-text">ajax和jsonp的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket"><span class="nav-number">3.</span> <span class="nav-text">WebSocket</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CORS"><span class="nav-number">4.</span> <span class="nav-text">CORS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单请求"><span class="nav-number">4.1.</span> <span class="nav-text">简单请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#设置withCredentials属性控制Cookie的传输"><span class="nav-number">4.1.1.</span> <span class="nav-text">设置withCredentials属性控制Cookie的传输</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非简单请求"><span class="nav-number">4.2.</span> <span class="nav-text">非简单请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#小样有话说："><span class="nav-number">5.1.</span> <span class="nav-text">小样有话说：</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
