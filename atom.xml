@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2017-07-27T09:34:48.429Z</updated>
+  <updated>2017-08-07T13:16:57.597Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Angularjs-服务</title>
+    <link href="http://gelory.me/2017/08/07/Angularjs-%E6%9C%8D%E5%8A%A1/"/>
+    <id>http://gelory.me/2017/08/07/Angularjs-服务/</id>
+    <published>2017-08-07T13:00:35.000Z</published>
+    <updated>2017-08-07T13:16:57.597Z</updated>
+    
+    <content type="html"><![CDATA[<p>服务的作用，就是对外提供某种功能。angularjs上定义它为一个单例对象（只允许有一个实例的对象）或是一个函数。<br><a id="more"></a></p>
+<h2 id="对服务的理解"><a href="#对服务的理解" class="headerlink" title="对服务的理解"></a>对服务的理解</h2><p>服务的作用就是类似于我们常听说的构造函数的存在，只不过相比构造函数而言，不需要我们自己new一个实例，也不像构造函数可以new无数个实例，此外，服务被定义于一个模块中，其使用范围是可控范围，不会污染全局环境。</p>
+<h2 id="服务的自定义"><a href="#服务的自定义" class="headerlink" title="服务的自定义"></a>服务的自定义</h2><p>ng为我们提供了很多内置服务，以$开头。此外也可以自定义服务。常用的方法有： </p>
+<h3 id="使用provider方法"><a href="#使用provider方法" class="headerlink" title="使用provider方法"></a>使用provider方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&quot;myApp&quot;,[]);</div><div class="line">app.provider(&quot;myService&quot;,function()&#123;</div><div class="line">    this.$get = function()&#123;</div><div class="line">     return &#123;</div><div class="line">        name: &quot;elory&quot;;</div><div class="line">     &#125; </div><div class="line">    &#125;</div><div class="line">);</div><div class="line">//此时就可以在控制器中注入这个服务了。</div><div class="line">//注意：使用provider注册服务时，控制器访问的实例其实是$get()</div><div class="line">//provider是唯一一种生成可以注入到config()中的服务的方法。如果需要在服务启动之前，配置模块，可以使用provider。</div><div class="line">//在config（）中注入时，服务声明格式必须是 myService+ Provider</div><div class="line">//app.config(myServiceProvider)</div></pre></td></tr></table></figure>
+<h3 id="使用factory方法"><a href="#使用factory方法" class="headerlink" title="使用factory方法"></a>使用factory方法</h3><p>该方法最终要返回一个对象,或者一个函数，factory的内部实现其实是调用了provider<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&quot;myApp&quot;,[]);</div><div class="line">app.factory(&quot;myService&quot;,function()&#123;</div><div class="line">    var name = &quot;elory&quot;,</div><div class="line">    service = &#123;&#125;;</div><div class="line">    service.getName =function()&#123;</div><div class="line">    return name;</div><div class="line">    &#125;;</div><div class="line">    return service;</div><div class="line">);</div><div class="line">app.factory(&quot;myServiceFunc&quot;,function()&#123;</div><div class="line">    return function(name)&#123;</div><div class="line">        console.log(name)</div><div class="line">    &#125;;</div><div class="line">);</div><div class="line">//此时就可以在控制器中注入这个服务了。</div><div class="line">//返回函数的话，直接传入参数即可myServiceFunc（“leory&quot;）</div></pre></td></tr></table></figure></p>
+<p>###使用service方法<br>使用service方法，不需要返回对象了。service的内部实现其实就是调用的factory。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var app = angular.module(&quot;myApp&quot;,[]);</div><div class="line">app.factory(&quot;myService&quot;,function()&#123;</div><div class="line">    this.name== &quot;elory&quot;;</div><div class="line">    &#125;;</div><div class="line">);</div><div class="line">//在控制器中注入服务后，可以直接调用，</div><div class="line">//因为注入器已经帮我们实例化了这个服务，所以不需要手动实例化。</div><div class="line">//myService.name</div></pre></td></tr></table></figure></p>
+<h3 id="使用value方法"><a href="#使用value方法" class="headerlink" title="使用value方法"></a>使用value方法</h3><p>value定义服务时，只能定义单一的常量服务，类似于key，value一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service.value(&quot;name&quot;,&quot;elory&quot;);</div><div class="line">//使用时，直接将name赋值给其他变量</div></pre></td></tr></table></figure></p>
+<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">没话说</center>
+
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-08-07</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;服务的作用，就是对外提供某种功能。angularjs上定义它为一个单例对象（只允许有一个实例的对象）或是一个函数。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Angualarjs" scheme="http://gelory.me/categories/Angualarjs/"/>
+    
+    
+      <category term="Angualarjs" scheme="http://gelory.me/tags/Angualarjs/"/>
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
   
   <entry>
     <title>跨域方法解读(待完善)</title>
@@ -1569,83 +1602,6 @@ setTimeout(repeatMe, 10);
       <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
       <category term="DOM" scheme="http://gelory.me/tags/DOM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS中全局变量和局部变量的区别</title>
-    <link href="http://gelory.me/2016/11/03/JS%E4%B8%AD%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
-    <id>http://gelory.me/2016/11/03/JS中全局变量和局部变量的区别/</id>
-    <published>2016-11-03T06:12:17.000Z</published>
-    <updated>2016-11-03T06:14:06.022Z</updated>
-    
-    <content type="html"><![CDATA[<p>什么是局部变量，用var操作符定义的变量将成为该变量作用域中的局部变量。其实可以这样理解，全局变量也是局部变量，只不过他是在<code>&lt;script&gt;&lt;/script&gt;</code>包含的作用域下的局部变量。但是通常情况下，我们参考的标准的function域，也就是说在<code>function域中用var定义的变量称为在该作用域下的局部变量</code>，那么剩余的就是全局变量了。<br><a id="more"></a></p>
-<h2 id="哪些方式可以生成全局变量与局部变量："><a href="#哪些方式可以生成全局变量与局部变量：" class="headerlink" title="哪些方式可以生成全局变量与局部变量："></a>哪些方式可以生成全局变量与局部变量：</h2><pre><code>var a=0; //全局变量1
-b=0; //全局变量2
-window.str3 = &quot;hello3&quot;; //全局变量3
-function(){
-    var d = 0；//局部变量4
-    e=0; //全局变量5
-}
-</code></pre><p>全局变量2，5，虽说这样可以定义全局变量，但是不推荐这样做，因为如果你养成了这样定义全局变量的习惯，如果有一天一不小心，原本应该定位为局部变量的变量，由于忘记了var，变成了全局变量，那么找bug将会很困难，因为在你潜意识中，看到这个变量，你以为是在这里定义了个全局变量，其实是忘写var了。<strong>所以，不要有意识的去不写var</strong>。 此外给未经声明的变量赋值，在严格模式下会抛出<code>ReferenceError</code>错误。</p>
-<h2 id="局部变量的陷阱"><a href="#局部变量的陷阱" class="headerlink" title="局部变量的陷阱"></a>局部变量的陷阱</h2><h3 id="陷阱1"><a href="#陷阱1" class="headerlink" title="陷阱1"></a>陷阱1</h3><p>在作用域当中，在声明前使用局部变量不会报错，但因为没有赋值，所以返回的是undefined。</p>
-<pre><code>function test(){  
-    alert(a);  //1.此时显示的为undefined
-    var a=4;
-    alert(a); //2.此时显示的是4
-} 
-</code></pre><p>原因：js在执行前会对整个脚本文件分析，因此1不会报错，而只是因为在此前没对a赋值，所以显示undefined。<br>之所以2处会显示a，是因为在此之前对a进行赋值了。<br>因此需要注意两点：</p>
-<blockquote>
-<ul>
-<li><p>在引用局部变量时，与局部变量的声明地点无关，局部变量的作用域为整个function域。</p>
-</li>
-<li><p>在使用局部变量的值时，与局部变量的赋值地点有关，赋值的作用域起于赋值地点，止于function域结束，可以被覆盖。</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="陷阱2"><a href="#陷阱2" class="headerlink" title="陷阱2"></a>陷阱2</h3><p>局部变量的划分是以function块为标准，而for、while、if块不是。</p>
-<pre><code>function test(){  
-        for(var i=0;i&lt;3;i++)
-        {
-            alert(i); //1.此时显示的是0,1,2
-        }
-        alert(i) //2.此时显示的是2
-    } 
-</code></pre><p>原因：在for内进行声明的变量属于局部变量，他的作用域在整个function域内，而不仅仅只for域内，因此2处显示的是2，而不是报错。<br>因此注意一点</p>
-<blockquote>
-<ul>
-<li>局部变量的划分是以function块为标准。</li>
-</ul>
-</blockquote>
-<h3 id="陷阱3"><a href="#陷阱3" class="headerlink" title="陷阱3"></a>陷阱3</h3><p>如果全局变量和局部变量的变量名相同，采取的是谁近听谁的原则。</p>
-<pre><code>var a = 0;
-function test(){  
-        var a = 1;
-        alert(a); //1.此时显示的是1
-    }
-alert(a); //2.此时显示的是0
-</code></pre><p>原因：1在function域下,其直接父域是function，所以听局部声明。2.的直接父域是script域,所以听全局声明<br>注意一点</p>
-<blockquote>
-<ul>
-<li>重名时，局部变量覆盖全局变量声明，跳出局部变量所在域后，由全局声明决定变量值。</li>
-</ul>
-</blockquote>
-<p>那怎样才能在这种情况下，在function域中使用全局变量呢？<br>1.改名。天涯何处无芳草，何必吊死于一树。<br>2.在function域中使用<code>window.变量名</code>就可以调用全局变量啦。</p>
-<pre><code>alert(window.a); //此时显示的是0
-</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-3</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;什么是局部变量，用var操作符定义的变量将成为该变量作用域中的局部变量。其实可以这样理解，全局变量也是局部变量，只不过他是在&lt;code&gt;&amp;lt;script&amp;gt;&amp;lt;/script&amp;gt;&lt;/code&gt;包含的作用域下的局部变量。但是通常情况下，我们参考的标准的function域，也就是说在&lt;code&gt;function域中用var定义的变量称为在该作用域下的局部变量&lt;/code&gt;，那么剩余的就是全局变量了。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
     
   </entry>
   
