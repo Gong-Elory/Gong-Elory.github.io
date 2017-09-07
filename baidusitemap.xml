@@ -4,6 +4,108 @@
 
     
   <url>
+    <loc>http://gelory.me/2017/09/07/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/</loc>
+    <lastmod>2017-09-07T14:15:38.780Z</lastmod>
+    <data>
+        <display>
+        <title>响应式设计</title>
+        <pubTime>2017-09-07T14:04:09.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gelory.me/2017/09/07/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E5%92%8C%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/</loc>
+    <lastmod>2017-09-07T14:12:27.142Z</lastmod>
+    <data>
+        <display>
+        <title>函数节流和函数防抖</title>
+        <pubTime>2017-09-07T14:05:03.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gelory.me/2017/09/07/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
+    <lastmod>2017-09-07T14:11:11.807Z</lastmod>
+    <data>
+        <display>
+        <title>JS设计模式之单例模式</title>
+        <pubTime>2017-09-07T14:03:25.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gelory.me/2017/09/07/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9A%844%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2017-09-07T14:09:49.716Z</lastmod>
+    <data>
+        <display>
+        <title>异步编程的4种方法</title>
+        <pubTime>2017-09-07T14:03:51.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://gelory.me/2017/09/07/%E5%86%8D%E6%8E%A2%E4%BD%9C%E7%94%A8%E5%9F%9F/</loc>
+    <lastmod>2017-09-07T14:08:36.340Z</lastmod>
+    <data>
+        <display>
+        <title>再探作用域</title>
+        <pubTime>2017-09-07T14:01:59.000Z</pubTime>
+        
+        <tag>JS</tag>
+         
+         
+           
+             
+              <breadCrumb title="JS" url="http://gelory.me/categories/JS/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://gelory.me/2017/08/07/Angularjs-%E6%8C%87%E4%BB%A4/</loc>
     <lastmod>2017-08-10T14:49:48.194Z</lastmod>
     <data>
@@ -11,9 +113,9 @@
         <title>Angularjs-指令</title>
         <pubTime>2017-08-07T13:29:40.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>Angualarjs</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -33,9 +135,9 @@
         <title>Angularjs-服务</title>
         <pubTime>2017-08-07T13:00:35.000Z</pubTime>
         
-        <tag>前端</tag>
-         
         <tag>Angualarjs</tag>
+         
+        <tag>前端</tag>
          
          
            
@@ -513,16 +615,16 @@
     
     
   <url>
-    <loc>http://gelory.me/2016/10/26/Webkit%E5%86%85%E6%A0%B8%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93%E8%87%AA%E5%8A%A8%E6%94%BE%E5%A4%A7%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://gelory.me/2016/10/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%98%BE%E7%A4%BA%E6%97%B6%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2016-10-26T09:23:02.519Z</lastmod>
     <data>
         <display>
-        <title>Webkit内核显示字体自动放大问题</title>
-        <pubTime>2016-10-26T09:21:21.000Z</pubTime>
+        <title>移动端显示时页面缩放问题</title>
+        <pubTime>2016-10-26T08:47:07.000Z</pubTime>
         
         <tag>前端</tag>
          
-        <tag>CSS</tag>
+        <tag>HTML</tag>
          
          
            
@@ -535,16 +637,16 @@
 
     
   <url>
-    <loc>http://gelory.me/2016/10/26/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%98%BE%E7%A4%BA%E6%97%B6%E9%A1%B5%E9%9D%A2%E7%BC%A9%E6%94%BE%E9%97%AE%E9%A2%98/</loc>
+    <loc>http://gelory.me/2016/10/26/Webkit%E5%86%85%E6%A0%B8%E6%98%BE%E7%A4%BA%E5%AD%97%E4%BD%93%E8%87%AA%E5%8A%A8%E6%94%BE%E5%A4%A7%E9%97%AE%E9%A2%98/</loc>
     <lastmod>2016-10-26T09:23:02.519Z</lastmod>
     <data>
         <display>
-        <title>移动端显示时页面缩放问题</title>
-        <pubTime>2016-10-26T08:47:07.000Z</pubTime>
+        <title>Webkit内核显示字体自动放大问题</title>
+        <pubTime>2016-10-26T09:21:21.000Z</pubTime>
         
         <tag>前端</tag>
          
-        <tag>HTML</tag>
+        <tag>CSS</tag>
          
          
            

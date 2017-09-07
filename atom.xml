@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://gelory.me/"/>
-  <updated>2017-08-10T14:49:48.194Z</updated>
+  <updated>2017-09-07T14:12:27.142Z</updated>
   <id>http://gelory.me/</id>
   
   <author>
@@ -14,6 +14,189 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>函数节流和函数防抖</title>
+    <link href="http://gelory.me/2017/09/07/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81%E5%92%8C%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96/"/>
+    <id>http://gelory.me/2017/09/07/函数节流和函数防抖/</id>
+    <published>2017-09-07T14:05:03.000Z</published>
+    <updated>2017-09-07T14:12:27.142Z</updated>
+    
+    <content type="html"><![CDATA[<p>函数节流：指定时间间隔内只执行一次任务；<br>函数防抖：任务频繁触发的情况下，只有任务触发的间隔超过指定间隔，任务才会执行。<br><a id="more"></a><br>函数节流和函数防抖<br>—闭包的使用场景</p>
+<h2 id="函数节流（throttle）"><a href="#函数节流（throttle）" class="headerlink" title="函数节流（throttle）"></a>函数节流（throttle）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">throttle（fn,interval）&#123;</div><div class="line">    let canRun = true;</div><div class="line">    return function()&#123;</div><div class="line">        var that = this,args = arguments;</div><div class="line">        if(!canRun) return;</div><div class="line">        canRun = false;</div><div class="line">        setTimeOut(function()&#123;</div><div class="line">            canRun = true;</div><div class="line">            fn.apply(this,args);</div><div class="line">        &#125;,interval);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//节流的思想其实在日常的编程中很常见，就是设置一个标志位，</div><div class="line">//在指定的时刻去设置这个标志位，让程序执行下去</div></pre></td></tr></table></figure>
+<h2 id="函数防抖（debounce）"><a href="#函数防抖（debounce）" class="headerlink" title="函数防抖（debounce）"></a>函数防抖（debounce）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function debounce(fn,interval)&#123;</div><div class="line">    let timer = null;</div><div class="line">    return function()&#123;</div><div class="line">        var that = this,args = arguments;</div><div class="line">        clearInterval(timer);</div><div class="line">        timer = setTimeOut(function()&#123;</div><div class="line">            fn.apply(that,args);</div><div class="line">        &#125;,interval);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">//防抖的思想，可以简单的描述为，你要想执行，你得先熬过指定时间。</div><div class="line">//要是期间出了岔子，又得重新开始。有点像炼药，修仙一样。只不过这里不会爆炸，不会走火入魔。</div><div class="line">//而防抖就是要想触发事件，必须在指定时间内不能再有下一次触发，不然得重新开始。</div></pre></td></tr></table></figure>
+<p>函数节流和函数防抖的目的就是为了节约资源。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-08-30</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;函数节流：指定时间间隔内只执行一次任务；&lt;br&gt;函数防抖：任务频繁触发的情况下，只有任务触发的间隔超过指定间隔，任务才会执行。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>响应式设计</title>
+    <link href="http://gelory.me/2017/09/07/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/"/>
+    <id>http://gelory.me/2017/09/07/响应式设计/</id>
+    <published>2017-09-07T14:04:09.000Z</published>
+    <updated>2017-09-07T14:15:38.780Z</updated>
+    
+    <content type="html"><![CDATA[<p>响应式的一些知识点。<br><a id="more"></a></p>
+<h2 id="响应式图片"><a href="#响应式图片" class="headerlink" title="响应式图片"></a>响应式图片</h2><h3 id="涉及到两个属性"><a href="#涉及到两个属性" class="headerlink" title="涉及到两个属性"></a>涉及到两个属性</h3><blockquote>
+<p>srcset和sizes</p>
+</blockquote>
+<p>在我认为前者主要应该和分辨率打交道，把和尺寸打交道的交给后者。<br>首先，控制一张图片的尺寸是一件很容易的是，采用百分百width，即可以控制<br>但是要控制在什么时候加载什么分辨率的图片，就没那么容易<br>先从sizes说起，他主要是表示尺寸临界点。跟响应式布局打交道。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">sizes = &quot;(max-width: 360px) 340px,128px&quot;</div><div class="line">sizes = &quot;(max-width: 360px) calc(100vm - 20px),128px&quot;</div><div class="line">//上面的意思是当视窗宽度不大于360px时，图片的尺寸为视窗宽度-20px</div><div class="line">//vm将在后面讲到，在这里只要知道100vm，相当于100%视窗宽度。</div><div class="line">//其他时刻，则为固定宽度128px</div></pre></td></tr></table></figure></p>
+<p>这里只对图像尺寸进行控制，那么分辨率在哪里控制的呢。<br>通过srcset<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">srcset=&quot;mm-width-128px.jpg 128w, mm-width-256px.jpg 256w, mm-width-512px.jpg 512w&quot;</div></pre></td></tr></table></figure></p>
+<p>其实这三个图像的大小都是一般大，只不过分辨率不同。那到底在什么时候加载哪张图 为我们不许要去管，这一切浏览器帮我们去做了。</p>
+<h3 id="扩展："><a href="#扩展：" class="headerlink" title="扩展："></a>扩展：</h3><blockquote>
+<p>我们知道有种高富帅屏叫retina，这种屏的像素比比普通屏高，可以通过window.devicePixelRatio获得。<br>PPI像素密度  每英寸有多少个物理像素点 公式为（根号下横向像素评分+纵向像素平方）/屏幕尺寸（英寸）<br>DIPs设备独立像素 独立于设备的用于逻辑上衡量像素的单位。可以认为是程序可以使用的虚拟像素（CSS像素），然后由相关的系统转换为物理像素。<br>DPR设备像素比 在某一方向上 物理像素/设备独立像素，js中通过window.devicePixelRatio使用</p>
+</blockquote>
+<p>以IPhone6为例，设备宽高为375<em>667，可以理解为设备独立像素（或css像素）<br>i6的dpr为2，根据dpr的计算公式<code>DPR = 物理像素/设备独立像素</code>,可以算出其物理像素为750</em>1334。</p>
+<center><img src="http://divio.qiniudn.com/FpXnQbkqJ8sqP82mmrIjYBxfliQL"></center>
+
+<p>从上图可以看出，在不同的屏幕上，css像素所呈现的物理尺寸是一样大的（肉眼看见的是一样大的）。只不过此时一个css像素对应的物理像素点个数不一样。以前是1:1，现在是1:4（注意这里说的是单位面积的个数，刚才有DPR公式算的是x，y一条边上的个数）。</p>
+<p>我们在适应retina2倍屏的时候，会多设计一份两倍图片（@2x）,例如一个200<em>300像素的图片要像在2倍屏下清晰可见的话，就需要多一份400</em>600的图，如果硬是要用200<em>300的图会出现什么效果呢。相当于原来一个像素点的颜色现在要供2倍屏的4个像素点用，你说能不模糊吗，如果为400</em>600的图，就相当于一个像素点一个色。会更加逼真清晰。<br>那如果我们将两倍图用在1倍屏上，是什么效果呢，也就是说相当于4个像素的颜色用在一个像素点上。这里面通过一种算法来取颜色（downsampling）。</p>
+<p>在不同屏幕下，css像素呈现的物理尺寸是一致的，而不同的是css像素对应的物理像素是不一致的。在普通屏幕下1个css像素对应一个物理像素，在retina屏下，一个css像素对应dpr*dpr个</p>
+<p>假设我们的像素比发生了变化，此时浏览器会根据情况自动的选择加载相应的图片。<br>我们看到srcset里面有一个标识符w，这不是什么度量单位，最好的理解就是宽度规格，不要理解为宽度尺寸。<br>代表的是质量的好坏，譬如我们可以把一张实际宽度只有100px的png24无损图规格设置为200w</p>
+<h2 id="响应式文字"><a href="#响应式文字" class="headerlink" title="响应式文字"></a>响应式文字</h2><h3 id="不常见的单位"><a href="#不常见的单位" class="headerlink" title="不常见的单位"></a>不常见的单位</h3><blockquote>
+<p>vh，vw</p>
+</blockquote>
+<p>我们知道元素的宽高百分比是相对于最近父元素的宽高的。但是如果想用视口的宽高，就可以考虑vh，vm了<br>1vh等于1/100的视口高度，vw同理</p>
+<blockquote>
+<p>vmax，vmin</p>
+</blockquote>
+<p>视口宽高中的最大最小值/100，加入视口宽高为100px*500px<br>100vmax = 500px 100vmin = 100px</p>
+<h2 id="响应式设计"><a href="#响应式设计" class="headerlink" title="响应式设计"></a>响应式设计</h2><h3 id="meta属性"><a href="#meta属性" class="headerlink" title="meta属性"></a>meta属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no&quot;/&gt;</div></pre></td></tr></table></figure>
+<p>手机淘宝的meta,通过js动态写入。在retina3倍屏时，上述的三个数字参数将变成0.33333333<br>二倍屏时为0.5<br>有人可能会问了，为什么要设置这么多，而不就设置为1，然后去相应的根据retina屏，去改变元素的大小了例如要像让retina屏下显示12px的字体，只需要改为6px就好了嘛。但是我们在日常中，可能遇到这样的需求，在任何屏幕上某条边框都为1px，如果像上面那样设置initial-scale=1，除非将边框像素设置为0.5px，如果在3倍屏的话，更是要设置为0.3333333px，想想那些不支持小数px的，想让所有设备都为1px显然是不可能的。所以采用小数版initial要好一些。这样要想打印1px的边框，只需设置为2px就ok了。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-09-02</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;响应式的一些知识点。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>异步编程的4种方法</title>
+    <link href="http://gelory.me/2017/09/07/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E7%9A%844%E7%A7%8D%E6%96%B9%E6%B3%95/"/>
+    <id>http://gelory.me/2017/09/07/异步编程的4种方法/</id>
+    <published>2017-09-07T14:03:51.000Z</published>
+    <updated>2017-09-07T14:09:49.716Z</updated>
+    
+    <content type="html"><![CDATA[<p>同步模式：后一个任务等待前一个任务结束然后再执行。程序的执行顺序和任务的排列顺序是一致的，同步的。<br>异步模式：每一个任务有多个回调函数，前一个任务执行后，不是执行后一个任务而是执行回调函数。<br><a id="more"></a></p>
+<p>##异步编程的四种方法：</p>
+<p>###回调函数：<br>优点是简单，利于部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合，流程会很乱<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">f1(); f2();</div><div class="line">f1(callback)&#123;</div><div class="line">    //f1任务代码</div><div class="line">    callback();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="事件监听法（事件驱动模式）："><a href="#事件监听法（事件驱动模式）：" class="headerlink" title="事件监听法（事件驱动模式）："></a>事件监听法（事件驱动模式）：</h3><p>任务的执行不取决于代码的顺序，取决于某个事件是否发生。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">为f1绑定事件，f1.on(&apos;done&apos;,f2);</div><div class="line">f1()&#123;</div><div class="line">    //f1任务代码</div><div class="line">    f1.trigger(&apos;done&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>优点：比较容易理解，可以绑定多个事件，每个事件可以指定多个回调，有利于实现模块化。<br>缺点：整个程序都要变成事件驱动型，运行流程会变得很不清晰。</p>
+<h3 id="发布-订阅法："><a href="#发布-订阅法：" class="headerlink" title="发布/订阅法："></a>发布/订阅法：</h3><p>假设存在一个信号中心，某个任务完成时，就向信号中心发布（publish）一个信号，其他任务可以向信号中心订阅（subscribe）这个信号。当订阅的这个信号被publish，就代表已经完成，此时自己就可以执行了这叫做发布/订阅模式，也叫作观察者模式<br>实现这种模式的插件有很多<br>核心方法有俩<br>subscribe（“done”,f2）//订阅信号，当这个信号被pub时，就执行f2<br>publish（“done”）//发布信号到信号中心</p>
+<p>优点：可以通过查看消息种子呢，了解存在多少信号，每个信号有多少订阅者，从而监控程序的运行。（每个插件实现的方法不同）</p>
+<h3 id="Promises对象"><a href="#Promises对象" class="headerlink" title="Promises对象"></a>Promises对象</h3><p>CommonJS工作组提出的一组规范，目的是为异步编程提供接口。<br>使用Jquery实现的promise使用起来非常方便，其核心是<strong>deferred对象</strong><br>适用场景之一就是ajax读取服务器数据<br>传统的ajax操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$.ajax(&#123;</div><div class="line">    url:&quot;test.html&quot;,</div><div class="line">    success: function()&#123;</div><div class="line">        alert(&quot;success&quot;);</div><div class="line">    &#125;,</div><div class="line">    error:function()&#123;</div><div class="line">        alert(&apos;error&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>这种传统的写法在v1.5后可以用新方法代替<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.ajax(&quot;test.html&quot;)</div><div class="line">    .done(function()&#123;alert(&quot;success&quot;)&#125;)</div><div class="line">    .fail(function()&#123;alert(&quot;error&quot;)&#125;);</div></pre></td></tr></table></figure></p>
+<p>新版本的ajax方法返回的是deferred对象，可以进行链式操作。这样代码可读性明显就清晰了许多。<br>deferred对象</p>
+<blockquote>
+<ul>
+<li><p>好处一：允许添加多个回调函数。因为支持链式操作，所以写起来很方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$.ajax(&quot;test.html&quot;)</div><div class="line">    .done(function()&#123;alert(&quot;success&quot;)&#125;)</div><div class="line">    .fail(function()&#123;alert(&quot;error&quot;)&#125;)</div><div class="line">    .done(function()&#123;alert(&quot;success2&quot;)&#125;)</div><div class="line">    ...</div><div class="line">    ...//当然，你还可以往后面加，只要你乐意</div><div class="line">    ;</div></pre></td></tr></table></figure>
+</li>
+<li><p>好处二：允许为多个事件指定一个回调函数。</p>
+</li>
+</ul>
+</blockquote>
+<p>此时用到了$.when()，依旧返回deferred对象。记住，$.when()的参数也必须是一个deferred对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$.when($.ajax(&quot;test1.html&quot;),$.ajax(&quot;test2.html&quot;))</div><div class="line">    .done(function()&#123;alert(&quot;success&quot;)&#125;)</div><div class="line">    .fail(function()&#123;alert(&quot;error&quot;)&#125;)</div></pre></td></tr></table></figure></p>
+<p>但是要记住when的使用场景。只有两个操作test1,test2都成功了，才运行done，有一个失败就运行fail</p>
+<blockquote>
+<ul>
+<li>好处三：普适性</li>
+</ul>
+</blockquote>
+<p>不仅ajax操作可以用，只要涉及到回调的地方，都可以使用deferred对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">//这是一个耗时操作，为他制定回调函数</div><div class="line">var wait = function()&#123;</div><div class="line">　　　　var tasks = function()&#123;</div><div class="line">　　　　　　alert(&quot;执行完毕！&quot;);</div><div class="line">　　　　&#125;;</div><div class="line">　　　　setTimeout(tasks,5000);</div><div class="line">　　&#125;;</div><div class="line">/*************/</div><div class="line">/**这样来改写**/</div><div class="line">/*************/</div><div class="line">//step1： 新建一个def对象</div><div class="line">var dt = $.Deferred();</div><div class="line">var wait = function()&#123;</div><div class="line">　　　　var tasks = function()&#123;</div><div class="line">　　　　　　alert(&quot;执行完毕！&quot;);</div><div class="line">　　　　　　//step2: 改变def对象的执行状态</div><div class="line">　　　　　　dt.resolve();</div><div class="line">　　　　　　//失败则是 dt.reject（）</div><div class="line">　　　　&#125;;</div><div class="line">　　　　setTimeout(tasks,5000);</div><div class="line">　　　　return dt; //返回def对象</div><div class="line">　　&#125;;</div></pre></td></tr></table></figure>
+<p>这里有必要把Promise对象的规范拿出来回顾一下<br>在规范中，每个任务都有三种状态：默认（pending）,完成（fulfilled）,失败（rejected）<br>Jquery实现的deferred根据规范，有相应的三种执行状态：未完成（继续等待或者调用progress（）指定的回调函数），完成（调用done方法指定的回调函数），失败（调用fail指定的回调函数）<br>如何改变执行状态呢，使用相应的方法dt.resolve()状态从未完成-&gt;已完成,dt.reject()将状态从未完成改为-&gt;失败。</p>
+<p>但是上面代码暴露了一个缺点，其返回的dt对象，让在外部改变执行状态成为可能，为了避免这种情况，jq提供了promise（）方法，该方法返回一个def对象，只不过这个对象屏蔽了resolve和reject方法，值开放了不会改变执行状态的方法，譬如done，fail方法。<br>所以更好的写法是这样:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">var wait = function()&#123;</div><div class="line">        var dt = $.Deferred();</div><div class="line">　　　　var tasks = function()&#123;</div><div class="line">　　　　　　alert(&quot;执行完毕！&quot;);</div><div class="line">　　　　　　//step2: 改变def对象的执行状态</div><div class="line">　　　　　　dt.resolve();</div><div class="line">　　　　　　//失败则是 dt.reject（）</div><div class="line">　　　　&#125;;</div><div class="line">　　　　setTimeout(tasks,5000);</div><div class="line">　　　　return dt.promise(); //返回def对象</div><div class="line">　　&#125;;</div><div class="line">　　$.when(wait())</div><div class="line">　　.done(function()&#123; alert(&quot;success&quot;); &#125;)</div><div class="line">　　.fail(function()&#123; alert(&quot;error&quot;); &#125;);</div></pre></td></tr></table></figure></p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-10-9</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;同步模式：后一个任务等待前一个任务结束然后再执行。程序的执行顺序和任务的排列顺序是一致的，同步的。&lt;br&gt;异步模式：每一个任务有多个回调函数，前一个任务执行后，不是执行后一个任务而是执行回调函数。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JS设计模式之单例模式</title>
+    <link href="http://gelory.me/2017/09/07/JS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://gelory.me/2017/09/07/JS设计模式之单例模式/</id>
+    <published>2017-09-07T14:03:25.000Z</published>
+    <updated>2017-09-07T14:11:11.807Z</updated>
+    
+    <content type="html"><![CDATA[<p>单例作为一个命名空间提供者，在全局命名空间里提供一个唯一的访问点来访问该对象。<br><a id="more"></a><br>JS中实现单例的方法：<br>对象字面量法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var mySingleton = &#123;</div><div class="line">    property1 : &quot;something&quot;,</div><div class="line">    property2 : &quot;something else&quot;,</div><div class="line">    method1: function()&#123;</div><div class="line">        console.log(&apos;hello&apos;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>–闭包的使用场景之一，单例对象生成<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var mySingleton = function () &#123;</div><div class="line"></div><div class="line">    /* 这里声明私有变量和方法 */</div><div class="line">    var privateVariable = &apos;something private&apos;;</div><div class="line">    function showPrivate() &#123;</div><div class="line">        console.log(privateVariable);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /* 公有变量和方法（可以访问私有变量和方法） */</div><div class="line">    return &#123;</div><div class="line">        publicMethod: function () &#123;</div><div class="line">            showPrivate();</div><div class="line">        &#125;,</div><div class="line">        publicVar: &apos;the public can see this!&apos;</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>在使用的时候再初始化<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var Singleton = (function () &#123;</div><div class="line">    var instantiated;</div><div class="line">    function init() &#123;</div><div class="line">        /*这里定义单例代码*/</div><div class="line">        return &#123;</div><div class="line">            publicMethod: function () &#123;</div><div class="line">                console.log(&apos;hello world&apos;);</div><div class="line">            &#125;,</div><div class="line">            publicProperty: &apos;test&apos;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return &#123;</div><div class="line">        getInstance: function () &#123;</div><div class="line">            if (!instantiated) &#123;</div><div class="line">                instantiated = init();</div><div class="line">            &#125;</div><div class="line">            return instantiated;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;)();</div><div class="line">Singleton.getInstance().publicMethod();</div></pre></td></tr></table></figure></p>
+<p>这里的instantiated变量就很好的利用的闭包的原理，所有的闭包访问同一个instantiated，如果已经存在，说明已经有这么个实例了，那么直接返回，没有的话，生成一个。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-08-24</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;单例作为一个命名空间提供者，在全局命名空间里提供一个唯一的访问点来访问该对象。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+      <category term="设计模式" scheme="http://gelory.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>再探作用域</title>
+    <link href="http://gelory.me/2017/09/07/%E5%86%8D%E6%8E%A2%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    <id>http://gelory.me/2017/09/07/再探作用域/</id>
+    <published>2017-09-07T14:01:59.000Z</published>
+    <updated>2017-09-07T14:08:36.340Z</updated>
+    
+    <content type="html"><![CDATA[<p>作用域重新认识。<br><a id="more"></a><br>变量对象、活动对象都是在进入执行上下文时被创建的。</p>
+<p>执行上下文中定义的所有变量和函数都存储在变量对象中<br>变量对象在每次进入上下文时创建并填入初始值，赋值或者更新出现在代码执行阶段。</p>
+<p>每进入一个执行上下文时，该上下文的变量对象就被激活可，就叫做活动对象。<br>此时活动对象作为变量对象，活动对象最开始时包含一个arguments变量。此外还包括声明的变量和函数</p>
+<p>当代码在一个环境中执行时，会创建一条作用域链，这条作用域链由变量对象组成。<br>作用域链的最前端始终是当前执行代码所在上下文的变量对象（活动对象）。</p>
+<p>当前执行代码的作用域链为  Scope = AO+[[scope]];<br>[[scope]]为其父执行上下文的作用域链，[[scope]]在函数被创建时就被存储</p>
+<p>bind方法<br>if(!bind in Function.prototype){<br>Function.prototye.bind = function(){<br>    var fn = this,args = Array.prototype.slice.apply(arguments),obj = args.shift();<br>     return function(){<br>         return fn.apply(obj,args.concat(arguments));<br>     }<br>    }<br>}</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-08-20</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作用域重新认识。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
+    
+    
+      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>Angularjs-指令</title>
@@ -44,9 +227,9 @@
       <category term="Angualarjs" scheme="http://gelory.me/categories/Angualarjs/"/>
     
     
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="Angualarjs" scheme="http://gelory.me/tags/Angualarjs/"/>
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -77,9 +260,9 @@
       <category term="Angualarjs" scheme="http://gelory.me/categories/Angualarjs/"/>
     
     
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
       <category term="Angualarjs" scheme="http://gelory.me/tags/Angualarjs/"/>
+    
+      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -1263,343 +1446,6 @@ alert(colors.toPipedString());//&quot;r&quot;|&quot;g&quot;|&quot;b&quot;
     
     
       <category term="JS" scheme="http://gelory.me/tags/JS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS执行环境及作用域的理解</title>
-    <link href="http://gelory.me/2016/11/06/JS%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E7%90%86%E8%A7%A3/"/>
-    <id>http://gelory.me/2016/11/06/JS执行环境及作用域的理解/</id>
-    <published>2016-11-06T04:02:07.000Z</published>
-    <updated>2016-11-06T04:04:15.152Z</updated>
-    
-    <content type="html"><![CDATA[<p>对执行环境，作用域以及作用域链的理解。<br><a id="more"></a></p>
-<h2 id="什么是执行环境"><a href="#什么是执行环境" class="headerlink" title="什么是执行环境"></a>什么是执行环境</h2><p>执行环境定义了变量和函数有权访问其他的数据，决定各自的行为。每个执行环境都有一个变量对象来存储所有的变量和函数。web浏览器的全局执行环境是window对象。对象会因ECMAScript实现的宿主环境不同而有差异。</p>
-<h2 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h2><p>指变量的适用范围。</p>
-<h2 id="作用域链"><a href="#作用域链" class="headerlink" title="作用域链"></a>作用域链</h2><p>当代码在一个环境中执行，会创建变量对象的作用域链。用途是<strong>保证对执行环境有权访问的变量和函数进行有序的访问</strong></p>
-<h3 id="作用域链顺序"><a href="#作用域链顺序" class="headerlink" title="作用域链顺序"></a>作用域链顺序</h3><p>作用域链的前端始终为 — 当前执行代码所在的环境的变量对象。譬如在函数中，就是arguments对象。<br>下个变量对象来自于包含当前环境的环境。<br>…<br>这样一直延续到全局执行环境。</p>
-<h3 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h3><p>当执行流进入 try-catch语句中的catch块时，或者进入with语句时，作用域链得以加长。<br>这两个语句都会在作用域链的前端添加一个变量对象。对with来说，将语句指定的对象添加到作用域链.</p>
-<pre><code>function(){
-var color = &quot;red&quot;;
-with(location)
-{
-    var ii =  href+color;//href为location对象的属性。此时location这个变量对象被加入到当前作用域链的前端
-}
-return ii;
-}
-</code></pre><h3 id="js中没有块级作用域"><a href="#js中没有块级作用域" class="headerlink" title="js中没有块级作用域"></a>js中没有块级作用域</h3><p>通俗的将就是for，if/else,while等用花括号括起来的代码块中定义的变量在当前执行环境中的任意地方都可以使用。</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-6</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;对执行环境，作用域以及作用域链的理解。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JS" scheme="http://gelory.me/categories/JS/"/>
-    
-    
-      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS垃圾回收机制</title>
-    <link href="http://gelory.me/2016/11/05/JS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6/"/>
-    <id>http://gelory.me/2016/11/05/JS垃圾回收机制/</id>
-    <published>2016-11-05T12:39:47.000Z</published>
-    <updated>2016-11-05T12:42:48.148Z</updated>
-    
-    <content type="html"><![CDATA[<p>JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。<br><a id="more"></a><br>在浏览器中实现垃圾回收，通常有两个策略。</p>
-<h2 id="标记清除"><a href="#标记清除" class="headerlink" title="标记清除"></a>标记清除</h2><p>垃圾收集器会在运行的时候，给所有存储在内存中的变量加上标记。然后去掉执行环境中的变量以及被环境中变量引用的变量的标记。而在此之后再被加上标记的变量被视为要删除的变量。因为这些变量再被加上标记的时候就是这些不需要这些变量的时候。譬如在执行完某个函数体后，跳出该函数体，里面的局部变量在就会重新被添加标记。此时垃圾收集器就会清除他们的内存。</p>
-<p>现在，所有的现代浏览器基本上都是用标记清除算法，改进也是基于此改进的。</p>
-<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p>跟踪记录每个值被引用的次数。如果为0，就收回内存。<br>举个例子</p>
-<pre><code>var a = new Object()；
-// 变量a对该对象进行首次引用
-var b =a; 
-// b也引用了这个对象 1+1=2
-a=1; 
-//此时a不在引用这个对象 1+1-1=1
-//如果此时 b=2;那么b不在引用这个对象。此时就会释放这个对象实例的内存了。
-c = b.name 
-/*
-     *此时c引用了这个对象的name属性，于是乎，即使b不再引用这个对象，在是这个对象的属性name还在被引用，因此也无法清除这个对象。
-*/
-b=2;
-c=3;//此时，垃圾收集器就会释放这个对象内存啦
-</code></pre><h2 id="例外-循环引用（导致退出函数体后无法自动清除内存）"><a href="#例外-循环引用（导致退出函数体后无法自动清除内存）" class="headerlink" title="例外-循环引用（导致退出函数体后无法自动清除内存）"></a>例外-循环引用（导致退出函数体后无法自动清除内存）</h2><pre><code>function pro()
-{
-var a = new Object();
-var b = new Object();
-a.name = b; //a的name属性引用了b
-b.age = a;//b的age属性引用了a
-}
-</code></pre><p>如果采用标记清除法，会因为退出函数体而自动清除内存.但是如果用引用计数法，此时两个对象都被引用了两次，于是无法自动清除内存了。<br>如果这个函数被大量调用，就会导致大量内存被占用不能回收。因此要手动取消循环引用.</p>
-<pre><code>a.name = null;
-b.age = null;
-此时a，b的内存就被回收啦。
-a=null;
-b=null;//两个对象的内存就被清除啦。
-</code></pre><p>如有错误，评论。</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-5</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;JavaScript具有自动垃圾收集机制，也就是说，执行环境会负责管理代码执行过程中使用的内存。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS实现快速排序</title>
-    <link href="http://gelory.me/2016/11/05/Js%E5%AE%9E%E7%8E%B0%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
-    <id>http://gelory.me/2016/11/05/Js实现快速排序/</id>
-    <published>2016-11-05T06:57:08.000Z</published>
-    <updated>2016-11-05T07:14:02.789Z</updated>
-    
-    <content type="html"><![CDATA[<p>关于快速排序的理解。<br><a id="more"></a><br>快速排序的思想是：<br>1.从数列中找一个基准数。<br>2.把小于他的数放在基准数左边，剩余的放右边。<br>3.分别对左边和右边进行步骤1,2，知道区间内只有一个数。</p>
-<p>其实可以把快排分为两个部分，<code>分</code>与<code>治</code>。因此用两个函数体概括两部分更加明了。</p>
-<h2 id="治部分"><a href="#治部分" class="headerlink" title="治部分"></a>治部分</h2><p>该部分规定每一次排序采用的方法</p>
-<pre><code>function cover(arr,left,right)
-{
-    var i = left;
-    var j = right;
-    var based = arr[i]; //去数列的第一个为基准数
-    while(i&lt;j)
-    {
-        while(i&lt;j &amp;&amp; arr[j]&gt;=x) j--;
-        if(i&lt;j) arr[i++] = arr[j];
-        while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;
-        if(i&lt;j) arr[j--] = arr[i];
-    }
-    arr[i] = based;
-    return i//运行到这，其实i与j相等了，这一轮就弄完了
-}
-</code></pre><p>治部分可以这样理解。</p>
-<p><div><span style="border:1px solid;padding:0.5rem">0</span><span style="border:1px solid;padding:0.5rem">1</span><span style="border:1px solid;padding:0.5rem">2</span><span style="border:1px solid;padding:0.5rem">3</span><span style="border:1px solid;padding:0.5rem">4</span></div><br></p>
-<p><div><span style="color:#666;border:1px solid;padding:0.5rem">88</span><span style="border:1px solid;padding:0.5rem">21</span><span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">6</span><span style="color:#fff;background:#666;border:1px solid;padding:0.5rem">88</span></div><br></p>
-<h3 id="步骤1：找基准数"><a href="#步骤1：找基准数" class="headerlink" title="步骤1：找基准数"></a>步骤1：找基准数</h3><p>这里有5个萝卜坑，每个坑里有一个萝卜。我现在去<code>arr[0]</code>为基准数，并赋值给<code>based</code>，就相当于把第一个坑里的萝卜放篮子里。</p>
-<pre><code>var based = arr[i]; 
-</code></pre><h3 id="步骤2：从后向前找小于基准数的数"><a href="#步骤2：从后向前找小于基准数的数" class="headerlink" title="步骤2：从后向前找小于基准数的数"></a>步骤2：从后向前找小于基准数的数</h3><p>然后从4开始往前找一个比篮子里的萝卜88更小的。<br>譬如，在图中我们就把<code>4号坑</code>里的萝卜放到了<code>0号坑</code>。<br>如果当前坑没有就继续往下找（<code>j--</code>）。这里用<code>i&lt;j</code>来限制什么时候停止寻找。<br>找到后，填到第一个坑里，即<code>arr[i]=arr[j]</code><br>之后是从前往后找大萝卜，是从刚填了小萝卜的后一个坑开始。所以是<code>i++</code>.合并了就是<code>arr[i++] = arr[j];</code><br>这就是代码中的这一段：</p>
-<pre><code>while(i&lt;j &amp;&amp; arr[j]&gt;=x) j--; //挨个从后向前找小萝卜
-if(i&lt;j) arr[i++] = arr[j]; //用小萝卜填坑
-</code></pre><h3 id="步骤3：从前向后找大于基准数的数"><a href="#步骤3：从前向后找大于基准数的数" class="headerlink" title="步骤3：从前向后找大于基准数的数"></a>步骤3：从前向后找大于基准数的数</h3><p>此时<code>0号坑</code>里有了萝卜，但是<code>4号坑</code>没了。<br>那<code>4号坑</code>谁来填，我们从<code>1（步骤2中的i++导致的）号坑</code>开始向后寻找一个比<code>篮子里的萝卜</code>大的放在<code>4号坑</code>。坑里没有就<code>i++</code>，到下一个坑里找.这就是代码中的这一段：</p>
-<pre><code>while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;// 挨个从前向后找大萝卜
-if(i&lt;j) arr[j--] = arr[i]; //用大萝卜填坑
-</code></pre><p><strong>这就是代码段中的循环过程：</strong></p>
-<blockquote>
-<p>从后向前（<code>j--</code>）找小萝卜填上一个坑<br>从前向后（<code>i++</code>）找大萝卜填上一个坑<br>从后向前（<code>j--</code>）找小萝卜填上一个坑<br>从前向后（<code>i++</code>）找大萝卜填上一个坑<br>…<br>直到 从前向后以及从后向前遇到了同一个坑<code>i=j</code>。</p>
-</blockquote>
-<pre><code>while(i&lt;j){
-    //找萝卜。当i=j时就不会执行了
-}
-</code></pre><h3 id="步骤4-回填基准数"><a href="#步骤4-回填基准数" class="headerlink" title="步骤4 回填基准数"></a>步骤4 回填基准数</h3><p>最后，我们把篮子里的萝卜填到<code>i=j</code>的那个坑<code>arr[i] = based;</code></p>
-<h2 id="分部分"><a href="#分部分" class="headerlink" title="分部分"></a>分部分</h2><p>该部分规定如何去调用治。</p>
-<pre><code>function quick_sort(arr,l,r){
-    if(l&lt;r)
-    {
-        var m = cover(arr,l,r); 
-        quick_sort(arr,l,m-1);
-        quick_sort(arr,m+1,r);
-    }
-}
-</code></pre><p>经过第一次的治：<code>首次执行cover(arr,l,r)</code>，我们已经通过基准数把大于他的数放到了右边，小于他的数放在了左边。</p>
-<p><div><span style="border:1px solid;padding:0.5rem">0</span><span style="border:1px solid;padding:0.5rem">1</span><span style="border:1px solid;padding:0.5rem">2</span><span style="border:1px solid;padding:0.5rem">3</span><span style="border:1px solid;padding:0.5rem">4</span></div><br></p>
-<p><div><br><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span> <span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">88</span><span style="color:#fff;background:#666;border:1px solid;padding:0.5rem">88</span></div><br><br>这个例子中，88最大所以他成了最后一个，小于他的全部在左边。但是发现没有，左边的数并不是从大到小的。于是我们把除开88之后，其他的坑在来进行一次换坑操作。如果88不是最大的。譬如</p>
-<p><div><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span> <span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span><span style="border:1px solid;padding:0.5rem">88</span><span style="border:1px solid;padding:0.5rem">106</span><span style="border:1px solid;padding:0.5rem">90</span> </div><br><br>那我们也要对88右边也进行换坑操作。</p>
-<p>对左边的坑进行操作：</p>
-<p><div><span style="border:1px solid;padding:0.5rem">6</span><span style="border:1px solid;padding:0.5rem">21</span><span style="border:1px solid;padding:0.5rem">35</span><span style="border:1px solid;padding:0.5rem">12</span></div><br><br>调用的是：</p>
-<pre><code>quick_sort(arr,l,m-1);//m-1是为了排除88这个萝卜坑
-//在这里面就会执行如下代码
-if(i&lt;j)
-    {
-        var m = cover(arr,l,m-1); 
-        quick_sort(arr,l,m-1);
-        quick_sort(arr,m+1,m-1);
-    }
-</code></pre><p>对右边的坑进行操作：</p>
-<p><div><span style="border:1px solid;padding:0.5rem">106</span><span style="border:1px solid;padding:0.5rem">90</span></div><br><br>调用的是：</p>
-<pre><code>quick_sort(arr,m+1,r);//m+1是为了排除88这个萝卜坑
-//在这里面就会执行如下代码
-if(i&lt;j)
-    {
-        var m = cover(arr,m+1,r); 
-        quick_sort(arr,m+1,m-1);
-        quick_sort(arr,m+1,r);
-    }
-</code></pre><p>就这样不停地迭代调用 quick_sort 直到不能满足<code>if(l&lt;r)</code>就停止啦。</p>
-<p>然后我们随便定义一个数组，试试看？</p>
-<pre><code>var array = [9,8,5,8,7,6,5];
-quick_sort(array,0,array.length-1);
-alert(array);
-</code></pre><h2 id="最后贴上合并版本的代码。"><a href="#最后贴上合并版本的代码。" class="headerlink" title="最后贴上合并版本的代码。"></a>最后贴上合并版本的代码。</h2><h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><pre><code>//原地排序，不产生新的数组
-function quicksorter(arr,start,end)
-{
-    var i =start;
-    var j =end;
-    var m;
-    if(i&lt;j)
-    {
-        var x = arr[i];
-        while(i &lt; j)
-        {
-            while(i &lt; j &amp;&amp; arr[j]&gt;=x) j--;
-            if(i&lt;j )arr[i++]=arr[j];
-            while(i&lt;j &amp;&amp; arr[i]&lt;=x) i++;
-             if(i&lt;j) arr[j--]=arr[i];    
-        }
-        arr[i]=x;
-        m=i;
-        console.log(m);
-        quicksorter(arr,start,m-1);
-        quicksorter(arr,m+1,end);
-    }
-}
-var array = [9,8,5,8,7,6,5];
-var lili =quicksorter(array,0,array.length-1);
-alert(array);
-</code></pre><h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><pre><code>//利用新数组来排序
-var quicksort = function(arr)
-{
-    if(arr.length &lt;= 1) return arr;
-    var based_var = arr[0];
-    var left = [];
-    var right = [];
-    for(var i=1;i&lt;arr.length;i++)
-    {
-        if(arr[i]&lt;=based_var)
-            left.push(arr[i]);
-        else
-            right.push(arr[i]);
-    }
-    return quicksort(left).concat(based_var,quicksort(right));
-}
-var array = [2,3,4,13,89,72,4,20,3,3,3,3,3,3,1,2];
-var lili =quicksort(array)
-alert(lili);
-</code></pre><center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-5</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;关于快速排序的理解。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="算法" scheme="http://gelory.me/categories/%E7%AE%97%E6%B3%95/"/>
-    
-    
-      <category term="JS" scheme="http://gelory.me/tags/JS/"/>
-    
-      <category term="算法" scheme="http://gelory.me/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>call与apply，caller与callee</title>
-    <link href="http://gelory.me/2016/11/04/call%E4%B8%8Eapply%EF%BC%8Ccaller%E4%B8%8Ecallee/"/>
-    <id>http://gelory.me/2016/11/04/call与apply，caller与callee/</id>
-    <published>2016-11-04T13:38:42.000Z</published>
-    <updated>2016-11-06T07:05:05.573Z</updated>
-    
-    <content type="html"><![CDATA[<p>讲一下这两对的区别。<br><a id="more"></a></p>
-<h2 id="call与apply"><a href="#call与apply" class="headerlink" title="call与apply"></a>call与apply</h2><p>call和apply都具有相同的作用，就是借别人的方法用，一句话，简洁明了。<br>什么意思呢？一个表达式表达出来：<code>b方法</code>.<code>call</code>(<code>a对象</code>,<code>a带的参数（可选）</code>);<br>这样a就可以用b方法啦。<br>具体到实例：</p>
-<pre><code>function b(x，y){
-    alert(&quot;我是&quot;+x+y)；
-}
-function a(){
-    b.call(this,&quot;a&quot;,&quot;吧&quot;);//我是a吧
-}
-
-function  c(m,n){
-    b.apply(this,arguments);//我是mn
-    b.apply(this,[m,n])；// 我是mn
-}
-a();
-c(&quot;m&quot;,&quot;n&quot;);
-</code></pre><p>区别在于：call是直接把参数传过去，apply是把参数先放到一个数组，然后一块传。</p>
-<p>那什么时候用哪一种呢？<br>明确参数的个数时，就用call，不知道有多少个参数时，就用apply。</p>
-<h2 id="caller"><a href="#caller" class="headerlink" title="caller"></a>caller</h2><p>caller，该属性中保存着调用当前函数的函数的引用，简洁的说就是找出是<code>谁调用了</code>正在运行我的<code>这个函数体</code><br>举个栗子：</p>
-<pre><code>function a()
-{
- alert(a.caller)
-}
-
-function b(){
- a();
-}
-a();// null
-b();//b
-</code></pre><p>执行a();时，是js顶层调用的，所以返回null<br>执行b();时，是b调用了a，所以返回的是b的方法名。</p>
-<h2 id="callee"><a href="#callee" class="headerlink" title="callee"></a>callee</h2><p>这个在匿名递归时用的最多。指向拥有arguments对象的函数，简洁的说就是找出callee运行的那个函数体<br>举个栗子：</p>
-<pre><code>setTimeout(function(){
-/*
-*do something
-*/
-setTimeout(arguments.callee,100);//指向当前执行的函数，此时指向的是匿名函数。
-},100)
-</code></pre><p>当然，不嫌麻烦可以这样写。</p>
-<pre><code>function bb(){
-/*
-*do something
-*/
-setTimeout(bb(),100);
-}
-
-setTimeout(bb(),100);
-</code></pre><h2 id="使用caller，callee要注意的地方"><a href="#使用caller，callee要注意的地方" class="headerlink" title="使用caller，callee要注意的地方"></a>使用caller，callee要注意的地方</h2><p>在严格模式下，访问arguments.callee会报错。ES5也定义了arguments.caller。同样也会报错。在非严格模式下arguments.caller始终返回undefined。在严格模式下,为函数的caller赋值也会报错。</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;讲一下这两对的区别。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="Js" scheme="http://gelory.me/tags/Js/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>setTimeout与setInterval的区别与互补</title>
-    <link href="http://gelory.me/2016/11/04/setTimeout%E4%B8%8EsetInterval%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E4%BA%92%E8%A1%A5/"/>
-    <id>http://gelory.me/2016/11/04/setTimeout与setInterval的区别与互补/</id>
-    <published>2016-11-04T12:10:55.000Z</published>
-    <updated>2016-11-04T12:15:57.347Z</updated>
-    
-    <content type="html"><![CDATA[<p>我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。<br><a id="more"></a><br>setTimeout用于在<code>指定毫秒数后</code>进行相关操作。<code>只会执行一次。</code><br>setInterval用于<code>每隔指定毫秒数后循环</code>进行相关操作。<code>执行N次。</code></p>
-<h2 id="定时并非那么精准"><a href="#定时并非那么精准" class="headerlink" title="定时并非那么精准"></a>定时并非那么精准</h2><p>原因：js运行在单线程中，当定时时间到后，并不是立即执行相关操作，而是把代码放到队列里等候执行。做好了执行的准备。至于为什么等，因为浏览器要先执行一些优先级较高的代码。</p>
-<h2 id="既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"><a href="#既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。" class="headerlink" title="既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。"></a>既然setInterval可以重复定时，为什么要用setTimeout来实现重复定时。</h2><p>setInterval在执行代码时，可能因为前一次代码执行时间超出了指定时间间隔，而导致下一次的的代码在队列中等待，直到前一次代码执行完。<br>js不允许一个队列中出现同一定时器的多次代码。因此只要队列中有一个，间隔时间到了，后面的代码将会被丢弃。<br><a href="http://qingbob.com/difference-between-settimeout-setinterval/" target="_blank" rel="external">这里没有图片，不直观，可以点击这里！</a><br>于是就会出现问题：<br>1.有些间隔就被忽略了。<br>2.假设间隔为100ms，如果前一次在190ms的时候结束，后一次的代码会在200ms时开始执行，因此实际运行间隔就不是100ms了<br>于是，鉴于这些缺点，setTimeout很好地弥补了这个缺点。因为如果这样写</p>
-<pre><code>  setTimeout(function repeatMe() {     
-/* Some long block of code... */   
-setTimeout(repeatMe, 10);          
-}, 10);
-</code></pre><p>这样写的话，每次都是先执行外代码，然后创建了一个新的定时器，开始计时，于是就保证了间隔永远是指定时间</p>
-<p>此外setTimeout还可以用在发生时间冒泡时，设置事件发生顺序。有时间在深入讨论冒泡捕获相关内容。</p>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-4</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们经常用这两种方法来处理延时或者定时任务。但是其中还是有一点区别与联系的。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="前端" scheme="http://gelory.me/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="前端" scheme="http://gelory.me/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-      <category term="Js" scheme="http://gelory.me/tags/Js/"/>
     
   </entry>
   
