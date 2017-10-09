@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ielory.com/demo/index.html</loc>
+    
+    <lastmod>2017-10-09T13:47:35.274Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://ielory.com/2017/09/07/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/</loc>
     
     <lastmod>2017-09-07T14:15:38.780Z</lastmod>
@@ -215,13 +222,6 @@
     <loc>http://ielory.com/2016/11/02/Viewport%E7%9A%84%E6%B7%B1%E5%85%A5%E4%BA%86%E8%A7%A3/</loc>
     
     <lastmod>2016-11-02T06:00:35.197Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ielory.com/demo/index.html</loc>
-    
-    <lastmod>2016-10-26T09:24:08.145Z</lastmod>
     
   </url>
   
