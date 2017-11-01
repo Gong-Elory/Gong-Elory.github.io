@@ -438,7 +438,7 @@ btn.addEventListener(&quot;click&quot;,function(event){
 <li>动态添加元素时，不需要单独为他绑定事件处理程序。用上面的例子来说：添加一个li后，不需要单独为他绑定，只需在现有的程序中添加相应判断机制即可。同样，删除某元素时，不用担心空事件处理程序占用内存的问题。</li>
 </ul>
 </blockquote>
-<h2 id="如何阻止冒泡"><a href="#如何阻止冒泡" class="headerlink" title="如何阻止冒泡"></a>如何阻止冒泡</h2><p>任何事物都有两面性，有些时候我们并不希望冒泡。那该如何办？<br>上一篇博文<a href="http://gelory.me/2016/11/27/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%BF%90%E7%94%A8/">事件对象中易混淆的定义与运用</a>中讲到事件对象event。该对象中有一个方法可以阻止冒泡。它是stopPropagation（）。当然，哪里都少不了IE这个特殊分子。他的event对象中有这样一个属性代替上面的方法起到相同的作用。它是cancelBubble。默认false，表示允许事件冒泡。</p>
+<h2 id="如何阻止冒泡"><a href="#如何阻止冒泡" class="headerlink" title="如何阻止冒泡"></a>如何阻止冒泡</h2><p>任何事物都有两面性，有些时候我们并不希望冒泡。那该如何办？<br>上一篇博文<a href="http://gelory.me/2016/11/27/%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1%E4%B8%AD%E6%98%93%E6%B7%B7%E6%B7%86%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E8%BF%90%E7%94%A8/" target="_blank" rel="external">事件对象中易混淆的定义与运用</a>中讲到事件对象event。该对象中有一个方法可以阻止冒泡。它是stopPropagation（）。当然，哪里都少不了IE这个特殊分子。他的event对象中有这样一个属性代替上面的方法起到相同的作用。它是cancelBubble。默认false，表示允许事件冒泡。</p>
 <p>当然为了兼容所有大部分的浏览器，建议这样重写阻止冒泡方法：</p>
 <pre><code>function（event）{
     if(event.stopPropagation())
@@ -585,7 +585,7 @@ btn.addEventListener(&quot;click&quot;,function(event){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -602,7 +602,7 @@ btn.addEventListener(&quot;click&quot;,function(event){
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>

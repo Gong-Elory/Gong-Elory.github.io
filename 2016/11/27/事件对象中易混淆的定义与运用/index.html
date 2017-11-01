@@ -417,7 +417,7 @@ fath.onclick = function(event){
 //alert(event.currentTarget.id); 显示为 father。div元素的id
 alert(event.Target.id); //显示为 myBtn。input元素的id
 }
-</code></pre><p>这回我们把单击事件处理程序绑定在input的父元素div元素上。此时单击按钮，由于事件冒泡的原因（关于事件冒泡，这篇文章有介绍：<a href="http://gelory.me/2016/11/27/JS%E4%B8%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%BA%94%E7%94%A8/">JS中事件冒泡与事件捕获的定义与应用</a>），会触发父元素的事件处理程序。可以明显的看到target和currentTarget指向的元素不是同一个。</p>
+</code></pre><p>这回我们把单击事件处理程序绑定在input的父元素div元素上。此时单击按钮，由于事件冒泡的原因（关于事件冒泡，这篇文章有介绍：<a href="http://gelory.me/2016/11/27/JS%E4%B8%AD%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E4%B8%8E%E4%BA%8B%E4%BB%B6%E6%8D%95%E8%8E%B7%E7%9A%84%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%BA%94%E7%94%A8/" target="_blank" rel="external">JS中事件冒泡与事件捕获的定义与应用</a>），会触发父元素的事件处理程序。可以明显的看到target和currentTarget指向的元素不是同一个。</p>
 <p>前者指向事件实际目标，这里是input实际出发的click事件，所以target指向他。而后者是处理事件的元素。因为事件处理程序绑定在div元素上，所以currentTarget指向div元素。实际上，还有一种表示法也是始终和currentTarget的值相等的，也就是—this。this很熟悉，我们对他的认识是他指的是调用当前函数的对象。用在这里也合乎情理。</p>
 <h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>上节说道，currentTarget的值和this始终相等，指的是正在处理事件的元素，也就是我们绑定事件处理程序的那个元素。<br>因此 event.target与this的值不总是相等的。除非把事件处理程序绑定在实际触发事件的元素上。如上例：</p>
 <pre><code>var btn = document.getElementById(&quot;myBtn&quot;);
@@ -579,7 +579,7 @@ btn.attachEvent(&quot;onclick&quot;,function(event){
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/">
-              <span class="site-state-item-count">45</span>
+              <span class="site-state-item-count">46</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -596,7 +596,7 @@ btn.attachEvent(&quot;onclick&quot;,function(event){
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">标签</span>
               
             </div>
