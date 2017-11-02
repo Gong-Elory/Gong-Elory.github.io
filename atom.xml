@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ielory.com/"/>
-  <updated>2017-11-01T13:12:31.811Z</updated>
+  <updated>2017-11-02T02:39:23.920Z</updated>
   <id>http://ielory.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://ielory.com/2017/11/01/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-%E5%BE%85%E5%AE%8C%E5%96%84/"/>
     <id>http://ielory.com/2017/11/01/移动端常见问题以及解决方案-待完善/</id>
     <published>2017-11-01T13:03:30.000Z</published>
-    <updated>2017-11-01T13:12:31.811Z</updated>
+    <updated>2017-11-02T02:39:23.920Z</updated>
     
     <content type="html"><![CDATA[<a id="more"></a>
 <blockquote>
@@ -28,14 +28,33 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no,email=no&quot;/&gt;</div></pre></td></tr></table></figure>
 <blockquote>
-<p>解决手机点击事件的300ms事件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">使用fastclick插件解决</div></pre></td></tr></table></figure></p>
-<p>解决safari浏览器中的链接或者可点击元素点击后出现蒙层的解决方案<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-tap-highlight-color:rgba(0, 0, 0, 0)</div></pre></td></tr></table></figure></p>
-<p>改变webkit浏览器的默认表单元素外观<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">input,select &#123; -webkit-appearance:none; appearance: none; &#125;</div></pre></td></tr></table></figure></p>
-<p>禁用用户选中文字<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-user-select:none; user-select: none;</div></pre></td></tr></table></figure></p>
-<p>禁止长按链接或者图片弹出菜单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-touch-callout: none</div></pre></td></tr></table></figure></p>
-<p>改变输入框placeholder的颜色值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">::-webkit-input-placeholder&#123;</div><div class="line">    color: #333</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>ios输入框默认首字母大写取消<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">设置autocapitalize=&quot;off&quot;</div><div class="line">``` </div><div class="line">&gt;audio元素的autoplay属性在IOS及Android上无法使用，在PC正常</div></pre></td></tr></table></figure></p>
+<p>解决手机点击事件的300ms事件</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">使用fastclick插件解决</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解决safari浏览器中的链接或者可点击元素点击后出现蒙层的解决方案</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-tap-highlight-color:rgba(0, 0, 0, 0)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>改变webkit浏览器的默认表单元素外观</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">input,select &#123; -webkit-appearance:none; appearance: none; &#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>禁用用户选中文字</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-user-select:none; user-select: none;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>禁止长按链接或者图片弹出菜单</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-webkit-touch-callout: none</div></pre></td></tr></table></figure>
+<blockquote>
+<p>改变输入框placeholder的颜色值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">::-webkit-input-placeholder&#123;</div><div class="line">    color: #333</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>ios输入框默认首字母大写取消</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">设置autocapitalize=&quot;off&quot;</div><div class="line">``` </div><div class="line">&gt;audio元素的autoplay属性在IOS及Android上无法使用，在PC正常</div></pre></td></tr></table></figure>
 <p>JS绑定自动播放<br>$(window).one(‘touchstart’,fn)<br>原生方法就是在元素上添加一个flag属性，控制执行一次<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;消除transition闪屏</div></pre></td></tr></table></figure></p>
 <p>-webkit-transform-style: preserve-3d;<br>-webkit-backface-visibility: hidden;<br>-webkit-perspective: 1000;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt;开启硬件加速</div></pre></td></tr></table></figure></p>
 <p>-webkit-transform: translate3d(0,0,0);<br>-moz-transform: translate3d(0,0,0);<br>-ms-transform: translate3d(0,0,0);<br>transform: translate3d(0,0,0);<br>```<br>待完善…</p>
