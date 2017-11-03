@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="龚志强的博客" />
+  <meta name="keywords" content="JS," />
 
 
 
@@ -86,21 +86,16 @@
 
 
 
-<meta name="description" content="我是龚志强，我除了年轻，一无所有。
-这里将是我唯一的一亩三分地，我会好好耕耘，希望咱们能有共鸣。MarkDown真好用，可以通过Html把自己想要描绘的表达出来。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="我">
-<meta property="og:url" content="http://ielory.com/about/index.html">
+<meta name="description" content="作用域的理解深化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第三次认识作用域">
+<meta property="og:url" content="http://ielory.com/2017/11/03/第三次认识作用域/index.html">
 <meta property="og:site_name" content="龚小样儿">
-<meta property="og:description" content="我是龚志强，我除了年轻，一无所有。
-这里将是我唯一的一亩三分地，我会好好耕耘，希望咱们能有共鸣。MarkDown真好用，可以通过Html把自己想要描绘的表达出来。">
-<meta property="og:image" content="http://oeqc7pnps.bkt.clouddn.com/head.png">
-<meta property="og:updated_time" content="2016-10-14T08:27:40.037Z">
+<meta property="og:description" content="作用域的理解深化">
+<meta property="og:updated_time" content="2017-11-03T12:38:27.571Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我">
-<meta name="twitter:description" content="我是龚志强，我除了年轻，一无所有。
-这里将是我唯一的一亩三分地，我会好好耕耘，希望咱们能有共鸣。MarkDown真好用，可以通过Html把自己想要描绘的表达出来。">
-<meta name="twitter:image" content="http://oeqc7pnps.bkt.clouddn.com/head.png">
+<meta name="twitter:title" content="第三次认识作用域">
+<meta name="twitter:description" content="作用域的理解深化">
 
 
 
@@ -121,16 +116,10 @@
 
 
 
-  <link rel="canonical" href="http://ielory.com/about/"/>
+  <link rel="canonical" href="http://ielory.com/2017/11/03/第三次认识作用域/"/>
 
 
-  <title>
-  
-
-  
-    我 | 龚小样儿
-  
-</title>
+  <title> 第三次认识作用域 | 龚小样儿 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -170,7 +159,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -280,19 +269,197 @@
 
   <div id="posts" class="posts-expand">
     
-    
-      <p><img src="http://oeqc7pnps.bkt.clouddn.com/head.png" alt="nothing"></p>
-<p></p><h1 style="color:#000;font-size:20px;text-align:center;">我是龚志强，我除了年轻，一无所有。</h1><br><br><p></p>
-<div style="color:#3c3;font-size:20px;text-align:center;border-bottom:2px solid #000">这里将是我唯一的一亩三分地，我会好好耕耘，希望咱们能有共鸣。</div><br><br><br><div style="color:#000;font-size:20px;text-align:center;">MarkDown真好用，可以通过Html把自己想要描绘的表达出来。</div>
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                第三次认识作用域
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-03T20:14:00+08:00" content="2017-11-03">
+              2017-11-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/11/03/第三次认识作用域/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/11/03/第三次认识作用域/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/11/03/第三次认识作用域/" class="leancloud_visitors" data-flag-title="第三次认识作用域">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>作用域的理解深化<br><a id="more"></a></p>
+<h2 id="什么是作用域："><a href="#什么是作用域：" class="headerlink" title="什么是作用域："></a>什么是作用域：</h2><p>作用域规定了变量或者函数可访问的范围，js采用的是词法作用域（静态作用域）规则，也就是说作用域在函数被定义的时候就已经生成。<br>这个概念喜欢和上下文搞混。我认为上下文规定了一个环境，一个函数调用或者变量访问的环境，上下文其实可以实体化，这样便于加深印象，我们可以把上下文看作一个对象，这个对象有很多属性，其中有一个this，this就指向这个对象本身。我们知道this只有在调用时才知道自己指向谁，所以说一个上下文环境也只有在js执行的时候才能明确。譬如一个函数被调用的时候我们才能确定他的上下文。我们也可以通过bind，apply，call改变这个函数的上下文。</p>
+<h2 id="什么是作用域链："><a href="#什么是作用域链：" class="headerlink" title="什么是作用域链："></a>什么是作用域链：</h2><p>当查找某个变量的时候，会首先在当前上下文的变量对象中找，如果没有，则会从父级上下文的变量对象中查找，一直找到全局上下文的变量对象，如果还没有，就报错。这种有多个上下文的变量对象构成的变量对象链表就叫做作用域链。所以所谓的作用域链其实就是一个指向多个变量对象的指针列表，他只引用但是不包含变量对象。函数被调用之后，退出该执行环境，如果其变量对象没有被引用的话就被垃圾回收机制回收。闭包就是利用了这点。闭包说白了就是一个可以从外部访问函数内部的机制，其原理就是因为一直引用着父作用域的变量对象，导致其没有被回收，所以会一直存在，可供使用 。所以最好的方法就是使用完后，手动清除。</p>
+<h2 id="作用域链怎么生成的："><a href="#作用域链怎么生成的：" class="headerlink" title="作用域链怎么生成的："></a>作用域链怎么生成的：</h2><p>函数在被定义的时候，有个内部属性[[scope]]，这个属性保存的是一条作用域链，其实就是父作用的[[scope]]+父作用域的AO，但是不完整。当函数被调用时，在js创建阶段会生成一个变量对象，并且把这个变量对象保存到刚才说的那条作用域链上，最前端。同时还创建了一条新的表示函数调用作用域的链 scope = [[scope]] + VO<br>所以此时就有了两条作用域链，看似好像是相同的，其实就是相同但不相等的两条作用域链。<br>个人认为（个人理解不代表正确观点）：<br>第一条作用域链的作用是用于函数内部函数创建时用于填充[[scope]]的，就跟这个外部函数的[[scope]]是由其’父函数’作用域链填充一样（如果’父函数’为全局执行环境，那么外部函数的[[scope]]就只包含一个AO全局执行环境的变量对象。）。<br>第二条作用于链用于函数调用。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-11-03</span></center>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>看我这么辛苦，能把五毛钱呼我脸上吗？</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="http://oeqc7pnps.bkt.clouddn.com/wechat.png" alt="龚志强 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="http://oeqc7pnps.bkt.clouddn.com/ali.png" alt="龚志强 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JS/" rel="tag">#JS</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/01/移动端常见问题以及解决方案-待完善/" rel="next" title="移动端常见问题以及解决方案(待完善)">
+                <i class="fa fa-chevron-left"></i> 移动端常见问题以及解决方案(待完善)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
           </div>
           
  
+                <!-- 多说热评文章-->
+                <p>热评文章</p>
+                <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/11/03/第三次认识作用域/"
+           data-title="第三次认识作用域" data-url="http://ielory.com/2017/11/03/第三次认识作用域/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -312,8 +479,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -370,6 +546,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是作用域："><span class="nav-number">1.</span> <span class="nav-text">什么是作用域：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是作用域链："><span class="nav-number">2.</span> <span class="nav-text">什么是作用域链：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#作用域链怎么生成的："><span class="nav-number">3.</span> <span class="nav-text">作用域链怎么生成的：</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -478,6 +665,11 @@
 <script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+<script type="text/javascript" src="//s.union.360.cn/66143.js"></script>
+
+
 
   
 

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ielory.com/"/>
-  <updated>2017-11-02T02:43:14.700Z</updated>
+  <updated>2017-11-03T12:38:27.571Z</updated>
   <id>http://ielory.com/</id>
   
   <author>
@@ -14,6 +14,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>第三次认识作用域</title>
+    <link href="http://ielory.com/2017/11/03/%E7%AC%AC%E4%B8%89%E6%AC%A1%E8%AE%A4%E8%AF%86%E4%BD%9C%E7%94%A8%E5%9F%9F/"/>
+    <id>http://ielory.com/2017/11/03/第三次认识作用域/</id>
+    <published>2017-11-03T12:14:00.000Z</published>
+    <updated>2017-11-03T12:38:27.571Z</updated>
+    
+    <content type="html"><![CDATA[<p>作用域的理解深化<br><a id="more"></a></p>
+<h2 id="什么是作用域："><a href="#什么是作用域：" class="headerlink" title="什么是作用域："></a>什么是作用域：</h2><p>作用域规定了变量或者函数可访问的范围，js采用的是词法作用域（静态作用域）规则，也就是说作用域在函数被定义的时候就已经生成。<br>这个概念喜欢和上下文搞混。我认为上下文规定了一个环境，一个函数调用或者变量访问的环境，上下文其实可以实体化，这样便于加深印象，我们可以把上下文看作一个对象，这个对象有很多属性，其中有一个this，this就指向这个对象本身。我们知道this只有在调用时才知道自己指向谁，所以说一个上下文环境也只有在js执行的时候才能明确。譬如一个函数被调用的时候我们才能确定他的上下文。我们也可以通过bind，apply，call改变这个函数的上下文。</p>
+<h2 id="什么是作用域链："><a href="#什么是作用域链：" class="headerlink" title="什么是作用域链："></a>什么是作用域链：</h2><p>当查找某个变量的时候，会首先在当前上下文的变量对象中找，如果没有，则会从父级上下文的变量对象中查找，一直找到全局上下文的变量对象，如果还没有，就报错。这种有多个上下文的变量对象构成的变量对象链表就叫做作用域链。所以所谓的作用域链其实就是一个指向多个变量对象的指针列表，他只引用但是不包含变量对象。函数被调用之后，退出该执行环境，如果其变量对象没有被引用的话就被垃圾回收机制回收。闭包就是利用了这点。闭包说白了就是一个可以从外部访问函数内部的机制，其原理就是因为一直引用着父作用域的变量对象，导致其没有被回收，所以会一直存在，可供使用 。所以最好的方法就是使用完后，手动清除。</p>
+<h2 id="作用域链怎么生成的："><a href="#作用域链怎么生成的：" class="headerlink" title="作用域链怎么生成的："></a>作用域链怎么生成的：</h2><p>函数在被定义的时候，有个内部属性[[scope]]，这个属性保存的是一条作用域链，其实就是父作用的[[scope]]+父作用域的AO，但是不完整。当函数被调用时，在js创建阶段会生成一个变量对象，并且把这个变量对象保存到刚才说的那条作用域链上，最前端。同时还创建了一条新的表示函数调用作用域的链 scope = [[scope]] + VO<br>所以此时就有了两条作用域链，看似好像是相同的，其实就是相同但不相等的两条作用域链。<br>个人认为（个人理解不代表正确观点）：<br>第一条作用域链的作用是用于函数内部函数创建时用于填充[[scope]]的，就跟这个外部函数的[[scope]]是由其’父函数’作用域链填充一样（如果’父函数’为全局执行环境，那么外部函数的[[scope]]就只包含一个AO全局执行环境的变量对象。）。<br>第二条作用于链用于函数调用。</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-11-03</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;作用域的理解深化&lt;br&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://ielory.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="JS" scheme="http://ielory.com/tags/JS/"/>
+    
+  </entry>
   
   <entry>
     <title>移动端常见问题以及解决方案(待完善)</title>
@@ -1114,195 +1140,6 @@ test（）；
     
       <category term="JS" scheme="http://ielory.com/categories/JS/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>JS中实现继承的方法</title>
-    <link href="http://ielory.com/2016/11/17/JS%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%9A%84%E6%96%B9%E6%B3%95/"/>
-    <id>http://ielory.com/2016/11/17/JS中实现继承的方法/</id>
-    <published>2016-11-17T08:16:49.000Z</published>
-    <updated>2016-11-19T01:21:16.657Z</updated>
-    
-    <content type="html"><![CDATA[<p>总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。<br><a id="more"></a></p>
-<h2 id="方法一：原型链法"><a href="#方法一：原型链法" class="headerlink" title="方法一：原型链法"></a>方法一：原型链法</h2><p>利用原型让一个引用类型继承另外一个引用类型的属性和方法。<br>基本模式：</p>
-<pre><code>function Imtree()
-{
-    this.tree = true;
-}
-
-Imtree.prototype.getTreeValue = function()
-{
-    return this.tree;
-}
-
-function Imleaf()
-{
-    this.leaf = false;
-}
-
-Imleaf.prototype = new Imtree();//这一步实现继承
-
-Imleaf.prototype.getLeaf = function()
-{
-    return this.leaf;
-}
-
-var test = new Imleaf();
-test.leaf = false;
-test.getLeaf() = false;
-test.tree = true;//访问父类属性
-test.getTreeValue = true;//访问父类方法
-</code></pre><blockquote>
-<p>本质就是把父类的实例赋值给子类的原型，其实就是相当于子类原型指向了父类原型。参考实例指向原型。</p>
-</blockquote>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><blockquote>
-<ul>
-<li>包含引用类型值的属性会被共享，如果子类的多个实例访问父类原型中某引用类型值属性的话，只要该属性值被改变，所有子类实例访问到的该属性都会同步变化。</li>
-</ul>
-</blockquote>
-<h3 id="举个例子"><a href="#举个例子" class="headerlink" title="举个例子"></a>举个例子</h3><pre><code>function Imtree()
-{
-    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
-}
-
-function Imleaf(){}
-Imleaf.prototype = new Imtree();
-var a = new Imleaf();
-a.colors.push(&quot;black&quot;);
-alert(a.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
-var b = new Imleaf();
-//注意，此时b访问父类的colors属性，返回的也是四个元素，说明已经同步了。
-alert(b.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
-</code></pre><p>如果这正是你想要的形态，那无话可说。</p>
-<blockquote>
-<ul>
-<li>在创建子类型的实例时，不能向父类的构造函数中传递参数</li>
-</ul>
-</blockquote>
-<h2 id="方法二-借用构造函数法（伪造对象-经典继承）"><a href="#方法二-借用构造函数法（伪造对象-经典继承）" class="headerlink" title="方法二 借用构造函数法（伪造对象/经典继承）"></a>方法二 借用构造函数法（伪造对象/经典继承）</h2><p>在子类构造函数的内部调用父类（超类）构造函数。</p>
-<pre><code>function Imtree（）
-{
-    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
-}
-
-function Imleaf()
-{
-    Imtree.call(this);//此时继承了Imtree类
-}
-
-var a =new Imleaf();
-a.colors.push(&quot;black&quot;);
-alert(a.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
-var b = new Imleaf();
-alert(b.colors);// &quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;
-</code></pre><h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><p>构造函数模式的通病，方法无法复用。</p>
-<h2 id="方法三-组合继承法（伪经典继承）"><a href="#方法三-组合继承法（伪经典继承）" class="headerlink" title="方法三 组合继承法（伪经典继承）"></a>方法三 组合继承法（伪经典继承）</h2><p>使用原型链实现对原型属性和方法的继承，通过借用构造函数法来实现对实例属性的继承</p>
-<pre><code>function Imtree(name)
-{
-    this.tree = name;
-    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
-}
-
-Imtree.prototype.sayTreeName()
-{
-    alert(this.tree);
-}
-
-function Imleaf(name,age) 
-{
-    Imtree.call(this,name); //第二次调用  
-    this.age = age;
-}
-
-Imleaf.prototype = new Imtree();//第一次调用
-Imleaf.prototype.constructor = Imleaf;
-Imleaf.prototype.sayAge = function(){
-    alert(this.age);
-}
-
-var a = new Imleaf(&quot;aTree&quot;,10);
-a.colors.push(&quot;black&quot;);
-alert(a.colors);//&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;,&quot;black&quot;
-alert(a.sayAge());//10
-alert(a.sayName));//&quot;aTree&quot;
-
-var b = new Imleaf(&quot;bTree&quot;,50);
-alert(b.colors);//&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;
-alert(a.sayAge());//50
-alert(a.sayName));//&quot;bTree&quot;
-</code></pre><p>该方法结合了方法一和二的优点，避开了他们的缺点，使用的很广泛。</p>
-<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><p>调用两次父类构造函数。一次是在创建子类原型时，调用构造函数，将实例赋给子类原型。另外一次是在子类构造函数内。</p>
-<h2 id="方法四-原型式继承"><a href="#方法四-原型式继承" class="headerlink" title="方法四 原型式继承"></a>方法四 原型式继承</h2><pre><code>function object(o){
-    function F（）{}
-    F.prototype = o ;
-    return new F();
-    }
-
-var person = {
-    name: &quot;aa&quot;,
-    frineds:&quot;ab&quot;,&quot;ac&quot;
-}
-
-var a = object(person);
-a.friends.push(&quot;lll&quot;);
-alert(a.friends);//&quot;ab&quot;,&quot;ac&quot;,&quot;lll&quot;
-var b = object(person);
-b.friends.push(&quot;nnn&quot;);
-alert(b.friends);//&quot;ab&quot;,&quot;ac&quot;,&quot;lll&quot;,&quot;nnn&quot;
-</code></pre><p>该方法的规范方法：Object.create()<br>Object.create()拥有两个参数，第一个参数为（第二声）为（第四声）新对象定义额外属性的对象，第二个参数为自定义属性。</p>
-<pre><code>var person = {
-        name: &quot;aa&quot;,
-        frineds:&quot;ab&quot;,&quot;ac&quot;
-    }
-
-var a = object(person,{name:{value:&quot;zz&quot;}});
-alert(a.name);//&quot;zz&quot;
-</code></pre><p>支持该方法的有IE9+,FF4+,Safari5+，Opera12+和Chrome。</p>
-<h2 id="方法五-寄生式继承"><a href="#方法五-寄生式继承" class="headerlink" title="方法五 寄生式继承"></a>方法五 寄生式继承</h2><p>创建一个封闭继承过程的函数，与方法四类似。<br>function createAnother(a)<br>{<br>    var clone = object(a);//不一定是object方法，任何能返回新对象的方法都可以<br>    clone.sayHi = function（）<br>    {<br>        alert(“Hi”);<br>    }<br>    return clone;<br>}</p>
-<h2 id="方法六-寄生组合式继承"><a href="#方法六-寄生组合式继承" class="headerlink" title="方法六 寄生组合式继承"></a>方法六 寄生组合式继承</h2><p>通过借用构造函数来继承属性，通过原型链的混合形式来继承方法。基本思路为：不必为了指定子类的原型而调用父类的构造函数。而是创建一个父类的副本。</p>
-<pre><code>function inheritPrototype(mtree,mleaf)
-{
-    var prototype = object(mtree.prototype);//创建父类原型的副本
-    prototype.constructor = mleaf;//为副本添加constructor属性
-    mleaf.prototype = prototype; //实现继承
-}
-
- function Imtree(name)
-{
-    this.tree = name;
-    this.colors = [&quot;yellow&quot;,&quot;green&quot;,&quot;gray&quot;];
-}
-
-Imtree.prototype.sayTreeName()
-{
-    alert(this.tree);
-}
-
-function Imleaf(name,age) 
-{
-    Imtree.call(this,name); 
-    this.age = age;
-}
-function inheritPrototype(Imtree,Imleaf);
-Imleaf.prototype.sayAge = function(){
-    alert(this.age);
-}
-</code></pre><p>此方法是实现类型继承的最有效方法。只调用了一次构造函数。</p>
-<h2 id="小样有话说："><a href="#小样有话说：" class="headerlink" title="小样有话说："></a>小样有话说：</h2><center style="color:green;font-weight: Bold;border:1px dotted #999">JS的学习继续。</center>
-
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-17</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;总结继承方法，并且有针对性的分析一下优缺点。由于讲继承，为了便于理解，采用父类这种叫法而不是超类。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JS" scheme="http://ielory.com/categories/JS/"/>
-    
-    
-      <category term="JS" scheme="http://ielory.com/tags/JS/"/>
     
   </entry>
   
