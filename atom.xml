@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ielory.com/"/>
-  <updated>2017-11-03T12:38:27.571Z</updated>
+  <updated>2017-11-07T16:10:57.846Z</updated>
   <id>http://ielory.com/</id>
   
   <author>
@@ -14,6 +14,47 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>移动端适配理解笔记</title>
+    <link href="http://ielory.com/2017/11/08/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E7%90%86%E8%A7%A3%E7%AC%94%E8%AE%B0/"/>
+    <id>http://ielory.com/2017/11/08/移动端适配理解笔记/</id>
+    <published>2017-11-07T16:09:01.000Z</published>
+    <updated>2017-11-07T16:10:57.846Z</updated>
+    
+    <content type="html"><![CDATA[<p>自从发现了手淘的优雅适配移动端方案flexible之后一直有个疑问就是rem到底起着什么作用，因为如果设置了固定px样式后，发现在所有终端下都是相等的px，那到底弄这么复杂的移动端适配是为了干啥，今天看了几篇文章，貌似恍然大悟，免得以后忘记，写在这里。</p>
+<a id="more"></a>
+<p>第一：移动端开发必备的meta<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no&quot;&gt;&lt;/meta&gt;</div></pre></td></tr></table></figure></p>
+<p>这句话应该是信手拈来的，但表达的意思以前我都没搞太懂，我现在是这样理解的<br>width=device-width 这个设置是设置布局适口为理想视口，理想视口也就是这部手机的物理宽高。</p>
+<p>比如ihpone6（之后的例子都是以6来说的）的宽375pt，所以这里的width为375px。布局适口我们就当作是程序员操作的界面。<br>如果我们后面设置的scale为1，也就是缩放比例为1，其实就是让我们的布局视口 = 1倍理想视口。</p>
+<p>手淘的方案是这样搞的。根据设备宽高，也就是clientWidth，使用js动态设置scale。假设为375，我们设置scale为0.5。什么意思？</p>
+<blockquote>
+<p>意思就是把我们的布局视口缩小0.5倍，为嘛要缩小。先得知道iphone6的物理像素，宽为750pt，代表一排有750个硬件像素点。我们布局视口宽375px，也就是说程序员操作的1px*1px像素点实际上是等于2*2 = 4个硬件像素点的.<br>缩小0.5倍实际上就是让程序员操作的1px * 1px = 硬件上的1个像素点 这样有啥好处呢。好处就是在我们可以直接用设计稿上多大的尺寸，我们写出的程序看起来就是多大的尺寸了。如果按照原来的1来看，从视觉上写出来的尺寸会比设计稿上尺寸大。<br>但是缩放0.5只是为了适应dpr为2的屏幕，对于其他分辨率的就不适用了。所以这里我们动态设置他，针对3的屏幕，他就是0.3333333.</p>
+</blockquote>
+<p>第二： rem<br>但是这并没有解决问题，因为我们的设计稿是640px的。一个红方块是200px。我们操作的像素是750px，显示的也是200px的红方块。这样最终的布局肯定就会乱，所以到这里还没有结束。<br>这里就用到了rem，来根据不同的屏幕调整方块的大小了。<br>rem是相对根元素html的fontSize样式来计算的，所以我们要动态的设置这个值。这里手淘和网易采用两种不同的方法</p>
+<blockquote>
+<ul>
+<li>网易：<br>根据设计稿的宽度计算一个基准值例如 640 / 100 = 6.4 这个6.4作为基准值。640哪里来，640用到真机上就是clientWidth 。所以iphon6就是375 那fontSize值到底怎样算呢。就用设计稿的基准值来算。<br>fontSize = clientWidth / 6.4 那么设计稿中fontSize为100px 也就是1rem = 100px，这样写程序的时候就很方便。200px的方块就是2rem。 那这个盒子在375的clientWidth下多大呢。<br>我们知道375下的fontSize为375 / 6.4 = 58.59px 我们写200px的盒子用的是2rem， 那么这里最终得出来的具体值就是 2 * 58.59px = 117px</li>
+<li>淘宝<br>淘宝的fontSize = clientWidth  <em> dpr / 10。前面的clientWidth  </em> dpr是什么意思呢 算出来的其实就是物理像素大小 例如6的就是375 <em> 2 = 750，fontSize = 75px .前面我们说到为了让1个物理像素点等于一个程序员可以操作的点（CSS像素点）。我们设置了scale。现在这里就用上了。<br>我们在设计稿中是640pxize，假设设计稿是1 那么fontSize = 640 </em> 1 / 10 = 64px ，然后我们就利用这个来算盒子的大小，为3.125rem 那么在6真机上出来的就是234px.虽说和网易计算出来的值不一样，但是在一部机器上绝对一样大小。原因就在scale身上。</li>
+</ul>
+</blockquote>
+<p>那么网页中的字体，网易的基本上16px就直接这样写，因为scale没有变化。淘宝的可就不能一直16px了，因为已经让一个物理像素等于一个CSS像素了,在16px大小的字块从体积上宽<em>高已经在6上缩小了4倍，所以要使用媒体查询更改字体大小。2倍屏为2</em>16</p>
+<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2017-11-8</span></center>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自从发现了手淘的优雅适配移动端方案flexible之后一直有个疑问就是rem到底起着什么作用，因为如果设置了固定px样式后，发现在所有终端下都是相等的px，那到底弄这么复杂的移动端适配是为了干啥，今天看了几篇文章，貌似恍然大悟，免得以后忘记，写在这里。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="前端" scheme="http://ielory.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="移动端" scheme="http://ielory.com/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
+      <category term="前段" scheme="http://ielory.com/tags/%E5%89%8D%E6%AE%B5/"/>
+    
+  </entry>
   
   <entry>
     <title>第三次认识作用域</title>
@@ -311,9 +352,9 @@
       <category term="Angualarjs" scheme="http://ielory.com/categories/Angualarjs/"/>
     
     
-      <category term="Angualarjs" scheme="http://ielory.com/tags/Angualarjs/"/>
-    
       <category term="前端" scheme="http://ielory.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Angualarjs" scheme="http://ielory.com/tags/Angualarjs/"/>
     
   </entry>
   
@@ -344,9 +385,9 @@
       <category term="Angualarjs" scheme="http://ielory.com/categories/Angualarjs/"/>
     
     
-      <category term="Angualarjs" scheme="http://ielory.com/tags/Angualarjs/"/>
-    
       <category term="前端" scheme="http://ielory.com/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+      <category term="Angualarjs" scheme="http://ielory.com/tags/Angualarjs/"/>
     
   </entry>
   
@@ -1034,112 +1075,6 @@ btn.attachEvent(&quot;onclick&quot;,function(event){
     
     
       <category term="JS" scheme="http://ielory.com/tags/JS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JS闭包</title>
-    <link href="http://ielory.com/2016/11/18/JS%E9%97%AD%E5%8C%85/"/>
-    <id>http://ielory.com/2016/11/18/JS闭包/</id>
-    <published>2016-11-18T10:15:29.000Z</published>
-    <updated>2016-11-18T12:26:53.725Z</updated>
-    
-    <content type="html"><![CDATA[<p>介绍闭包相关知识。<br><a id="more"></a></p>
-<h2 id="闭包的定义"><a href="#闭包的定义" class="headerlink" title="闭包的定义"></a>闭包的定义</h2><p><strong>闭包是</strong>指有权访问另一个函数作用域中的变量的<strong>函数</strong>。我们常常通过在一个函数内部创建另外一个函数来形成闭包。</p>
-<h2 id="作用域以及作用域链的回顾"><a href="#作用域以及作用域链的回顾" class="headerlink" title="作用域以及作用域链的回顾"></a>作用域以及作用域链的回顾</h2><p><a href="http://gelory.me/2016/11/06/JS%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%9A%84%E7%90%86%E8%A7%A3/" target="_blank" rel="external">JS执行环境及作用域的理解</a>这篇文章对这些名词做了很好的解释，但是如果不代入使用环境的话，总觉得云里雾里，似懂非懂的样子。</p>
-<p>当一个函数被调用的时候，就会创建一个<code>执行环境</code>（执行环境定义了变量和函数有权访问其他数据）以及相对应的<code>作用域链</code>（规定访问变量和函数的顺序）。然后使用arguments和其他命名参数来初始化函数的活动对象。</p>
-<h2 id="变量对象与活动对象的区别与联系"><a href="#变量对象与活动对象的区别与联系" class="headerlink" title="变量对象与活动对象的区别与联系"></a>变量对象与活动对象的区别与联系</h2><p>其实变量对象与活动对象的关系是包含与被包含的关系。也就是说活动对象是变量对象的一部分。<br>活动对象正如其名，活动，表示一种状态，也可以称为活动的变量对象，其实活动这个名词也是翻译过来的。英文名叫<code>Activation Object</code>，意思是激活，我们也可以理解为正在用的意思。<br>用例子来解释：</p>
-<pre><code>var a = 1;
-function func(){
-    var b =2;
-    return a+b;
-}
-alert(func());
-</code></pre><p>我们在全局环境下定义了变量a和函数func。当我们打开浏览器时，全局环境的执行环境就存在了。此时的变量对象包括a,func.<br><strong>在func函数创建之初</strong>，会预先创建一个包含全局变量对象的作用域链（scope chain），这个作用域链被保存在函数对象的scope属性中。<br><strong>当我们调用函数func时</strong>，会创建func的执行环境。然后复制scope属性中的对象（此时只有全局变量对象），构建执行环境的作用域链，之后把pub函数中的变量对象（包含this，arguments，b）放入执行环境中，该对象被推入到作用域链的前端。此时，执行环境的作用域链（本质是一个指针列表）包含两个变量对象（全局变量对象，pub函数的变量对象），而func函数的变量对象也就是活动对象。<br>我们可以说活动对象就是当前正在被执行或者被引用的变量对象。</p>
-<h2 id="闭包案例解析"><a href="#闭包案例解析" class="headerlink" title="闭包案例解析"></a>闭包案例解析</h2><pre><code>var a = 1;
-function func(){
-    var b =2;
-    return function(){
-    alert(a+b);
-}
-var sonfunc = func();//创建函数
-sonfunc();//调用函数
-</code></pre><p>在一个函数（本例中的func）内部定义另外一个函数（本例中返回的函数），这就是闭包的常见形式.<br>当执行</p>
-<pre><code>var sonfunc = func();//创建函数
-</code></pre><p>这条语句时,引用了func函数，此时func函数的变量对象被称为活动对象。包括（this，arguments，b，内部function）。<br>当执行</p>
-<pre><code>sonfunc();//调用函数
-</code></pre><p>这条语句时，sonfunc（闭包）的变量对象被添加到其作用域链的最前端，其作用域链将包含本地活动对象（this，arguments），func活动对象（this，arguments，b，内部function）以及全局变量对象。</p>
-<p>细心的人可能会发现：<br>此时执行的时函数sonfunc，而不是func，按照你刚才对活动对象的定义，<strong>活动对象就是当前正在被执行或者被引用的变量对象。</strong>那么为什么……<br>看到这里是不是恍然大悟，<strong>被引用</strong>，<strong>被引用</strong>，<strong>被引用</strong>，重要的事说三遍。没错，之所以把此时func函数的变量对象也称之为活动对象，就是因为他符合活动对象定义的第二个条件：被引用。</p>
-<p>func函数执行完后，作用域链会被立即销毁，但是活动对象任然留在内存中，原因是sonfunc函数依旧在引用变量b。直到sonfunc被销毁后，func的活动对象才会被销毁。</p>
-<h2 id="闭包优点"><a href="#闭包优点" class="headerlink" title="闭包优点"></a>闭包优点</h2><p>普通的函数执行完毕后，其活动对象就会被销毁，仅有全局变量被保存在内存中，但是如果包含闭包则不一样，他需要等闭包被销毁后，其活动对象才会被销毁。</p>
-<h2 id="闭包缺点"><a href="#闭包缺点" class="headerlink" title="闭包缺点"></a>闭包缺点</h2><p>由于闭包会携带包含它的函数的作用域，因此会比其他函数更占用内存。</p>
-<h2 id="闭包副作用案例分析"><a href="#闭包副作用案例分析" class="headerlink" title="闭包副作用案例分析"></a>闭包副作用案例分析</h2><pre><code>function cFunc(){
-    var arr = new Array();
-    for (var i =0 ; i&lt;10 ;i++)
-    {
-        arr[i] = function()
-        {
-            return i;
-        }
-    }
-    return arr;
-}
-</code></pre><p>该函数本意是让每个数组元素返回自己的索引值。但是实际上背个数组元素的值都是10.<br>原因就是因为每个闭包引用的变量i是同一个变量对象。for执行完后,i的值为10，所以同步到每一个引用，i都是10，因此每个元素的值都是10.</p>
-<p>让函数符合预期的改进方法</p>
-<pre><code>function cFunc(){
-    var arr = new Array();
-    for (var i =0 ; i&lt;10 ;i++)
-    {
-        arr[i] = function(num)
-        {
-           //return num; 直接返回参数的方式
-           return function(){
-            return num;
-            }//用闭包的方式
-        }(i);//立即执行匿名函数的写法
-    }
-    return arr;
-}
-</code></pre><blockquote>
-<p>闭包可以访问外部函数中的变量，但是只能取得外部函数变量的最终值。</p>
-</blockquote>
-<h2 id="匿名函数与闭包"><a href="#匿名函数与闭包" class="headerlink" title="匿名函数与闭包"></a>匿名函数与闭包</h2><p>上一节提到了匿名函数，书上说有很多开发人员总是搞不清匿名函数与闭包的区别。这就尴尬了，在我看来，他们俩最大的共同点：<code>他们都是函数</code>。然后没了。</p>
-<h3 id="匿名函数定义"><a href="#匿名函数定义" class="headerlink" title="匿名函数定义"></a>匿名函数定义</h3><p>function关键字后没有标识符的函数，就是匿名函数（拉姆达函数）。简而言之就是没有函数名。</p>
-<h3 id="匿名函数与闭包的联系"><a href="#匿名函数与闭包的联系" class="headerlink" title="匿名函数与闭包的联系"></a>匿名函数与闭包的联系</h3><p>我们经常用匿名函数去创建闭包。</p>
-<h3 id="匿名函数的this对象"><a href="#匿名函数的this对象" class="headerlink" title="匿名函数的this对象"></a>匿名函数的this对象</h3><p>匿名函数的执行对象具有全局性，因此this指向window。</p>
-<h2 id="内存泄露问题"><a href="#内存泄露问题" class="headerlink" title="内存泄露问题"></a>内存泄露问题</h2><p>IE9之前版本对JS与DOM对象使用不同的垃圾收集方法，因此闭包会产生一些问题。</p>
-<pre><code>function test(){
-    var a = document.getElementById(&apos;lala&apos;);
-    a.onclick = function(){
-        alert(a.id);
-        //此处形成了循环引用。a对象的click属性引用了function这个函数，而这个函数又引用了a对象的id属性
-    }
-}
-test（）；
-</code></pre><p>a的引用次数不止一次，因此a会永远占据内存，不会被回收。<br>解决方案</p>
-<pre><code>function test(){
-    var a = document.getElementById(&apos;lala&apos;);
-    var id = a.id;
-    a.onclick = function(){
-        alert(id);
-    }
-}
-test（）；
-</code></pre><p>此时，消除了循环引用，但是a依旧无法被回收。因为闭包的存在，变量a依旧是闭包可引用的活动对象。即使不引用a，a也不能释放内存，此外DOM对象也保存一个引用，因此设置a为null，可以清除DOM对象所占的内存。闭包执行完后，活动对象被销毁，此时a也就释放了内存。（这段话如果有问题的话，请评论）</p>
-<h2 id="为什么JS中会有闭包的存在呢？"><a href="#为什么JS中会有闭包的存在呢？" class="headerlink" title="为什么JS中会有闭包的存在呢？"></a>为什么JS中会有闭包的存在呢？</h2><p>我认为是为了解决全局变量滥用的问题。全局变量正如其名，存在的意义应该是很多函数都会用到的，但是为了满足一个函数某种特殊的需求（譬如想要在某个函数中多次利用已经计算的变量）去声明全局变量实在是大材小用。此外，全局变量所占的内存只有在退出浏览器后才得以释放，这样就会发生内存泄漏。<br>闭包应运而生，既满足了需求，将这个变量保存在外部函数内，可以利用已经计算的变量，此外，等闭包执行完后，该变量内存就会释放。一举两得。</p>
-<blockquote>
-<p>当一个函数中的变量或者函数能够访问另外一个函数作用域中的变量或者函数时，就产生了闭包。</p>
-</blockquote>
-<center><div style="border: 2px solid #999;border-top:none;border-left:none;width: 20px;height:20px;transform:rotate(45deg);"></div></center><br><center style="dispaly:block;width:300px;margin:0 auto"><span style="display:inline-block;float:left;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span><span><a href="https://github.com/Gong-Elory" target="_blank" rel="external">龚小样</a></span><span style=" display:inline-block;float:right;width:100px;height:10px;border-top:1px solid #999;margin-top:15px;"></span></center><br><center><span style="font-size:14px;line-height:14px;margin-top:0;">2016-11-18</span></center>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;介绍闭包相关知识。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="JS" scheme="http://ielory.com/categories/JS/"/>
-    
     
   </entry>
   
